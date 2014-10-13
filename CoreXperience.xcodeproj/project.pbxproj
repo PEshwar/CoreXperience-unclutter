@@ -7,13 +7,23 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		995ACCAC19EAEBDB00F0C715 /* ExperienceSummaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 995ACCAB19EAEBDB00F0C715 /* ExperienceSummaryViewController.swift */; };
+		995ACCAE19EAEBFC00F0C715 /* ExperienceListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 995ACCAD19EAEBFC00F0C715 /* ExperienceListViewController.swift */; };
+		995ACCB019EAEC1E00F0C715 /* ExperienceDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 995ACCAF19EAEC1E00F0C715 /* ExperienceDetailViewController.swift */; };
+		995ACCB219EAEC8D00F0C715 /* ExperienceTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 995ACCB119EAEC8D00F0C715 /* ExperienceTabBarController.swift */; };
+		995ACCB419EAF7B500F0C715 /* ExperienceMgr.swift in Sources */ = {isa = PBXBuildFile; fileRef = 995ACCB319EAF7B500F0C715 /* ExperienceMgr.swift */; };
+		995ACCB619EAF7E700F0C715 /* ExperiencePersistenceHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 995ACCB519EAF7E700F0C715 /* ExperiencePersistenceHelper.swift */; };
 		998D7C0C19EAE69500A8036F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 998D7C0B19EAE69500A8036F /* AppDelegate.swift */; };
 		998D7C0F19EAE69500A8036F /* CoreXperience.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 998D7C0D19EAE69500A8036F /* CoreXperience.xcdatamodeld */; };
-		998D7C1119EAE69500A8036F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 998D7C1019EAE69500A8036F /* ViewController.swift */; };
 		998D7C1419EAE69500A8036F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 998D7C1219EAE69500A8036F /* Main.storyboard */; };
 		998D7C1619EAE69500A8036F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 998D7C1519EAE69500A8036F /* Images.xcassets */; };
 		998D7C1919EAE69500A8036F /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 998D7C1719EAE69500A8036F /* LaunchScreen.xib */; };
 		998D7C2519EAE69500A8036F /* CoreXperienceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 998D7C2419EAE69500A8036F /* CoreXperienceTests.swift */; };
+		998D7C6B19EAE9BD00A8036F /* Audio in Resources */ = {isa = PBXBuildFile; fileRef = 998D7C6619EAE9BD00A8036F /* Audio */; };
+		998D7C6C19EAE9BD00A8036F /* Location in Resources */ = {isa = PBXBuildFile; fileRef = 998D7C6719EAE9BD00A8036F /* Location */; };
+		998D7C6D19EAE9BD00A8036F /* Title in Resources */ = {isa = PBXBuildFile; fileRef = 998D7C6819EAE9BD00A8036F /* Title */; };
+		998D7C6E19EAE9BD00A8036F /* Video in Resources */ = {isa = PBXBuildFile; fileRef = 998D7C6919EAE9BD00A8036F /* Video */; };
+		998D7C6F19EAE9BD00A8036F /* Write in Resources */ = {isa = PBXBuildFile; fileRef = 998D7C6A19EAE9BD00A8036F /* Write */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -27,17 +37,27 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		995ACCAB19EAEBDB00F0C715 /* ExperienceSummaryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExperienceSummaryViewController.swift; sourceTree = "<group>"; };
+		995ACCAD19EAEBFC00F0C715 /* ExperienceListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExperienceListViewController.swift; sourceTree = "<group>"; };
+		995ACCAF19EAEC1E00F0C715 /* ExperienceDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExperienceDetailViewController.swift; sourceTree = "<group>"; };
+		995ACCB119EAEC8D00F0C715 /* ExperienceTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExperienceTabBarController.swift; sourceTree = "<group>"; };
+		995ACCB319EAF7B500F0C715 /* ExperienceMgr.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExperienceMgr.swift; sourceTree = "<group>"; };
+		995ACCB519EAF7E700F0C715 /* ExperiencePersistenceHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExperiencePersistenceHelper.swift; sourceTree = "<group>"; };
 		998D7C0619EAE69500A8036F /* CoreXperience.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CoreXperience.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		998D7C0A19EAE69500A8036F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		998D7C0B19EAE69500A8036F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		998D7C0E19EAE69500A8036F /* CoreXperience.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreXperience.xcdatamodel; sourceTree = "<group>"; };
-		998D7C1019EAE69500A8036F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		998D7C1319EAE69500A8036F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		998D7C1519EAE69500A8036F /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		998D7C1819EAE69500A8036F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		998D7C1E19EAE69500A8036F /* CoreXperienceTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CoreXperienceTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		998D7C2319EAE69500A8036F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		998D7C2419EAE69500A8036F /* CoreXperienceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreXperienceTests.swift; sourceTree = "<group>"; };
+		998D7C6619EAE9BD00A8036F /* Audio */ = {isa = PBXFileReference; lastKnownFileType = file; path = Audio; sourceTree = "<group>"; };
+		998D7C6719EAE9BD00A8036F /* Location */ = {isa = PBXFileReference; lastKnownFileType = file; path = Location; sourceTree = "<group>"; };
+		998D7C6819EAE9BD00A8036F /* Title */ = {isa = PBXFileReference; lastKnownFileType = file; path = Title; sourceTree = "<group>"; };
+		998D7C6919EAE9BD00A8036F /* Video */ = {isa = PBXFileReference; lastKnownFileType = file; path = Video; sourceTree = "<group>"; };
+		998D7C6A19EAE9BD00A8036F /* Write */ = {isa = PBXFileReference; lastKnownFileType = file; path = Write; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,12 +100,18 @@
 			isa = PBXGroup;
 			children = (
 				998D7C0B19EAE69500A8036F /* AppDelegate.swift */,
-				998D7C1019EAE69500A8036F /* ViewController.swift */,
 				998D7C1219EAE69500A8036F /* Main.storyboard */,
 				998D7C1519EAE69500A8036F /* Images.xcassets */,
+				998D7C2E19EAE98300A8036F /* Images */,
 				998D7C1719EAE69500A8036F /* LaunchScreen.xib */,
 				998D7C0D19EAE69500A8036F /* CoreXperience.xcdatamodeld */,
 				998D7C0919EAE69500A8036F /* Supporting Files */,
+				995ACCAB19EAEBDB00F0C715 /* ExperienceSummaryViewController.swift */,
+				995ACCAD19EAEBFC00F0C715 /* ExperienceListViewController.swift */,
+				995ACCAF19EAEC1E00F0C715 /* ExperienceDetailViewController.swift */,
+				995ACCB119EAEC8D00F0C715 /* ExperienceTabBarController.swift */,
+				995ACCB319EAF7B500F0C715 /* ExperienceMgr.swift */,
+				995ACCB519EAF7E700F0C715 /* ExperiencePersistenceHelper.swift */,
 			);
 			path = CoreXperience;
 			sourceTree = "<group>";
@@ -113,6 +139,18 @@
 				998D7C2319EAE69500A8036F /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		998D7C2E19EAE98300A8036F /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				998D7C6619EAE9BD00A8036F /* Audio */,
+				998D7C6719EAE9BD00A8036F /* Location */,
+				998D7C6819EAE9BD00A8036F /* Title */,
+				998D7C6919EAE9BD00A8036F /* Video */,
+				998D7C6A19EAE9BD00A8036F /* Write */,
+			);
+			name = Images;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -195,9 +233,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				998D7C6F19EAE9BD00A8036F /* Write in Resources */,
 				998D7C1419EAE69500A8036F /* Main.storyboard in Resources */,
 				998D7C1919EAE69500A8036F /* LaunchScreen.xib in Resources */,
 				998D7C1619EAE69500A8036F /* Images.xcassets in Resources */,
+				998D7C6D19EAE9BD00A8036F /* Title in Resources */,
+				998D7C6B19EAE9BD00A8036F /* Audio in Resources */,
+				998D7C6C19EAE9BD00A8036F /* Location in Resources */,
+				998D7C6E19EAE9BD00A8036F /* Video in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -215,8 +258,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				998D7C1119EAE69500A8036F /* ViewController.swift in Sources */,
+				995ACCAE19EAEBFC00F0C715 /* ExperienceListViewController.swift in Sources */,
+				995ACCB019EAEC1E00F0C715 /* ExperienceDetailViewController.swift in Sources */,
+				995ACCB419EAF7B500F0C715 /* ExperienceMgr.swift in Sources */,
+				995ACCB619EAF7E700F0C715 /* ExperiencePersistenceHelper.swift in Sources */,
+				995ACCAC19EAEBDB00F0C715 /* ExperienceSummaryViewController.swift in Sources */,
 				998D7C0F19EAE69500A8036F /* CoreXperience.xcdatamodeld in Sources */,
+				995ACCB219EAEC8D00F0C715 /* ExperienceTabBarController.swift in Sources */,
 				998D7C0C19EAE69500A8036F /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -409,6 +457,7 @@
 				998D7C2A19EAE69500A8036F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		998D7C2B19EAE69500A8036F /* Build configuration list for PBXNativeTarget "CoreXperienceTests" */ = {
 			isa = XCConfigurationList;
@@ -417,6 +466,7 @@
 				998D7C2D19EAE69500A8036F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
