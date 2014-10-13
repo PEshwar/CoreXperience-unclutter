@@ -12,13 +12,13 @@ class ExperienceSummaryViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-     
+       
+        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-         self.navigationItem.rightBarButtonItem = self.editButtonItem()
+      //   self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
 
     override func didReceiveMemoryWarning() {
@@ -28,9 +28,16 @@ class ExperienceSummaryViewController: UITableViewController {
 
     override func viewWillAppear(animated: Bool) {
         
-        tableView.reloadData()
-        println("Going to call list by type")
-        expMgr.listByType()
+   /*     println("going to get selected user")
+        var selectedUser = self.tabBarItem.title
+        println("seleted tab bar  is \(self.tabBarItem)")
+        println("seleted user is \(selectedUser)")
+        println("seleted image is \(self.tabBarItem.selectedImage)")
+          println("seleted title is \(self.tabBarItem.title)")*/
+        
+  //      println("Inside summary Going to call list by type")
+     expMgr.listByType()
+     tableView.reloadData()
         
     }
     
@@ -45,16 +52,30 @@ class ExperienceSummaryViewController: UITableViewController {
     override func tableView(tableView: UITableView!, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete method implementation.
         // Return the number of rows in the section.
-        return expMgr.experiences.count
+        return g_typeList.count
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("SummaryCell") as UITableViewCell
+        var cell = tableView.dequeueReusableCellWithIdentifier("SummaryCell") as UITableViewCell
+       //Add this line to get the subtitle text
+        cell = UITableViewCell(style: UITableViewCellStyle.Subtitle,reuseIdentifier:"SummaryCell")
         
         //Assign the contents of our var "items" to the textLabel of each cell
-        cell.textLabel!.text = expMgr.experiences[indexPath.row].m_title
+        cell.textLabel!.text = g_typeList[indexPath.row]
         cell.textLabel!.textColor = UIColor.orangeColor()
-    //    cell.detailTextLabel!.text = expMgr.experiences[indexPath.row].m_desc
+        
+        
+    //   cell.detailTextLabel!.text = expMgr.experiences[indexPath.row].m_desc
+        switch (indexPath.row) {
+            case 0: cell.detailTextLabel!.text = String(g_experiencesByType1.count) + " Items"
+            case 1: cell.detailTextLabel!.text = String(g_experiencesByType2.count) + " Items"
+            case 2: cell.detailTextLabel!.text = String(g_experiencesByType3.count) + " Items"
+            case 3: cell.detailTextLabel!.text = String(g_experiencesByType4.count) + " Items"
+            case 4: cell.detailTextLabel!.text = String(g_experiencesByType5.count) + " Items"
+            
+            default:
+            break
+        }
         
    
   //      tempCell.imageView?.image = UIImage(named: experienceTitle)
@@ -63,20 +84,19 @@ class ExperienceSummaryViewController: UITableViewController {
         return cell
     }
     
+   
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
-        //Create instance of ExperienceDetailViewController
-        var detail:ExperienceDetailViewController = self.storyboard?.instantiateViewControllerWithIdentifier("ExperienceDetailViewController") as ExperienceDetailViewController
+        //Create instance of ExperienceListViewController
+        var detail:ExperienceListViewController = self.storyboard?.instantiateViewControllerWithIdentifier("ExperienceListViewController") as ExperienceListViewController
         
         //Reference ExperienceDetailViewController's var "cellName" and assign it to ExperienceDetailViewController's var "items"
-        println(" title text is: \(expMgr.experiences[indexPath.row].m_title)")
-        detail.s_title = expMgr.experiences[indexPath.row].m_title
-       println(" Desc text is: \(expMgr.experiences[indexPath.row].m_desc)")
-        detail.s_desc = expMgr.experiences[indexPath.row].m_desc
-        println(" location text is: \(expMgr.experiences[indexPath.row].m_location)")
-        detail.s_location = expMgr.experiences[indexPath.row].m_location
-
+        println(" Inside summary VC- selected experience type in list controller is: \(g_typeList[indexPath.row])")
+        
+        
+        //update global variable for use in other view controllers
+        g_selectedType = g_typeList[indexPath.row]
         
         //Programmatically push to associated VC (ExperienceDetailViewController)
         self.navigationController?.pushViewController(detail, animated: true)
@@ -92,7 +112,7 @@ class ExperienceSummaryViewController: UITableViewController {
         })
     }
     
-    override func tableView(tableView:UITableView!, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath:NSIndexPath!){
+  /*  override func tableView(tableView:UITableView!, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath:NSIndexPath!){
         
         if(editingStyle == UITableViewCellEditingStyle.Delete){
           println(" Index path is \(indexPath.row)")
@@ -101,7 +121,7 @@ class ExperienceSummaryViewController: UITableViewController {
             tableView.reloadData()
         }
         
-    }
+    } */
     /*
     override func tableView(tableView: UITableView!, cellForRowAtIndexPath indexPath: NSIndexPath!) -> UITableViewCell! {
         let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath) as UITableViewCell

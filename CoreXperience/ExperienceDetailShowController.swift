@@ -1,20 +1,22 @@
 //
-//  ExperienceDetailViewController.swift
+//  ExperienceDetailShowController.swift
 //  CoreXperience
 //
-//  Created by Prabhu Eshwarla on 12/10/14.
+//  Created by Prabhu Eshwarla on 13/10/14.
 //  Copyright (c) 2014 iTripuram. All rights reserved.
 //
 
 import UIKit
-import Foundation
 
+class ExperienceDetailShowController: UIViewController {
 
-class ExperienceDetailViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDataSource {
-
-//    @IBOutlet var d_user: UITextField!
-//    @IBOutlet var d_type: UITextField!
+    
+    //    @IBOutlet var d_user: UITextField!
+    //    @IBOutlet var d_type: UITextField!
+    
     @IBOutlet var d_title: UITextField!
+    
+    @IBOutlet weak var d_pickerShow: UIPickerView!
     
     @IBOutlet weak var d_desc: UITextView!
     @IBOutlet var d_location: UITextField!
@@ -27,13 +29,12 @@ class ExperienceDetailViewController: UIViewController,UIPickerViewDelegate, UIP
     var s_location:String = ""
     
     
-    @IBOutlet weak var d_picker: UIPickerView!
-   
+    
     @IBOutlet weak var d_type: UIPickerView!
     
     @IBAction func btnSaveTask(sender: UIButton){
         
-    println("Inside save button")
+        println("Inside save button")
         
         var l_title: String = d_title.text
         var l_desc: String = d_desc.text
@@ -46,25 +47,13 @@ class ExperienceDetailViewController: UIViewController,UIPickerViewDelegate, UIP
         d_desc.text = ""
         d_location.text = ""
         self.view.endEditing(true)
-    
-   //     println("Inside save button- added new experience to array & database")
         
-        //Refresh the list view
-        
-        expMgr.listByType()
-    //    println("after refreshing the list view")
+        //     println("Inside save button- added new experience to array & database")
         
         navigationController?.presentingViewController?.dismissViewControllerAnimated(true, completion: {})
-     //   println("Inside save button- dismussing curent view controller")
+        //   println("Inside save button- dismussing curent view controller")
     }
     
-    @IBAction func btnCancel(){
-        
-        println("Cancel button pressed")
-        
-        navigationController?.presentingViewController?.dismissViewControllerAnimated(true, completion: {})
-        
-    }
     
     
     override func viewDidLoad() {
@@ -74,15 +63,14 @@ class ExperienceDetailViewController: UIViewController,UIPickerViewDelegate, UIP
         
         arrType = ["My Spiritual experiences", "My Dreams", "My Notes","My Intuition", "Miscellaneous"]
         
-       
-        d_picker.selectRow(g_pickerSelectedIndex, inComponent:0,animated: true)
+        d_pickerShow.selectRow(g_pickerSelectedIndex, inComponent:0,animated: true)
         
-      //load Detail VC from row selected in Summary VC
+        //load Detail VC from row selected in Summary VC
         
         d_title.text = s_title
         d_desc.text = s_desc
         d_location.text = s_location
-
+        
         //        txtName.becomeFirstResponder()
         
         // Do any additional setup after loading the view.
@@ -119,10 +107,10 @@ class ExperienceDetailViewController: UIViewController,UIPickerViewDelegate, UIP
     }
     
     func pickerView(_ pickerView: UIPickerView,titleForRow row: Int,forComponent component: Int) -> String! {
-    //    println( " Item selected is \(arrType[row])")
-         pickerSelectedType = arrType[row] as String
+   //     println( " Item selected is \(arrType[row])")
+        pickerSelectedType = arrType[row] as String
         return "\(arrType[row])"
     }
-
+    
 
 }

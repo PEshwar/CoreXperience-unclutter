@@ -10,20 +10,29 @@ import UIKit
 
 var expMgr:ExperienceMgr = ExperienceMgr()
 
+var g_typeList:[String] = ["My Spiritual experiences", "My Dreams", "My Notes", "My Intuition", "Miscellaneous"]
+
+var g_selectedType : String = ""
+
+var g_pickerSelectedIndex : Int = 0
+
 struct Experience {
     var m_user: String = "Family"
-    var m_type: String = "My Spiritual experiences"
-    var m_title: String = "Test "
-    var m_desc: String = "Test desc "
-    var m_location: String = "Bangalore "
+    var m_type: String = ""
+    var m_title: String = " "
+    var m_desc: String = ""
+    var m_location: String = ""
 }
+var g_experiencesByType = [Experience]()
+var g_experiencesByType1 = [Experience]()
+var g_experiencesByType2 = [Experience]()
+var g_experiencesByType3 = [Experience]()
+var g_experiencesByType4 = [Experience]()
+var g_experiencesByType5 = [Experience]()
 
 class ExperienceMgr: NSObject {
    
     var experiences = [Experience]()
-    var experiencesByType1 = [Experience]()
-    var experiencesByType2 = [Experience]()
-    var experiencesByType3 = [Experience]()
     
     var persistenceHelper: ExperiencePersistenceHelper = ExperiencePersistenceHelper()
     
@@ -39,31 +48,79 @@ class ExperienceMgr: NSObject {
     func listByType() {
         var tempExperiences:NSArray = persistenceHelper.list("CoreExperience")
         var tempType:String = ""
-        experiencesByType1.removeAll(keepCapacity: true)
-        experiencesByType2.removeAll(keepCapacity: true)
-        experiencesByType3.removeAll(keepCapacity: true)
+        g_experiencesByType1.removeAll(keepCapacity: true)
+        g_experiencesByType2.removeAll(keepCapacity: true)
+        g_experiencesByType3.removeAll(keepCapacity: true)
+        g_experiencesByType4.removeAll(keepCapacity: true)
+        g_experiencesByType5.removeAll(keepCapacity: true)
 
         for res:AnyObject in tempExperiences{
         tempType = res.valueForKey("m_type") as String
-            println("temp type is \(tempType)")
+     //       println("temp type is \(tempType)")
             
             switch (tempType) {
             
-                case "My Spiritual experiences": experiencesByType1.append(Experience(m_user:res.valueForKey("m_user") as String, m_type:res.valueForKey("m_type") as String,m_title:res.valueForKey("m_title") as String,m_desc:res.valueForKey("m_desc") as String,m_location:res.valueForKey("m_location") as String ))
-            case "My Dreams" : experiencesByType2.append(Experience(m_user:res.valueForKey("m_user") as String, m_type:res.valueForKey("m_type") as String,m_title:res.valueForKey("m_title") as String,m_desc:res.valueForKey("m_desc") as String,m_location:res.valueForKey("m_location") as String ))
+                case "My Spiritual experiences": g_experiencesByType1.append(Experience(m_user:res.valueForKey("m_user") as String, m_type:res.valueForKey("m_type") as String,m_title:res.valueForKey("m_title") as String,m_desc:res.valueForKey("m_desc") as String,m_location:res.valueForKey("m_location") as String ))
             
-            case "My Notes": experiencesByType3.append(Experience(m_user:res.valueForKey("m_user") as String, m_type:res.valueForKey("m_type") as String,m_title:res.valueForKey("m_title") as String,m_desc:res.valueForKey("m_desc") as String,m_location:res.valueForKey("m_location") as String ))
+            case "My Dreams" : g_experiencesByType2.append(Experience(m_user:res.valueForKey("m_user") as String, m_type:res.valueForKey("m_type") as String,m_title:res.valueForKey("m_title") as String,m_desc:res.valueForKey("m_desc") as String,m_location:res.valueForKey("m_location") as String ))
+            
+            case "My Notes": g_experiencesByType3.append(Experience(m_user:res.valueForKey("m_user") as String, m_type:res.valueForKey("m_type") as String,m_title:res.valueForKey("m_title") as String,m_desc:res.valueForKey("m_desc") as String,m_location:res.valueForKey("m_location") as String ))
+                
+            case "My Intuition": g_experiencesByType4.append(Experience(m_user:res.valueForKey("m_user") as String, m_type:res.valueForKey("m_type") as String,m_title:res.valueForKey("m_title") as String,m_desc:res.valueForKey("m_desc") as String,m_location:res.valueForKey("m_location") as String ))
+            
+            case "Miscellaneous": g_experiencesByType5.append(Experience(m_user:res.valueForKey("m_user") as String, m_type:res.valueForKey("m_type") as String,m_title:res.valueForKey("m_title") as String,m_desc:res.valueForKey("m_desc") as String,m_location:res.valueForKey("m_location") as String ))
             
             default:
                 break
                 
             }
+        
             
         }
-    println(" Number of items of type 1 is \(experiencesByType1.count)")
-        println(" Number of items of type 2 is \(experiencesByType2.count)")
-        println(" Number of items of type 3 is \(experiencesByType3.count)")
+ /*   println(" Number of items of type 1 is \(g_experiencesByType1.count)")
+        println(" Number of items of type 2 is \(g_experiencesByType2.count)")
+        println(" Number of items of type 3 is \(g_experiencesByType3.count)")
+        println(" Number of items of type 4 is \(g_experiencesByType4.count)")
+        println(" Number of items of type 5 is \(g_experiencesByType5.count)")
+   */
+    
+    loadListArrays()
     }
+    
+    func loadListArrays() {
+        
+        switch (g_selectedType) {
+        case "My Spiritual experiences" :
+            
+            g_experiencesByType = g_experiencesByType1
+            g_pickerSelectedIndex = 0
+            
+        case "My Dreams" :
+            
+            g_experiencesByType = g_experiencesByType2
+            g_pickerSelectedIndex = 1
+            
+        case "My Notes" :
+            
+            g_experiencesByType = g_experiencesByType3
+            g_pickerSelectedIndex = 2
+            
+        case "My Intuition" :
+            
+            g_experiencesByType = g_experiencesByType4
+            g_pickerSelectedIndex = 3
+            
+        case "Miscellaneous" :
+            
+            g_experiencesByType = g_experiencesByType5
+            g_pickerSelectedIndex = 4
+            
+        default:
+            break
+            
+        }
+    }
+
     
     func addExperience(a_user:String, a_type: String, a_title: String, a_desc:String, a_location:String){
         
@@ -77,16 +134,18 @@ class ExperienceMgr: NSObject {
 
         if(persistenceHelper.save("CoreExperience", parameters: dicExperience)){
             experiences.append(Experience(m_user: a_user, m_type:a_type, m_title:a_title, m_desc:a_desc, m_location:a_location))
+            println("Appended new item with title \(a_title) and type \(a_type) and user \(a_user) and location is \(a_location) , and description is \(a_desc)")
         }
     }
     
     
     func removeExperience(index:Int){
         
-        var value:String = experiences[index].m_user
+        var value:String = experiences[index].m_title
         
-        if(persistenceHelper.remove("CoreExperience", key: "m_user", value: value)){
+        if(persistenceHelper.remove("CoreExperience", key: "m_title", value: value)){
             experiences.removeAtIndex(index)
+             println("Removed item with title \(value)")
         }
     }
 
