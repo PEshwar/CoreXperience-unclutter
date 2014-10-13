@@ -10,9 +10,6 @@ import UIKit
 
 class ExperienceListViewController: UITableViewController {
 
-    @IBAction func unwindToList(segue: UIStoryboardSegue) {
-        println("Unwinding")
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()

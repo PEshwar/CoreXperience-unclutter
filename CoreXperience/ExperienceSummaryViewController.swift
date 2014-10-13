@@ -18,7 +18,7 @@ class ExperienceSummaryViewController: UITableViewController {
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+         self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
 
     override func didReceiveMemoryWarning() {
@@ -29,6 +29,8 @@ class ExperienceSummaryViewController: UITableViewController {
     override func viewWillAppear(animated: Bool) {
         
         tableView.reloadData()
+        println("Going to call list by type")
+        expMgr.listByType()
         
     }
     
@@ -51,6 +53,7 @@ class ExperienceSummaryViewController: UITableViewController {
         
         //Assign the contents of our var "items" to the textLabel of each cell
         cell.textLabel!.text = expMgr.experiences[indexPath.row].m_title
+        cell.textLabel!.textColor = UIColor.orangeColor()
     //    cell.detailTextLabel!.text = expMgr.experiences[indexPath.row].m_desc
         
    
@@ -58,6 +61,26 @@ class ExperienceSummaryViewController: UITableViewController {
         
         
         return cell
+    }
+    
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
+        //Create instance of ExperienceDetailViewController
+        var detail:ExperienceDetailViewController = self.storyboard?.instantiateViewControllerWithIdentifier("ExperienceDetailViewController") as ExperienceDetailViewController
+        
+        //Reference ExperienceDetailViewController's var "cellName" and assign it to ExperienceDetailViewController's var "items"
+        println(" title text is: \(expMgr.experiences[indexPath.row].m_title)")
+        detail.s_title = expMgr.experiences[indexPath.row].m_title
+       println(" Desc text is: \(expMgr.experiences[indexPath.row].m_desc)")
+        detail.s_desc = expMgr.experiences[indexPath.row].m_desc
+        println(" location text is: \(expMgr.experiences[indexPath.row].m_location)")
+        detail.s_location = expMgr.experiences[indexPath.row].m_location
+
+        
+        //Programmatically push to associated VC (ExperienceDetailViewController)
+        self.navigationController?.pushViewController(detail, animated: true)
+      
     }
     
     //This code adds animation while displaying table rows

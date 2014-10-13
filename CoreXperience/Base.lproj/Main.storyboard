@@ -165,7 +165,7 @@
         <!--Experience Detail-->
         <scene sceneID="XqE-eg-oIL">
             <objects>
-                <viewController id="j0h-uH-jqh" customClass="ExperienceDetailViewController" customModule="CoreXperience" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ExperienceDetailViewController" id="j0h-uH-jqh" customClass="ExperienceDetailViewController" customModule="CoreXperience" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="LOp-jU-xgj"/>
                         <viewControllerLayoutGuide type="bottom" id="Ybb-7T-S6e"/>
@@ -175,26 +175,26 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Enter title" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="frg-cp-VMT">
-                                <rect key="frame" x="109" y="101" width="177" height="30"/>
+                                <rect key="frame" x="82" y="101" width="177" height="30"/>
                                 <color key="backgroundColor" red="0.66666666669999997" green="0.65827563769999997" blue="0.57802894469999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="Enter experience text" translatesAutoresizingMaskIntoConstraints="NO" id="VIB-B4-6bd">
-                                <rect key="frame" x="114" y="388" width="479" height="203"/>
+                                <rect key="frame" x="81" y="442" width="250" height="193"/>
                                 <color key="backgroundColor" red="0.86558266979999998" green="0.99625318880000002" blue="0.75552717410000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="edB-sG-iac">
-                                <rect key="frame" x="109" y="169" width="92" height="30"/>
-                                <state key="normal" title="Record audio">
+                                <rect key="frame" x="82" y="169" width="50" height="30"/>
+                                <state key="normal" title="Record">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aXf-gT-dOV">
-                                <rect key="frame" x="109" y="241" width="91" height="30"/>
-                                <state key="normal" title="Record video">
+                                <rect key="frame" x="275" y="169" width="50" height="30"/>
+                                <state key="normal" title="Record">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
@@ -202,13 +202,13 @@
                                 <rect key="frame" x="10" y="163" width="54" height="41"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Video" translatesAutoresizingMaskIntoConstraints="NO" id="mb5-KO-Z77">
-                                <rect key="frame" x="16" y="235" width="54" height="41"/>
+                                <rect key="frame" x="205" y="163" width="54" height="41"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Title" translatesAutoresizingMaskIntoConstraints="NO" id="SUN-eN-B2m">
                                 <rect key="frame" x="10" y="95" width="54" height="41"/>
                             </imageView>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Bangalore" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7A2-Ey-xwr">
-                                <rect key="frame" x="109" y="326" width="97" height="30"/>
+                                <rect key="frame" x="82" y="363" width="97" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
@@ -216,11 +216,21 @@
                                 </variation>
                             </textField>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Location" translatesAutoresizingMaskIntoConstraints="NO" id="o2F-2T-idG">
-                                <rect key="frame" x="16" y="320" width="54" height="41"/>
+                                <rect key="frame" x="10" y="357" width="54" height="41"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Write" translatesAutoresizingMaskIntoConstraints="NO" id="knr-eL-eRG">
-                                <rect key="frame" x="24" y="432" width="54" height="41"/>
+                                <rect key="frame" x="10" y="499" width="54" height="41"/>
                             </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="3d_objects.png" translatesAutoresizingMaskIntoConstraints="NO" id="OeB-0r-DK0">
+                                <rect key="frame" x="10" y="257" width="54" height="41"/>
+                            </imageView>
+                            <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nsv-nA-IYu">
+                                <rect key="frame" x="82" y="197" width="120" height="162"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="j0h-uH-jqh" id="z8c-WI-gzK"/>
+                                    <outlet property="delegate" destination="j0h-uH-jqh" id="dNI-Te-EE4"/>
+                                </connections>
+                            </pickerView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -240,11 +250,12 @@
                         <outlet property="d_desc" destination="VIB-B4-6bd" id="p0W-Dq-aoi"/>
                         <outlet property="d_location" destination="7A2-Ey-xwr" id="4TA-J9-cHN"/>
                         <outlet property="d_title" destination="frg-cp-VMT" id="C4y-lN-tnl"/>
+                        <outlet property="d_type" destination="nsv-nA-IYu" id="Fkf-Oc-2bt"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2dp-C3-l4P" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2269" y="1103"/>
+            <point key="canvasLocation" x="2269" y="1093"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="9fR-3y-HPb">
@@ -266,6 +277,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="3d_objects.png" width="128" height="128"/>
         <image name="Audio" width="146" height="117"/>
         <image name="Location" width="135" height="123"/>
         <image name="Title" width="102" height="102"/>

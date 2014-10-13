@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9954875119EB9C6C006C5EF3 /* 3d_objects.png in Resources */ = {isa = PBXBuildFile; fileRef = 9954875019EB9C6C006C5EF3 /* 3d_objects.png */; };
 		995ACCAC19EAEBDB00F0C715 /* ExperienceSummaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 995ACCAB19EAEBDB00F0C715 /* ExperienceSummaryViewController.swift */; };
 		995ACCAE19EAEBFC00F0C715 /* ExperienceListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 995ACCAD19EAEBFC00F0C715 /* ExperienceListViewController.swift */; };
 		995ACCB019EAEC1E00F0C715 /* ExperienceDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 995ACCAF19EAEC1E00F0C715 /* ExperienceDetailViewController.swift */; };
@@ -37,6 +38,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9954875019EB9C6C006C5EF3 /* 3d_objects.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 3d_objects.png; sourceTree = "<group>"; };
 		995ACCAB19EAEBDB00F0C715 /* ExperienceSummaryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExperienceSummaryViewController.swift; sourceTree = "<group>"; };
 		995ACCAD19EAEBFC00F0C715 /* ExperienceListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExperienceListViewController.swift; sourceTree = "<group>"; };
 		995ACCAF19EAEC1E00F0C715 /* ExperienceDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExperienceDetailViewController.swift; sourceTree = "<group>"; };
@@ -144,6 +146,7 @@
 		998D7C2E19EAE98300A8036F /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				9954875019EB9C6C006C5EF3 /* 3d_objects.png */,
 				998D7C6619EAE9BD00A8036F /* Audio */,
 				998D7C6719EAE9BD00A8036F /* Location */,
 				998D7C6819EAE9BD00A8036F /* Title */,
@@ -233,6 +236,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9954875119EB9C6C006C5EF3 /* 3d_objects.png in Resources */,
 				998D7C6F19EAE9BD00A8036F /* Write in Resources */,
 				998D7C1419EAE69500A8036F /* Main.storyboard in Resources */,
 				998D7C1919EAE69500A8036F /* LaunchScreen.xib in Resources */,
