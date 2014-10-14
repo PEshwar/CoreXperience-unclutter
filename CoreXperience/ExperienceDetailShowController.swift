@@ -20,8 +20,9 @@ class ExperienceDetailShowController: UIViewController {
     
     @IBOutlet weak var d_desc: UITextView!
     @IBOutlet var d_location: UITextField!
+    
     var arrType: NSArray = [] //Array to store experience type list
-    var pickerSelectedType: String = "My Spiritual experiences"
+    var pickerSelectedType: String = g_typeList[g_pickerSelectedIndex]
     
     //Receiving variable assigned to Summary VC's var
     var s_title:String = ""
@@ -109,6 +110,8 @@ class ExperienceDetailShowController: UIViewController {
     func pickerView(_ pickerView: UIPickerView,titleForRow row: Int,forComponent component: Int) -> String! {
    //     println( " Item selected is \(arrType[row])")
         pickerSelectedType = arrType[row] as String
+        println("In picker view, type selected is \(pickerSelectedType) and row selected is \(row)")
+        
         return "\(arrType[row])"
     }
     

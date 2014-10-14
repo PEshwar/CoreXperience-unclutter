@@ -221,7 +221,7 @@
                                 <rect key="frame" x="10" y="95" width="54" height="41"/>
                             </imageView>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Bangalore" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7A2-Ey-xwr">
-                                <rect key="frame" x="82" y="363" width="97" height="30"/>
+                                <rect key="frame" x="81" y="381" width="97" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
@@ -229,21 +229,21 @@
                                 </variation>
                             </textField>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Location" translatesAutoresizingMaskIntoConstraints="NO" id="o2F-2T-idG">
-                                <rect key="frame" x="10" y="357" width="54" height="41"/>
+                                <rect key="frame" x="10" y="375" width="54" height="41"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Write" translatesAutoresizingMaskIntoConstraints="NO" id="knr-eL-eRG">
                                 <rect key="frame" x="10" y="499" width="54" height="41"/>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="3d_objects.png" translatesAutoresizingMaskIntoConstraints="NO" id="OeB-0r-DK0">
-                                <rect key="frame" x="10" y="257" width="54" height="41"/>
-                            </imageView>
                             <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nsv-nA-IYu">
-                                <rect key="frame" x="82" y="197" width="120" height="162"/>
+                                <rect key="frame" x="81" y="220" width="178" height="190"/>
                                 <connections>
                                     <outlet property="dataSource" destination="j0h-uH-jqh" id="z8c-WI-gzK"/>
                                     <outlet property="delegate" destination="j0h-uH-jqh" id="dNI-Te-EE4"/>
                                 </connections>
                             </pickerView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="3d_objects.png" translatesAutoresizingMaskIntoConstraints="NO" id="OeB-0r-DK0">
+                                <rect key="frame" x="10" y="279" width="54" height="41"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -269,7 +269,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2dp-C3-l4P" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3081" y="1093"/>
+            <point key="canvasLocation" x="3081" y="1066"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="GZX-Au-Xii">
@@ -579,6 +579,6 @@
         <image name="user-male.png" width="32" height="32"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="QMt-79-Bij"/>
+        <segue reference="Cs1-wM-DNE"/>
     </inferredMetricsTieBreakers>
 </document>

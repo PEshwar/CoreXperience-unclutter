@@ -17,7 +17,7 @@ var g_selectedType : String = ""
 var g_pickerSelectedIndex : Int = 0
 
 struct Experience {
-    var m_user: String = "Family"
+    var m_user: String = ""
     var m_type: String = ""
     var m_title: String = " "
     var m_desc: String = ""
@@ -43,7 +43,9 @@ class ExperienceMgr: NSObject {
             experiences.append(Experience(m_user:res.valueForKey("m_user") as String, m_type:res.valueForKey("m_type") as String,m_title:res.valueForKey("m_title") as String,m_desc:res.valueForKey("m_desc") as String,m_location:res.valueForKey("m_location") as String ))
         }
         
+        println(" After init of experiences array, array count is \(experiences.count)")
     }
+    
     
     func listByType() {
         var tempExperiences:NSArray = persistenceHelper.list("CoreExperience")
@@ -60,15 +62,15 @@ class ExperienceMgr: NSObject {
             
             switch (tempType) {
             
-                case "My Spiritual experiences": g_experiencesByType1.append(Experience(m_user:res.valueForKey("m_user") as String, m_type:res.valueForKey("m_type") as String,m_title:res.valueForKey("m_title") as String,m_desc:res.valueForKey("m_desc") as String,m_location:res.valueForKey("m_location") as String ))
+                case g_typeList[0]: g_experiencesByType1.append(Experience(m_user:res.valueForKey("m_user") as String, m_type:res.valueForKey("m_type") as String,m_title:res.valueForKey("m_title") as String,m_desc:res.valueForKey("m_desc") as String,m_location:res.valueForKey("m_location") as String ))
             
-            case "My Dreams" : g_experiencesByType2.append(Experience(m_user:res.valueForKey("m_user") as String, m_type:res.valueForKey("m_type") as String,m_title:res.valueForKey("m_title") as String,m_desc:res.valueForKey("m_desc") as String,m_location:res.valueForKey("m_location") as String ))
+            case g_typeList[1] : g_experiencesByType2.append(Experience(m_user:res.valueForKey("m_user") as String, m_type:res.valueForKey("m_type") as String,m_title:res.valueForKey("m_title") as String,m_desc:res.valueForKey("m_desc") as String,m_location:res.valueForKey("m_location") as String ))
             
-            case "My Notes": g_experiencesByType3.append(Experience(m_user:res.valueForKey("m_user") as String, m_type:res.valueForKey("m_type") as String,m_title:res.valueForKey("m_title") as String,m_desc:res.valueForKey("m_desc") as String,m_location:res.valueForKey("m_location") as String ))
+            case g_typeList[2]: g_experiencesByType3.append(Experience(m_user:res.valueForKey("m_user") as String, m_type:res.valueForKey("m_type") as String,m_title:res.valueForKey("m_title") as String,m_desc:res.valueForKey("m_desc") as String,m_location:res.valueForKey("m_location") as String ))
                 
-            case "My Intuition": g_experiencesByType4.append(Experience(m_user:res.valueForKey("m_user") as String, m_type:res.valueForKey("m_type") as String,m_title:res.valueForKey("m_title") as String,m_desc:res.valueForKey("m_desc") as String,m_location:res.valueForKey("m_location") as String ))
+            case g_typeList[3]: g_experiencesByType4.append(Experience(m_user:res.valueForKey("m_user") as String, m_type:res.valueForKey("m_type") as String,m_title:res.valueForKey("m_title") as String,m_desc:res.valueForKey("m_desc") as String,m_location:res.valueForKey("m_location") as String ))
             
-            case "Miscellaneous": g_experiencesByType5.append(Experience(m_user:res.valueForKey("m_user") as String, m_type:res.valueForKey("m_type") as String,m_title:res.valueForKey("m_title") as String,m_desc:res.valueForKey("m_desc") as String,m_location:res.valueForKey("m_location") as String ))
+            case g_typeList[4]: g_experiencesByType5.append(Experience(m_user:res.valueForKey("m_user") as String, m_type:res.valueForKey("m_type") as String,m_title:res.valueForKey("m_title") as String,m_desc:res.valueForKey("m_desc") as String,m_location:res.valueForKey("m_location") as String ))
             
             default:
                 break
@@ -90,27 +92,27 @@ class ExperienceMgr: NSObject {
     func loadListArrays() {
         
         switch (g_selectedType) {
-        case "My Spiritual experiences" :
+        case g_typeList[0] :
             
             g_experiencesByType = g_experiencesByType1
             g_pickerSelectedIndex = 0
             
-        case "My Dreams" :
+        case g_typeList[1] :
             
             g_experiencesByType = g_experiencesByType2
             g_pickerSelectedIndex = 1
             
-        case "My Notes" :
+        case g_typeList[2] :
             
             g_experiencesByType = g_experiencesByType3
             g_pickerSelectedIndex = 2
             
-        case "My Intuition" :
+        case g_typeList[3] :
             
             g_experiencesByType = g_experiencesByType4
             g_pickerSelectedIndex = 3
             
-        case "Miscellaneous" :
+        case g_typeList[4] :
             
             g_experiencesByType = g_experiencesByType5
             g_pickerSelectedIndex = 4
@@ -141,7 +143,8 @@ class ExperienceMgr: NSObject {
     
     func removeExperience(index:Int){
         
-        var value:String = experiences[index].m_title
+        var value = getValueToBeDeleted(index)
+     //   var value:String = experiences[index].m_title
         
         if(persistenceHelper.remove("CoreExperience", key: "m_title", value: value)){
             experiences.removeAtIndex(index)
@@ -149,5 +152,38 @@ class ExperienceMgr: NSObject {
         }
     }
 
-    
+    func getValueToBeDeleted(index:Int)-> String {
+        
+        var valueToBeDeleted = ""
+        switch (g_selectedType) {
+            
+        case g_typeList[0] :
+            
+            valueToBeDeleted = g_experiencesByType1[index].m_title
+            
+            
+        case g_typeList[1] :
+            
+            valueToBeDeleted = g_experiencesByType2[index].m_title
+
+            
+        case g_typeList[2] :
+            
+            valueToBeDeleted = g_experiencesByType3[index].m_title
+            
+        case g_typeList[3] :
+            
+            valueToBeDeleted = g_experiencesByType4[index].m_title
+            
+        case g_typeList[4] :
+            
+            valueToBeDeleted = g_experiencesByType5[index].m_title
+            
+        default:
+            break
+            
+        }
+
+        return valueToBeDeleted
+    }
 }

@@ -18,8 +18,10 @@ class ExperienceDetailViewController: UIViewController,UIPickerViewDelegate, UIP
     
     @IBOutlet weak var d_desc: UITextView!
     @IBOutlet var d_location: UITextField!
-    var arrType: NSArray = [] //Array to store experience type list
-    var pickerSelectedType: String = "My Spiritual experiences"
+//    var arrType: NSArray = [] //Array to store experience type list
+    var pickerSelectedType: String = g_typeList[g_pickerSelectedIndex]
+    
+  
     
     //Receiving variable assigned to Summary VC's var
     var s_title:String = ""
@@ -40,8 +42,9 @@ class ExperienceDetailViewController: UIViewController,UIPickerViewDelegate, UIP
         var l_location: String = d_location.text
         var l_user : String = "Family"
         var l_type : String = pickerSelectedType
+        println("Value of picker selected type before appending is \(pickerSelectedType)")
         
-        expMgr.addExperience(l_user,a_type:l_type, a_title:l_title,a_desc:l_desc,a_location:l_location)
+               expMgr.addExperience(l_user,a_type:l_type, a_title:l_title,a_desc:l_desc,a_location:l_location)
         d_title.text = ""
         d_desc.text = ""
         d_location.text = ""
@@ -72,7 +75,7 @@ class ExperienceDetailViewController: UIViewController,UIPickerViewDelegate, UIP
         
         //Load list of types in UI Picker
         
-        arrType = ["My Spiritual experiences", "My Dreams", "My Notes","My Intuition", "Miscellaneous"]
+  //      arrType = ["My Spiritual experiences", "My Dreams", "My Notes","My Intuition", "Miscellaneous"]
         
        
         d_picker.selectRow(g_pickerSelectedIndex, inComponent:0,animated: true)
@@ -115,13 +118,16 @@ class ExperienceDetailViewController: UIViewController,UIPickerViewDelegate, UIP
     
     func pickerView(_ pickerView: UIPickerView,numberOfRowsInComponent component: Int) -> Int
     {
-        return arrType.count
+        return g_typeList.count
     }
     
     func pickerView(_ pickerView: UIPickerView,titleForRow row: Int,forComponent component: Int) -> String! {
     //    println( " Item selected is \(arrType[row])")
-         pickerSelectedType = arrType[row] as String
-        return "\(arrType[row])"
+       //  pickerSelectedType = arrType[row] as String
+        pickerSelectedType = g_typeList[row] as String
+        
+        println("In picker view, type selected is \(pickerSelectedType) and row selected is \(row)")
+        return "\(g_typeList[row])"
     }
 
 

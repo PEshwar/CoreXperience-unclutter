@@ -130,6 +130,7 @@ class RecorderViewController: UIViewController {
         // recorder might be nil
         // self.player = AVAudioPlayer(contentsOfURL: recorder.url, error: &error)
         self.player = AVAudioPlayer(contentsOfURL: soundFileURL!, error: &error)
+        println(" contents of url is \(soundFileURL)")
         if player == nil {
             if let e = error {
                 println(e.localizedDescription)
@@ -157,6 +158,7 @@ class RecorderViewController: UIViewController {
         if filemanager.fileExistsAtPath(soundFilePath) {
             // probably won't happen. want to do something about it?
             println("sound exists")
+            println("Sound file path")
         }
         
         var recordSettings = [
