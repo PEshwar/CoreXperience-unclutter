@@ -28,6 +28,9 @@ class ExperiencePersistenceHelper: NSObject {
         return context.save(nil)
     }
     
+  
+    
+    
     func list(entity: String ) ->NSArray{
         
         var request = NSFetchRequest(entityName: entity)

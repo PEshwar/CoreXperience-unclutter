@@ -24,7 +24,7 @@
             </objects>
             <point key="canvasLocation" x="320" y="-372"/>
         </scene>
-        <!--My CoreXperience summary-->
+        <!--My Spiritual Diary-->
         <scene sceneID="caC-Kj-2mM">
             <objects>
                 <tableViewController id="zXz-55-v7l" customClass="ExperienceSummaryViewController" customModule="CoreXperience" customModuleProvider="target" sceneMemberID="viewController">
@@ -45,7 +45,7 @@
                             <outlet property="delegate" destination="zXz-55-v7l" id="eiW-aB-fG9"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="My CoreXperience summary" id="7GE-p3-ja0" colorLabel="IBBuiltInLabel-Yellow">
+                    <navigationItem key="navigationItem" title="My Spiritual Diary" id="7GE-p3-ja0" colorLabel="IBBuiltInLabel-Yellow">
                         <barButtonItem key="leftBarButtonItem" systemItem="add" id="fj6-dD-GNn">
                             <connections>
                                 <segue destination="dfL-4i-pFY" kind="presentation" id="QMt-79-Bij"/>
@@ -264,7 +264,6 @@
                         <outlet property="d_location" destination="7A2-Ey-xwr" id="4TA-J9-cHN"/>
                         <outlet property="d_picker" destination="nsv-nA-IYu" id="lwQ-g3-Drd"/>
                         <outlet property="d_title" destination="frg-cp-VMT" id="C4y-lN-tnl"/>
-                        <outlet property="d_type" destination="nsv-nA-IYu" id="Fkf-Oc-2bt"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2dp-C3-l4P" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -364,7 +363,7 @@
                     <navigationItem key="navigationItem" title="Update My Experience" prompt="   " id="ukT-5N-rCA">
                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="O4O-V4-yU7">
                             <connections>
-                                <segue destination="cfZ-YZ-IZc" kind="unwind" unwindAction="unwindToList:" id="20w-Z6-oxq"/>
+                                <action selector="btnSaveTask:" destination="NX0-w5-OAn" id="jLP-Bt-X1p"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -373,11 +372,9 @@
                         <outlet property="d_location" destination="7Iv-vc-qFB" id="6yd-cB-dj7"/>
                         <outlet property="d_pickerShow" destination="0NQ-SY-Fek" id="SvZ-gi-tHj"/>
                         <outlet property="d_title" destination="LcO-ap-6ET" id="Tif-PZ-EDE"/>
-                        <outlet property="d_type" destination="0NQ-SY-Fek" id="4cg-ES-4UR"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JGd-C3-zNl" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="cfZ-YZ-IZc" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="4909" y="1037"/>
         </scene>
@@ -579,6 +576,6 @@
         <image name="user-male.png" width="32" height="32"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Cs1-wM-DNE"/>
+        <segue reference="QMt-79-Bij"/>
     </inferredMetricsTieBreakers>
 </document>

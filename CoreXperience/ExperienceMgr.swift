@@ -10,7 +10,7 @@ import UIKit
 
 var expMgr:ExperienceMgr = ExperienceMgr()
 
-var g_typeList:[String] = ["My Spiritual experiences", "My Dreams", "My Notes", "My Intuition", "Miscellaneous"]
+var g_typeList:[String] = ["My interactions with Sadguru", "My divine dreams", "My Sadguru's teachings", "Heart-to-Heart messages", "Miscellaneous"]
 
 var g_selectedType : String = ""
 
@@ -79,14 +79,9 @@ class ExperienceMgr: NSObject {
         
             
         }
- /*   println(" Number of items of type 1 is \(g_experiencesByType1.count)")
-        println(" Number of items of type 2 is \(g_experiencesByType2.count)")
-        println(" Number of items of type 3 is \(g_experiencesByType3.count)")
-        println(" Number of items of type 4 is \(g_experiencesByType4.count)")
-        println(" Number of items of type 5 is \(g_experiencesByType5.count)")
-   */
-    
+ 
     loadListArrays()
+ 
     }
     
     func loadListArrays() {
