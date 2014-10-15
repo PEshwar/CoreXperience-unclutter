@@ -12,7 +12,7 @@ var expMgr:ExperienceMgr = ExperienceMgr()
 
 var g_typeList:[String] = ["My interactions with Sadguru", "My divine dreams", "My Sadguru's teachings", "Heart-to-Heart messages", "Miscellaneous"]
 
-var g_selectedType : String = ""
+var g_selectedTypeIndex : Int = 0
 
 var g_pickerSelectedIndex : Int = 0
 
@@ -23,7 +23,7 @@ struct Experience {
     var m_desc: String = ""
     var m_location: String = ""
 }
-var g_experiencesByType = [Experience]()
+var g_experiencesByType =  [Experience]()
 var g_experiencesByType1 = [Experience]()
 var g_experiencesByType2 = [Experience]()
 var g_experiencesByType3 = [Experience]()
@@ -62,7 +62,7 @@ class ExperienceMgr: NSObject {
             
             switch (tempType) {
             
-                case g_typeList[0]: g_experiencesByType1.append(Experience(m_user:res.valueForKey("m_user") as String, m_type:res.valueForKey("m_type") as String,m_title:res.valueForKey("m_title") as String,m_desc:res.valueForKey("m_desc") as String,m_location:res.valueForKey("m_location") as String ))
+            case g_typeList[0]: g_experiencesByType1.append(Experience(m_user:res.valueForKey("m_user") as String, m_type:res.valueForKey("m_type") as String,m_title:res.valueForKey("m_title") as String,m_desc:res.valueForKey("m_desc") as String,m_location:res.valueForKey("m_location") as String ))
             
             case g_typeList[1] : g_experiencesByType2.append(Experience(m_user:res.valueForKey("m_user") as String, m_type:res.valueForKey("m_type") as String,m_title:res.valueForKey("m_title") as String,m_desc:res.valueForKey("m_desc") as String,m_location:res.valueForKey("m_location") as String ))
             
@@ -86,28 +86,30 @@ class ExperienceMgr: NSObject {
     
     func loadListArrays() {
         
-        switch (g_selectedType) {
-        case g_typeList[0] :
+        //The type selected is determined in Summary VC, and stored in global variable g_selectedType. Based on this, the list controller views are populated i.e, g_experienceByType arrays. Also PickerSelectedIndex variable is used to preset picker view to correct type for ViewEdit functionality. This will be overridden when user decides to change type for new experience entry in 'Add' or 'View/Show' screens.
+        
+        switch (g_selectedTypeIndex) {
+        case 0 :
             
             g_experiencesByType = g_experiencesByType1
             g_pickerSelectedIndex = 0
             
-        case g_typeList[1] :
+        case 1 :
             
             g_experiencesByType = g_experiencesByType2
             g_pickerSelectedIndex = 1
             
-        case g_typeList[2] :
+        case 2 :
             
             g_experiencesByType = g_experiencesByType3
             g_pickerSelectedIndex = 2
             
-        case g_typeList[3] :
+        case 3 :
             
             g_experiencesByType = g_experiencesByType4
             g_pickerSelectedIndex = 3
             
-        case g_typeList[4] :
+        case 4 :
             
             g_experiencesByType = g_experiencesByType5
             g_pickerSelectedIndex = 4
@@ -150,27 +152,27 @@ class ExperienceMgr: NSObject {
     func getValueToBeDeleted(index:Int)-> String {
         
         var valueToBeDeleted = ""
-        switch (g_selectedType) {
+        switch (g_selectedTypeIndex) {
             
-        case g_typeList[0] :
+        case 0 :
             
             valueToBeDeleted = g_experiencesByType1[index].m_title
             
             
-        case g_typeList[1] :
+        case 1 :
             
             valueToBeDeleted = g_experiencesByType2[index].m_title
 
             
-        case g_typeList[2] :
+        case 2 :
             
             valueToBeDeleted = g_experiencesByType3[index].m_title
             
-        case g_typeList[3] :
+        case 3 :
             
             valueToBeDeleted = g_experiencesByType4[index].m_title
             
-        case g_typeList[4] :
+        case 4 :
             
             valueToBeDeleted = g_experiencesByType5[index].m_title
             

@@ -12,27 +12,29 @@ import Foundation
 
 class ExperienceDetailViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDataSource {
 
-//    @IBOutlet var d_user: UITextField!
-//    @IBOutlet var d_type: UITextField!
-    @IBOutlet var d_title: UITextField!
+
+    @IBOutlet var d_title: UITextField!         //Title field on screen
+    @IBOutlet weak var d_desc: UITextView!      //Description field on screen
+    @IBOutlet var d_location: UITextField!      //Location field on screen
+    @IBOutlet weak var d_picker: UIPickerView!  //Picker type field on screen
     
-    @IBOutlet weak var d_desc: UITextView!
-    @IBOutlet var d_location: UITextField!
-//    var arrType: NSArray = [] //Array to store experience type list
-    var pickerSelectedType: String = g_typeList[g_pickerSelectedIndex]
+    //Initialize temp variable (to store user amended picker type value) to the type selected in summary view
+    var userAmendedPickerTypeIndex: Int = g_pickerSelectedIndex
     
-  
     
     //Receiving variable assigned to Summary VC's var
     var s_title:String = ""
     var s_desc:String = ""
     var s_location:String = ""
-    
-    
-    @IBOutlet weak var d_picker: UIPickerView!
    
-    @IBOutlet weak var d_type: UIPickerView!
+
+    //When cancel button is pressed in Detailed VC
+    @IBAction func btnCancel(){
+        
+        navigationController?.presentingViewController?.dismissViewControllerAnimated(true, completion: {})
+    }
     
+    //When Save button is pressed in Detailed VC
     @IBAction func btnSaveTask(sender: UIButton){
         
     println("Inside save button")
@@ -41,54 +43,33 @@ class ExperienceDetailViewController: UIViewController,UIPickerViewDelegate, UIP
         var l_desc: String = d_desc.text
         var l_location: String = d_location.text
         var l_user : String = "Family"
-        var l_type : String = pickerSelectedType
-        println("Value of picker selected type before appending is \(pickerSelectedType)")
+        var l_type : String = g_typeList[userAmendedPickerTypeIndex]
         
-               expMgr.addExperience(l_user,a_type:l_type, a_title:l_title,a_desc:l_desc,a_location:l_location)
-        d_title.text = ""
-        d_desc.text = ""
-        d_location.text = ""
+        println("Value of picker selected type before appending is \(g_typeList[userAmendedPickerTypeIndex])")
+        
+        expMgr.addExperience(l_user,a_type:l_type, a_title:l_title,a_desc:l_desc,a_location:l_location)
+       
         self.view.endEditing(true)
-    
-   //     println("Inside save button- added new experience to array & database")
-        
-        //Refresh the list view
-        
+        //Reload list view arrays from database adter adding new item
         expMgr.listByType()
-    //    println("after refreshing the list view")
         
         navigationController?.presentingViewController?.dismissViewControllerAnimated(true, completion: {})
-     //   println("Inside save button- dismussing curent view controller")
     }
     
-    @IBAction func btnCancel(){
-        
-        println("Cancel button pressed")
-        
-        navigationController?.presentingViewController?.dismissViewControllerAnimated(true, completion: {})
-        
-    }
+   
     
     
     override func viewDidLoad() {
+        
         super.viewDidLoad()
         
-        //Load list of types in UI Picker
-        
-  //      arrType = ["My Spiritual experiences", "My Dreams", "My Notes","My Intuition", "Miscellaneous"]
-        
-       
+        //load picker type preselection from row selected in Summary VC
         d_picker.selectRow(g_pickerSelectedIndex, inComponent:0,animated: true)
-        
-      //load Detail VC from row selected in Summary VC
-        
+        //load other details from the temp variables set in List VC before calling Detailed VC
         d_title.text = s_title
         d_desc.text = s_desc
         d_location.text = s_location
 
-        //        txtName.becomeFirstResponder()
-        
-        // Do any additional setup after loading the view.
     }
     
     override func didReceiveMemoryWarning() {
@@ -111,22 +92,20 @@ class ExperienceDetailViewController: UIViewController,UIPickerViewDelegate, UIP
     
     //The following are ViewPicker methods for selection of experience type
     
-    func numberOfComponentsInPickerView(_ pickerView: UIPickerView) -> Int {
+    func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
         return 1
     }
     
     
-    func pickerView(_ pickerView: UIPickerView,numberOfRowsInComponent component: Int) -> Int
+    func pickerView(pickerView: UIPickerView,numberOfRowsInComponent component: Int) -> Int
     {
         return g_typeList.count
     }
     
-    func pickerView(_ pickerView: UIPickerView,titleForRow row: Int,forComponent component: Int) -> String! {
-    //    println( " Item selected is \(arrType[row])")
-       //  pickerSelectedType = arrType[row] as String
-        pickerSelectedType = g_typeList[row] as String
-        
-        println("In picker view, type selected is \(pickerSelectedType) and row selected is \(row)")
+    func pickerView(pickerView: UIPickerView,titleForRow row: Int,forComponent component: Int) -> String! {
+   
+        userAmendedPickerTypeIndex = row
+        println("In picker view, user has changed row selected to \(g_typeList[row])")
         return "\(g_typeList[row])"
     }
 
