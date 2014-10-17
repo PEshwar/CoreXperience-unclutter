@@ -62,12 +62,32 @@ class ExperienceListViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-    let cell = tableView.dequeueReusableCellWithIdentifier("ListCell") as UITableViewCell
+    var cell = tableView.dequeueReusableCellWithIdentifier("ListCell") as UITableViewCell
+    cell = UITableViewCell(style: UITableViewCellStyle.Subtitle,reuseIdentifier:"ListCell")
     
     //Assign the title of each experience to the textLabel of each cell
     cell.textLabel!.text = g_experiencesByType[indexPath.row].m_title
     cell.textLabel!.textColor = UIColor.orangeColor()
     
+        //Obtain and convert date to string
+        
+        let obtainedDate = g_experiencesByType[indexPath.row].m_date
+        
+        let dateStringFormatter = NSDateFormatter()
+        
+        dateStringFormatter.dateFormat = "yyyy-MM-dd"
+        dateStringFormatter.locale = NSLocale(localeIdentifier: "en_US_POSIX")
+        
+        var obtainedDateString : String = dateStringFormatter.stringFromDate(obtainedDate)
+        println(" Obtained date is \(obtainedDateString)")
+        
+    // Set the subtitles in list view
+    cell.detailTextLabel!.text = obtainedDateString + "  " + g_experiencesByType[indexPath.row].m_desc
+    cell.detailTextLabel!.textColor = UIColor.purpleColor()
+    
+        
+        
+        
     return cell
     }
     
@@ -85,9 +105,11 @@ class ExperienceListViewController: UITableViewController {
     detail.s_title = g_experiencesByType[indexPath.row].m_title
     detail.s_desc = g_experiencesByType[indexPath.row].m_desc
     detail.s_location = g_experiencesByType[indexPath.row].m_location
-    
-    detail.selectedTitle = g_experiencesByType[indexPath.row].m_title // Set global value to enable update
-
+       println("Going to add audio, favourites and date in list view")
+        detail.s_audio_location = g_experiencesByType[indexPath.row].m_audio_location
+        detail.s_favourites = g_experiencesByType[indexPath.row].m_favourites
+        detail.s_date = g_experiencesByType[indexPath.row].m_date
+  println("finished adding audio, favourites and date in list view")
     //Programmatically push to associated VC (ExperienceDetailViewController)
     self.navigationController?.pushViewController(detail, animated: true)
    

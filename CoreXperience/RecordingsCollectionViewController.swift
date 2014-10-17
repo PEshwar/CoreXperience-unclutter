@@ -152,7 +152,7 @@ class RecordingsCollectionViewController: UICollectionViewController {
     }
     
     func play(url:NSURL) {
-        println("playing \(url)")
+        println("now playing \(url)")
         var error: NSError?
         self.player = AVAudioPlayer(contentsOfURL: url, error: &error)
         if player == nil {

@@ -33,6 +33,7 @@
 		998D7C6D19EAE9BD00A8036F /* Title in Resources */ = {isa = PBXBuildFile; fileRef = 998D7C6819EAE9BD00A8036F /* Title */; };
 		998D7C6E19EAE9BD00A8036F /* Video in Resources */ = {isa = PBXBuildFile; fileRef = 998D7C6919EAE9BD00A8036F /* Video */; };
 		998D7C6F19EAE9BD00A8036F /* Write in Resources */ = {isa = PBXBuildFile; fileRef = 998D7C6A19EAE9BD00A8036F /* Write */; };
+		99CA1C4019EE6498002FADE3 /* Calendar in Resources */ = {isa = PBXBuildFile; fileRef = 99CA1C3F19EE6498002FADE3 /* Calendar */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -76,6 +77,7 @@
 		998D7C6819EAE9BD00A8036F /* Title */ = {isa = PBXFileReference; lastKnownFileType = file; path = Title; sourceTree = "<group>"; };
 		998D7C6919EAE9BD00A8036F /* Video */ = {isa = PBXFileReference; lastKnownFileType = file; path = Video; sourceTree = "<group>"; };
 		998D7C6A19EAE9BD00A8036F /* Write */ = {isa = PBXFileReference; lastKnownFileType = file; path = Write; sourceTree = "<group>"; };
+		99CA1C3F19EE6498002FADE3 /* Calendar */ = {isa = PBXFileReference; explicitFileType = image.jpeg; path = Calendar; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -167,6 +169,7 @@
 		998D7C2E19EAE98300A8036F /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				99CA1C3F19EE6498002FADE3 /* Calendar */,
 				9954878D19EC4D72006C5EF3 /* user-female.png */,
 				9954878E19EC4D72006C5EF3 /* user-male.png */,
 				9954875419EC0462006C5EF3 /* Family-Sign-32.png */,
@@ -273,6 +276,7 @@
 				998D7C6C19EAE9BD00A8036F /* Location in Resources */,
 				998D7C6E19EAE9BD00A8036F /* Video in Resources */,
 				9954878F19EC4D72006C5EF3 /* user-female.png in Resources */,
+				99CA1C4019EE6498002FADE3 /* Calendar in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

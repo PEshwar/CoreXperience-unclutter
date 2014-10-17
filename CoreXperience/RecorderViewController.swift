@@ -145,15 +145,18 @@ class RecorderViewController: UIViewController {
 
     
     func setupRecorder() {
-        var format = NSDateFormatter()
-        format.dateFormat="yyyy-MM-dd-HH-mm-ss"
-        var currentFileName = "recording-\(format.stringFromDate(NSDate.date())).m4a"
-        println(currentFileName)
-        
+ //       var format = NSDateFormatter()
+ //       format.dateFormat="yyyy-MM-dd-HH-mm-ss"
+ //       var currentFileName = "recording-\(format.stringFromDate(NSDate.date())).m4a"
+ //       println(currentFileName)
+        println("Inside setup recorder- global file name is \(g_fileNameAudio)")
         var dirPaths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
         var docsDir: AnyObject = dirPaths[0]
-        var soundFilePath = docsDir.stringByAppendingPathComponent(currentFileName)
+ //       var soundFilePath = docsDir.stringByAppendingPathComponent(currentFileName)
+        var soundFilePath = docsDir.stringByAppendingPathComponent(g_fileNameAudio)
+   
         soundFileURL = NSURL(fileURLWithPath: soundFilePath)
+        println("soundFileURL is \(soundFileURL)")
         let filemanager = NSFileManager.defaultManager()
         if filemanager.fileExistsAtPath(soundFilePath) {
             // probably won't happen. want to do something about it?
@@ -352,6 +355,8 @@ extension RecorderViewController : AVAudioRecorderDelegate {
     func audioRecorderDidFinishRecording(recorder: AVAudioRecorder!,
         successfully flag: Bool) {
             println("finished recording \(flag)")
+            println("After recording, you can find it at \(soundFileURL)")
+            
             stopButton.enabled = false
             playButton.enabled = true
             recordButton.setTitle("Record", forState:.Normal)

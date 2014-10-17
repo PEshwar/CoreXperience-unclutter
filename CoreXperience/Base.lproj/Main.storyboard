@@ -189,53 +189,71 @@
                                 <color key="backgroundColor" red="0.66666666669999997" green="0.65827563769999997" blue="0.57802894469999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="81" y="78" width="177" height="30"/>
+                                </variation>
                             </textField>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="Enter experience text" translatesAutoresizingMaskIntoConstraints="NO" id="VIB-B4-6bd">
                                 <rect key="frame" x="81" y="442" width="250" height="193"/>
                                 <color key="backgroundColor" red="0.86558266979999998" green="0.99625318880000002" blue="0.75552717410000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <variation key="heightClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="82" y="570" width="250" height="193"/>
+                                </variation>
+                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="65" y="524" width="319" height="193"/>
+                                </variation>
                             </textView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="edB-sG-iac">
-                                <rect key="frame" x="82" y="169" width="50" height="30"/>
-                                <state key="normal" title="Record">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <segue destination="de4-Dg-XDR" kind="show" id="vDc-Xj-bCE"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aXf-gT-dOV">
                                 <rect key="frame" x="275" y="169" width="50" height="30"/>
                                 <state key="normal" title="Record">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="334" y="168" width="50" height="30"/>
+                                </variation>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Audio" translatesAutoresizingMaskIntoConstraints="NO" id="y3t-ke-8hR">
                                 <rect key="frame" x="10" y="163" width="54" height="41"/>
+                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="271" y="72" width="54" height="41"/>
+                                </variation>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Video" translatesAutoresizingMaskIntoConstraints="NO" id="mb5-KO-Z77">
                                 <rect key="frame" x="205" y="163" width="54" height="41"/>
+                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="271" y="157" width="54" height="41"/>
+                                </variation>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Title" translatesAutoresizingMaskIntoConstraints="NO" id="SUN-eN-B2m">
                                 <rect key="frame" x="10" y="95" width="54" height="41"/>
+                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="10" y="72" width="54" height="41"/>
+                                </variation>
                             </imageView>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Bangalore" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7A2-Ey-xwr">
                                 <rect key="frame" x="81" y="381" width="97" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="81" y="132" width="97" height="30"/>
+                                </variation>
                                 <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
                                     <rect key="frame" x="107" y="502" width="97" height="30"/>
                                 </variation>
                             </textField>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Location" translatesAutoresizingMaskIntoConstraints="NO" id="o2F-2T-idG">
                                 <rect key="frame" x="10" y="375" width="54" height="41"/>
-                            </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Write" translatesAutoresizingMaskIntoConstraints="NO" id="knr-eL-eRG">
-                                <rect key="frame" x="10" y="499" width="54" height="41"/>
+                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="6" y="132" width="54" height="41"/>
+                                </variation>
                             </imageView>
                             <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nsv-nA-IYu">
                                 <rect key="frame" x="81" y="220" width="178" height="190"/>
+                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="-12" y="200" width="178" height="190"/>
+                                </variation>
                                 <connections>
                                     <outlet property="dataSource" destination="j0h-uH-jqh" id="z8c-WI-gzK"/>
                                     <outlet property="delegate" destination="j0h-uH-jqh" id="dNI-Te-EE4"/>
@@ -243,9 +261,130 @@
                             </pickerView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="3d_objects.png" translatesAutoresizingMaskIntoConstraints="NO" id="OeB-0r-DK0">
                                 <rect key="frame" x="10" y="279" width="54" height="41"/>
+                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="58" y="379" width="54" height="41"/>
+                                </variation>
                             </imageView>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mBN-pS-3Eh">
+                                <rect key="frame" x="0.0" y="-30" width="97" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <variation key="heightClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="141" y="486" width="37" height="30"/>
+                                </variation>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ry2-XQ-Vyf">
+                                <rect key="frame" x="0.0" y="-30" width="97" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <variation key="heightClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="201" y="486" width="54" height="30"/>
+                                </variation>
+                            </textField>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Calendar" translatesAutoresizingMaskIntoConstraints="NO" id="xbI-q7-SlX">
+                                <rect key="frame" x="10" y="375" width="54" height="41"/>
+                                <variation key="heightClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="10" y="480" width="54" height="41"/>
+                                </variation>
+                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="254" y="390" width="54" height="41"/>
+                                </variation>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DD" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NZW-ak-a7s">
+                                <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="heightClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="87" y="452" width="25" height="21"/>
+                                </variation>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MM" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MGy-mG-pa9">
+                                <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="heightClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="136" y="452" width="30" height="21"/>
+                                </variation>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="YYYY" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xpr-p0-jCn">
+                                <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="heightClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="201" y="452" width="45" height="21"/>
+                                </variation>
+                            </label>
+                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="wBc-WY-pSI">
+                                <rect key="frame" x="-160" y="-81" width="320" height="162"/>
+                                <date key="date" timeIntervalSinceReferenceDate="435066431.38525099">
+                                    <!--2014-10-15 11:47:11 +0000-->
+                                </date>
+                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="190" y="220" width="183" height="162"/>
+                                </variation>
+                            </datePicker>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Write" translatesAutoresizingMaskIntoConstraints="NO" id="knr-eL-eRG">
+                                <rect key="frame" x="10" y="499" width="54" height="41"/>
+                                <variation key="heightClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="10" y="646" width="54" height="41"/>
+                                </variation>
+                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="10" y="582" width="54" height="41"/>
+                                </variation>
+                            </imageView>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vg7-QZ-6Zd">
+                                <rect key="frame" x="0.0" y="-30" width="97" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <variation key="heightClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="81" y="486" width="37" height="30"/>
+                                </variation>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="edB-sG-iac">
+                                <rect key="frame" x="82" y="169" width="50" height="30"/>
+                                <state key="normal" title="Record Audio">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="271" y="111" width="94" height="30"/>
+                                </variation>
+                                <connections>
+                                    <segue destination="de4-Dg-XDR" kind="show" id="vDc-Xj-bCE"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="mBN-pS-3Eh"/>
+                                <exclude reference="Ry2-XQ-Vyf"/>
+                                <exclude reference="xbI-q7-SlX"/>
+                                <exclude reference="NZW-ak-a7s"/>
+                                <exclude reference="MGy-mG-pa9"/>
+                                <exclude reference="xpr-p0-jCn"/>
+                                <exclude reference="wBc-WY-pSI"/>
+                                <exclude reference="vg7-QZ-6Zd"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=regular">
+                            <mask key="subviews">
+                                <include reference="mBN-pS-3Eh"/>
+                                <include reference="Ry2-XQ-Vyf"/>
+                                <include reference="xbI-q7-SlX"/>
+                                <include reference="NZW-ak-a7s"/>
+                                <include reference="MGy-mG-pa9"/>
+                                <include reference="xpr-p0-jCn"/>
+                                <include reference="vg7-QZ-6Zd"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=regular-widthClass=compact">
+                            <mask key="subviews">
+                                <include reference="wBc-WY-pSI"/>
+                            </mask>
+                        </variation>
                     </view>
                     <navigationItem key="navigationItem" title="Add Experience" id="ssA-HT-OBM">
                         <barButtonItem key="leftBarButtonItem" title="Cancel" id="jL2-AC-faB">
@@ -260,6 +399,9 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="d_date_day" destination="vg7-QZ-6Zd" id="qk4-SM-2fW"/>
+                        <outlet property="d_date_month" destination="mBN-pS-3Eh" id="EIa-6d-Eic"/>
+                        <outlet property="d_date_year" destination="Ry2-XQ-Vyf" id="2Zt-VT-8wv"/>
                         <outlet property="d_desc" destination="VIB-B4-6bd" id="p0W-Dq-aoi"/>
                         <outlet property="d_location" destination="7A2-Ey-xwr" id="4TA-J9-cHN"/>
                         <outlet property="d_picker" destination="nsv-nA-IYu" id="lwQ-g3-Drd"/>
@@ -268,7 +410,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2dp-C3-l4P" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3081" y="1066"/>
+            <point key="canvasLocation" x="3081" y="1065.75"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="GZX-Au-Xii">
@@ -291,7 +433,7 @@
         <!--View-Edit Experience-->
         <scene sceneID="JNd-RD-FpJ">
             <objects>
-                <viewController storyboardIdentifier="ExperienceDetailShowController" id="NX0-w5-OAn" userLabel="View-Edit Experience" customClass="ExperienceDetailShowController" customModule="CoreXperience" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ExperienceDetailShowController" id="NX0-w5-OAn" userLabel="View-Edit Experience" customClass="ExperienceDetailViewController" customModule="CoreXperience" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="diA-eH-Uvq"/>
                         <viewControllerLayoutGuide type="bottom" id="4iO-EZ-fJC"/>
@@ -370,7 +512,7 @@
                     <connections>
                         <outlet property="d_desc" destination="N1A-lg-HyE" id="23K-Wc-bXx"/>
                         <outlet property="d_location" destination="7Iv-vc-qFB" id="6yd-cB-dj7"/>
-                        <outlet property="d_pickerShow" destination="0NQ-SY-Fek" id="SvZ-gi-tHj"/>
+                        <outlet property="d_picker" destination="0NQ-SY-Fek" id="NSB-cF-7sP"/>
                         <outlet property="d_title" destination="LcO-ap-6ET" id="Tif-PZ-EDE"/>
                     </connections>
                 </viewController>
@@ -567,6 +709,7 @@
     <resources>
         <image name="3d_objects.png" width="128" height="128"/>
         <image name="Audio" width="146" height="117"/>
+        <image name="Calendar" width="121" height="121"/>
         <image name="Family-Sign-32.png" width="32" height="27"/>
         <image name="Location" width="135" height="123"/>
         <image name="Title" width="102" height="102"/>
@@ -576,6 +719,6 @@
         <image name="user-male.png" width="32" height="32"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="QMt-79-Bij"/>
+        <segue reference="Cs1-wM-DNE"/>
     </inferredMetricsTieBreakers>
 </document>

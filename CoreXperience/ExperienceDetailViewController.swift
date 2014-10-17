@@ -8,6 +8,29 @@
 
 import UIKit
 import Foundation
+import AVFoundation
+
+class Date {
+    
+    class func from(#year:Int, month:Int, day:Int) -> NSDate {
+        var c = NSDateComponents()
+        c.year = year
+        c.month = month
+        c.day = day
+        
+        var gregorian = NSCalendar(identifier:NSGregorianCalendar)
+        var date = gregorian.dateFromComponents(c)
+        return date!
+    }
+    //2a. How to construct NSDate from String date
+    
+    class func parse(dateStr:String, format:String="yyyy-MM-dd") -> NSDate {
+        var dateFmt = NSDateFormatter()
+        dateFmt.timeZone = NSTimeZone.defaultTimeZone()
+        dateFmt.dateFormat = format
+        return dateFmt.dateFromString(dateStr)!
+    }
+}
 
 
 class ExperienceDetailViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDataSource {
@@ -18,6 +41,12 @@ class ExperienceDetailViewController: UIViewController,UIPickerViewDelegate, UIP
     @IBOutlet var d_location: UITextField!      //Location field on screen
     @IBOutlet weak var d_picker: UIPickerView!  //Picker type field on screen
     
+    @IBOutlet weak var d_date_year: UITextField!
+    
+    @IBOutlet weak var d_date_month: UITextField!
+    
+    @IBOutlet weak var d_date_day: UITextField!
+    
     //Initialize temp variable (to store user amended picker type value) to the type selected in summary view
     var userAmendedPickerTypeIndex: Int = g_pickerSelectedIndex
     
@@ -27,7 +56,7 @@ class ExperienceDetailViewController: UIViewController,UIPickerViewDelegate, UIP
     var s_desc:String = ""
     var s_location:String = ""
    
-
+    
     //When cancel button is pressed in Detailed VC
     @IBAction func btnCancel(){
         
@@ -44,14 +73,47 @@ class ExperienceDetailViewController: UIViewController,UIPickerViewDelegate, UIP
         var l_location: String = d_location.text
         var l_user : String = "Family"
         var l_type : String = g_typeList[userAmendedPickerTypeIndex]
+        var l_audio_location = g_fileNameAudio
+        var l_favourites = true
+        
+        var inputYear : Int = d_date_year.text.toInt()!
+        var inputMonth:Int = d_date_month.text.toInt()!
+        var inputDay:Int = d_date_day.text.toInt()!
+        
+        if inputYear != 0 {
+            println("Got the number: \(inputYear)")
+        } else {
+            println("Couldn't convert to a number")
+        }
+        
+        if inputMonth != 0 {
+            println("Got the number: \(inputMonth)")
+        } else {
+            println("Couldn't convert to a number")
+        }
+        
+        if inputDay != 0 {
+            println("Got the number: \(inputDay)")
+        } else {
+            println("Couldn't convert to a number")
+        }
+
+        var l_date:NSDate = Date.from(year:inputYear, month: inputMonth, day:inputDay)
+        println(" Date is \(l_date)")
         
         println("Value of picker selected type before appending is \(g_typeList[userAmendedPickerTypeIndex])")
         
-        expMgr.addExperience(l_user,a_type:l_type, a_title:l_title,a_desc:l_desc,a_location:l_location)
-       
+        expMgr.addExperience(l_user,a_type:l_type, a_title:l_title,a_desc:l_desc,a_location:l_location, a_audio_location: l_audio_location, a_favourites: l_favourites, a_date: l_date)
+       println("Back to Detail controller after appending new experience")
+        
         self.view.endEditing(true)
         //Reload list view arrays from database adter adding new item
         expMgr.listByType()
+        println("After reloading arrays in save button")
+        
+        //Reset the global variable audio filename
+        
+        g_fileNameAudio = ""
         
         navigationController?.presentingViewController?.dismissViewControllerAnimated(true, completion: {})
     }
@@ -61,6 +123,8 @@ class ExperienceDetailViewController: UIViewController,UIPickerViewDelegate, UIP
     
     override func viewDidLoad() {
         
+       
+        
         super.viewDidLoad()
         
         //load picker type preselection from row selected in Summary VC
@@ -69,7 +133,14 @@ class ExperienceDetailViewController: UIViewController,UIPickerViewDelegate, UIP
         d_title.text = s_title
         d_desc.text = s_desc
         d_location.text = s_location
-
+        
+       //Setup audio recording file name
+        
+        var format = NSDateFormatter()
+        format.dateFormat="yyyy-MM-dd-HH-mm-ss"
+        g_fileNameAudio = "recording-\(format.stringFromDate(NSDate.date())).m4a"
+        println("Inside view did load of detail vc, value of file name is \(g_fileNameAudio)")
+       
     }
     
     override func didReceiveMemoryWarning() {
