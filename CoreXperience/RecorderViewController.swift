@@ -130,7 +130,7 @@ class RecorderViewController: UIViewController {
         // recorder might be nil
         // self.player = AVAudioPlayer(contentsOfURL: recorder.url, error: &error)
         self.player = AVAudioPlayer(contentsOfURL: soundFileURL!, error: &error)
-        println(" contents of url is \(soundFileURL)")
+        println(" contents of url in Play method is \(soundFileURL)")
         if player == nil {
             if let e = error {
                 println(e.localizedDescription)
@@ -154,8 +154,9 @@ class RecorderViewController: UIViewController {
         var docsDir: AnyObject = dirPaths[0]
  //       var soundFilePath = docsDir.stringByAppendingPathComponent(currentFileName)
         var soundFilePath = docsDir.stringByAppendingPathComponent(g_fileNameAudio)
-   
+        
         soundFileURL = NSURL(fileURLWithPath: soundFilePath)
+        
         println("soundFileURL is \(soundFileURL)")
         let filemanager = NSFileManager.defaultManager()
         if filemanager.fileExistsAtPath(soundFilePath) {

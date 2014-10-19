@@ -7,11 +7,31 @@
 //
 
 import UIKit
+import MediaPlayer
+import Social
 
 
 class ExperienceListViewController: UITableViewController {
 
-
+    
+var mediaPlayer: MPMoviePlayerController = MPMoviePlayerController()
+    
+    @IBAction func favButtonPressed(sender: AnyObject) {
+        println("Favourite button pressed")
+  
+        
+        
+    }
+   
+    
+    @IBAction func shareButtonPressed(sender: AnyObject) {
+        println("Share button pressed")
+        var shareToFacebook : SLComposeViewController = SLComposeViewController(forServiceType: SLServiceTypeFacebook)
+        var textToPost = g_experiencesByType[g_selectedListRow].m_title + " " + g_experiencesByType[g_selectedListRow].m_desc
+        shareToFacebook.setInitialText(textToPost)
+        self.presentViewController(shareToFacebook, animated:true,completion:nil)
+        
+    }
     
     @IBAction func unwindToList(segue: UIStoryboardSegue) {
         println("Unwinding")
@@ -62,16 +82,20 @@ class ExperienceListViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-    var cell = tableView.dequeueReusableCellWithIdentifier("ListCell") as UITableViewCell
-    cell = UITableViewCell(style: UITableViewCellStyle.Subtitle,reuseIdentifier:"ListCell")
+        g_cell = tableView.dequeueReusableCellWithIdentifier("customCell") as customCell
+ //   cell = customCell(style: UITableViewCellStyle.Subtitle,reuseIdentifier:"customCell")
     
     //Assign the title of each experience to the textLabel of each cell
-    cell.textLabel!.text = g_experiencesByType[indexPath.row].m_title
-    cell.textLabel!.textColor = UIColor.orangeColor()
-    
+//    cell.textLabel!.text = g_experiencesByType[indexPath.row].m_title
+//    cell.textLabel!.textColor = UIColor.orangeColor()
+  
+        g_cell.d_expTitle.text = g_experiencesByType[indexPath.row].m_title
+        g_cell.d_expDesc.text = g_experiencesByType[indexPath.row].m_desc
+       
         //Obtain and convert date to string
         
         let obtainedDate = g_experiencesByType[indexPath.row].m_date
+        
         
         let dateStringFormatter = NSDateFormatter()
         
@@ -80,41 +104,54 @@ class ExperienceListViewController: UITableViewController {
         
         var obtainedDateString : String = dateStringFormatter.stringFromDate(obtainedDate)
         println(" Obtained date is \(obtainedDateString)")
+         g_cell.d_date.text = obtainedDateString
+        g_cell.playIcon.text = "▶️"
         
     // Set the subtitles in list view
-    cell.detailTextLabel!.text = obtainedDateString + "  " + g_experiencesByType[indexPath.row].m_desc
-    cell.detailTextLabel!.textColor = UIColor.purpleColor()
-    
+//    cell.detailTextLabel!.text = obtainedDateString + "  " + g_experiencesByType[indexPath.row].m_desc
+//    cell.detailTextLabel!.textColor = UIColor.purpleColor()
+  //      println("after displaying text and subtitle")
+        
+   //     cell.setCell()
         
         
         
-    return cell
+    return g_cell
     }
     
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
     
-    //Create instance of ExperienceDetailShowController
-    
-    var detail:ExperienceDetailShowController = self.storyboard?.instantiateViewControllerWithIdentifier("ExperienceDetailShowController") as ExperienceDetailShowController
+        println("Inside tableList view : did select row. index path is \(indexPath.row)")
+        mediaPlayer.stop()
+    //           var previewUrl : String = "file:///Users/prabhueshwarla/Library/Developer/CoreSimulator/Devices/AABE6DBD-56DD-426B-A598-323BBA07484A/data/Containers/Data/Application/994EB8A2-5743-4C6C-9752-1ECB4F0D71F2/Documents/recording-2014-10-19-10-33-00.m4a"
+       
+        var docsDir = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as String
+  //      println(" recording file name is \(recordings[indexPath.row])")
+        var soundURL = g_experiencesByType[indexPath.row].m_audio_location
+        g_selectedListRow = indexPath.row
+        println("Printing current selected index : \(indexPath.row)")
+        
+        println("Sound URL is \(soundURL)")
+        
+        var url = NSURL(fileURLWithPath: docsDir + "/" + soundURL)
+        
+        println("URL is \(url)")
+        
+      //  var previewUrl : String = "file:///Users/prabhueshwarla/Library/Developer/CoreSimulator/Devices/AABE6DBD-56DD-426B-A598-323BBA07484A/data/Containers/Data/Application/994EB8A2-5743-4C6C-9752-1ECB4F0D71F2/Documents/recording-2014-10-19-10-33-00.m4a"
+        
+    //   println(" Inside select row-> BEFORE: content URL is \(previewUrl)")
+        println(" Inside select row-> BEFORE: content URL is \(url)")
+        
+    //   mediaPlayer.contentURL = NSURL(string: previewUrl)
+        mediaPlayer.contentURL = url
+   //     println(" Inside select row-> AFTER: content URL is \(soundURL)")
+        mediaPlayer.play()
+
+        }
+
     
         
-    //Reference ExperienceDetailViewController's var "cellName" and assign it to ExperienceDetailViewController's var "items"
-    
-    // Prepopulate the fields of detail VC for View /update
-    detail.s_title = g_experiencesByType[indexPath.row].m_title
-    detail.s_desc = g_experiencesByType[indexPath.row].m_desc
-    detail.s_location = g_experiencesByType[indexPath.row].m_location
-       println("Going to add audio, favourites and date in list view")
-        detail.s_audio_location = g_experiencesByType[indexPath.row].m_audio_location
-        detail.s_favourites = g_experiencesByType[indexPath.row].m_favourites
-        detail.s_date = g_experiencesByType[indexPath.row].m_date
-  println("finished adding audio, favourites and date in list view")
-    //Programmatically push to associated VC (ExperienceDetailViewController)
-    self.navigationController?.pushViewController(detail, animated: true)
-   
-      
-    }
     
     //This code adds animation while displaying table rows
     
@@ -132,8 +169,9 @@ class ExperienceListViewController: UITableViewController {
     expMgr.removeExperience(indexPath.row)
     expMgr.listByType()
     tableView.reloadData()
-    }
+        }
     
     }
-    
 }
+
+

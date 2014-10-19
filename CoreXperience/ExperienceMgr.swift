@@ -23,6 +23,10 @@ var g_pickerSelectedIndex : Int = 0
 
 var g_fileNameAudio : String = ""
 
+var g_cell = customCell ()
+
+var g_selectedListRow : Int = 0
+
 struct Experience {
     var m_user: String = ""
     var m_type: String = ""
