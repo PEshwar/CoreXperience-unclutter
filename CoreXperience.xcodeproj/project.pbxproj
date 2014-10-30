@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		9917A47F19F1E5F000F83DFC /* customCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9917A47E19F1E5F000F83DFC /* customCell.swift */; };
+		9920BC7A1A01B1C2009018FB /* showTextEntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9920BC791A01B1C2009018FB /* showTextEntryViewController.swift */; };
 		9954875119EB9C6C006C5EF3 /* 3d_objects.png in Resources */ = {isa = PBXBuildFile; fileRef = 9954875019EB9C6C006C5EF3 /* 3d_objects.png */; };
 		9954875319EBE366006C5EF3 /* ExperienceDetailShowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9954875219EBE366006C5EF3 /* ExperienceDetailShowController.swift */; };
 		9954875519EC0462006C5EF3 /* Family-Sign-32.png in Resources */ = {isa = PBXBuildFile; fileRef = 9954875419EC0462006C5EF3 /* Family-Sign-32.png */; };
@@ -38,6 +39,7 @@
 		998D7C6F19EAE9BD00A8036F /* Write in Resources */ = {isa = PBXBuildFile; fileRef = 998D7C6A19EAE9BD00A8036F /* Write */; };
 		99B0AA3D19F3F89A00D3A5F3 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99B0AA3C19F3F89A00D3A5F3 /* Social.framework */; };
 		99CA1C4019EE6498002FADE3 /* Calendar in Resources */ = {isa = PBXBuildFile; fileRef = 99CA1C3F19EE6498002FADE3 /* Calendar */; };
+		99D8C49019FD24E4000DD3EB /* showDateTimeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99D8C48F19FD24E4000DD3EB /* showDateTimeViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,6 +54,7 @@
 
 /* Begin PBXFileReference section */
 		9917A47E19F1E5F000F83DFC /* customCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = customCell.swift; sourceTree = "<group>"; };
+		9920BC791A01B1C2009018FB /* showTextEntryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = showTextEntryViewController.swift; sourceTree = "<group>"; };
 		9954875019EB9C6C006C5EF3 /* 3d_objects.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 3d_objects.png; sourceTree = "<group>"; };
 		9954875219EBE366006C5EF3 /* ExperienceDetailShowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExperienceDetailShowController.swift; sourceTree = "<group>"; };
 		9954875419EC0462006C5EF3 /* Family-Sign-32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Family-Sign-32.png"; sourceTree = "<group>"; };
@@ -86,6 +89,7 @@
 		998D7C6A19EAE9BD00A8036F /* Write */ = {isa = PBXFileReference; lastKnownFileType = file; path = Write; sourceTree = "<group>"; };
 		99B0AA3C19F3F89A00D3A5F3 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		99CA1C3F19EE6498002FADE3 /* Calendar */ = {isa = PBXFileReference; explicitFileType = image.jpeg; path = Calendar; sourceTree = "<group>"; };
+		99D8C48F19FD24E4000DD3EB /* showDateTimeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = showDateTimeViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -148,6 +152,8 @@
 				9954879419EC53A8006C5EF3 /* RecorderViewController.swift */,
 				9954879819EC53F6006C5EF3 /* RecordingsCollectionViewController.swift */,
 				9954879619EC53ED006C5EF3 /* RecordingCollectionViewCell.swift */,
+				99D8C48F19FD24E4000DD3EB /* showDateTimeViewController.swift */,
+				9920BC791A01B1C2009018FB /* showTextEntryViewController.swift */,
 			);
 			path = CoreXperience;
 			sourceTree = "<group>";
@@ -311,10 +317,12 @@
 			files = (
 				9917A47F19F1E5F000F83DFC /* customCell.swift in Sources */,
 				995ACCAE19EAEBFC00F0C715 /* ExperienceListViewController.swift in Sources */,
+				99D8C49019FD24E4000DD3EB /* showDateTimeViewController.swift in Sources */,
 				995ACCB019EAEC1E00F0C715 /* ExperienceDetailViewController.swift in Sources */,
 				995ACCB419EAF7B500F0C715 /* ExperienceMgr.swift in Sources */,
 				995ACCB619EAF7E700F0C715 /* ExperiencePersistenceHelper.swift in Sources */,
 				995ACCAC19EAEBDB00F0C715 /* ExperienceSummaryViewController.swift in Sources */,
+				9920BC7A1A01B1C2009018FB /* showTextEntryViewController.swift in Sources */,
 				9954879719EC53ED006C5EF3 /* RecordingCollectionViewCell.swift in Sources */,
 				9954875319EBE366006C5EF3 /* ExperienceDetailShowController.swift in Sources */,
 				998D7C0F19EAE69500A8036F /* CoreXperience.xcdatamodeld in Sources */,

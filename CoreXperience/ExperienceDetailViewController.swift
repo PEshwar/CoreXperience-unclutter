@@ -33,11 +33,13 @@ class Date {
 }
 
 
-class ExperienceDetailViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDataSource {
+class ExperienceDetailViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDataSource, userDateTimeDelegate, userTextEntryDelegate {
 
 
     @IBOutlet var d_title: UITextField!         //Title field on screen
-    @IBOutlet weak var d_desc: UITextView!      //Description field on screen
+
+    @IBOutlet weak var d_desc: UITextField!
+    
     @IBOutlet var d_location: UITextField!      //Location field on screen
     @IBOutlet weak var d_picker: UIPickerView!  //Picker type field on screen
     
@@ -46,6 +48,11 @@ class ExperienceDetailViewController: UIViewController,UIPickerViewDelegate, UIP
     @IBOutlet weak var d_date_month: UITextField!
     
     @IBOutlet weak var d_date_day: UITextField!
+    
+    @IBOutlet weak var d_date_HH: UITextField!
+    
+    
+    @IBOutlet weak var d_date_MM: UITextField!
     
     //Initialize temp variable (to store user amended picker type value) to the type selected in summary view
     var userAmendedPickerTypeIndex: Int = g_pickerSelectedIndex
@@ -56,6 +63,10 @@ class ExperienceDetailViewController: UIViewController,UIPickerViewDelegate, UIP
     var s_desc:String = ""
     var s_location:String = ""
    
+    //Variable to check if quick Audio or Quick text entry is required
+    
+    var quickAudio: Bool = false
+    var quickEntry: Bool = false
     
     //When cancel button is pressed in Detailed VC
     @IBAction func btnCancel(){
@@ -140,6 +151,46 @@ class ExperienceDetailViewController: UIViewController,UIPickerViewDelegate, UIP
         format.dateFormat="yyyy-MM-dd-HH-mm-ss"
         g_fileNameAudio = "recording-\(format.stringFromDate(NSDate.date())).m4a"
         println("Inside view did load of detail vc, value of file name is \(g_fileNameAudio)")
+        
+        let date = NSDate()
+        let calendar = NSCalendar.currentCalendar()
+        let components = calendar.components(.CalendarUnitHour | .CalendarUnitMinute | .CalendarUnitMonth | .CalendarUnitYear | .CalendarUnitDay, fromDate: date)
+        let hour = components.hour
+   //     d_date_HH.text = String(hour) + ":"
+        let minutes = components.minute
+   //     d_date_MM.text = String(minutes)
+     
+        if hour < 10 {
+            d_date_HH.text = "0" + String(hour) + ":"
+        } else {
+            d_date_HH.text = String(hour) + ":"
+        }
+        if minutes < 10 {
+            d_date_MM.text = "0" + String(minutes)
+        } else {
+            d_date_MM.text = String(minutes)
+        }
+        
+        let month = components.month
+        d_date_month.text = String(month)
+        let year = components.year
+        d_date_year.text = String(year)
+        let day = components.day
+        d_date_day.text = String(day)
+        d_title.text = "Experience on " + d_date_day.text + "/" + d_date_month.text + "/" + d_date_year.text + ", " + d_date_HH.text + d_date_MM.text + " Hrs"
+        
+        //temporarily hard-setting quik audio to yes
+//      quickAudio = true
+        if quickAudio {
+            println("QuickAudio enabled")
+            
+            performSegueWithIdentifier("audioRecord", sender: self)
+            
+            //var detail:RecorderViewController = self.storyboard?.instantiateViewControllerWithIdentifier("RecorderViewController") as RecorderViewController
+            
+                      //Programmatically push to associated VC (ExperienceDetailViewController)
+            //self.navigationController?.pushViewController(detail, animated: true)
+        }
        
     }
     
@@ -180,5 +231,82 @@ class ExperienceDetailViewController: UIViewController,UIPickerViewDelegate, UIP
         return "\(g_typeList[row])"
     }
 
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
+       
+        if (segue.identifier == "showDateTime") {
+            //get a reference to the destination view controller
+            println("Getting reference to second view controller")
+            
+            let destinationVC:showDateTimeViewController = segue.destinationViewController as showDateTimeViewController
+            
+            
+            
+            println("Going to set delegate")
+            
+            //set properties on the destination view controller
+            destinationVC.tempDateTime = " Hello"
+            
+            destinationVC.delegateDate = self
+            //etc...
+            println("finished setting delegate")
+            
+            
+        } else if (segue.identifier == "showTextEntry"){
+            println("Getting reference to text entry controller")
+            
+            let destinationVC:showTextEntryViewController = segue.destinationViewController as showTextEntryViewController
+            
+            
+            
+            println("Going to set delegate for text entry")
+            
+            //set properties on the destination view controller
+            destinationVC.tempTextEntry = d_desc.text
+            
+            destinationVC.delegateText = self
+            //etc...
+            println("finished setting delegate for text entry")
+        }
+        
+    }
 
+    func userDidSelectDateTime(selectedDateTime : NSDate) {
+        println("Back to add experience: Date selected is \(selectedDateTime)")
+        let myCalendar = NSCalendar.currentCalendar()
+        let myComponents = myCalendar.components(.CalendarUnitHour | .CalendarUnitMinute | .CalendarUnitMonth | .CalendarUnitYear | .CalendarUnitDay, fromDate: selectedDateTime)
+        let hour = myComponents.hour
+        println(" hour is \(hour)")
+        let minutes = myComponents.minute
+        println(" minutes is \(minutes)")
+        let month = myComponents.month
+        println(" Month is \(month)")
+        let year = myComponents.year
+        println(" year is \(year)")
+        let day = myComponents.day
+        println(" day is \(day)")
+        
+        d_date_month.text = String(month)
+        d_date_day.text = String(day)
+        
+        if hour < 10 {
+            d_date_HH.text = "0" + String(hour) + ":"
+        } else {
+            d_date_HH.text = String(hour) + ":"
+        }
+        if minutes < 10 {
+            d_date_MM.text = "0" + String(minutes)
+        } else {
+        d_date_MM.text = String(minutes)
+        }
+        
+        //Set Auto title based on changed time
+        d_title.text = "Experience on " + String(day) + "/" + String(month) + "/" + String(year) + ", " + String(hour) + ":" + String(minutes) + " Hrs"
+        
+    }
+    
+    func userDidEnterText(enteredText : NSString) {
+        println(" Experience description received from text entry vs is \(enteredText)")
+        d_desc.text = enteredText
+        
+    }
 }
