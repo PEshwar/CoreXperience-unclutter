@@ -72,6 +72,7 @@ class showCategoryViewController: UIViewController,  UIPickerViewDelegate, UIPic
     func pickerView(pickerView: UIPickerView,titleForRow row: Int,forComponent component: Int) -> String! {
         
         userAmendedPickerTypeIndex = row
+        g_selectedTypeIndex = row
         println("In picker view, user has changed row selected to \(g_typeList[row])")
         selectionLabel.text = g_typeList[row]
         return "\(g_typeList[row])"

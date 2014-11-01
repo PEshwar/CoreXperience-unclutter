@@ -27,7 +27,7 @@ var mediaPlayer: MPMoviePlayerController = MPMoviePlayerController()
     @IBAction func shareButtonPressed(sender: AnyObject) {
         println("Share button pressed")
         var shareToFacebook : SLComposeViewController = SLComposeViewController(forServiceType: SLServiceTypeFacebook)
-        var textToPost = g_experiencesByType[g_selectedListRow].m_title + " " + g_experiencesByType[g_selectedListRow].m_desc
+        var textToPost = g_experiencesByType[g_selectedListRow].m_title + "\r " + g_experiencesByType[g_selectedListRow].m_desc
         shareToFacebook.setInitialText(textToPost)
         self.presentViewController(shareToFacebook, animated:true,completion:nil)
         

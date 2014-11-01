@@ -93,6 +93,14 @@ class ExperienceDetailViewController: UIViewController, userDateTimeDelegate, us
     
  //   var quickAudio: Bool = false
   //  var quickEntry: Bool = false
+   
+    
+    @IBAction func yearChanged(sender: AnyObject) {
+        
+        d_title.text = "Experience on " + d_date_day.text! + "/" + d_date_month.text! + "/" + d_date_year.text! + ", " + d_date_HH.text! + d_date_MM.text! + " Hrs"
+        
+    }
+    
     
     @IBAction func cancelPressed(sender: UIBarButtonItem) {
     
@@ -109,10 +117,11 @@ class ExperienceDetailViewController: UIViewController, userDateTimeDelegate, us
     println("Inside save button")
         
         var l_title: String = d_title.text
+        println(" Title is \(d_title.text)")
         var l_desc: String = d_desc.text!
         var l_location: String = ""
         var l_user : String = "Family"
-        var l_type : String = g_typeList[userAmendedPickerTypeIndex]
+        var l_type : String = g_typeList[g_selectedTypeIndex]
         var l_audio_location = g_fileNameAudio
         var l_favourites = true
         
@@ -212,7 +221,7 @@ class ExperienceDetailViewController: UIViewController, userDateTimeDelegate, us
         
         //set auto description
         
-        d_desc.text = "This is an experience that happened on " + d_date_day.text! + "/" + d_date_month.text! + "/" + d_date_year.text! + ", at " + d_date_HH.text! + d_date_MM.text! + " Hrs."
+        d_desc.text = "Hi- I would like to describe an experience that happened. "
         
         //temporarily hard-setting quik audio to yes
 //      quickAudio = true
