@@ -33,26 +33,52 @@ class Date {
 }
 
 
-class ExperienceDetailViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDataSource, userDateTimeDelegate, userTextEntryDelegate {
+class ExperienceDetailViewController: UIViewController, userDateTimeDelegate, userTextEntryDelegate {
 
+    //Recording-related variables
+    
+    var recorder: AVAudioRecorder!
+    
+    var player:AVAudioPlayer!
+    
+    @IBOutlet var recordButton: UIButton!
+    
+    @IBOutlet var stopButton: UIButton!
+    
+    @IBOutlet var playButton: UIButton!
+    
+    @IBOutlet var statusLabel: UILabel!
+    
+    var meterTimer:NSTimer!
+    
+    var soundFileURL:NSURL?
+    
+    //End Recorder related variables
 
-    @IBOutlet var d_title: UITextField!         //Title field on screen
+           //Title field on screen
 
-    @IBOutlet weak var d_desc: UITextField!
-    
-    @IBOutlet var d_location: UITextField!      //Location field on screen
-    @IBOutlet weak var d_picker: UIPickerView!  //Picker type field on screen
-    
-    @IBOutlet weak var d_date_year: UITextField!
-    
-    @IBOutlet weak var d_date_month: UITextField!
-    
-    @IBOutlet weak var d_date_day: UITextField!
-    
-    @IBOutlet weak var d_date_HH: UITextField!
+    @IBOutlet weak var d_title: UITextField!
     
     
-    @IBOutlet weak var d_date_MM: UITextField!
+    @IBOutlet weak var d_category: UILabel! = UILabel()
+    
+    @IBOutlet weak var d_desc: UILabel! = UILabel()
+    
+//    @IBOutlet var d_location: UITextField!      //Location field on screen
+//    @IBOutlet weak var d_picker: UIPickerView!  //Picker type field on screen
+    
+    
+    @IBOutlet weak var d_date_year: UITextField! = UITextField()
+    
+    @IBOutlet weak var d_date_day: UILabel! = UILabel()
+    
+    @IBOutlet weak var d_date_month: UILabel! = UILabel()
+    
+    
+    @IBOutlet weak var d_date_HH: UILabel! = UILabel()
+    
+    @IBOutlet weak var d_date_MM: UILabel! = UILabel()
+    
     
     //Initialize temp variable (to store user amended picker type value) to the type selected in summary view
     var userAmendedPickerTypeIndex: Int = g_pickerSelectedIndex
@@ -65,31 +91,34 @@ class ExperienceDetailViewController: UIViewController,UIPickerViewDelegate, UIP
    
     //Variable to check if quick Audio or Quick text entry is required
     
-    var quickAudio: Bool = false
-    var quickEntry: Bool = false
+ //   var quickAudio: Bool = false
+  //  var quickEntry: Bool = false
+    
+    @IBAction func cancelPressed(sender: UIBarButtonItem) {
     
     //When cancel button is pressed in Detailed VC
-    @IBAction func btnCancel(){
-        
+    
         navigationController?.presentingViewController?.dismissViewControllerAnimated(true, completion: {})
     }
     
+    @IBAction func savePressed(sender: UIBarButtonItem) {
+    
     //When Save button is pressed in Detailed VC
-    @IBAction func btnSaveTask(sender: UIButton){
+
         
     println("Inside save button")
         
         var l_title: String = d_title.text
-        var l_desc: String = d_desc.text
-        var l_location: String = d_location.text
+        var l_desc: String = d_desc.text!
+        var l_location: String = ""
         var l_user : String = "Family"
         var l_type : String = g_typeList[userAmendedPickerTypeIndex]
         var l_audio_location = g_fileNameAudio
         var l_favourites = true
         
         var inputYear : Int = d_date_year.text.toInt()!
-        var inputMonth:Int = d_date_month.text.toInt()!
-        var inputDay:Int = d_date_day.text.toInt()!
+        var inputMonth:Int? = d_date_month?.text?.toInt()
+        var inputDay:Int? = d_date_day?.text?.toInt()!
         
         if inputYear != 0 {
             println("Got the number: \(inputYear)")
@@ -109,7 +138,7 @@ class ExperienceDetailViewController: UIViewController,UIPickerViewDelegate, UIP
             println("Couldn't convert to a number")
         }
 
-        var l_date:NSDate = Date.from(year:inputYear, month: inputMonth, day:inputDay)
+        var l_date:NSDate = Date.from(year:inputYear, month: inputMonth!, day:inputDay!)
         println(" Date is \(l_date)")
         
         println("Value of picker selected type before appending is \(g_typeList[userAmendedPickerTypeIndex])")
@@ -138,12 +167,11 @@ class ExperienceDetailViewController: UIViewController,UIPickerViewDelegate, UIP
         
         super.viewDidLoad()
         
-        //load picker type preselection from row selected in Summary VC
-        d_picker.selectRow(g_pickerSelectedIndex, inComponent:0,animated: true)
+       
         //load other details from the temp variables set in List VC before calling Detailed VC
         d_title.text = s_title
         d_desc.text = s_desc
-        d_location.text = s_location
+ //       d_location.text = s_location
         
        //Setup audio recording file name
         
@@ -152,6 +180,7 @@ class ExperienceDetailViewController: UIViewController,UIPickerViewDelegate, UIP
         g_fileNameAudio = "recording-\(format.stringFromDate(NSDate.date())).m4a"
         println("Inside view did load of detail vc, value of file name is \(g_fileNameAudio)")
         
+        d_category.text = g_typeList[g_selectedTypeIndex]
         let date = NSDate()
         let calendar = NSCalendar.currentCalendar()
         let components = calendar.components(.CalendarUnitHour | .CalendarUnitMinute | .CalendarUnitMonth | .CalendarUnitYear | .CalendarUnitDay, fromDate: date)
@@ -177,11 +206,17 @@ class ExperienceDetailViewController: UIViewController,UIPickerViewDelegate, UIP
         d_date_year.text = String(year)
         let day = components.day
         d_date_day.text = String(day)
-        d_title.text = "Experience on " + d_date_day.text + "/" + d_date_month.text + "/" + d_date_year.text + ", " + d_date_HH.text + d_date_MM.text + " Hrs"
+    //    d_title.text = "Experience on " + d_date_day.text + "/" + d_date_month.text + "/" + d_date_year.text + ", " + d_date_HH.text + d_date_MM.text + " Hrs"
+     
+        d_title.text = "Experience on " + d_date_day.text! + "/" + d_date_month.text! + "/" + d_date_year.text! + ", " + d_date_HH.text! + d_date_MM.text! + " Hrs"
+        
+        //set auto description
+        
+        d_desc.text = "This is an experience that happened on " + d_date_day.text! + "/" + d_date_month.text! + "/" + d_date_year.text! + ", at " + d_date_HH.text! + d_date_MM.text! + " Hrs."
         
         //temporarily hard-setting quik audio to yes
 //      quickAudio = true
-        if quickAudio {
+ /*       if quickAudio {
             println("QuickAudio enabled")
             
             performSegueWithIdentifier("audioRecord", sender: self)
@@ -191,11 +226,14 @@ class ExperienceDetailViewController: UIViewController,UIPickerViewDelegate, UIP
                       //Programmatically push to associated VC (ExperienceDetailViewController)
             //self.navigationController?.pushViewController(detail, animated: true)
         }
-       
+   */
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+        
+        recorder = nil
+        player = nil
         // Dispose of any resources that can be recreated.
     }
     
@@ -211,28 +249,12 @@ class ExperienceDetailViewController: UIViewController,UIPickerViewDelegate, UIP
         return true
         
     }
-    
-    //The following are ViewPicker methods for selection of experience type
-    
-    func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
-        return 1
-    }
-    
-    
-    func pickerView(pickerView: UIPickerView,numberOfRowsInComponent component: Int) -> Int
-    {
-        return g_typeList.count
-    }
-    
-    func pickerView(pickerView: UIPickerView,titleForRow row: Int,forComponent component: Int) -> String! {
    
-        userAmendedPickerTypeIndex = row
-        println("In picker view, user has changed row selected to \(g_typeList[row])")
-        return "\(g_typeList[row])"
-    }
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
        
+        println(" Segue identifier is \(segue.identifier)")
+        
         if (segue.identifier == "showDateTime") {
             //get a reference to the destination view controller
             println("Getting reference to second view controller")
@@ -261,11 +283,25 @@ class ExperienceDetailViewController: UIViewController,UIPickerViewDelegate, UIP
             println("Going to set delegate for text entry")
             
             //set properties on the destination view controller
-            destinationVC.tempTextEntry = d_desc.text
-            
-            destinationVC.delegateText = self
+          destinationVC.tempTextEntry = d_desc.text!
+         
+           destinationVC.delegateText = self
             //etc...
             println("finished setting delegate for text entry")
+        } else if (segue.identifier == "showCategory") {
+            
+            let destinationVC:showCategoryViewController = segue.destinationViewController as showCategoryViewController
+            
+            
+            
+            println("Going to set delegate for category")
+            
+            //set properties on the destination view controller
+            
+            destinationVC.delegateCategory = self
+            //etc...
+            println("finished setting delegate for Category")
+            
         }
         
     }
@@ -302,11 +338,372 @@ class ExperienceDetailViewController: UIViewController,UIPickerViewDelegate, UIP
         //Set Auto title based on changed time
         d_title.text = "Experience on " + String(day) + "/" + String(month) + "/" + String(year) + ", " + String(hour) + ":" + String(minutes) + " Hrs"
         
+
+        
     }
     
     func userDidEnterText(enteredText : NSString) {
         println(" Experience description received from text entry vs is \(enteredText)")
         d_desc.text = enteredText
         
+    }
+}
+
+
+// MARK: AVAudioRecorderDelegate
+extension ExperienceDetailViewController : AVAudioRecorderDelegate {
+    
+    func audioRecorderDidFinishRecording(recorder: AVAudioRecorder!,
+        successfully flag: Bool) {
+            println("finished recording \(flag)")
+            println("After recording, you can find it at \(soundFileURL)")
+            
+            stopButton.enabled = false
+            playButton.enabled = true
+            recordButton.setTitle("Record", forState:.Normal)
+            
+            // iOS8 and later
+            var alert = UIAlertController(title: "Recorder",
+                message: "Finished Recording",
+                preferredStyle: .Alert)
+            alert.addAction(UIAlertAction(title: "Keep", style: .Default, handler: {action in
+                println("keep was tapped")
+            }))
+            alert.addAction(UIAlertAction(title: "Delete", style: .Default, handler: {action in
+                println("delete was tapped")
+                self.recorder.deleteRecording()
+            }))
+            self.presentViewController(alert, animated:true, completion:nil)
+    }
+    
+    func audioRecorderEncodeErrorDidOccur(recorder: AVAudioRecorder!,
+        error: NSError!) {
+            println("\(error.localizedDescription)")
+    }
+}
+
+// MARK: AVAudioPlayerDelegate
+extension ExperienceDetailViewController : AVAudioPlayerDelegate {
+    func audioPlayerDidFinishPlaying(player: AVAudioPlayer!, successfully flag: Bool) {
+        println("finished playing \(flag)")
+        recordButton.enabled = true
+        stopButton.enabled = false
+    }
+    
+    func audioPlayerDecodeErrorDidOccur(player: AVAudioPlayer!, error: NSError!) {
+        println("\(error.localizedDescription)")
+    }
+}
+
+extension ExperienceDetailViewController {
+    func updateAudioMeter(timer:NSTimer) {
+        
+        if recorder.recording {
+            let dFormat = "%02d"
+            let min:Int = Int(recorder.currentTime / 60)
+            let sec:Int = Int(recorder.currentTime % 60)
+            let s = "\(String(format: dFormat, min)):\(String(format: dFormat, sec))"
+            statusLabel.text = s
+            recorder.updateMeters()
+            var apc0 = recorder.averagePowerForChannel(0)
+            var peak0 = recorder.peakPowerForChannel(0)
+        }
+    }
+    
+    
+   
+    
+    @IBAction func removeAll(sender: AnyObject) {
+        deleteAllRecordings()
+    }
+    
+    @IBAction func record(sender: UIButton) {
+        
+        if player != nil && player.playing {
+            player.stop()
+        }
+        
+        if recorder == nil {
+            println("recording. recorder nil")
+            recordButton.setTitle("Pause", forState:.Normal)
+            playButton.enabled = false
+            stopButton.enabled = true
+            recordWithPermission(true)
+            return
+        }
+        
+        if recorder != nil && recorder.recording {
+            println("pausing")
+            recorder.pause()
+            recordButton.setTitle("Continue", forState:.Normal)
+            
+        } else {
+            println("recording")
+            recordButton.setTitle("Pause", forState:.Normal)
+            playButton.enabled = false
+            stopButton.enabled = true
+            //            recorder.record()
+            recordWithPermission(false)
+        }
+    }
+    
+    @IBAction func stop(sender: UIButton) {
+        println("stop")
+        recorder.stop()
+        meterTimer.invalidate()
+        
+        recordButton.setTitle("Record", forState:.Normal)
+        let session:AVAudioSession = AVAudioSession.sharedInstance()
+        var error: NSError?
+        if !session.setActive(false, error: &error) {
+            println("could not make session inactive")
+            if let e = error {
+                println(e.localizedDescription)
+                return
+            }
+        }
+        playButton.enabled = true
+        stopButton.enabled = false
+        recordButton.enabled = true
+        recorder = nil
+    }
+    
+    @IBAction func play(sender: UIButton) {
+        play()
+    }
+    
+    func play() {
+        
+        println("playing")
+        var error: NSError?
+        // recorder might be nil
+        // self.player = AVAudioPlayer(contentsOfURL: recorder.url, error: &error)
+        self.player = AVAudioPlayer(contentsOfURL: soundFileURL!, error: &error)
+        println(" contents of url in Play method is \(soundFileURL)")
+        if player == nil {
+            if let e = error {
+                println(e.localizedDescription)
+            }
+        }
+        player.delegate = self
+        player.prepareToPlay()
+        player.volume = 1.0
+        player.play()
+    }
+    
+    
+    
+    func setupRecorder() {
+        //       var format = NSDateFormatter()
+        //       format.dateFormat="yyyy-MM-dd-HH-mm-ss"
+        //       var currentFileName = "recording-\(format.stringFromDate(NSDate.date())).m4a"
+        //       println(currentFileName)
+        println("Inside setup recorder- global file name is \(g_fileNameAudio)")
+        var dirPaths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
+        var docsDir: AnyObject = dirPaths[0]
+        //       var soundFilePath = docsDir.stringByAppendingPathComponent(currentFileName)
+        var soundFilePath = docsDir.stringByAppendingPathComponent(g_fileNameAudio)
+        
+        soundFileURL = NSURL(fileURLWithPath: soundFilePath)
+        
+        println("soundFileURL is \(soundFileURL)")
+        let filemanager = NSFileManager.defaultManager()
+        if filemanager.fileExistsAtPath(soundFilePath) {
+            // probably won't happen. want to do something about it?
+            println("sound exists")
+            println("Sound file path")
+        }
+        
+        var recordSettings = [
+            AVFormatIDKey: kAudioFormatAppleLossless,
+            AVEncoderAudioQualityKey : AVAudioQuality.Max.toRaw(),
+            AVEncoderBitRateKey : 320000,
+            AVNumberOfChannelsKey: 2,
+            AVSampleRateKey : 44100.0
+        ]
+        var error: NSError?
+        recorder = AVAudioRecorder(URL: soundFileURL!, settings: recordSettings, error: &error)
+        if let e = error {
+            println(e.localizedDescription)
+        } else {
+            recorder.delegate = self
+            recorder.meteringEnabled = true
+            recorder.prepareToRecord() // creates/overwrites the file at soundFileURL
+        }
+    }
+    
+    func recordWithPermission(setup:Bool) {
+        let session:AVAudioSession = AVAudioSession.sharedInstance()
+        // ios 8 and later
+        if (session.respondsToSelector("requestRecordPermission:")) {
+            AVAudioSession.sharedInstance().requestRecordPermission({(granted: Bool)-> Void in
+                if granted {
+                    println("Permission to record granted")
+                    self.setSessionPlayAndRecord()
+                    if setup {
+                        self.setupRecorder()
+                    }
+                    self.recorder.record()
+                    self.meterTimer = NSTimer.scheduledTimerWithTimeInterval(0.1,
+                        target:self,
+                        selector:"updateAudioMeter:",
+                        userInfo:nil,
+                        repeats:true)
+                } else {
+                    println("Permission to record not granted")
+                }
+            })
+        } else {
+            println("requestRecordPermission unrecognized")
+        }
+    }
+    
+    func setSessionPlayback() {
+        let session:AVAudioSession = AVAudioSession.sharedInstance()
+        var error: NSError?
+        if !session.setCategory(AVAudioSessionCategoryPlayback, error:&error) {
+            println("could not set session category")
+            if let e = error {
+                println(e.localizedDescription)
+            }
+        }
+        if !session.setActive(true, error: &error) {
+            println("could not make session active")
+            if let e = error {
+                println(e.localizedDescription)
+            }
+        }
+    }
+    
+    func setSessionPlayAndRecord() {
+        let session:AVAudioSession = AVAudioSession.sharedInstance()
+        var error: NSError?
+        if !session.setCategory(AVAudioSessionCategoryPlayAndRecord, error:&error) {
+            println("could not set session category")
+            if let e = error {
+                println(e.localizedDescription)
+            }
+        }
+        if !session.setActive(true, error: &error) {
+            println("could not make session active")
+            if let e = error {
+                println(e.localizedDescription)
+            }
+        }
+    }
+    
+    func deleteAllRecordings() {
+        var docsDir =
+        NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as String
+        var fileManager = NSFileManager.defaultManager()
+        var error: NSError?
+        var files = fileManager.contentsOfDirectoryAtPath(docsDir, error: &error) as [String]
+        if let e = error {
+            println(e.localizedDescription)
+        }
+        var recordings = files.filter( { (name: String) -> Bool in
+            return name.hasSuffix("m4a")
+        })
+        for var i = 0; i < recordings.count; i++ {
+            var path = docsDir + "/" + recordings[i]
+            
+            println("removing \(path)")
+            if !fileManager.removeItemAtPath(path, error: &error) {
+                NSLog("could not remove \(path)")
+            }
+            if let e = error {
+                println(e.localizedDescription)
+            }
+        }
+    }
+    
+    func askForNotifications() {
+        
+        NSNotificationCenter.defaultCenter().addObserver(self,
+            selector:"background:",
+            name:UIApplicationWillResignActiveNotification,
+            object:nil)
+        
+        NSNotificationCenter.defaultCenter().addObserver(self,
+            selector:"foreground:",
+            name:UIApplicationWillEnterForegroundNotification,
+            object:nil)
+        
+        NSNotificationCenter.defaultCenter().addObserver(self,
+            selector:"routeChange:",
+            name:AVAudioSessionRouteChangeNotification,
+            object:nil)
+    }
+    
+    func background(notification:NSNotification) {
+        println("background")
+    }
+    
+    func foreground(notification:NSNotification) {
+        println("foreground")
+    }
+    
+    
+    func routeChange(notification:NSNotification) {
+        //      let userInfo:Dictionary<String,String!> = notification.userInfo as Dictionary<String,String!>
+        //      let userInfo = notification.userInfo as Dictionary<String,[AnyObject]!>
+        //  var reason = userInfo[AVAudioSessionRouteChangeReasonKey]
+        
+        // var userInfo: [NSObject : AnyObject]? { get }
+        //let AVAudioSessionRouteChangeReasonKey: NSString!
+        
+        /*
+        if let reason = notification.userInfo[AVAudioSessionRouteChangeReasonKey] as? NSNumber  {
+        }
+        
+        if let info = notification.userInfo as? Dictionary<String,String> {
+        
+        
+        if let rs = info["AVAudioSessionRouteChangeReasonKey"] {
+        var reason =  rs.toInt()!
+        
+        if rs.integerValue == Int(AVAudioSessionRouteChangeReason.NewDeviceAvailable.toRaw()) {
+        }
+        
+        switch reason  {
+        case AVAudioSessionRouteChangeReason
+        println("new device")
+        }
+        
+        }
+        }
+        
+        var description = userInfo[AVAudioSessionRouteChangePreviousRouteKey]
+        */
+        /*
+        //        var reason = info.valueForKey(AVAudioSessionRouteChangeReasonKey) as UInt
+        //var reason = info.valueForKey(AVAudioSessionRouteChangeReasonKey) as AVAudioSessionRouteChangeReason.Raw
+        //var description = info.valueForKey(AVAudioSessionRouteChangePreviousRouteKey) as String
+        println(description)
+        
+        switch reason {
+        case AVAudioSessionRouteChangeReason.NewDeviceAvailable.toRaw():
+        println("new device")
+        case AVAudioSessionRouteChangeReason.OldDeviceUnavailable.toRaw():
+        println("old device unavail")
+        //case AVAudioSessionRouteChangeReasonCategoryChange
+        //case AVAudioSessionRouteChangeReasonOverride
+        //case AVAudioSessionRouteChangeReasonWakeFromSleep
+        //case AVAudioSessionRouteChangeReasonNoSuitableRouteForCategory
+        
+        default:
+        println("something or other")
+        }
+        */
+    }
+
+}
+
+extension ExperienceDetailViewController : userselectedCategoryDelegate {
+    
+    func userDidSelectCategory(selectedCategory : NSString) {
+        
+        println(" Category selection received in Add Experience i \(selectedCategory)")
+        d_category.text = selectedCategory
     }
 }

@@ -2,7 +2,7 @@
 //  showTextEntryViewController.swift
 //  CoreXperience
 //
-//  Created by Prabhu Eshwarla on 30/10/14.
+//  Created by Prabhu Eshwarla on 01/11/14.
 //  Copyright (c) 2014 iTripuram. All rights reserved.
 //
 
@@ -14,16 +14,17 @@ protocol userTextEntryDelegate {
 
 class showTextEntryViewController: UIViewController {
 
-    var delegateText: userTextEntryDelegate? = nil
+    @IBOutlet weak var d_textEntry: UITextView!
     var tempTextEntry: String = ""
-    @IBOutlet weak var d_textEntry: UITextView! = UITextView()
     
-    @IBAction func SavePressed(sender: AnyObject) {
-        
+    var delegateText: userTextEntryDelegate? = nil
+    
+    @IBAction func savePressed(sender: UIButton) {
         println(" Save selected")
-        self.delegateText?.userDidEnterText(d_textEntry.text)
+            self.delegateText?.userDidEnterText(d_textEntry.text)
         navigationController?.popViewControllerAnimated(true)
     }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()

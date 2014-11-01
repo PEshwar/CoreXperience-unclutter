@@ -7,14 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		99114D341A04956C005D6DB0 /* Mic.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 99114D331A04956C005D6DB0 /* Mic.jpeg */; };
 		9917A47F19F1E5F000F83DFC /* customCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9917A47E19F1E5F000F83DFC /* customCell.swift */; };
-		9920BC7A1A01B1C2009018FB /* showTextEntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9920BC791A01B1C2009018FB /* showTextEntryViewController.swift */; };
 		9954875119EB9C6C006C5EF3 /* 3d_objects.png in Resources */ = {isa = PBXBuildFile; fileRef = 9954875019EB9C6C006C5EF3 /* 3d_objects.png */; };
 		9954875319EBE366006C5EF3 /* ExperienceDetailShowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9954875219EBE366006C5EF3 /* ExperienceDetailShowController.swift */; };
-		9954875519EC0462006C5EF3 /* Family-Sign-32.png in Resources */ = {isa = PBXBuildFile; fileRef = 9954875419EC0462006C5EF3 /* Family-Sign-32.png */; };
 		9954878F19EC4D72006C5EF3 /* user-female.png in Resources */ = {isa = PBXBuildFile; fileRef = 9954878D19EC4D72006C5EF3 /* user-female.png */; };
 		9954879019EC4D72006C5EF3 /* user-male.png in Resources */ = {isa = PBXBuildFile; fileRef = 9954878E19EC4D72006C5EF3 /* user-male.png */; };
-		9954879319EC5397006C5EF3 /* MainAudio.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9954879119EC5397006C5EF3 /* MainAudio.storyboard */; };
 		9954879519EC53A8006C5EF3 /* RecorderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9954879419EC53A8006C5EF3 /* RecorderViewController.swift */; };
 		9954879719EC53ED006C5EF3 /* RecordingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9954879619EC53ED006C5EF3 /* RecordingCollectionViewCell.swift */; };
 		9954879919EC53F6006C5EF3 /* RecordingsCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9954879819EC53F6006C5EF3 /* RecordingsCollectionViewController.swift */; };
@@ -37,6 +35,9 @@
 		998D7C6D19EAE9BD00A8036F /* Title in Resources */ = {isa = PBXBuildFile; fileRef = 998D7C6819EAE9BD00A8036F /* Title */; };
 		998D7C6E19EAE9BD00A8036F /* Video in Resources */ = {isa = PBXBuildFile; fileRef = 998D7C6919EAE9BD00A8036F /* Video */; };
 		998D7C6F19EAE9BD00A8036F /* Write in Resources */ = {isa = PBXBuildFile; fileRef = 998D7C6A19EAE9BD00A8036F /* Write */; };
+		999CC1671A04D0F900C2CB5E /* showCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 999CC1661A04D0F900C2CB5E /* showCategoryViewController.swift */; };
+		99A5023C1A04FC61001F6282 /* Family-Sign-32.png in Resources */ = {isa = PBXBuildFile; fileRef = 99A5023B1A04FC61001F6282 /* Family-Sign-32.png */; };
+		99A5023E1A04FE6E001F6282 /* showTextEntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A5023D1A04FE6E001F6282 /* showTextEntryViewController.swift */; };
 		99B0AA3D19F3F89A00D3A5F3 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99B0AA3C19F3F89A00D3A5F3 /* Social.framework */; };
 		99CA1C4019EE6498002FADE3 /* Calendar in Resources */ = {isa = PBXBuildFile; fileRef = 99CA1C3F19EE6498002FADE3 /* Calendar */; };
 		99D8C49019FD24E4000DD3EB /* showDateTimeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99D8C48F19FD24E4000DD3EB /* showDateTimeViewController.swift */; };
@@ -53,14 +54,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		99114D331A04956C005D6DB0 /* Mic.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Mic.jpeg; sourceTree = "<group>"; };
 		9917A47E19F1E5F000F83DFC /* customCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = customCell.swift; sourceTree = "<group>"; };
-		9920BC791A01B1C2009018FB /* showTextEntryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = showTextEntryViewController.swift; sourceTree = "<group>"; };
 		9954875019EB9C6C006C5EF3 /* 3d_objects.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 3d_objects.png; sourceTree = "<group>"; };
 		9954875219EBE366006C5EF3 /* ExperienceDetailShowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExperienceDetailShowController.swift; sourceTree = "<group>"; };
-		9954875419EC0462006C5EF3 /* Family-Sign-32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Family-Sign-32.png"; sourceTree = "<group>"; };
 		9954878D19EC4D72006C5EF3 /* user-female.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "user-female.png"; sourceTree = "<group>"; };
 		9954878E19EC4D72006C5EF3 /* user-male.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "user-male.png"; sourceTree = "<group>"; };
-		9954879219EC5397006C5EF3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainAudio.storyboard; sourceTree = "<group>"; };
 		9954879419EC53A8006C5EF3 /* RecorderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecorderViewController.swift; sourceTree = "<group>"; };
 		9954879619EC53ED006C5EF3 /* RecordingCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordingCollectionViewCell.swift; sourceTree = "<group>"; };
 		9954879819EC53F6006C5EF3 /* RecordingsCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordingsCollectionViewController.swift; sourceTree = "<group>"; };
@@ -87,6 +86,9 @@
 		998D7C6819EAE9BD00A8036F /* Title */ = {isa = PBXFileReference; lastKnownFileType = file; path = Title; sourceTree = "<group>"; };
 		998D7C6919EAE9BD00A8036F /* Video */ = {isa = PBXFileReference; lastKnownFileType = file; path = Video; sourceTree = "<group>"; };
 		998D7C6A19EAE9BD00A8036F /* Write */ = {isa = PBXFileReference; lastKnownFileType = file; path = Write; sourceTree = "<group>"; };
+		999CC1661A04D0F900C2CB5E /* showCategoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = showCategoryViewController.swift; sourceTree = "<group>"; };
+		99A5023B1A04FC61001F6282 /* Family-Sign-32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Family-Sign-32.png"; sourceTree = "<group>"; };
+		99A5023D1A04FE6E001F6282 /* showTextEntryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = showTextEntryViewController.swift; sourceTree = "<group>"; };
 		99B0AA3C19F3F89A00D3A5F3 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		99CA1C3F19EE6498002FADE3 /* Calendar */ = {isa = PBXFileReference; explicitFileType = image.jpeg; path = Calendar; sourceTree = "<group>"; };
 		99D8C48F19FD24E4000DD3EB /* showDateTimeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = showDateTimeViewController.swift; sourceTree = "<group>"; };
@@ -133,7 +135,6 @@
 		998D7C0819EAE69500A8036F /* CoreXperience */ = {
 			isa = PBXGroup;
 			children = (
-				9954879119EC5397006C5EF3 /* MainAudio.storyboard */,
 				998D7C0B19EAE69500A8036F /* AppDelegate.swift */,
 				998D7C1219EAE69500A8036F /* Main.storyboard */,
 				998D7C1519EAE69500A8036F /* Images.xcassets */,
@@ -143,6 +144,7 @@
 				998D7C0919EAE69500A8036F /* Supporting Files */,
 				995ACCAB19EAEBDB00F0C715 /* ExperienceSummaryViewController.swift */,
 				995ACCAD19EAEBFC00F0C715 /* ExperienceListViewController.swift */,
+				99A5023B1A04FC61001F6282 /* Family-Sign-32.png */,
 				9917A47E19F1E5F000F83DFC /* customCell.swift */,
 				995ACCAF19EAEC1E00F0C715 /* ExperienceDetailViewController.swift */,
 				995ACCB119EAEC8D00F0C715 /* ExperienceTabBarController.swift */,
@@ -153,7 +155,8 @@
 				9954879819EC53F6006C5EF3 /* RecordingsCollectionViewController.swift */,
 				9954879619EC53ED006C5EF3 /* RecordingCollectionViewCell.swift */,
 				99D8C48F19FD24E4000DD3EB /* showDateTimeViewController.swift */,
-				9920BC791A01B1C2009018FB /* showTextEntryViewController.swift */,
+				999CC1661A04D0F900C2CB5E /* showCategoryViewController.swift */,
+				99A5023D1A04FE6E001F6282 /* showTextEntryViewController.swift */,
 			);
 			path = CoreXperience;
 			sourceTree = "<group>";
@@ -190,8 +193,8 @@
 				996600B219F27778001B3086 /* share2.jpeg */,
 				99CA1C3F19EE6498002FADE3 /* Calendar */,
 				9954878D19EC4D72006C5EF3 /* user-female.png */,
+				99114D331A04956C005D6DB0 /* Mic.jpeg */,
 				9954878E19EC4D72006C5EF3 /* user-male.png */,
-				9954875419EC0462006C5EF3 /* Family-Sign-32.png */,
 				9954875019EB9C6C006C5EF3 /* 3d_objects.png */,
 				998D7C6619EAE9BD00A8036F /* Audio */,
 				998D7C6719EAE9BD00A8036F /* Location */,
@@ -288,12 +291,12 @@
 				996600B319F27778001B3086 /* favourite.png in Resources */,
 				996600B419F27778001B3086 /* share2.jpeg in Resources */,
 				9954879019EC4D72006C5EF3 /* user-male.png in Resources */,
+				99114D341A04956C005D6DB0 /* Mic.jpeg in Resources */,
+				99A5023C1A04FC61001F6282 /* Family-Sign-32.png in Resources */,
 				998D7C1919EAE69500A8036F /* LaunchScreen.xib in Resources */,
-				9954879319EC5397006C5EF3 /* MainAudio.storyboard in Resources */,
 				998D7C1619EAE69500A8036F /* Images.xcassets in Resources */,
 				998D7C6D19EAE9BD00A8036F /* Title in Resources */,
 				998D7C6B19EAE9BD00A8036F /* Audio in Resources */,
-				9954875519EC0462006C5EF3 /* Family-Sign-32.png in Resources */,
 				998D7C6C19EAE9BD00A8036F /* Location in Resources */,
 				998D7C6E19EAE9BD00A8036F /* Video in Resources */,
 				9954878F19EC4D72006C5EF3 /* user-female.png in Resources */,
@@ -316,13 +319,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				9917A47F19F1E5F000F83DFC /* customCell.swift in Sources */,
+				99A5023E1A04FE6E001F6282 /* showTextEntryViewController.swift in Sources */,
 				995ACCAE19EAEBFC00F0C715 /* ExperienceListViewController.swift in Sources */,
+				999CC1671A04D0F900C2CB5E /* showCategoryViewController.swift in Sources */,
 				99D8C49019FD24E4000DD3EB /* showDateTimeViewController.swift in Sources */,
 				995ACCB019EAEC1E00F0C715 /* ExperienceDetailViewController.swift in Sources */,
 				995ACCB419EAF7B500F0C715 /* ExperienceMgr.swift in Sources */,
 				995ACCB619EAF7E700F0C715 /* ExperiencePersistenceHelper.swift in Sources */,
 				995ACCAC19EAEBDB00F0C715 /* ExperienceSummaryViewController.swift in Sources */,
-				9920BC7A1A01B1C2009018FB /* showTextEntryViewController.swift in Sources */,
 				9954879719EC53ED006C5EF3 /* RecordingCollectionViewCell.swift in Sources */,
 				9954875319EBE366006C5EF3 /* ExperienceDetailShowController.swift in Sources */,
 				998D7C0F19EAE69500A8036F /* CoreXperience.xcdatamodeld in Sources */,
@@ -352,14 +356,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		9954879119EC5397006C5EF3 /* MainAudio.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				9954879219EC5397006C5EF3 /* Base */,
-			);
-			name = MainAudio.storyboard;
-			sourceTree = "<group>";
-		};
 		998D7C1219EAE69500A8036F /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (

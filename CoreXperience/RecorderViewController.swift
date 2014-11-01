@@ -41,6 +41,14 @@ class RecorderViewController: UIViewController {
         playButton.enabled = false
         setSessionPlayback()
         askForNotifications()
+        
+        //Setup audio recording file name
+        
+        var format = NSDateFormatter()
+        format.dateFormat="yyyy-MM-dd-HH-mm-ss"
+        g_fileNameAudio = "recording-\(format.stringFromDate(NSDate.date())).m4a"
+        println("Inside view did load of detail vc, value of file name is \(g_fileNameAudio)")
+
     }
     
     func updateAudioMeter(timer:NSTimer) {
