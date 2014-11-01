@@ -35,6 +35,13 @@ class Date {
 
 class ExperienceDetailViewController: UIViewController, userDateTimeDelegate, userTextEntryDelegate {
 
+  //Favourite related
+    
+    
+    @IBOutlet weak var favouriteFlag: UIButton!
+    
+    var favouriteFlagOn = false
+    
     //Recording-related variables
     
     var recorder: AVAudioRecorder!
@@ -95,6 +102,24 @@ class ExperienceDetailViewController: UIViewController, userDateTimeDelegate, us
   //  var quickEntry: Bool = false
    
     
+    @IBAction func favouritePressed(sender: AnyObject) {
+        
+        if favouriteFlagOn == false {
+            favouriteFlagOn = true
+        var image = UIImage (named: "Favourite-selected")
+            
+        favouriteFlag.setImage(image, forState: .Normal)
+            
+        } else {
+            favouriteFlagOn = false
+            var image = UIImage (named: "Favourite-unselected")
+            
+            favouriteFlag.setImage(image, forState: .Normal)
+            
+        }
+    }
+    
+    
     @IBAction func yearChanged(sender: AnyObject) {
         
         d_title.text = "Experience on " + d_date_day.text! + "/" + d_date_month.text! + "/" + d_date_year.text! + ", " + d_date_HH.text! + d_date_MM.text! + " Hrs"
@@ -123,7 +148,7 @@ class ExperienceDetailViewController: UIViewController, userDateTimeDelegate, us
         var l_user : String = "Family"
         var l_type : String = g_typeList[g_selectedTypeIndex]
         var l_audio_location = g_fileNameAudio
-        var l_favourites = true
+        var l_favourites = favouriteFlagOn
         
         var inputYear : Int = d_date_year.text.toInt()!
         var inputMonth:Int? = d_date_month?.text?.toInt()

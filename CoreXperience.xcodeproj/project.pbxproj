@@ -56,6 +56,8 @@
 /* Begin PBXFileReference section */
 		99114D331A04956C005D6DB0 /* Mic.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Mic.jpeg; sourceTree = "<group>"; };
 		9917A47E19F1E5F000F83DFC /* customCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = customCell.swift; sourceTree = "<group>"; };
+		99534EB11A054F2600BF4479 /* Favourite-selected */ = {isa = PBXFileReference; explicitFileType = image.jpeg; path = "Favourite-selected"; sourceTree = "<group>"; };
+		99534EB21A054F2600BF4479 /* Favourite-unselected */ = {isa = PBXFileReference; explicitFileType = image.jpeg; path = "Favourite-unselected"; sourceTree = "<group>"; };
 		9954875019EB9C6C006C5EF3 /* 3d_objects.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 3d_objects.png; sourceTree = "<group>"; };
 		9954875219EBE366006C5EF3 /* ExperienceDetailShowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExperienceDetailShowController.swift; sourceTree = "<group>"; };
 		9954878D19EC4D72006C5EF3 /* user-female.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "user-female.png"; sourceTree = "<group>"; };
@@ -140,6 +142,8 @@
 				998D7C1519EAE69500A8036F /* Images.xcassets */,
 				998D7C2E19EAE98300A8036F /* Images */,
 				998D7C1719EAE69500A8036F /* LaunchScreen.xib */,
+				99534EB11A054F2600BF4479 /* Favourite-selected */,
+				99534EB21A054F2600BF4479 /* Favourite-unselected */,
 				998D7C0D19EAE69500A8036F /* CoreXperience.xcdatamodeld */,
 				998D7C0919EAE69500A8036F /* Supporting Files */,
 				995ACCAB19EAEBDB00F0C715 /* ExperienceSummaryViewController.swift */,

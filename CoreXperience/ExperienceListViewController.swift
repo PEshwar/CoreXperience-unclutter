@@ -114,6 +114,15 @@ var mediaPlayer: MPMoviePlayerController = MPMoviePlayerController()
         
    //     cell.setCell()
         
+        //Set Favourite Flag
+        
+        var favouriteSelected = g_experiencesByType[indexPath.row].m_favourites
+        
+        if favouriteSelected == true {
+            var image = UIImage (named: "Favourite-selected")
+            
+            g_cell.d_favouriteFlag.setImage(image, forState: .Normal)
+        }
         
         
     return g_cell

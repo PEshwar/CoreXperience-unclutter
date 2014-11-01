@@ -68,7 +68,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" restorationIdentifier="expTitle" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="XhH-r7-Qg4">
-                                            <rect key="frame" x="8" y="2" width="320" height="32"/>
+                                            <rect key="frame" x="8" y="2" width="285" height="32"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                             <color key="textColor" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -88,16 +88,6 @@
                                             <color key="textColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="QyZ-1E-2i1">
-                                            <rect key="frame" x="294" y="4" width="24" height="26"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <state key="normal" title="Button" image="favourite.png">
-                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                            </state>
-                                            <connections>
-                                                <action selector="favButtonPressed:" destination="p6b-qs-Igv" eventType="touchUpInside" id="HaU-vd-yjN"/>
-                                            </connections>
-                                        </button>
                                         <button opaque="NO" contentMode="scaleToFill" restorationIdentifier="ShareButton" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Hj7-Jz-jqc">
                                             <rect key="frame" x="294" y="38" width="24" height="26"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -115,12 +105,23 @@
                                             <color key="textColor" red="0.26531969150000001" green="0.6241627663" blue="0.66666666669999997" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="QyZ-1E-2i1">
+                                            <rect key="frame" x="294" y="8" width="24" height="26"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <state key="normal" title="Button" image="favourite.png">
+                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
+                                            <connections>
+                                                <action selector="favButtonPressed:" destination="p6b-qs-Igv" eventType="touchUpInside" id="HaU-vd-yjN"/>
+                                            </connections>
+                                        </button>
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="d_date" destination="erh-9B-U54" id="I6b-uz-j1f"/>
                                     <outlet property="d_expDesc" destination="L7C-yb-hhh" id="Aez-mT-8rK"/>
                                     <outlet property="d_expTitle" destination="XhH-r7-Qg4" id="xIm-IG-Ghc"/>
+                                    <outlet property="d_favouriteFlag" destination="QyZ-1E-2i1" id="O8J-6N-cWj"/>
                                     <outlet property="d_shareButton" destination="Hj7-Jz-jqc" id="k2p-H4-yJL"/>
                                     <outlet property="playIcon" destination="gux-Hq-udt" id="aK9-aZ-jfm"/>
                                 </connections>
@@ -145,7 +146,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3UM-F6-bi9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="764" y="406.82999999999998"/>
+            <point key="canvasLocation" x="764" y="406"/>
         </scene>
         <!--Parimala-->
         <scene sceneID="Tsh-Wg-nYP">
@@ -581,7 +582,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Experience text goes here...." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="bGp-9g-gjZ">
-                                <rect key="frame" x="78" y="374" width="244" height="21"/>
+                                <rect key="frame" x="76" y="374" width="244" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <color key="textColor" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -655,6 +656,23 @@
                                     <barButtonItem title="Upload Photo" width="113" id="Ydx-3z-aUM"/>
                                 </items>
                             </toolbar>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Favourite?" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="V2L-Pb-sdj">
+                                <rect key="frame" x="6" y="408" width="71" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" red="0.66666666669999997" green="0.53143040649999995" blue="0.1260413406" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="XGC-wk-CqJ">
+                                <rect key="frame" x="90" y="404" width="29" height="29"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button" image="Favourite-unselected">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="favouritePressed:" destination="eOE-Cb-bOH" eventType="touchUpInside" id="Ac4-yT-7bO"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -681,6 +699,7 @@
                         <outlet property="d_date_year" destination="hwu-7j-Qun" id="sfq-b0-1tB"/>
                         <outlet property="d_desc" destination="bGp-9g-gjZ" id="qOZ-vl-N0A"/>
                         <outlet property="d_title" destination="xXC-iM-V88" id="eVI-1N-WCI"/>
+                        <outlet property="favouriteFlag" destination="XGC-wk-CqJ" id="7a4-tb-JS8"/>
                         <outlet property="playButton" destination="mUL-1L-BAX" id="EUz-RM-u8N"/>
                         <outlet property="recordButton" destination="3LW-Hm-VgP" id="j3d-kI-uzn"/>
                         <outlet property="statusLabel" destination="8il-Jk-xls" id="9fU-Fq-re8"/>
@@ -761,6 +780,7 @@
         <image name="3d_objects.png" width="128" height="128"/>
         <image name="Audio" width="146" height="117"/>
         <image name="Family-Sign-32.png" width="32" height="27"/>
+        <image name="Favourite-unselected" width="225" height="225"/>
         <image name="Location" width="135" height="123"/>
         <image name="Mic.jpeg" width="225" height="225"/>
         <image name="Title" width="102" height="102"/>

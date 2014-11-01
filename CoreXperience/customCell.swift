@@ -20,6 +20,7 @@ class customCell: UITableViewCell {
     @IBOutlet weak var d_shareButton: UIButton!
    
     
+    @IBOutlet weak var d_favouriteFlag: UIButton!
     
     
     override func awakeFromNib() {
