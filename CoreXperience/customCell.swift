@@ -15,8 +15,10 @@ class customCell: UITableViewCell {
     
     @IBOutlet weak var d_date: UILabel!
     
-    @IBOutlet weak var playIcon: UILabel!
+ //   @IBOutlet weak var playIcon: UILabel!
+   
     
+ 
     @IBOutlet weak var d_shareButton: UIButton!
    
     

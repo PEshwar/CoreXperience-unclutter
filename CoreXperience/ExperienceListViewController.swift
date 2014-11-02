@@ -33,6 +33,30 @@ var mediaPlayer: MPMoviePlayerController = MPMoviePlayerController()
         
     }
     
+    
+    @IBAction func playPressed(sender: UIButton) {
+        
+          mediaPlayer.stop()
+        var docsDir = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as String
+        
+        var soundURL = g_experiencesByType[g_selectedListRow].m_audio_location
+        
+        println("Printing current selected index : \(g_selectedListRow)")
+        
+        println("Sound URL is \(soundURL)")
+        
+        var url = NSURL(fileURLWithPath: docsDir + "/" + soundURL)
+        
+        println("URL is \(url)")
+        
+        
+        mediaPlayer.contentURL = url
+        
+        mediaPlayer.play()
+        
+    }
+    
+    
     @IBAction func unwindToList(segue: UIStoryboardSegue) {
         println("Unwinding")
     }
@@ -105,7 +129,7 @@ var mediaPlayer: MPMoviePlayerController = MPMoviePlayerController()
         var obtainedDateString : String = dateStringFormatter.stringFromDate(obtainedDate)
         println(" Obtained date is \(obtainedDateString)")
          g_cell.d_date.text = obtainedDateString
-        g_cell.playIcon.text = "▶️"
+   //     g_cell.playIcon.text = "▶️"
         
     // Set the subtitles in list view
 //    cell.detailTextLabel!.text = obtainedDateString + "  " + g_experiencesByType[indexPath.row].m_desc
@@ -131,12 +155,12 @@ var mediaPlayer: MPMoviePlayerController = MPMoviePlayerController()
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
     
-        println("Inside tableList view : did select row. index path is \(indexPath.row)")
+ /*       println("Inside tableList view : did select row. index path is \(indexPath.row)")
         mediaPlayer.stop()
-    //           var previewUrl : String = "file:///Users/prabhueshwarla/Library/Developer/CoreSimulator/Devices/AABE6DBD-56DD-426B-A598-323BBA07484A/data/Containers/Data/Application/994EB8A2-5743-4C6C-9752-1ECB4F0D71F2/Documents/recording-2014-10-19-10-33-00.m4a"
+    
        
         var docsDir = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as String
-  //      println(" recording file name is \(recordings[indexPath.row])")
+ 
         var soundURL = g_experiencesByType[indexPath.row].m_audio_location
         g_selectedListRow = indexPath.row
         println("Printing current selected index : \(indexPath.row)")
@@ -147,16 +171,11 @@ var mediaPlayer: MPMoviePlayerController = MPMoviePlayerController()
         
         println("URL is \(url)")
         
-      //  var previewUrl : String = "file:///Users/prabhueshwarla/Library/Developer/CoreSimulator/Devices/AABE6DBD-56DD-426B-A598-323BBA07484A/data/Containers/Data/Application/994EB8A2-5743-4C6C-9752-1ECB4F0D71F2/Documents/recording-2014-10-19-10-33-00.m4a"
-        
-    //   println(" Inside select row-> BEFORE: content URL is \(previewUrl)")
-        println(" Inside select row-> BEFORE: content URL is \(url)")
-        
-    //   mediaPlayer.contentURL = NSURL(string: previewUrl)
+     
         mediaPlayer.contentURL = url
-   //     println(" Inside select row-> AFTER: content URL is \(soundURL)")
-        mediaPlayer.play()
 
+        mediaPlayer.play()
+*/
         }
 
     

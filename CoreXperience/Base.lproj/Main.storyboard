@@ -74,13 +74,6 @@
                                             <color key="textColor" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="▶️" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="gux-Hq-udt">
-                                            <rect key="frame" x="88" y="34" width="23" height="23"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" restorationIdentifier="expDate" text="Date" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="erh-9B-U54">
                                             <rect key="frame" x="8" y="35" width="80" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -115,6 +108,16 @@
                                                 <action selector="favButtonPressed:" destination="p6b-qs-Igv" eventType="touchUpInside" id="HaU-vd-yjN"/>
                                             </connections>
                                         </button>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Xi5-1n-VOt">
+                                            <rect key="frame" x="89" y="31" width="29" height="29"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <state key="normal" title="Play" image="Play-Icon-Green">
+                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
+                                            <connections>
+                                                <action selector="playPressed:" destination="p6b-qs-Igv" eventType="touchUpInside" id="vZX-vw-gqp"/>
+                                            </connections>
+                                        </button>
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
@@ -123,7 +126,7 @@
                                     <outlet property="d_expTitle" destination="XhH-r7-Qg4" id="xIm-IG-Ghc"/>
                                     <outlet property="d_favouriteFlag" destination="QyZ-1E-2i1" id="O8J-6N-cWj"/>
                                     <outlet property="d_shareButton" destination="Hj7-Jz-jqc" id="k2p-H4-yJL"/>
-                                    <outlet property="playIcon" destination="gux-Hq-udt" id="aK9-aZ-jfm"/>
+                                    <segue destination="de4-Dg-XDR" kind="modal" identifier="showDetailView" id="RUK-51-GR5"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -783,6 +786,7 @@
         <image name="Favourite-unselected" width="225" height="225"/>
         <image name="Location" width="135" height="123"/>
         <image name="Mic.jpeg" width="225" height="225"/>
+        <image name="Play-Icon-Green" width="125" height="125"/>
         <image name="Title" width="102" height="102"/>
         <image name="Video" width="122" height="122"/>
         <image name="Write" width="127" height="127"/>
@@ -797,6 +801,6 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="VPf-vf-hDl"/>
+        <segue reference="RUK-51-GR5"/>
     </inferredMetricsTieBreakers>
 </document>
