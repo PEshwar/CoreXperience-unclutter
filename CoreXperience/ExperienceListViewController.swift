@@ -9,10 +9,12 @@
 import UIKit
 import MediaPlayer
 import Social
+import CoreData
 
 
 class ExperienceListViewController: UITableViewController {
 
+    var typeList : Array<AnyObject> = []
     
 var mediaPlayer: MPMoviePlayerController = MPMoviePlayerController()
     
@@ -83,14 +85,78 @@ var mediaPlayer: MPMoviePlayerController = MPMoviePlayerController()
     override func viewWillAppear(animated: Bool) {
     
     //Load the various global list arrays per type from database everytime view is refreshed
-    expMgr.listByType()
-    tableView.reloadData()
+//    expMgr.listByType()
+//    tableView.reloadData()
     
     
     }
     
+    override func viewDidAppear(animated: Bool) {
+        
+        var appDel: AppDelegate = (UIApplication.sharedApplication().delegate as AppDelegate)
+        var context: NSManagedObjectContext;
+        context = appDel.managedObjectContext!
+        var request = NSFetchRequest(entityName: "CoreExperience")
+        request.predicate = NSPredicate(format: "m_type == %@", g_typeList[g_selectedTypeIndex])
+        typeList = context.executeFetchRequest(request, error: nil)!
+        println(" TypeList count is \(typeList.count)")
+        println(" selected Type is  \(g_typeList[g_selectedTypeIndex])")
+        
+        tableView.reloadData()
+    }
     
-    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
+        
+        println(" Segue identifier is \(segue.identifier)")
+        
+       if (segue.identifier == "showDetailView") {
+            //get a reference to the destination view controller
+            println("Getting reference to second view controller")
+       
+        let destinationVC:ExperienceDetailViewController = segue.destinationViewController as ExperienceDetailViewController
+        println("Got reference to second view controller")
+        
+        var selectedRow = self.tableView.indexPathForSelectedRow()?.row
+               println("selected row is \(selectedRow)")
+            var selectedItem : NSManagedObject = typeList[selectedRow!] as NSManagedObject
+               println("Got reference to selected item")
+          
+            destinationVC.s_title = selectedItem.valueForKey("m_title") as String
+             println("Got reference to title")
+            destinationVC.s_desc = selectedItem.valueForKey("m_desc") as String
+            println("Got reference to desc")
+        
+            destinationVC.s_type = selectedItem.valueForKey("m_type") as String
+            println("Got reference to type")
+        
+            destinationVC.s_favourites = selectedItem.valueForKey("m_favourites") as Bool
+            println("Got reference to desc")
+        
+            destinationVC.s_audio_location = selectedItem.valueForKey("m_audio_location") as String
+            println("Got reference to audio location ")
+        
+            destinationVC.s_date = selectedItem.valueForKey("m_date") as NSDate
+            println("Got reference to Date")
+        
+        destinationVC.s_favourites = selectedItem.valueForKey("m_favourites") as Bool
+        
+            destinationVC.existingItem = selectedItem
+            println("Got reference to existingItem")
+            
+            
+            println("Going to set delegate")
+            
+            //set properties on the destination view controller
+         
+            
+       //     destinationVC.delegateDetail = self
+            //etc...
+            println("finished setting delegate")
+            
+            
+        }
+    }
+
     // MARK: - Table view data source
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -102,24 +168,30 @@ var mediaPlayer: MPMoviePlayerController = MPMoviePlayerController()
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     
     // Return the number of rows in the section.
-    return g_experiencesByType.count
+  //  return g_experiencesByType.count
+        return typeList.count
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         g_cell = tableView.dequeueReusableCellWithIdentifier("customCell") as customCell
- //   cell = customCell(style: UITableViewCellStyle.Subtitle,reuseIdentifier:"customCell")
+ 
+            var data:NSManagedObject = typeList[indexPath.row] as NSManagedObject
+            g_cell.d_expTitle.text = data.valueForKeyPath("m_title") as? String
+            g_cell.d_expDesc.text = data.valueForKeyPath("m_desc") as? String
+        
+        //   cell = customCell(style: UITableViewCellStyle.Subtitle,reuseIdentifier:"customCell")
     
     //Assign the title of each experience to the textLabel of each cell
 //    cell.textLabel!.text = g_experiencesByType[indexPath.row].m_title
 //    cell.textLabel!.textColor = UIColor.orangeColor()
   
-        g_cell.d_expTitle.text = g_experiencesByType[indexPath.row].m_title
-        g_cell.d_expDesc.text = g_experiencesByType[indexPath.row].m_desc
+   //     g_cell.d_expTitle.text = g_experiencesByType[indexPath.row].m_title
+   //     g_cell.d_expDesc.text = g_experiencesByType[indexPath.row].m_desc
        
         //Obtain and convert date to string
         
-        let obtainedDate = g_experiencesByType[indexPath.row].m_date
-        
+ //       let obtainedDate = g_experiencesByType[indexPath.row].m_date
+       let obtainedDate = data.valueForKeyPath("m_date") as NSDate
         
         let dateStringFormatter = NSDateFormatter()
         
@@ -140,13 +212,20 @@ var mediaPlayer: MPMoviePlayerController = MPMoviePlayerController()
         
         //Set Favourite Flag
         
-        var favouriteSelected = g_experiencesByType[indexPath.row].m_favourites
+        var favouriteSelected = data.valueForKeyPath("m_favourites") as Bool
         
         if favouriteSelected == true {
-            var image = UIImage (named: "Favourite-selected")
+            var image = UIImage (named: "FavSelected.png")
+            
+            g_cell.d_favouriteFlag.setImage(image, forState: .Normal)
+        } else {
+            var image = UIImage (named: "FavUnselected.jpeg")
             
             g_cell.d_favouriteFlag.setImage(image, forState: .Normal)
         }
+        
+        
+
         
         
     return g_cell

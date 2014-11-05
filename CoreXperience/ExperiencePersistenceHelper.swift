@@ -39,6 +39,14 @@ class ExperiencePersistenceHelper: NSObject {
         return results
     }
     
+    func listForTitle (entity: String, title: String) ->NSArray {
+        
+        var request = NSFetchRequest(entityName: entity)
+        request.returnsObjectsAsFaults = false;
+        request.predicate = NSPredicate(format: "m_title == %@", title)
+        var results: NSArray = context.executeFetchRequest(request, error: nil)!
+        return results
+    }
     
     
     func remove(entity:String, key:String, value:String)->Bool{

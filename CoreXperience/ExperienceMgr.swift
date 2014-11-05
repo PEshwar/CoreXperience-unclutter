@@ -62,7 +62,7 @@ class ExperienceMgr: NSObject {
             var tempExperienceArray = experiences
             println("inside init of Exp Mgr before calling types Array Append")
             
-         /*  experiences.append(Experience(m_user:res.valueForKey("m_user") as String, m_type:res.valueForKey("m_type") as String,m_title:res.valueForKey("m_title") as String,m_desc:res.valueForKey("m_desc") as String,m_location:res.valueForKey("m_location") as String, m_audio_location:res.valueForKey("m_audio_location") as String, m_favourites:res.valueForKey("m_favourites") as Bool, m_date:res.valueForKey("m_date") as NSDate ))*/
+     
            
             experiences.append(Experience(m_user:res.valueForKey("m_user") as String, m_type:res.valueForKey("m_type") as String,m_title:res.valueForKey("m_title") as String,m_desc:res.valueForKey("m_desc") as String,m_location:res.valueForKey("m_location") as String, m_audio_location:"", m_favourites:res.valueForKey("m_favourites") as Bool, m_date:res.valueForKey("m_date") as NSDate ))
         }
@@ -119,15 +119,7 @@ class ExperienceMgr: NSObject {
 
         for res:AnyObject in tempExperiences{
         tempType = res.valueForKey("m_type") as String
-     //       println("temp type is \(tempType)")
-       //     let audio = res.valueForKey("m_audio_location") as String
-       //     let favourite = res.valueForKey("m_favourites") as Bool
-       //     let selectedDate = res.valueForKey("m_date") as NSDate
-
-
-      //      println(" audio location is \(audio))")
-      //      println(" favourites is \(favourite))")
-      //      println(" date selected is \(selectedDate)")
+  
 
   
             switch (tempType) {
@@ -259,25 +251,5 @@ class ExperienceMgr: NSObject {
             }
         }
 
-  /*  func typesArrayAppend(array: [Experience], res1:AnyObject) -> [Experience] {
-        
-        var newArray :[Experience] = array
-        
-        let userStored = res1.valueForKey("m_user") as String
-        let typeStored = res1.valueForKey("m_type") as String
-        let titleStored = res1.valueForKey("m_title") as String
-        let descStored = res1.valueForKey("m_desc") as String
-        let locationStored = res1.valueForKey("m_location") as String
-        let audioLocationStored = res1.valueForKey("m_audio_location") as String
-        let favouritesStored = res1.valueForKey("m_location") as Bool
-        let dateStored = res1.valueForKey("m_audio_location") as NSDate
-
-        
-        newArray.append(array(m_user:res1.valueForKey("m_user") as String, m_type:res1.valueForKey("m_type") as String,m_title:res1.valueForKey("m_title") as String,m_desc:res1.valueForKey("m_desc") as String,m_location:res1.valueForKey("m_location") as String,m_audio_location:res1.valueForKey("m_audio_location") as String, m_favourites:res1.valueForKey("m_favourites") as Bool, m_date:res1.valueForKey("m_date") as NSDate ))
-        
-        
-        return newArray
-        
-    }
-*/
+  
 }

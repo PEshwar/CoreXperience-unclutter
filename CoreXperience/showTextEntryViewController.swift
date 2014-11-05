@@ -31,6 +31,9 @@ class showTextEntryViewController: UIViewController {
 
         // Do any additional setup after loading the view.
         d_textEntry.text = tempTextEntry
+        var myColor : UIColor = UIColor( red: 0.5, green: 0.5, blue:0, alpha: 1.0 )
+        d_textEntry.layer.borderColor = myColor.CGColor
+        d_textEntry.layer.borderWidth = 0.8
     }
 
     override func didReceiveMemoryWarning() {

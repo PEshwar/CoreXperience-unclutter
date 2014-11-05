@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		991008A01A099D0E0015E4A1 /* FavUnselected.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 9910089F1A099D0E0015E4A1 /* FavUnselected.jpeg */; };
+		991008A21A099E340015E4A1 /* FavSelected.png in Resources */ = {isa = PBXBuildFile; fileRef = 991008A11A099E340015E4A1 /* FavSelected.png */; };
+		991008A61A09A4F60015E4A1 /* Favorite1KB.png in Resources */ = {isa = PBXBuildFile; fileRef = 991008A51A09A4F60015E4A1 /* Favorite1KB.png */; };
+		991008A81A09A7A10015E4A1 /* FavTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 991008A71A09A7A10015E4A1 /* FavTableViewController.swift */; };
 		99114D341A04956C005D6DB0 /* Mic.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 99114D331A04956C005D6DB0 /* Mic.jpeg */; };
 		9917A47F19F1E5F000F83DFC /* customCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9917A47E19F1E5F000F83DFC /* customCell.swift */; };
 		99534EB41A055A9500BF4479 /* Play-Icon-Green in Resources */ = {isa = PBXBuildFile; fileRef = 99534EB31A055A9500BF4479 /* Play-Icon-Green */; };
@@ -23,7 +27,6 @@
 		995ACCB219EAEC8D00F0C715 /* ExperienceTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 995ACCB119EAEC8D00F0C715 /* ExperienceTabBarController.swift */; };
 		995ACCB419EAF7B500F0C715 /* ExperienceMgr.swift in Sources */ = {isa = PBXBuildFile; fileRef = 995ACCB319EAF7B500F0C715 /* ExperienceMgr.swift */; };
 		995ACCB619EAF7E700F0C715 /* ExperiencePersistenceHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 995ACCB519EAF7E700F0C715 /* ExperiencePersistenceHelper.swift */; };
-		996600B319F27778001B3086 /* favourite.png in Resources */ = {isa = PBXBuildFile; fileRef = 996600B119F27778001B3086 /* favourite.png */; };
 		996600B419F27778001B3086 /* share2.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 996600B219F27778001B3086 /* share2.jpeg */; };
 		998D7C0C19EAE69500A8036F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 998D7C0B19EAE69500A8036F /* AppDelegate.swift */; };
 		998D7C0F19EAE69500A8036F /* CoreXperience.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 998D7C0D19EAE69500A8036F /* CoreXperience.xcdatamodeld */; };
@@ -55,10 +58,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9910089F1A099D0E0015E4A1 /* FavUnselected.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = FavUnselected.jpeg; sourceTree = "<group>"; };
+		991008A11A099E340015E4A1 /* FavSelected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = FavSelected.png; sourceTree = "<group>"; };
+		991008A51A09A4F60015E4A1 /* Favorite1KB.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Favorite1KB.png; sourceTree = "<group>"; };
+		991008A71A09A7A10015E4A1 /* FavTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavTableViewController.swift; sourceTree = "<group>"; };
 		99114D331A04956C005D6DB0 /* Mic.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Mic.jpeg; sourceTree = "<group>"; };
 		9917A47E19F1E5F000F83DFC /* customCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = customCell.swift; sourceTree = "<group>"; };
-		99534EB11A054F2600BF4479 /* Favourite-selected */ = {isa = PBXFileReference; explicitFileType = image.jpeg; path = "Favourite-selected"; sourceTree = "<group>"; };
-		99534EB21A054F2600BF4479 /* Favourite-unselected */ = {isa = PBXFileReference; explicitFileType = image.jpeg; path = "Favourite-unselected"; sourceTree = "<group>"; };
 		99534EB31A055A9500BF4479 /* Play-Icon-Green */ = {isa = PBXFileReference; explicitFileType = image.jpeg; path = "Play-Icon-Green"; sourceTree = "<group>"; };
 		9954875019EB9C6C006C5EF3 /* 3d_objects.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 3d_objects.png; sourceTree = "<group>"; };
 		9954875219EBE366006C5EF3 /* ExperienceDetailShowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExperienceDetailShowController.swift; sourceTree = "<group>"; };
@@ -73,7 +78,6 @@
 		995ACCB119EAEC8D00F0C715 /* ExperienceTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExperienceTabBarController.swift; sourceTree = "<group>"; };
 		995ACCB319EAF7B500F0C715 /* ExperienceMgr.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExperienceMgr.swift; sourceTree = "<group>"; };
 		995ACCB519EAF7E700F0C715 /* ExperiencePersistenceHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExperiencePersistenceHelper.swift; sourceTree = "<group>"; };
-		996600B119F27778001B3086 /* favourite.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = favourite.png; sourceTree = "<group>"; };
 		996600B219F27778001B3086 /* share2.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = share2.jpeg; sourceTree = "<group>"; };
 		998D7C0619EAE69500A8036F /* CoreXperience.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CoreXperience.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		998D7C0A19EAE69500A8036F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -144,8 +148,6 @@
 				998D7C1519EAE69500A8036F /* Images.xcassets */,
 				998D7C2E19EAE98300A8036F /* Images */,
 				998D7C1719EAE69500A8036F /* LaunchScreen.xib */,
-				99534EB11A054F2600BF4479 /* Favourite-selected */,
-				99534EB21A054F2600BF4479 /* Favourite-unselected */,
 				998D7C0D19EAE69500A8036F /* CoreXperience.xcdatamodeld */,
 				998D7C0919EAE69500A8036F /* Supporting Files */,
 				995ACCAB19EAEBDB00F0C715 /* ExperienceSummaryViewController.swift */,
@@ -163,6 +165,7 @@
 				99D8C48F19FD24E4000DD3EB /* showDateTimeViewController.swift */,
 				999CC1661A04D0F900C2CB5E /* showCategoryViewController.swift */,
 				99A5023D1A04FE6E001F6282 /* showTextEntryViewController.swift */,
+				991008A71A09A7A10015E4A1 /* FavTableViewController.swift */,
 			);
 			path = CoreXperience;
 			sourceTree = "<group>";
@@ -195,8 +198,10 @@
 		998D7C2E19EAE98300A8036F /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				991008A51A09A4F60015E4A1 /* Favorite1KB.png */,
+				991008A11A099E340015E4A1 /* FavSelected.png */,
+				9910089F1A099D0E0015E4A1 /* FavUnselected.jpeg */,
 				99534EB31A055A9500BF4479 /* Play-Icon-Green */,
-				996600B119F27778001B3086 /* favourite.png */,
 				996600B219F27778001B3086 /* share2.jpeg */,
 				99CA1C3F19EE6498002FADE3 /* Calendar */,
 				9954878D19EC4D72006C5EF3 /* user-female.png */,
@@ -296,18 +301,20 @@
 				99534EB41A055A9500BF4479 /* Play-Icon-Green in Resources */,
 				998D7C6F19EAE9BD00A8036F /* Write in Resources */,
 				998D7C1419EAE69500A8036F /* Main.storyboard in Resources */,
-				996600B319F27778001B3086 /* favourite.png in Resources */,
 				996600B419F27778001B3086 /* share2.jpeg in Resources */,
 				9954879019EC4D72006C5EF3 /* user-male.png in Resources */,
 				99114D341A04956C005D6DB0 /* Mic.jpeg in Resources */,
 				99A5023C1A04FC61001F6282 /* Family-Sign-32.png in Resources */,
 				998D7C1919EAE69500A8036F /* LaunchScreen.xib in Resources */,
 				998D7C1619EAE69500A8036F /* Images.xcassets in Resources */,
+				991008A01A099D0E0015E4A1 /* FavUnselected.jpeg in Resources */,
 				998D7C6D19EAE9BD00A8036F /* Title in Resources */,
+				991008A61A09A4F60015E4A1 /* Favorite1KB.png in Resources */,
 				998D7C6B19EAE9BD00A8036F /* Audio in Resources */,
 				998D7C6C19EAE9BD00A8036F /* Location in Resources */,
 				998D7C6E19EAE9BD00A8036F /* Video in Resources */,
 				9954878F19EC4D72006C5EF3 /* user-female.png in Resources */,
+				991008A21A099E340015E4A1 /* FavSelected.png in Resources */,
 				99CA1C4019EE6498002FADE3 /* Calendar in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -330,6 +337,7 @@
 				99A5023E1A04FE6E001F6282 /* showTextEntryViewController.swift in Sources */,
 				995ACCAE19EAEBFC00F0C715 /* ExperienceListViewController.swift in Sources */,
 				999CC1671A04D0F900C2CB5E /* showCategoryViewController.swift in Sources */,
+				991008A81A09A7A10015E4A1 /* FavTableViewController.swift in Sources */,
 				99D8C49019FD24E4000DD3EB /* showDateTimeViewController.swift in Sources */,
 				995ACCB019EAEC1E00F0C715 /* ExperienceDetailViewController.swift in Sources */,
 				995ACCB419EAF7B500F0C715 /* ExperienceMgr.swift in Sources */,

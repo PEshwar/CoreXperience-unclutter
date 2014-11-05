@@ -9,6 +9,8 @@
 import UIKit
 import Foundation
 import AVFoundation
+import CoreData
+import MediaPlayer
 
 class Date {
     
@@ -35,6 +37,11 @@ class Date {
 
 class ExperienceDetailViewController: UIViewController, userDateTimeDelegate, userTextEntryDelegate {
 
+    
+    //Edit related
+    
+    var existingItem : NSManagedObject!
+    
   //Favourite related
     
     
@@ -69,7 +76,10 @@ class ExperienceDetailViewController: UIViewController, userDateTimeDelegate, us
     
     @IBOutlet weak var d_category: UILabel! = UILabel()
     
-    @IBOutlet weak var d_desc: UILabel! = UILabel()
+   
+    @IBOutlet weak var d_desc: UITextView! = UITextView()
+    
+   
     
 //    @IBOutlet var d_location: UITextField!      //Location field on screen
 //    @IBOutlet weak var d_picker: UIPickerView!  //Picker type field on screen
@@ -95,6 +105,10 @@ class ExperienceDetailViewController: UIViewController, userDateTimeDelegate, us
     var s_title:String = ""
     var s_desc:String = ""
     var s_location:String = ""
+    var s_type : String = ""
+    var s_date : NSDate = NSDate()
+    var s_favourites : Bool = false
+    var s_audio_location: String = ""
    
     //Variable to check if quick Audio or Quick text entry is required
     
@@ -103,38 +117,46 @@ class ExperienceDetailViewController: UIViewController, userDateTimeDelegate, us
    
     
     @IBAction func favouritePressed(sender: AnyObject) {
-        
+        println(" Favourite pressed")
         if favouriteFlagOn == false {
             favouriteFlagOn = true
-        var image = UIImage (named: "Favourite-selected")
+        var image = UIImage (named: "FavSelected.png")
             
         favouriteFlag.setImage(image, forState: .Normal)
             
         } else {
             favouriteFlagOn = false
-            var image = UIImage (named: "Favourite-unselected")
+            var image = UIImage (named: "FavUnselected.jpeg")
             
             favouriteFlag.setImage(image, forState: .Normal)
             
         }
+        
+
+    println(" Flag is \(favouriteFlagOn)")
     }
     
     
     @IBAction func yearChanged(sender: AnyObject) {
         
+       if (existingItem == nil)
+       {
         d_title.text = "Experience on " + d_date_day.text! + "/" + d_date_month.text! + "/" + d_date_year.text! + ", " + d_date_HH.text! + d_date_MM.text! + " Hrs"
-        
+        }
     }
-    
     
     @IBAction func cancelPressed(sender: UIBarButtonItem) {
     
+    
     //When cancel button is pressed in Detailed VC
     
-        navigationController?.presentingViewController?.dismissViewControllerAnimated(true, completion: {})
+  //      navigationController?.presentingViewController?.dismissViewControllerAnimated(true, completion: {})
+    
+    navigationController?.popToRootViewControllerAnimated(true)
     }
     
     @IBAction func savePressed(sender: UIBarButtonItem) {
+  
     
     //When Save button is pressed in Detailed VC
 
@@ -146,7 +168,7 @@ class ExperienceDetailViewController: UIViewController, userDateTimeDelegate, us
         var l_desc: String = d_desc.text!
         var l_location: String = ""
         var l_user : String = "Family"
-        var l_type : String = g_typeList[g_selectedTypeIndex]
+        var l_type : String = d_category.text!
         var l_audio_location = g_fileNameAudio
         var l_favourites = favouriteFlagOn
         
@@ -177,9 +199,31 @@ class ExperienceDetailViewController: UIViewController, userDateTimeDelegate, us
         
         println("Value of picker selected type before appending is \(g_typeList[userAmendedPickerTypeIndex])")
         
+        //Additional code to first check if the experience item exists in the database. If exists then update, or insert new entry
+        
+
+        
+        if (existingItem != nil)
+        {
+            
+            var appDel: AppDelegate = (UIApplication.sharedApplication().delegate as AppDelegate)
+            var context: NSManagedObjectContext;
+            context = appDel.managedObjectContext!
+            
+            existingItem.setValue(l_title as String, forKey: "m_title")
+            existingItem.setValue(l_desc as String, forKey: "m_desc")
+            existingItem.setValue(l_type as String, forKey: "m_type")
+            existingItem.setValue(l_audio_location as String, forKey: "m_audio_location")
+            existingItem.setValue(l_favourites as Bool, forKey: "m_favourites")
+            existingItem.setValue(l_date as NSDate, forKey: "m_date")
+            
+            
+            context.save(nil)
+        }
+        else {
         expMgr.addExperience(l_user,a_type:l_type, a_title:l_title,a_desc:l_desc,a_location:l_location, a_audio_location: l_audio_location, a_favourites: l_favourites, a_date: l_date)
        println("Back to Detail controller after appending new experience")
-        
+        }
         self.view.endEditing(true)
         //Reload list view arrays from database adter adding new item
         expMgr.listByType()
@@ -189,7 +233,9 @@ class ExperienceDetailViewController: UIViewController, userDateTimeDelegate, us
         
         g_fileNameAudio = ""
         
-        navigationController?.presentingViewController?.dismissViewControllerAnimated(true, completion: {})
+    //    navigationController?.presentingViewController?.dismissViewControllerAnimated(true, completion: {})
+    navigationController?.popToRootViewControllerAnimated(true)
+        
     }
     
    
@@ -201,21 +247,70 @@ class ExperienceDetailViewController: UIViewController, userDateTimeDelegate, us
         
         super.viewDidLoad()
         
+        //To set keyboard parameters
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardDidShow:", name: UIKeyboardDidShowNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardDidHide:", name: UIKeyboardDidHideNotification, object: nil)
+        
+        println("Inside view did load of detail VC")
        
+        //Set Description text view parameters
+        
+        d_desc.layer.borderWidth = 0.8
+        d_desc.scrollEnabled = true
+        d_desc.layer.cornerRadius = 0.8
+     //   var myColor : UIColor = UIColor( red: 0.5, green: 0.5, blue:0.5, alpha: 1.0 )
+        var myColor : UIColor = UIColor (white:0.9, alpha: 1.0)
+       
+        d_desc.layer.borderColor = myColor.CGColor
+        d_desc.scrollsToTop  = true
+     
+        
+        if (existingItem != nil) {
         //load other details from the temp variables set in List VC before calling Detailed VC
+            println(" Inside view did load- existing item is not nil")
         d_title.text = s_title
         d_desc.text = s_desc
+           
+            
+            println(" Setting title & desc to \(s_title) and \(s_desc)")
  //       d_location.text = s_location
+        }
         
+        if s_favourites == true {
+            var image = UIImage (named: "FavSelected.png")
+            
+            favouriteFlag.setImage(image, forState: .Normal)
+
+        } else {
+            var image = UIImage (named: "FavUnselected.jpeg")
+            
+            favouriteFlag.setImage(image, forState: .Normal)
+
+        }
        //Setup audio recording file name
         
+        if (existingItem == nil) {
         var format = NSDateFormatter()
         format.dateFormat="yyyy-MM-dd-HH-mm-ss"
         g_fileNameAudio = "recording-\(format.stringFromDate(NSDate.date())).m4a"
         println("Inside view did load of detail vc, value of file name is \(g_fileNameAudio)")
+        }
+        else {
+            g_fileNameAudio = s_audio_location
+        }
         
+        if (existingItem == nil) {
         d_category.text = g_typeList[g_selectedTypeIndex]
-        let date = NSDate()
+        }
+        else {
+            d_category.text = s_type
+            
+        }
+        var date = NSDate()
+            if (existingItem != nil) {
+                date = s_date
+            }
         let calendar = NSCalendar.currentCalendar()
         let components = calendar.components(.CalendarUnitHour | .CalendarUnitMinute | .CalendarUnitMonth | .CalendarUnitYear | .CalendarUnitDay, fromDate: date)
         let hour = components.hour
@@ -242,12 +337,14 @@ class ExperienceDetailViewController: UIViewController, userDateTimeDelegate, us
         d_date_day.text = String(day)
     //    d_title.text = "Experience on " + d_date_day.text + "/" + d_date_month.text + "/" + d_date_year.text + ", " + d_date_HH.text + d_date_MM.text + " Hrs"
      
-        d_title.text = "Experience on " + d_date_day.text! + "/" + d_date_month.text! + "/" + d_date_year.text! + ", " + d_date_HH.text! + d_date_MM.text! + " Hrs"
+            if (existingItem == nil) {
+            d_title.text = "Experience on " + d_date_day.text! + "/" + d_date_month.text! + "/" + d_date_year.text! + ", " + d_date_HH.text! + d_date_MM.text! + " Hrs"
         
         //set auto description
         
-        d_desc.text = "Hi- I would like to describe an experience that happened. "
-        
+        d_desc.text = "Hi-  "
+            }
+            
         //temporarily hard-setting quik audio to yes
 //      quickAudio = true
  /*       if quickAudio {
@@ -261,6 +358,7 @@ class ExperienceDetailViewController: UIViewController, userDateTimeDelegate, us
             //self.navigationController?.pushViewController(detail, animated: true)
         }
    */
+        
     }
     
     override func didReceiveMemoryWarning() {
@@ -322,7 +420,8 @@ class ExperienceDetailViewController: UIViewController, userDateTimeDelegate, us
            destinationVC.delegateText = self
             //etc...
             println("finished setting delegate for text entry")
-        } else if (segue.identifier == "showCategory") {
+        } 
+        else if (segue.identifier == "showCategory") {
             
             let destinationVC:showCategoryViewController = segue.destinationViewController as showCategoryViewController
             
@@ -337,7 +436,7 @@ class ExperienceDetailViewController: UIViewController, userDateTimeDelegate, us
             println("finished setting delegate for Category")
             
         }
-        
+
     }
 
     func userDidSelectDateTime(selectedDateTime : NSDate) {
@@ -368,10 +467,10 @@ class ExperienceDetailViewController: UIViewController, userDateTimeDelegate, us
         } else {
         d_date_MM.text = String(minutes)
         }
-        
+        if (existingItem == nil) {
         //Set Auto title based on changed time
         d_title.text = "Experience on " + String(day) + "/" + String(month) + "/" + String(year) + ", " + String(hour) + ":" + String(minutes) + " Hrs"
-        
+        }
 
         
     }
@@ -512,8 +611,32 @@ extension ExperienceDetailViewController {
         var error: NSError?
         // recorder might be nil
         // self.player = AVAudioPlayer(contentsOfURL: recorder.url, error: &error)
-        self.player = AVAudioPlayer(contentsOfURL: soundFileURL!, error: &error)
         println(" contents of url in Play method is \(soundFileURL)")
+        if (soundFileURL == nil) {
+            var mediaPlayer: MPMoviePlayerController = MPMoviePlayerController()
+            mediaPlayer.stop()
+            var docsDir = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as String
+            
+          var soundURL = g_fileNameAudio
+  
+            
+            println("Printing current selected index : \(g_selectedListRow)")
+            
+            println("Sound URL is \(soundURL)")
+            
+            var url = NSURL(fileURLWithPath: docsDir + "/" + soundURL)
+            
+            println("URL is \(url)")
+            
+            
+            mediaPlayer.contentURL = url
+            
+            
+            mediaPlayer.play()
+            println(" contents of url after setting up recorder in Play method is \(url)")
+        } else {
+        self.player = AVAudioPlayer(contentsOfURL: soundFileURL!, error: &error)
+
         if player == nil {
             if let e = error {
                 println(e.localizedDescription)
@@ -523,6 +646,7 @@ extension ExperienceDetailViewController {
         player.prepareToPlay()
         player.volume = 1.0
         player.play()
+        }
     }
     
     
@@ -739,5 +863,22 @@ extension ExperienceDetailViewController : userselectedCategoryDelegate {
         
         println(" Category selection received in Add Experience i \(selectedCategory)")
         d_category.text = selectedCategory
+    }
+}
+
+extension ExperienceDetailViewController {
+    func updateTextViewSizeForKeyboardHeight(keyboardHeight: CGFloat) {
+        d_desc.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height - keyboardHeight)
+    }
+
+    func keyboardDidShow(notification: NSNotification) {
+        if let rectValue = notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue {
+            let keyboardSize = rectValue.CGRectValue().size
+            updateTextViewSizeForKeyboardHeight(keyboardSize.height)
+        }
+    }
+    
+    func keyboardDidHide(notification: NSNotification) {
+        updateTextViewSizeForKeyboardHeight(0)
     }
 }
