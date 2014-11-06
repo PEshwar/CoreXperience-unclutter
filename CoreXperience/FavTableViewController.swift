@@ -8,10 +8,14 @@
 
 import UIKit
 import CoreData
+import MediaPlayer
+import Social
 
 class FavTableViewController: UITableViewController {
 
     var favList : Array<AnyObject> = []
+    var mediaPlayer: MPMoviePlayerController = MPMoviePlayerController()
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,7 +60,7 @@ class FavTableViewController: UITableViewController {
 
     // MARK: - Table view data source
 
-    override func numberOfSectionsInTableView(tableView: UITableView!) -> Int {
+    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Potentially incomplete method implementation.
         // Return the number of sections.
         return 1
@@ -100,7 +104,7 @@ class FavTableViewController: UITableViewController {
       
         return cell
     }
-    
+  
 
     /*
     // Override to support conditional editing of the table view.
@@ -147,4 +151,295 @@ class FavTableViewController: UITableViewController {
     }
     */
 
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
+        g_selectedListRow = indexPath.row
+        println("Row selected in didSelectRow method is \(g_selectedListRow)")
+       
+        // Get reference to selected Row and Item
+        var selectedRow = self.tableView.indexPathForSelectedRow()?.row
+        var selectedItem : NSManagedObject = self.favList[selectedRow!] as NSManagedObject
+        println("Got reference to selected item")
+        
+        
+        //Showing alert controller on selection of row
+        
+        var refreshAlert = UIAlertController(title: "Action", message: "What do you want to do?", preferredStyle: UIAlertControllerStyle.Alert)
+        
+        refreshAlert.addAction(UIAlertAction(title: "Facebook Post", style: .Default, handler: { (action: UIAlertAction!) in
+            println("Handle facebook logic here")
+            var shareToFacebook : SLComposeViewController = SLComposeViewController(forServiceType: SLServiceTypeFacebook)
+            
+    //        var textToPost = g_experiencesByType[indexPath.row].m_title + "\r " + g_experiencesByType[indexPath.row].m_desc
+    //        var selectedRow = self.tableView.indexPathForSelectedRow()?.row
+    //        var selectedItem : NSManagedObject = self.favList[selectedRow!] as NSManagedObject
+    //        println("Got reference to selected item")
+            
+            var textTitle = selectedItem.valueForKey("m_title") as String
+            var textDesc = selectedItem.valueForKey("m_desc") as String
+            
+            var textToPost = textTitle + "\r" + textDesc
+    //        var textToPost = g_experiencesByType[indexPath.row].m_title + "\r " + g_experiencesByType[indexPath.row].m_desc
+
+            shareToFacebook.setInitialText(textToPost)
+            
+            //Share photo if photo is available
+           
+            var photoLoc = selectedItem.valueForKey("m_location") as String
+            println("Got reference to photo location")
+            
+            
+            let nsDocumentDirectory = NSSearchPathDirectory.DocumentDirectory
+            let nsUserDomainMask = NSSearchPathDomainMask.UserDomainMask
+            if let paths = NSSearchPathForDirectoriesInDomains(nsDocumentDirectory, nsUserDomainMask, true) {
+                if paths.count > 0 {
+                    if let dirPath = paths[0] as? String {
+                        var photoPath = dirPath.stringByAppendingPathComponent(photoLoc)
+                       
+                        println(" Photo Path is \(photoPath)")
+                     
+                            var imagePhoto = UIImage (named: photoPath)
+                            shareToFacebook.addImage(imagePhoto)
+                                                        }
+                                }
+                    }
+            
+            self.presentViewController(shareToFacebook, animated:true,completion:nil)
+        }))
+        
+        refreshAlert.addAction(UIAlertAction(title: "Play audio", style: .Default, handler: { (action: UIAlertAction!) in
+            println("Handle audio logic here")
+            
+            
+            self.mediaPlayer.stop()
+            var docsDir = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as String
+            
+            
+         var soundURL = selectedItem.valueForKey("m_audio_location") as String
+            
+     //     var  soundURL = g_experiencesByType[indexPath.row].m_audio_location
+            
+            println("Printing current selected index : \(g_selectedListRow)")
+            
+            println("Sound URL is \(soundURL)")
+            
+            var url = NSURL(fileURLWithPath: docsDir + "/" + soundURL)
+            
+            println("URL is \(url)")
+            
+            
+            self.mediaPlayer.contentURL = url
+            
+            self.mediaPlayer.play()
+            
+        }))
+        
+        refreshAlert.addAction(UIAlertAction(title: "View experience trext", style: .Default, handler: { (action: UIAlertAction!) in
+            println("Handle view text logic here")
+            
+            var destinationVC:showTextEntryViewController = self.storyboard?.instantiateViewControllerWithIdentifier("showTextEntryViewController") as showTextEntryViewController
+     //       var selectedRow = self.tableView.indexPathForSelectedRow()?.row
+     //       println("selected row is \(selectedRow)")
+     //       var selectedItem : NSManagedObject = self.favList[selectedRow!] as NSManagedObject
+     //       println("Got reference to selected item")
+            
+            destinationVC.tempTextEntry = selectedItem.valueForKey("m_desc") as String
+            println("Got reference to desc")
+            
+            //  self.presentViewController(refreshAlert, animated: true, completion: nil)
+            self.navigationController?.pushViewController(destinationVC, animated: true)
+            
+        }))
+        
+        refreshAlert.addAction(UIAlertAction(title: "Edit experience", style: .Default, handler: { (action: UIAlertAction!) in
+            println("Handle Edit logic here")
+            
+            var destinationVC:ExperienceDetailViewController = self.storyboard?.instantiateViewControllerWithIdentifier("ExperienceDetailViewController") as ExperienceDetailViewController
+            
+            
+            
+            g_selectedTypeIndex = indexPath.row
+            
+            
+            
+            
+            
+            
+            println("Got reference to second view controller")
+            
+      //      var selectedRow = self.tableView.indexPathForSelectedRow()?.row
+      //      println("selected row is \(selectedRow)")
+      //      var selectedItem : NSManagedObject = self.favList[selectedRow!] as NSManagedObject
+      //      println("Got reference to selected item")
+            
+            destinationVC.s_title = selectedItem.valueForKey("m_title") as String
+            println("Got reference to title")
+            destinationVC.s_desc = selectedItem.valueForKey("m_desc") as String
+            println("Got reference to desc")
+            
+            destinationVC.s_type = selectedItem.valueForKey("m_type") as String
+            println("Got reference to type")
+            
+            destinationVC.s_favourites = selectedItem.valueForKey("m_favourites") as Bool
+            println("Got reference to desc")
+            
+            destinationVC.s_audio_location = selectedItem.valueForKey("m_audio_location") as String
+            println("Got reference to audio location ")
+            
+            destinationVC.s_date = selectedItem.valueForKey("m_date") as NSDate
+            println("Got reference to Date")
+            
+            destinationVC.s_favourites = selectedItem.valueForKey("m_favourites") as Bool
+            
+            destinationVC.s_location = selectedItem.valueForKey("m_location") as String
+            println("Got reference to Photo location \(destinationVC.s_location)")
+            
+            destinationVC.existingItem = selectedItem
+            println("Got reference to existingItem")
+            
+            
+            println("Going to set delegate")
+            
+            //set properties on the destination view controller
+            
+            
+            //     destinationVC.delegateDetail = self
+            //etc...
+            println("finished setting delegate")
+            
+            self.navigationController?.pushViewController(destinationVC, animated: true)
+            
+            
+        }))
+
+        
+        
+        refreshAlert.addAction(UIAlertAction(title: "View experience photo", style: .Default, handler: { (action: UIAlertAction!) in
+            println("Handle photo logic here")
+            
+            var destinationVC:showImagePickerViewController = self.storyboard?.instantiateViewControllerWithIdentifier("showImagePickerViewController") as showImagePickerViewController
+            
+     //       var selectedRow = self.tableView.indexPathForSelectedRow()?.row
+     //       println("selected row is \(selectedRow)")
+     //       var selectedItem : NSManagedObject = self.favList[selectedRow!] as NSManagedObject
+     //       println("Got reference to selected item")
+            
+            var photoLoc = selectedItem.valueForKey("m_location") as String
+            println("Got reference to photo location")
+            
+            
+            let nsDocumentDirectory = NSSearchPathDirectory.DocumentDirectory
+            let nsUserDomainMask = NSSearchPathDomainMask.UserDomainMask
+            if let paths = NSSearchPathForDirectoriesInDomains(nsDocumentDirectory, nsUserDomainMask, true) {
+                if paths.count > 0 {
+                    if let dirPath = paths[0] as? String {
+                        var photoPath = dirPath.stringByAppendingPathComponent(photoLoc)
+                        println(" Photo Path is \(photoPath)")
+                        var imagePhoto = UIImage (named: photoPath)
+                        destinationVC.tempPhoto = imagePhoto
+                        destinationVC.viewMode = true
+                    }
+                }
+            }
+            
+            
+            //  self.presentViewController(refreshAlert, animated: true, completion: nil)
+            self.navigationController?.pushViewController(destinationVC, animated: true)
+            
+            
+            
+        }))
+        
+        
+        refreshAlert.addAction(UIAlertAction(title: "Cancel", style: .Default, handler: { (action: UIAlertAction!) in
+            println("Handle Cancel Logic here")
+        }))
+        
+        
+        presentViewController(refreshAlert, animated: true, completion: nil)
+        
+        
+        
+        /*       println("Inside tableList view : did select row. index path is \(indexPath.row)")
+        mediaPlayer.stop()
+        
+        
+        var docsDir = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as String
+        
+        var soundURL = g_experiencesByType[indexPath.row].m_audio_location
+        g_selectedListRow = indexPath.row
+        println("Printing current selected index : \(indexPath.row)")
+        
+        println("Sound URL is \(soundURL)")
+        
+        var url = NSURL(fileURLWithPath: docsDir + "/" + soundURL)
+        
+        println("URL is \(url)")
+        
+        
+        mediaPlayer.contentURL = url
+        
+        mediaPlayer.play()
+        */
+    }
+    
+/*    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        g_cell = tableView.dequeueReusableCellWithIdentifier("customCell") as customCell
+        
+        var data:NSManagedObject = favList[indexPath.row] as NSManagedObject
+        g_cell.d_expTitle.text = data.valueForKeyPath("m_title") as? String
+        g_cell.d_expDesc.text = data.valueForKeyPath("m_desc") as? String
+        var hasAudioLoc = data.valueForKeyPath("m_audio_location") as? String
+        if (hasAudioLoc != nil) {
+            g_cell.playButtonList.hidden = true
+        }
+        //   cell = customCell(style: UITableViewCellStyle.Subtitle,reuseIdentifier:"customCell")
+        
+        //Assign the title of each experience to the textLabel of each cell
+        //    cell.textLabel!.text = g_experiencesByType[indexPath.row].m_title
+        //    cell.textLabel!.textColor = UIColor.orangeColor()
+        
+        //     g_cell.d_expTitle.text = g_experiencesByType[indexPath.row].m_title
+        //     g_cell.d_expDesc.text = g_experiencesByType[indexPath.row].m_desc
+        
+        //Obtain and convert date to string
+        
+        //       let obtainedDate = g_experiencesByType[indexPath.row].m_date
+        let obtainedDate = data.valueForKeyPath("m_date") as NSDate
+        
+        let dateStringFormatter = NSDateFormatter()
+        
+        dateStringFormatter.dateFormat = "yyyy-MM-dd"
+        dateStringFormatter.locale = NSLocale(localeIdentifier: "en_US_POSIX")
+        
+        var obtainedDateString : String = dateStringFormatter.stringFromDate(obtainedDate)
+        println(" Obtained date is \(obtainedDateString)")
+        g_cell.d_date.text = obtainedDateString
+        //     g_cell.playIcon.text = "▶️"
+        
+        // Set the subtitles in list view
+        //    cell.detailTextLabel!.text = obtainedDateString + "  " + g_experiencesByType[indexPath.row].m_desc
+        //    cell.detailTextLabel!.textColor = UIColor.purpleColor()
+        //      println("after displaying text and subtitle")
+        
+        //     cell.setCell()
+        
+        //Set Favourite Flag
+        
+        var favouriteSelected = data.valueForKeyPath("m_favourites") as Bool
+        
+        if favouriteSelected == true {
+            var image = UIImage (named: "FavSelected.png")
+            
+            g_cell.d_favouriteFlag.image = UIImage (named: "FavSelected.png")
+        } else {
+            
+            g_cell.d_favouriteFlag.image =  UIImage (named: "FavUnselected.jpeg")       }
+        
+        
+        
+        
+        
+        return g_cell
+    }*/
 }

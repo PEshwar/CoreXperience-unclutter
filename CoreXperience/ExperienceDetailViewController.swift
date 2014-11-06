@@ -49,6 +49,13 @@ class ExperienceDetailViewController: UIViewController, userDateTimeDelegate, us
     
     var favouriteFlagOn = false
     
+    //Photo-related
+    
+    var l_PhotoLocation : String = " "
+    
+    @IBOutlet weak var photoExperience: UIImageView!
+    
+    
     //Recording-related variables
     
     var recorder: AVAudioRecorder!
@@ -166,7 +173,9 @@ class ExperienceDetailViewController: UIViewController, userDateTimeDelegate, us
         var l_title: String = d_title.text
         println(" Title is \(d_title.text)")
         var l_desc: String = d_desc.text!
-        var l_location: String = ""
+        
+        
+        
         var l_user : String = "Family"
         var l_type : String = d_category.text!
         var l_audio_location = g_fileNameAudio
@@ -201,7 +210,31 @@ class ExperienceDetailViewController: UIViewController, userDateTimeDelegate, us
         
         //Additional code to first check if the experience item exists in the database. If exists then update, or insert new entry
         
-
+        if (photoExperience.image != nil)
+        {
+            //save image to documents directory
+            let nsDocumentDirectory = NSSearchPathDirectory.DocumentDirectory
+            let nsUserDomainMask = NSSearchPathDomainMask.UserDomainMask
+            if let paths = NSSearchPathForDirectoriesInDomains(nsDocumentDirectory, nsUserDomainMask, true) {
+                if paths.count > 0 {
+                    if let dirPath = paths[0] as? String {
+                        
+                        var format = NSDateFormatter()
+                        format.dateFormat="yyyy-MM-dd-HH-mm-ss"
+                        l_PhotoLocation = "Photo-\(format.stringFromDate(NSDate.date())).jpeg"
+                        
+                        //   let writePath = dirPath.stringByAppendingPathComponent("share2.jpeg")
+                        let writePath = dirPath.stringByAppendingPathComponent(l_PhotoLocation)
+                        println("write path is \(writePath)")
+                        UIImageJPEGRepresentation(photoExperience.image, 1.0).writeToFile(writePath, atomically: true)
+                    }
+                }
+            }
+        }
+        
+        var l_location: String = l_PhotoLocation
+        println(" Photo Location is \(l_PhotoLocation)")
+        println(" L Location is \(l_location)")
         
         if (existingItem != nil)
         {
@@ -216,6 +249,8 @@ class ExperienceDetailViewController: UIViewController, userDateTimeDelegate, us
             existingItem.setValue(l_audio_location as String, forKey: "m_audio_location")
             existingItem.setValue(l_favourites as Bool, forKey: "m_favourites")
             existingItem.setValue(l_date as NSDate, forKey: "m_date")
+            existingItem.setValue(l_location as String, forKey: "m_location")
+            
             
             
             context.save(nil)
@@ -234,6 +269,8 @@ class ExperienceDetailViewController: UIViewController, userDateTimeDelegate, us
         g_fileNameAudio = ""
         
     //    navigationController?.presentingViewController?.dismissViewControllerAnimated(true, completion: {})
+        
+
     navigationController?.popToRootViewControllerAnimated(true)
         
     }
@@ -265,6 +302,21 @@ class ExperienceDetailViewController: UIViewController, userDateTimeDelegate, us
         d_desc.layer.borderColor = myColor.CGColor
         d_desc.scrollsToTop  = true
      
+        //Setup photo
+        if (existingItem != nil) {
+        let nsDocumentDirectory = NSSearchPathDirectory.DocumentDirectory
+        let nsUserDomainMask = NSSearchPathDomainMask.UserDomainMask
+        if let paths = NSSearchPathForDirectoriesInDomains(nsDocumentDirectory, nsUserDomainMask, true) {
+            if paths.count > 0 {
+                if let dirPath = paths[0] as? String {
+                var photoPath = dirPath.stringByAppendingPathComponent(s_location)
+                 println(" Photo Path is \(photoPath)")
+                    var imagePhoto = UIImage (named: photoPath)
+                    photoExperience.image = imagePhoto
+                }
+            }
+            }
+        }
         
         if (existingItem != nil) {
         //load other details from the temp variables set in List VC before calling Detailed VC
@@ -274,19 +326,20 @@ class ExperienceDetailViewController: UIViewController, userDateTimeDelegate, us
            
             
             println(" Setting title & desc to \(s_title) and \(s_desc)")
- //       d_location.text = s_location
+          
         }
         
         if s_favourites == true {
             var image = UIImage (named: "FavSelected.png")
             
             favouriteFlag.setImage(image, forState: .Normal)
+            favouriteFlagOn = true
 
         } else {
             var image = UIImage (named: "FavUnselected.jpeg")
             
             favouriteFlag.setImage(image, forState: .Normal)
-
+            favouriteFlagOn = false
         }
        //Setup audio recording file name
         
@@ -432,6 +485,23 @@ class ExperienceDetailViewController: UIViewController, userDateTimeDelegate, us
             //set properties on the destination view controller
             
             destinationVC.delegateCategory = self
+            //etc...
+            println("finished setting delegate for Category")
+            
+        } else if (segue.identifier == "showImagePicker") {
+            
+            let destinationVC:showImagePickerViewController = segue.destinationViewController as showImagePickerViewController
+            
+            
+            
+            println("Going to set delegate for category")
+            
+            //set properties on the destination view controller
+            
+            destinationVC.delegatePhoto = self
+            if (existingItem != nil) {
+            destinationVC.tempPhoto = photoExperience.image!
+            }
             //etc...
             println("finished setting delegate for Category")
             
@@ -881,4 +951,14 @@ extension ExperienceDetailViewController {
     func keyboardDidHide(notification: NSNotification) {
         updateTextViewSizeForKeyboardHeight(0)
     }
+}
+
+extension ExperienceDetailViewController : userPickedPhotoDelegate {
+    
+    func userDidPickPhoto(selectedPhoto : UIImage) {
+        
+     //   photoExperience.image = UIImage (named: "FavSelected.png")
+        photoExperience.image = selectedPhoto
+    }
+    
 }

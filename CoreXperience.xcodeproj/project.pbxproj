@@ -13,6 +13,7 @@
 		991008A81A09A7A10015E4A1 /* FavTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 991008A71A09A7A10015E4A1 /* FavTableViewController.swift */; };
 		99114D341A04956C005D6DB0 /* Mic.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 99114D331A04956C005D6DB0 /* Mic.jpeg */; };
 		9917A47F19F1E5F000F83DFC /* customCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9917A47E19F1E5F000F83DFC /* customCell.swift */; };
+		9926B4691A0A365F006E867B /* showImagePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9926B4681A0A365F006E867B /* showImagePickerViewController.swift */; };
 		99534EB41A055A9500BF4479 /* Play-Icon-Green in Resources */ = {isa = PBXBuildFile; fileRef = 99534EB31A055A9500BF4479 /* Play-Icon-Green */; };
 		9954875119EB9C6C006C5EF3 /* 3d_objects.png in Resources */ = {isa = PBXBuildFile; fileRef = 9954875019EB9C6C006C5EF3 /* 3d_objects.png */; };
 		9954875319EBE366006C5EF3 /* ExperienceDetailShowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9954875219EBE366006C5EF3 /* ExperienceDetailShowController.swift */; };
@@ -64,6 +65,7 @@
 		991008A71A09A7A10015E4A1 /* FavTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavTableViewController.swift; sourceTree = "<group>"; };
 		99114D331A04956C005D6DB0 /* Mic.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Mic.jpeg; sourceTree = "<group>"; };
 		9917A47E19F1E5F000F83DFC /* customCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = customCell.swift; sourceTree = "<group>"; };
+		9926B4681A0A365F006E867B /* showImagePickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = showImagePickerViewController.swift; sourceTree = "<group>"; };
 		99534EB31A055A9500BF4479 /* Play-Icon-Green */ = {isa = PBXFileReference; explicitFileType = image.jpeg; path = "Play-Icon-Green"; sourceTree = "<group>"; };
 		9954875019EB9C6C006C5EF3 /* 3d_objects.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 3d_objects.png; sourceTree = "<group>"; };
 		9954875219EBE366006C5EF3 /* ExperienceDetailShowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExperienceDetailShowController.swift; sourceTree = "<group>"; };
@@ -166,6 +168,7 @@
 				999CC1661A04D0F900C2CB5E /* showCategoryViewController.swift */,
 				99A5023D1A04FE6E001F6282 /* showTextEntryViewController.swift */,
 				991008A71A09A7A10015E4A1 /* FavTableViewController.swift */,
+				9926B4681A0A365F006E867B /* showImagePickerViewController.swift */,
 			);
 			path = CoreXperience;
 			sourceTree = "<group>";
@@ -334,6 +337,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9917A47F19F1E5F000F83DFC /* customCell.swift in Sources */,
+				9926B4691A0A365F006E867B /* showImagePickerViewController.swift in Sources */,
 				99A5023E1A04FE6E001F6282 /* showTextEntryViewController.swift in Sources */,
 				995ACCAE19EAEBFC00F0C715 /* ExperienceListViewController.swift in Sources */,
 				999CC1671A04D0F900C2CB5E /* showCategoryViewController.swift in Sources */,
