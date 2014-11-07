@@ -143,6 +143,10 @@ var mediaPlayer: MPMoviePlayerController = MPMoviePlayerController()
         g_selectedListRow = indexPath.row
         println("Row selected in didSelectRow method is \(g_selectedListRow)")
         
+        //Stop playing audio
+        
+        self.mediaPlayer.stop()
+        
         //Obtain reference to selected row  & selected item
         
         var selectedRow = self.tableView.indexPathForSelectedRow()?.row
