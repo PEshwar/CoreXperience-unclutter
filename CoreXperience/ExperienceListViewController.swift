@@ -161,30 +161,38 @@ var mediaPlayer: MPMoviePlayerController = MPMoviePlayerController()
         
         var refreshAlert = UIAlertController(title: "Action", message: "What do you want to do?", preferredStyle: UIAlertControllerStyle.Alert)
         
+        //Get audio URL
+        
+        var docsDir = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as String
+        
+        var soundURL = selectedItem.valueForKey("m_audio_location") as String
+        //      var soundURL = g_experiencesByType[indexPath.row].m_audio_location
+        
+        println("Printing current selected index : \(g_selectedListRow)")
+        
+        println("Sound URL is \(soundURL)")
+        
+        var url = NSURL(fileURLWithPath: docsDir + "/" + soundURL)
+        
+        println("URL is \(url)")
 
+        if (soundURL.isEmpty) {
+            println(" No Audio recorded with experience")
+        } else {
+        
         refreshAlert.addAction(UIAlertAction(title: "Play audio", style: .Default, handler: { (action: UIAlertAction!) in
             println("Handle audio logic here")
           
             
             self.mediaPlayer.stop()
-            var docsDir = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as String
-            
-            var soundURL = selectedItem.valueForKey("m_audio_location") as String
-      //      var soundURL = g_experiencesByType[indexPath.row].m_audio_location
-            
-            println("Printing current selected index : \(g_selectedListRow)")
-            
-            println("Sound URL is \(soundURL)")
-            
-            var url = NSURL(fileURLWithPath: docsDir + "/" + soundURL)
-            
-            println("URL is \(url)")
             
             
             self.mediaPlayer.contentURL = url
             
             self.mediaPlayer.play()
         }))
+        
+        }
         
         refreshAlert.addAction(UIAlertAction(title: "View text", style: .Default, handler: { (action: UIAlertAction!) in
             println("Handle view text logic here")
@@ -203,28 +211,30 @@ var mediaPlayer: MPMoviePlayerController = MPMoviePlayerController()
             
         }))
         
+        var photoLoc = selectedItem.valueForKey("m_location") as String?
+        println("Got reference to Photo Loc: \(photoLoc)")
+        
+        //Get Photo
+        
+        let nsDocumentDirectory = NSSearchPathDirectory.DocumentDirectory
+        let nsUserDomainMask = NSSearchPathDomainMask.UserDomainMask
+       
+
+        
+        if ((photoLoc) != nil) {
+            
         refreshAlert.addAction(UIAlertAction(title: "View Photo", style: .Default, handler: { (action: UIAlertAction!) in
             println("Handle photo logic here")
             
+            
             var destinationVC:showImagePickerViewController = self.storyboard?.instantiateViewControllerWithIdentifier("showImagePickerViewController") as showImagePickerViewController
             
-            //        var selectedRow = self.tableView.indexPathForSelectedRow()?.row
-            //        println("selected row is \(selectedRow)")
-            //        var selectedItem : NSManagedObject = self.typeList[selectedRow!] as NSManagedObject
-            //        println("Got reference to selected item")
-            
-            var photoLoc = selectedItem.valueForKey("m_location") as String
-            println("Got reference to desc")
-            
-            
-            let nsDocumentDirectory = NSSearchPathDirectory.DocumentDirectory
-            let nsUserDomainMask = NSSearchPathDomainMask.UserDomainMask
             if let paths = NSSearchPathForDirectoriesInDomains(nsDocumentDirectory, nsUserDomainMask, true) {
                 if paths.count > 0 {
                     if let dirPath = paths[0] as? String {
-                        var photoPath = dirPath.stringByAppendingPathComponent(photoLoc)
+                        var photoPath = dirPath.stringByAppendingPathComponent(photoLoc!)
                         println(" Photo Path is \(photoPath)")
-                        var imagePhoto = UIImage (named: photoPath)
+                        var imagePhoto = UIImage(named: photoPath)
                         destinationVC.tempPhoto = imagePhoto
                         destinationVC.viewMode = true
                         
@@ -232,12 +242,10 @@ var mediaPlayer: MPMoviePlayerController = MPMoviePlayerController()
                 }
             }
             
-            //  self.presentViewController(refreshAlert, animated: true, completion: nil)
             self.navigationController?.pushViewController(destinationVC, animated: true)
             
-            
-            
         }))
+        }
         
         refreshAlert.addAction(UIAlertAction(title: "Edit experience", style: .Default, handler: { (action: UIAlertAction!) in
             println("Handle Edit logic here")

@@ -499,7 +499,7 @@ class ExperienceDetailViewController: UIViewController, userDateTimeDelegate, us
             //set properties on the destination view controller
             
             destinationVC.delegatePhoto = self
-            if (existingItem != nil) {
+            if ((existingItem != nil) && (photoExperience.image != nil)){
             destinationVC.tempPhoto = photoExperience.image!
             }
             //etc...
