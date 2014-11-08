@@ -10,6 +10,8 @@ import UIKit
 import MediaPlayer
 import Social
 import CoreData
+import MessageUI
+
 
 
 class ExperienceListViewController: UITableViewController {
@@ -159,46 +161,8 @@ var mediaPlayer: MPMoviePlayerController = MPMoviePlayerController()
         
         var refreshAlert = UIAlertController(title: "Action", message: "What do you want to do?", preferredStyle: UIAlertControllerStyle.Alert)
         
-        refreshAlert.addAction(UIAlertAction(title: "Facebook Post", style: .Default, handler: { (action: UIAlertAction!) in
-            println("Handle facebook logic here")
-            var shareToFacebook : SLComposeViewController = SLComposeViewController(forServiceType: SLServiceTypeFacebook)
-          
-    //        var selectedRow = self.tableView.indexPathForSelectedRow()?.row
-    //        var selectedItem : NSManagedObject = self.typeList[selectedRow!] as NSManagedObject
-    //        println("Got reference to selected item")
 
-            var textTitle = selectedItem.valueForKey("m_title") as String
-            var textDesc = selectedItem.valueForKey("m_desc") as String
-            
-            var textToPost = textTitle + "\r" + textDesc
-            
-      
-            shareToFacebook.setInitialText(textToPost)
-            
-            //Share photo if photo is available
-                        var photoLoc = selectedItem.valueForKey("m_location") as String
-            println("Got reference to photo location")
-            
-            
-            let nsDocumentDirectory = NSSearchPathDirectory.DocumentDirectory
-            let nsUserDomainMask = NSSearchPathDomainMask.UserDomainMask
-            if let paths = NSSearchPathForDirectoriesInDomains(nsDocumentDirectory, nsUserDomainMask, true) {
-                if paths.count > 0 {
-                    if let dirPath = paths[0] as? String {
-                        var photoPath = dirPath.stringByAppendingPathComponent(photoLoc)
-                        
-                        println(" Photo Path is \(photoPath)")
-                        
-                        var imagePhoto = UIImage (named: photoPath)
-                        shareToFacebook.addImage(imagePhoto)
-                    }
-                }
-            }
-
-            self.presentViewController(shareToFacebook, animated:true,completion:nil)
-        }))
-        
-        refreshAlert.addAction(UIAlertAction(title: "Play experience audio", style: .Default, handler: { (action: UIAlertAction!) in
+        refreshAlert.addAction(UIAlertAction(title: "Play audio", style: .Default, handler: { (action: UIAlertAction!) in
             println("Handle audio logic here")
           
             
@@ -222,7 +186,7 @@ var mediaPlayer: MPMoviePlayerController = MPMoviePlayerController()
             self.mediaPlayer.play()
         }))
         
-        refreshAlert.addAction(UIAlertAction(title: "View experience text", style: .Default, handler: { (action: UIAlertAction!) in
+        refreshAlert.addAction(UIAlertAction(title: "View text", style: .Default, handler: { (action: UIAlertAction!) in
             println("Handle view text logic here")
             
             var destinationVC:showTextEntryViewController = self.storyboard?.instantiateViewControllerWithIdentifier("showTextEntryViewController") as showTextEntryViewController
@@ -236,6 +200,42 @@ var mediaPlayer: MPMoviePlayerController = MPMoviePlayerController()
             
           //  self.presentViewController(refreshAlert, animated: true, completion: nil)
             self.navigationController?.pushViewController(destinationVC, animated: true)
+            
+        }))
+        
+        refreshAlert.addAction(UIAlertAction(title: "View Photo", style: .Default, handler: { (action: UIAlertAction!) in
+            println("Handle photo logic here")
+            
+            var destinationVC:showImagePickerViewController = self.storyboard?.instantiateViewControllerWithIdentifier("showImagePickerViewController") as showImagePickerViewController
+            
+            //        var selectedRow = self.tableView.indexPathForSelectedRow()?.row
+            //        println("selected row is \(selectedRow)")
+            //        var selectedItem : NSManagedObject = self.typeList[selectedRow!] as NSManagedObject
+            //        println("Got reference to selected item")
+            
+            var photoLoc = selectedItem.valueForKey("m_location") as String
+            println("Got reference to desc")
+            
+            
+            let nsDocumentDirectory = NSSearchPathDirectory.DocumentDirectory
+            let nsUserDomainMask = NSSearchPathDomainMask.UserDomainMask
+            if let paths = NSSearchPathForDirectoriesInDomains(nsDocumentDirectory, nsUserDomainMask, true) {
+                if paths.count > 0 {
+                    if let dirPath = paths[0] as? String {
+                        var photoPath = dirPath.stringByAppendingPathComponent(photoLoc)
+                        println(" Photo Path is \(photoPath)")
+                        var imagePhoto = UIImage (named: photoPath)
+                        destinationVC.tempPhoto = imagePhoto
+                        destinationVC.viewMode = true
+                        
+                    }
+                }
+            }
+            
+            //  self.presentViewController(refreshAlert, animated: true, completion: nil)
+            self.navigationController?.pushViewController(destinationVC, animated: true)
+            
+            
             
         }))
         
@@ -294,40 +294,111 @@ var mediaPlayer: MPMoviePlayerController = MPMoviePlayerController()
         }))
         
         
-        refreshAlert.addAction(UIAlertAction(title: "View Photo", style: .Default, handler: { (action: UIAlertAction!) in
-            println("Handle photo logic here")
+
+        
+   
+        
+   //     refreshAlert.addAction(UIAlertAction(title: "Cancel", style: .Default, handler: { (action: UIAlertAction!) in
+  //          println("Handle Cancel Logic here")
+  //      }))
+        refreshAlert.addAction(UIAlertAction(title: "Facebook Post", style: .Default, handler: { (action: UIAlertAction!) in
+            println("Handle facebook logic here")
+            var shareToFacebook : SLComposeViewController = SLComposeViewController(forServiceType: SLServiceTypeFacebook)
             
-            var destinationVC:showImagePickerViewController = self.storyboard?.instantiateViewControllerWithIdentifier("showImagePickerViewController") as showImagePickerViewController
-           
-    //        var selectedRow = self.tableView.indexPathForSelectedRow()?.row
-    //        println("selected row is \(selectedRow)")
-    //        var selectedItem : NSManagedObject = self.typeList[selectedRow!] as NSManagedObject
-    //        println("Got reference to selected item")
+            //        var selectedRow = self.tableView.indexPathForSelectedRow()?.row
+            //        var selectedItem : NSManagedObject = self.typeList[selectedRow!] as NSManagedObject
+            //        println("Got reference to selected item")
             
+            var textTitle = selectedItem.valueForKey("m_title") as String
+            var textDesc = selectedItem.valueForKey("m_desc") as String
+            
+            var textToPost = textTitle + "\r" + textDesc
+            
+            
+            shareToFacebook.setInitialText(textToPost)
+            
+            //Share photo if photo is available
             var photoLoc = selectedItem.valueForKey("m_location") as String
-            println("Got reference to desc")
+            println("Got reference to photo location")
             
-           
-                let nsDocumentDirectory = NSSearchPathDirectory.DocumentDirectory
-                let nsUserDomainMask = NSSearchPathDomainMask.UserDomainMask
-                if let paths = NSSearchPathForDirectoriesInDomains(nsDocumentDirectory, nsUserDomainMask, true) {
-                    if paths.count > 0 {
-                        if let dirPath = paths[0] as? String {
-                            var photoPath = dirPath.stringByAppendingPathComponent(photoLoc)
-                            println(" Photo Path is \(photoPath)")
-                            var imagePhoto = UIImage (named: photoPath)
-                            destinationVC.tempPhoto = imagePhoto
-                            destinationVC.viewMode = true
-                           
-                        }
+            
+            let nsDocumentDirectory = NSSearchPathDirectory.DocumentDirectory
+            let nsUserDomainMask = NSSearchPathDomainMask.UserDomainMask
+            if let paths = NSSearchPathForDirectoriesInDomains(nsDocumentDirectory, nsUserDomainMask, true) {
+                if paths.count > 0 {
+                    if let dirPath = paths[0] as? String {
+                        var photoPath = dirPath.stringByAppendingPathComponent(photoLoc)
+                        
+                        println(" Photo Path is \(photoPath)")
+                        
+                        var imagePhoto = UIImage (named: photoPath)
+                        shareToFacebook.addImage(imagePhoto)
                     }
                 }
+            }
             
-            //  self.presentViewController(refreshAlert, animated: true, completion: nil)
-            self.navigationController?.pushViewController(destinationVC, animated: true)
+            self.presentViewController(shareToFacebook, animated:true,completion:nil)
+        }))
+        
+        refreshAlert.addAction(UIAlertAction(title: "Send email", style: .Default, handler: { (action: UIAlertAction!) in
+            println("Handle email logic here")
             
+            var emailTitle = selectedItem.valueForKey("m_title") as String
+            var messageBody = selectedItem.valueForKey("m_desc") as String
+            var toRecipents = ["itripuram@yahoo.co.in"]
 
+            //    var mailcapability = self.canSendMail()
+            var mc: MFMailComposeViewController = MFMailComposeViewController()
+            mc.mailComposeDelegate = self
+            mc.setSubject(emailTitle)
+            mc.setMessageBody(messageBody, isHTML: false)
+            mc.setToRecipients(toRecipents)
             
+            //Include an attachment
+            
+            //Share photo if photo is available
+            var photoLoc = selectedItem.valueForKey("m_location") as String
+            println("Got reference to photo location")
+            
+            
+            let nsDocumentDirectory = NSSearchPathDirectory.DocumentDirectory
+            let nsUserDomainMask = NSSearchPathDomainMask.UserDomainMask
+            if let paths = NSSearchPathForDirectoriesInDomains(nsDocumentDirectory, nsUserDomainMask, true) {
+                if paths.count > 0 {
+                    if let dirPath = paths[0] as? String {
+                        var photoPath = dirPath.stringByAppendingPathComponent(photoLoc)
+                        
+                        println(" Photo Path is \(photoPath)")
+                        
+                        var imagePhoto = UIImage (named: photoPath)
+           
+            var imageData = UIImageJPEGRepresentation(imagePhoto, 1.0)
+            
+            mc.addAttachmentData(imageData, mimeType: "image/jped", fileName:     "image")
+
+            //add audio file
+           var docsDir = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as String
+                        
+            var soundURL = selectedItem.valueForKey("m_audio_location") as String
+                        //      var soundURL = g_experiencesByType[indexPath.row].m_audio_location
+                        
+            println("Printing current selected index : \(g_selectedListRow)")
+                        
+            println("Sound URL is \(soundURL)")
+                        
+            var url = NSURL(fileURLWithPath: docsDir + "/" + soundURL)
+               
+           let audioData = NSData(contentsOfURL: url)
+                        
+           mc.addAttachmentData(audioData, mimeType: "audio/mp4", fileName:     "audio")
+                        
+            println("going to present VC")
+            
+            self.presentViewController(mc, animated: true, completion: nil)
+            println("Finished presenting  VC")
+
+            } } }
+           
         }))
         
         let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel) { (action) in
@@ -335,16 +406,11 @@ var mediaPlayer: MPMoviePlayerController = MPMoviePlayerController()
         }
         refreshAlert.addAction(cancelAction)
         
-   //     refreshAlert.addAction(UIAlertAction(title: "Cancel", style: .Default, handler: { (action: UIAlertAction!) in
-  //          println("Handle Cancel Logic here")
-  //      }))
-        
-        
         presentViewController(refreshAlert, animated: true, completion: nil)
+    }
+    
+    
         
-        
-        
-            }
 
     
         
@@ -382,4 +448,21 @@ var mediaPlayer: MPMoviePlayerController = MPMoviePlayerController()
     }
 }
 
+extension ExperienceListViewController : MFMailComposeViewControllerDelegate {
+    func mailComposeController(controller:MFMailComposeViewController, didFinishWithResult result:MFMailComposeResult, error:NSError) {
+        switch result.value {
+        case MFMailComposeResultCancelled.value:
+            NSLog("Mail cancelled")
+        case MFMailComposeResultSaved.value:
+            NSLog("Mail saved")
+        case MFMailComposeResultSent.value:
+            NSLog("Mail sent")
+        case MFMailComposeResultFailed.value:
+            NSLog("Mail sent failure: %@", [error.localizedDescription])
+        default:
+            break
+        }
+        self.dismissViewControllerAnimated(false, completion: nil)
+    }
 
+}
