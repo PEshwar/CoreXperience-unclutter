@@ -67,5 +67,11 @@ class MenuViewController: UIViewController {
     //    navigationController?.presentingViewController?.dismissViewControllerAnimated(true, nil)
     navigationController?.popToRootViewControllerAnimated(true)
     }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        navigationController?.hidesBarsOnSwipe = true
+    }
 }
 

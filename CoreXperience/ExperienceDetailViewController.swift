@@ -956,6 +956,13 @@ extension ExperienceDetailViewController {
     func keyboardDidHide(notification: NSNotification) {
         updateTextViewSizeForKeyboardHeight(0)
     }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        
+       navigationController?.hidesBarsWhenKeyboardAppears = true
+    }
+
 }
 
 extension ExperienceDetailViewController : userPickedPhotoDelegate {

@@ -45,12 +45,12 @@
         <scene sceneID="D4t-gT-Yve">
             <objects>
                 <tableViewController storyboardIdentifier="ExperienceListViewController" id="p6b-qs-Igv" customClass="ExperienceListViewController" customModule="CoreXperience" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="322" sectionHeaderHeight="22" sectionFooterHeight="22" id="1iu-45-tgp">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="327" sectionHeaderHeight="22" sectionFooterHeight="22" id="1iu-45-tgp">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.26531969150000001" green="0.6241627663" blue="0.66666666669999997" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="customCell" rowHeight="322" id="zrI-AV-cmi" customClass="customCell" customModule="CoreXperience" customModuleProvider="target">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="customCell" rowHeight="327" id="zrI-AV-cmi" customClass="customCell" customModule="CoreXperience" customModuleProvider="target">
                                 <rect key="frame" x="-8" y="-5" width="320" height="342"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="zrI-AV-cmi" id="I6O-wj-jd0">
@@ -61,7 +61,7 @@
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" restorationIdentifier="expDesc" text="Desc" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" id="eiA-Xg-RB9">
-                                                    <rect key="frame" x="8" y="273" width="280" height="59"/>
+                                                    <rect key="frame" x="8" y="273" width="280" height="51"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <color key="textColor" red="0.30943648909999999" green="0.01179080995" blue="0.67747528700000004" alpha="1" colorSpace="calibratedRGB"/>
