@@ -210,8 +210,12 @@ class ExperienceDetailViewController: UIViewController, userDateTimeDelegate, us
         
         //Additional code to first check if the experience item exists in the database. If exists then update, or insert new entry
         
-        if (photoExperience.image != nil)
-        {
+       // image = UIImage(data: imageData) ;
+        
+        var imageData = UIImageJPEGRepresentation(photoExperience.image, 1.0)
+        if imageData != nil {
+    
+            
             //save image to documents directory
             let nsDocumentDirectory = NSSearchPathDirectory.DocumentDirectory
             let nsUserDomainMask = NSSearchPathDomainMask.UserDomainMask
@@ -226,6 +230,7 @@ class ExperienceDetailViewController: UIViewController, userDateTimeDelegate, us
                         //   let writePath = dirPath.stringByAppendingPathComponent("share2.jpeg")
                         let writePath = dirPath.stringByAppendingPathComponent(l_PhotoLocation)
                         println("write path is \(writePath)")
+                       
                         UIImageJPEGRepresentation(photoExperience.image, 1.0).writeToFile(writePath, atomically: true)
                     }
                 }
@@ -261,7 +266,7 @@ class ExperienceDetailViewController: UIViewController, userDateTimeDelegate, us
         }
         self.view.endEditing(true)
         //Reload list view arrays from database adter adding new item
-        expMgr.listByType()
+     //   expMgr.listByType()
         println("After reloading arrays in save button")
         
         //Reset the global variable audio filename

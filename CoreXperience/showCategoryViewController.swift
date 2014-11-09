@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 protocol userselectedCategoryDelegate {
     func userDidSelectCategory(selectedCategory : NSString)
@@ -37,8 +38,21 @@ class showCategoryViewController: UIViewController,  UIPickerViewDelegate, UIPic
       
         //load picker type preselection from row selected in Summary VC
         d_picker.selectRow(g_pickerSelectedIndex, inComponent:0,animated: true)
+        
+        var appDel: AppDelegate = (UIApplication.sharedApplication().delegate as AppDelegate)
+        var context: NSManagedObjectContext;
+        context = appDel.managedObjectContext!
+        var request = NSFetchRequest(entityName: "CoreCategory")
+        var totalCategories = context.countForFetchRequest(request, error: nil)
+        println("Total categories is \(totalCategories)")
+        if totalCategories <= 0 {
+            println(" No categories found")
+            var categoryAlert = UIAlertController(title: "Action", message: "Add categories first before adding experience", preferredStyle: UIAlertControllerStyle.Alert)
+            categoryAlert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
+            presentViewController(categoryAlert, animated: true, completion: nil)
+        } else {
         selectionLabel.text = g_typeList[g_pickerSelectedIndex]
-    }
+        }}
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

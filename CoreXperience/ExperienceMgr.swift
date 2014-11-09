@@ -17,6 +17,8 @@ var expMgr:ExperienceMgr = ExperienceMgr()
 
 var g_typeList:[String] = ["My interactions with Sadguru", "My divine dreams", "My Sadguru's teachings", "Heart-to-Heart messages", "Miscellaneous"]
 
+var g_categoryList  = [String]()
+
 var g_selectedTypeIndex : Int = 0
 
 var g_pickerSelectedIndex : Int = 0

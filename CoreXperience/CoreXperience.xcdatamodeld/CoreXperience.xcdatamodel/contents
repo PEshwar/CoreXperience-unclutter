@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="6244" systemVersion="13F34" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="CoreCategory" representedClassName="modelCategory" syncable="YES">
+        <attribute name="md_category" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
     <entity name="CoreExperience" syncable="YES">
         <attribute name="m_audio_location" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="m_date" optional="YES" attributeType="Date" syncable="YES"/>
@@ -11,6 +14,7 @@
         <attribute name="m_user" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
-        <element name="CoreExperience" positionX="-63" positionY="-18" width="128" height="165"/>
+        <element name="CoreExperience" positionX="-63" positionY="-18" width="128" height="163"/>
+        <element name="CoreCategory" positionX="-63" positionY="45" width="128" height="58"/>
     </elements>
 </model>

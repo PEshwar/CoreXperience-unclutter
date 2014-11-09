@@ -33,6 +33,7 @@ var mediaPlayer: MPMoviePlayerController = MPMoviePlayerController()
     
     //Show the title of ListController as the type selected in Summary VC
     navigationItem.title = g_typeList[g_selectedTypeIndex]
+       
     //Load the various global list arrays per type from database
    expMgr.listByType()
     
@@ -55,13 +56,17 @@ var mediaPlayer: MPMoviePlayerController = MPMoviePlayerController()
         var context: NSManagedObjectContext;
         context = appDel.managedObjectContext!
         var request = NSFetchRequest(entityName: "CoreExperience")
+        var totalCategories = context.countForFetchRequest(request, error: nil)
+        
+        if totalCategories > 0 {
+
         request.predicate = NSPredicate(format: "m_type == %@", g_typeList[g_selectedTypeIndex])
         typeList = context.executeFetchRequest(request, error: nil)!
         println(" TypeList count is \(typeList.count)")
         println(" selected Type is  \(g_typeList[g_selectedTypeIndex])")
         
         tableView.reloadData()
-    
+        }
     }
     
     override func viewDidAppear(animated: Bool) {

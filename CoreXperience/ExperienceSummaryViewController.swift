@@ -7,11 +7,32 @@
 //
 
 import UIKit
+import CoreData
 
 class ExperienceSummaryViewController: UITableViewController {
 
+    var l_typeList = [NSManagedObject]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        g_typeList.removeAll(keepCapacity: true)
+        
+        var appDel: AppDelegate = (UIApplication.sharedApplication().delegate as AppDelegate)
+        var context: NSManagedObjectContext;
+        context = appDel.managedObjectContext!
+       
+        let fetchRequest = NSFetchRequest(entityName:"CoreCategory")
+        fetchRequest.returnsObjectsAsFaults = false
+    
+        var error: NSError?
+        let fetchedResults = context.executeFetchRequest(fetchRequest, error: &error) as [NSManagedObject]?
+        
+        if let results = fetchedResults {
+            l_typeList = results }
+        else {
+            println("Could not fetch \(error), \(error!.userInfo)")
+        }
  
     }
 
@@ -21,9 +42,26 @@ class ExperienceSummaryViewController: UITableViewController {
     }
 
     override func viewWillAppear(animated: Bool) {
+     
+        var appDel: AppDelegate = (UIApplication.sharedApplication().delegate as AppDelegate)
+        var context: NSManagedObjectContext;
+        context = appDel.managedObjectContext!
         
+        let fetchRequest = NSFetchRequest(entityName:"CoreCategory")
+        fetchRequest.returnsObjectsAsFaults = false
+        
+        var error: NSError?
+        let fetchedResults = context.executeFetchRequest(fetchRequest, error: &error) as [NSManagedObject]?
+        
+        if let results = fetchedResults {
+            l_typeList = results }
+            else {
+            println("Could not fetch \(error), \(error!.userInfo)")
+        }
 
-     expMgr.listByType()
+  g_typeList.removeAll(keepCapacity: true)
+        
+  //   expMgr.listByType()
      tableView.reloadData()
         
     }
@@ -39,7 +77,7 @@ class ExperienceSummaryViewController: UITableViewController {
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete method implementation.
         // Return the number of rows in the section.
-        return g_typeList.count
+        return l_typeList.count
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -47,11 +85,32 @@ class ExperienceSummaryViewController: UITableViewController {
         //Add this line to get the subtitle text
         cell = UITableViewCell(style: UITableViewCellStyle.Subtitle,reuseIdentifier:"SummaryCell")
         //Assign the contents of global type list to the textLabel of each cell
-        cell.textLabel!.text = g_typeList[indexPath.row]
+        cell.textLabel!.text = l_typeList[indexPath.row].valueForKeyPath("md_category") as? String
         cell.textLabel!.textColor = UIColor.orangeColor()
+        g_typeList.append(cell.textLabel!.text!)
+        
+        //Retrieve total number of experience entries for the category
+        
+        var appDel: AppDelegate = (UIApplication.sharedApplication().delegate as AppDelegate)
+        var context: NSManagedObjectContext;
+        context = appDel.managedObjectContext!
+        var request = NSFetchRequest(entityName: "CoreExperience")
+         println(" selected Type is  \(l_typeList[indexPath.row])")
+        var cat = l_typeList[indexPath.row].valueForKeyPath("md_category") as? String
+
+        request.predicate = NSPredicate(format: "m_type == %@", cat!)
+        var totalCount = context.countForFetchRequest(request, error: nil)
         
         
-        //Depending on experience type chosen, enter the count of items in subtitle of each cell
+        
+        var typeList = context.executeFetchRequest(request, error: nil)!
+            println(" TypeList count is \(totalCount)")
+        //    println(" selected Type is  \(g_typeList[g_selectedTypeIndex])")
+        cell.detailTextLabel!.text = String(totalCount) + " Items"
+    
+        
+        
+   /*     //Depending on experience type chosen, enter the count of items in subtitle of each cell
         switch (indexPath.row) {
             case 0: cell.detailTextLabel!.text = String(g_experiencesByType1.count) + " Items"
             case 1: cell.detailTextLabel!.text = String(g_experiencesByType2.count) + " Items"
@@ -62,11 +121,38 @@ class ExperienceSummaryViewController: UITableViewController {
             default:
             break
         }
-        
+     */
         return cell
     }
     
-   
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
+        
+        var totalCategories : Int = 0
+        
+        println(" Segue identifier is \(segue.identifier)")
+        
+        if segue.identifier == "showAddView" {
+            println("show add view segue selected")
+            
+            var appDel: AppDelegate = (UIApplication.sharedApplication().delegate as AppDelegate)
+            var context: NSManagedObjectContext;
+            context = appDel.managedObjectContext!
+            
+            let fetchRequest = NSFetchRequest(entityName:"CoreCategory")
+            fetchRequest.returnsObjectsAsFaults = false
+            
+            totalCategories = context.countForFetchRequest(fetchRequest, error: nil)
+            
+            if totalCategories <= 0 {
+                println(" No categories found")
+                var categoryAlert = UIAlertController(title: "Action", message: "Add categories first before adding experience", preferredStyle: UIAlertControllerStyle.Alert)
+                categoryAlert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
+                presentViewController(categoryAlert, animated: true, completion: nil)
+            }
+            
+        }
+        
+    }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         

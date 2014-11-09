@@ -4,7 +4,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
     </dependencies>
     <scenes>
-        <!--My Spiritual Diary-->
+        <!--My Experiences-->
         <scene sceneID="caC-Kj-2mM">
             <objects>
                 <tableViewController id="zXz-55-v7l" customClass="ExperienceSummaryViewController" customModule="CoreXperience" customModuleProvider="target" sceneMemberID="viewController">
@@ -25,7 +25,7 @@
                             <outlet property="delegate" destination="zXz-55-v7l" id="eiW-aB-fG9"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="My Spiritual Diary" id="7GE-p3-ja0" colorLabel="IBBuiltInLabel-Yellow">
+                    <navigationItem key="navigationItem" title="My Experiences" id="7GE-p3-ja0" colorLabel="IBBuiltInLabel-Yellow">
                         <barButtonItem key="leftBarButtonItem" systemItem="add" id="fj6-dD-GNn">
                             <connections>
                                 <segue destination="eOE-Cb-bOH" kind="push" identifier="showAddView" id="Pd3-yd-bzj"/>
@@ -115,7 +115,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3UM-F6-bi9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1652" y="357"/>
+            <point key="canvasLocation" x="2184" y="357"/>
         </scene>
         <!--Experience Tab Bar Controller-->
         <scene sceneID="bVv-2n-vqI">
@@ -130,6 +130,7 @@
                     <connections>
                         <segue destination="HDS-q9-fns" kind="relationship" relationship="viewControllers" id="CrZ-0w-hBx"/>
                         <segue destination="mRe-bx-UDq" kind="relationship" relationship="viewControllers" id="fm5-g6-93A"/>
+                        <segue destination="LLI-uM-bwn" kind="relationship" relationship="viewControllers" id="eaA-0j-SMa"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="72c-3t-BiA" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -149,12 +150,6 @@
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="yoH-tq-g6W" id="E4e-s6-GpU">
                                     <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="FavSelected.png" id="HVf-vP-ENX">
-                                            <rect key="frame" x="283" y="0.0" width="349" height="119"/>
-                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                        </imageView>
-                                    </subviews>
                                 </tableViewCellContentView>
                             </tableViewCell>
                         </prototypes>
@@ -615,6 +610,41 @@
             </objects>
             <point key="canvasLocation" x="989" y="1109"/>
         </scene>
+        <!--Category View Controller-->
+        <scene sceneID="9AT-gx-XAf">
+            <objects>
+                <tableViewController id="UYT-tE-tyG" customClass="categoryViewController" customModule="CoreXperience" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="GXg-ku-sXd">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="categoryCell" id="R9v-X1-1GI">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="R9v-X1-1GI" id="XmV-Aa-t0j">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="UYT-tE-tyG" id="CM3-u6-UJo"/>
+                            <outlet property="delegate" destination="UYT-tE-tyG" id="rS5-tx-gQF"/>
+                        </connections>
+                    </tableView>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="pR9-bO-q3s">
+                        <barButtonItem key="rightBarButtonItem" title="Add Category" id="bSI-p6-g8q">
+                            <connections>
+                                <action selector="addCategoryPressed:" destination="UYT-tE-tyG" id="DPB-9H-2kd"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="CxT-ZE-X7O" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="997" y="286"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="o1t-ia-2E1">
             <objects>
@@ -628,7 +658,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Bpv-oj-Ng1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1232" y="357"/>
+            <point key="canvasLocation" x="1764" y="357"/>
         </scene>
         <!--Favourites-->
         <scene sceneID="dhQ-Ae-beq">
@@ -649,14 +679,33 @@
             </objects>
             <point key="canvasLocation" x="-164" y="-427"/>
         </scene>
+        <!--Categories-->
+        <scene sceneID="bzN-rs-eCL">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="LLI-uM-bwn" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Categories" image="user-female.png" id="nRW-YV-6b0"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="TfD-Hc-ZTu">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="UYT-tE-tyG" kind="relationship" relationship="rootViewController" id="dn2-4x-ahd"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ucg-v9-b0b" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="465" y="286"/>
+        </scene>
     </scenes>
     <resources>
         <image name="Family-Sign-32.png" width="32" height="27"/>
-        <image name="FavSelected.png" width="128" height="128"/>
         <image name="FavUnselected.jpeg" width="102" height="102"/>
         <image name="Favorite1KB.png" width="29" height="30"/>
         <image name="Mic.jpeg" width="225" height="225"/>
         <image name="Play-Icon-Green" width="125" height="125"/>
+        <image name="user-female.png" width="32" height="32"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
