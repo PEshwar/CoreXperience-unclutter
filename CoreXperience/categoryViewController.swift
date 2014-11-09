@@ -69,7 +69,7 @@ class categoryViewController: UITableViewController {
         }))
         
         categoryAlert.addTextFieldWithConfigurationHandler({(textField: UITextField!) in
-            textField.textColor = UIColor.orangeColor()
+            textField.textColor = UIColor.blackColor()
             inputTextField = textField
             //textField.secureTextEntry = true
             })
@@ -153,12 +153,18 @@ override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath:
             cell = UITableViewCell(style: UITableViewCellStyle.Subtitle,reuseIdentifier:"categoryCell")
             //Assign the contents of global type list to the textLabel of each cell
             cell.textLabel!.text = l_typeList[indexPath.row].valueForKeyPath("md_category") as? String
-            cell.textLabel!.textColor = UIColor.orangeColor()
+            cell.textLabel!.textColor = UIColor.blackColor()
 
         // Configure the cell...
     g_typeList.append(cell.textLabel!.text!)
-
-        return cell
+    
+    var myBackView=UIView(frame:cell.frame)
+    
+    myBackView.backgroundColor = UIColor.orangeColor();
+    
+    cell.selectedBackgroundView = myBackView
+       
+    return cell
     }
     
 

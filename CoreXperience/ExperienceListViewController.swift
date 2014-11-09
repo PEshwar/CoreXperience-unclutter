@@ -20,6 +20,7 @@ class ExperienceListViewController: UITableViewController {
     
 var mediaPlayer: MPMoviePlayerController = MPMoviePlayerController()
     
+
     // create instance of our custom transition manager
     let transitionManager = MenuTransitionManager()
    
@@ -158,6 +159,32 @@ var mediaPlayer: MPMoviePlayerController = MPMoviePlayerController()
             g_cell.d_favouriteFlag.image =  UIImage (named: "FavUnselected.jpeg")       }
         
         
+        //Set Photo
+
+        var photoLoc = data.valueForKeyPath("m_location") as? String
+        println("Got reference to Photo Loc: \(photoLoc)")
+        
+        var count  = photoLoc?.utf16Count
+        println("UTF 16 count is \(count)")
+      
+        //Get Photo
+        
+        let nsDocumentDirectory = NSSearchPathDirectory.DocumentDirectory
+        let nsUserDomainMask = NSSearchPathDomainMask.UserDomainMask
+        
+        
+        if let paths = NSSearchPathForDirectoriesInDomains(nsDocumentDirectory, nsUserDomainMask, true) {
+            if paths.count > 0 {
+                if let dirPath = paths[0] as? String {
+                    var photoPath = dirPath.stringByAppendingPathComponent(photoLoc!)
+                    println(" Photo Path is \(photoPath)")
+                    if count > 1 {
+                    var imagePhoto = UIImage(named: photoPath)
+                    g_cell.d_listImage.image = imagePhoto
+                    } 
+                    }
+            }
+        }
     return g_cell
     }
     
