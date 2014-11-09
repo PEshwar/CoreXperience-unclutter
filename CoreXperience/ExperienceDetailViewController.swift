@@ -962,3 +962,22 @@ extension ExperienceDetailViewController : userPickedPhotoDelegate {
     }
     
 }
+
+//Hide keyboard
+
+extension ExperienceDetailViewController :UITextFieldDelegate {
+
+    func textFieldShouldReturn(textField:UITextField)->Bool {
+        
+        self.d_title.delegate = self
+    //    d_title.resignFirstResponder()
+        
+   //     self.d_desc.delegate = self
+        self.view.endEditing(true)
+        return false
+    }
+    
+    override func touchesBegan(touches: NSSet, withEvent event: UIEvent!) {
+        self.view.endEditing(true)
+    }
+}
