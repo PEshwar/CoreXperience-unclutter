@@ -131,7 +131,7 @@ var mediaPlayer: MPMoviePlayerController = MPMoviePlayerController()
             g_cell.d_expDesc.text = data.valueForKeyPath("m_desc") as? String
         var hasAudioLoc = data.valueForKeyPath("m_audio_location") as? String
         if (hasAudioLoc != nil) {
-            g_cell.playButtonList.hidden = true
+   //         g_cell.playButtonList.hidden = true
         }
 
        let obtainedDate = data.valueForKeyPath("m_date") as NSDate
