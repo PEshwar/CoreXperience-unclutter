@@ -20,7 +20,8 @@ class ExperienceListViewController: UITableViewController {
     
 var mediaPlayer: MPMoviePlayerController = MPMoviePlayerController()
     
-
+    // create instance of our custom transition manager
+    let transitionManager = MenuTransitionManager()
    
     
     @IBAction func unwindToList(segue: UIStoryboardSegue) {
@@ -36,6 +37,7 @@ var mediaPlayer: MPMoviePlayerController = MPMoviePlayerController()
        
     //Load the various global list arrays per type from database
    expMgr.listByType()
+         self.transitionManager.sourceViewController = self
     
     }
 
@@ -86,6 +88,21 @@ var mediaPlayer: MPMoviePlayerController = MPMoviePlayerController()
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
         
         println(" Segue identifier is \(segue.identifier)")
+        
+        if segue.identifier == "presentMenu" {
+
+        // set transition delegate for our menu view controller
+        let menu = segue.destinationViewController as MenuViewController
+        menu.transitioningDelegate = self.transitionManager
+        self.transitionManager.menuViewController = menu
+     //   let selectedIndex = self.tableView.indexPathForCell(sender as UITableViewCell)
+            var selectedRow = self.tableView.indexPathForSelectedRow()?.row
+            var selectedItem : NSManagedObject = self.typeList[selectedRow!] as NSManagedObject
+            
+            println("Got reference to selected item")
+            
+            menu.desc = selectedItem.valueForKey("m_desc") as String
+        }
         
    }
 
@@ -160,7 +177,7 @@ var mediaPlayer: MPMoviePlayerController = MPMoviePlayerController()
         var selectedItem : NSManagedObject = self.typeList[selectedRow!] as NSManagedObject
         println("Got reference to selected item")
         
-        
+   /*
         
         //Showing alert controller on selection of row
         
@@ -420,6 +437,7 @@ var mediaPlayer: MPMoviePlayerController = MPMoviePlayerController()
         refreshAlert.addAction(cancelAction)
         
         presentViewController(refreshAlert, animated: true, completion: nil)
+*/
     }
     
     
@@ -478,4 +496,13 @@ extension ExperienceListViewController : MFMailComposeViewControllerDelegate {
         self.dismissViewControllerAnimated(false, completion: nil)
     }
 
+}
+
+extension ExperienceListViewController {
+    
+    @IBAction func unwindToExperienceListViewController (sender: UIStoryboardSegue){
+        // bug? exit segue doesn't dismiss so we do it manually...
+        println(" In unwind seque -> after cancel button pressed")
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
 }
