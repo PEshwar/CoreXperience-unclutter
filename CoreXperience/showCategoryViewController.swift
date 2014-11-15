@@ -14,12 +14,13 @@ protocol userselectedCategoryDelegate {
 }
 
 class showCategoryViewController: UIViewController,  UIPickerViewDelegate, UIPickerViewDataSource {
-
+    var l_typeList = [NSManagedObject]()
+    var categoryArray = [String]()
     var delegateCategory: userselectedCategoryDelegate? = nil
     
     @IBOutlet weak var d_picker: UIPickerView!
     
-    
+   
     @IBOutlet weak var selectionLabel: UILabel! = UILabel()
     
     
@@ -36,6 +37,16 @@ class showCategoryViewController: UIViewController,  UIPickerViewDelegate, UIPic
 
         // Do any additional setup after loading the view.
       
+        
+        //////////////////////////////
+        
+   
+     
+        
+        
+     
+        
+        
         //load picker type preselection from row selected in Summary VC
         d_picker.selectRow(g_pickerSelectedIndex, inComponent:0,animated: true)
         
@@ -43,6 +54,7 @@ class showCategoryViewController: UIViewController,  UIPickerViewDelegate, UIPic
         var context: NSManagedObjectContext;
         context = appDel.managedObjectContext!
         var request = NSFetchRequest(entityName: "CoreCategory")
+        
         var totalCategories = context.countForFetchRequest(request, error: nil)
         println("Total categories is \(totalCategories)")
         if totalCategories <= 0 {
@@ -51,8 +63,32 @@ class showCategoryViewController: UIViewController,  UIPickerViewDelegate, UIPic
             categoryAlert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
             presentViewController(categoryAlert, animated: true, completion: nil)
         } else {
-        selectionLabel.text = g_typeList[g_pickerSelectedIndex]
-        }}
+            var error: NSError?
+            let fetchedResults = context.executeFetchRequest(request, error: &error) as [NSManagedObject]?
+            var results:NSArray = context.executeFetchRequest(request, error: nil)!
+            var i = 0
+            println("results coult is \(results.count)")
+            for element in results {
+                var tempString = element.valueForKey("md_category") as String
+                println("value for key is \(tempString)")
+                categoryArray.append(tempString)
+                i++
+            }
+            
+            
+            if let results = fetchedResults {
+                l_typeList = results
+              
+                }
+            
+            
+            else {
+                println("Could not fetch \(error), \(error!.userInfo)")
+            }
+            
+            }
+    //    selectionLabel.text = l_typeList[g_pickerSelectedIndex]
+        }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -80,15 +116,20 @@ class showCategoryViewController: UIViewController,  UIPickerViewDelegate, UIPic
     func pickerView(pickerView: UIPickerView,numberOfRowsInComponent component: Int) -> Int
     {
         println(" Initializing picker view count to \(g_typeList.count)")
-        return g_typeList.count
+        return categoryArray.count
     }
     
     func pickerView(pickerView: UIPickerView,titleForRow row: Int,forComponent component: Int) -> String! {
         
         userAmendedPickerTypeIndex = row
         g_selectedTypeIndex = row
-        println("In picker view, user has changed row selected to \(g_typeList[row])")
-        selectionLabel.text = g_typeList[row]
-        return "\(g_typeList[row])"
+       // println("In picker view, user has changed row selected to \(g_typeList[row])")
+        let indexPath = NSIndexPath(forRow: row, inSection: 0)
+  //      let task = self.fetchedResultsController.objectAtIndexPath(indexPath) as Task
+        
+        var catText = l_typeList[indexPath.row].valueForKeyPath("md_category") as? String
+        println("Cat text is \(catText)")
+        selectionLabel!.text = catText
+        return "\(categoryArray[row])"
     }
 }

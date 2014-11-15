@@ -45,7 +45,9 @@ class ExperienceDetailViewController: UIViewController, userDateTimeDelegate, us
   //Favourite related
     
     
+  
     @IBOutlet weak var favouriteFlag: UIButton!
+  
     
     var favouriteFlagOn = false
     
@@ -53,7 +55,8 @@ class ExperienceDetailViewController: UIViewController, userDateTimeDelegate, us
     
     var l_PhotoLocation : String = " "
     
-    @IBOutlet weak var photoExperience: UIImageView!
+ 
+   var photoExperience: UIImageView! = UIImageView()
     
     
     //Recording-related variables
@@ -61,14 +64,21 @@ class ExperienceDetailViewController: UIViewController, userDateTimeDelegate, us
     var recorder: AVAudioRecorder!
     
     var player:AVAudioPlayer!
+   
     
-    @IBOutlet var recordButton: UIButton!
+    @IBOutlet weak var recordButton: UIBarButtonItem!
     
-    @IBOutlet var stopButton: UIButton!
+ 
+    @IBOutlet weak var stopButton: UIBarButtonItem!
     
-    @IBOutlet var playButton: UIButton!
+    @IBOutlet weak var playButton: UIBarButtonItem!
     
-    @IBOutlet var statusLabel: UILabel!
+    @IBOutlet weak var pauseButton: UIBarButtonItem!
+    
+
+    @IBOutlet weak var statusLabel: UIBarButtonItem!
+    
+ 
     
     var meterTimer:NSTimer!
     
@@ -81,7 +91,16 @@ class ExperienceDetailViewController: UIViewController, userDateTimeDelegate, us
     @IBOutlet weak var d_title: UITextField!
     
     
-    @IBOutlet weak var d_category: UILabel! = UILabel()
+    
+  
+    @IBOutlet weak var d_category: UIButton!
+    
+    
+  
+    @IBAction func categoryButtonPressed(sender: AnyObject) {
+    }
+
+
     
    
     @IBOutlet weak var d_desc: UITextView! = UITextView()
@@ -92,7 +111,10 @@ class ExperienceDetailViewController: UIViewController, userDateTimeDelegate, us
 //    @IBOutlet weak var d_picker: UIPickerView!  //Picker type field on screen
     
     
-    @IBOutlet weak var d_date_year: UITextField! = UITextField()
+    @IBAction func d_date(sender: AnyObject) {
+    }
+    
+  /*  @IBOutlet weak var d_date_year: UITextField! = UITextField()
     
     @IBOutlet weak var d_date_day: UILabel! = UILabel()
     
@@ -102,7 +124,10 @@ class ExperienceDetailViewController: UIViewController, userDateTimeDelegate, us
     @IBOutlet weak var d_date_HH: UILabel! = UILabel()
     
     @IBOutlet weak var d_date_MM: UILabel! = UILabel()
+    */
     
+    @IBAction func photoPressed(sender: AnyObject) {
+    }
     
     //Initialize temp variable (to store user amended picker type value) to the type selected in summary view
     var userAmendedPickerTypeIndex: Int = g_pickerSelectedIndex
@@ -117,10 +142,6 @@ class ExperienceDetailViewController: UIViewController, userDateTimeDelegate, us
     var s_favourites : Bool = false
     var s_audio_location: String = ""
    
-    //Variable to check if quick Audio or Quick text entry is required
-    
- //   var quickAudio: Bool = false
-  //  var quickEntry: Bool = false
    
     
     @IBAction func favouritePressed(sender: AnyObject) {
@@ -144,13 +165,14 @@ class ExperienceDetailViewController: UIViewController, userDateTimeDelegate, us
     }
     
     
-    @IBAction func yearChanged(sender: AnyObject) {
+ /*   @IBAction func yearChanged(sender: AnyObject) {
         
        if (existingItem == nil)
        {
         d_title.text = "Experience on " + d_date_day.text! + "/" + d_date_month.text! + "/" + d_date_year.text! + ", " + d_date_HH.text! + d_date_MM.text! + " Hrs"
         }
     }
+
     
     @IBAction func cancelPressed(sender: UIBarButtonItem) {
     
@@ -161,6 +183,15 @@ class ExperienceDetailViewController: UIViewController, userDateTimeDelegate, us
     
     navigationController?.popToRootViewControllerAnimated(true)
     }
+    */
+    
+
+    
+    @IBAction func cancelPressed(sender: UIBarButtonItem) {
+        
+        navigationController?.presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
+    }
+
     
     @IBAction func savePressed(sender: UIBarButtonItem) {
   
@@ -171,16 +202,15 @@ class ExperienceDetailViewController: UIViewController, userDateTimeDelegate, us
     println("Inside save button")
         
         var l_title: String = d_title.text
-        println(" Title is \(d_title.text)")
+      
         var l_desc: String = d_desc.text!
-        
-        
-        
+
         var l_user : String = "Family"
-        var l_type : String = d_category.text!
+        var l_type : String = d_category.currentTitle!
         var l_audio_location = g_fileNameAudio
         var l_favourites = favouriteFlagOn
-        
+        var l_date : NSDate = NSDate()
+ /*
         var inputYear : Int = d_date_year.text.toInt()!
         var inputMonth:Int? = d_date_month?.text?.toInt()
         var inputDay:Int? = d_date_day?.text?.toInt()!
@@ -202,8 +232,8 @@ class ExperienceDetailViewController: UIViewController, userDateTimeDelegate, us
         } else {
             println("Couldn't convert to a number")
         }
-
-        var l_date:NSDate = Date.from(year:inputYear, month: inputMonth!, day:inputDay!)
+*/
+   //     var l_date:NSDate = Date.from(year:inputYear, month: inputMonth!, day:inputDay!)
         println(" Date is \(l_date)")
         
         println("Value of picker selected type before appending is \(g_typeList[userAmendedPickerTypeIndex])")
@@ -265,18 +295,16 @@ class ExperienceDetailViewController: UIViewController, userDateTimeDelegate, us
        println("Back to Detail controller after appending new experience")
         }
         self.view.endEditing(true)
-        //Reload list view arrays from database adter adding new item
-     //   expMgr.listByType()
-        println("After reloading arrays in save button")
+
         
         //Reset the global variable audio filename
         
         g_fileNameAudio = ""
         
-    //    navigationController?.presentingViewController?.dismissViewControllerAnimated(true, completion: {})
-        
+ 
+        navigationController?.presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
 
-    navigationController?.popToRootViewControllerAnimated(true)
+  //  navigationController?.popToRootViewControllerAnimated(true)
         
     }
     
@@ -359,17 +387,18 @@ class ExperienceDetailViewController: UIViewController, userDateTimeDelegate, us
         }
         
         if (existingItem == nil) {
-        d_category.text = g_typeList[g_selectedTypeIndex]
+   //     d_category.setTitle(g_typeList[g_selectedTypeIndex], forState: .Normal)
         }
         else {
-            d_category.text = s_type
+            d_category.setTitle(s_type, forState: .Normal)
+        
             
         }
         var date = NSDate()
             if (existingItem != nil) {
                 date = s_date
             }
-        let calendar = NSCalendar.currentCalendar()
+  /*      let calendar = NSCalendar.currentCalendar()
         let components = calendar.components(.CalendarUnitHour | .CalendarUnitMinute | .CalendarUnitMonth | .CalendarUnitYear | .CalendarUnitDay, fromDate: date)
         let hour = components.hour
    //     d_date_HH.text = String(hour) + ":"
@@ -393,11 +422,13 @@ class ExperienceDetailViewController: UIViewController, userDateTimeDelegate, us
         d_date_year.text = String(year)
         let day = components.day
         d_date_day.text = String(day)
+        
+        */
     //    d_title.text = "Experience on " + d_date_day.text + "/" + d_date_month.text + "/" + d_date_year.text + ", " + d_date_HH.text + d_date_MM.text + " Hrs"
      
             if (existingItem == nil) {
-            d_title.text = "Experience on " + d_date_day.text! + "/" + d_date_month.text! + "/" + d_date_year.text! + ", " + d_date_HH.text! + d_date_MM.text! + " Hrs"
-        
+  //          d_title.text = "Experience on " + d_date_day.text! + "/" + d_date_month.text! + "/" + d_date_year.text! + ", " + d_date_HH.text! + d_date_MM.text! + " Hrs"
+
         //set auto description
         
         d_desc.text = "Hi-  "
@@ -529,7 +560,7 @@ class ExperienceDetailViewController: UIViewController, userDateTimeDelegate, us
         let day = myComponents.day
         println(" day is \(day)")
         
-        d_date_month.text = String(month)
+ /*       d_date_month.text = String(month)
         d_date_day.text = String(day)
         
         if hour < 10 {
@@ -542,7 +573,7 @@ class ExperienceDetailViewController: UIViewController, userDateTimeDelegate, us
         } else {
         d_date_MM.text = String(minutes)
         }
-        if (existingItem == nil) {
+   */     if (existingItem == nil) {
         //Set Auto title based on changed time
         d_title.text = "Experience on " + String(day) + "/" + String(month) + "/" + String(year) + ", " + String(hour) + ":" + String(minutes) + " Hrs"
         }
@@ -568,8 +599,8 @@ extension ExperienceDetailViewController : AVAudioRecorderDelegate {
             
             stopButton.enabled = false
             playButton.enabled = true
-            recordButton.setTitle("Record", forState:.Normal)
-            
+      //      recordButton.setTitle("Record", forState:.Normal)
+            recordButton.enabled = true
             // iOS8 and later
             var alert = UIAlertController(title: "Recorder",
                 message: "Finished Recording",
@@ -596,6 +627,7 @@ extension ExperienceDetailViewController : AVAudioPlayerDelegate {
         println("finished playing \(flag)")
         recordButton.enabled = true
         stopButton.enabled = false
+        playButton.enabled = true
     }
     
     func audioPlayerDecodeErrorDidOccur(player: AVAudioPlayer!, error: NSError!) {
@@ -605,35 +637,44 @@ extension ExperienceDetailViewController : AVAudioPlayerDelegate {
 
 extension ExperienceDetailViewController {
     func updateAudioMeter(timer:NSTimer) {
-        
-        if recorder.recording {
+      
+        if (recorder != nil && recorder.recording) {
             let dFormat = "%02d"
             let min:Int = Int(recorder.currentTime / 60)
             let sec:Int = Int(recorder.currentTime % 60)
             let s = "\(String(format: dFormat, min)):\(String(format: dFormat, sec))"
-            statusLabel.text = s
+            statusLabel.title = s
             recorder.updateMeters()
             var apc0 = recorder.averagePowerForChannel(0)
             var peak0 = recorder.peakPowerForChannel(0)
+        } else if (player != nil && player.playing) {
+            let dFormat = "%02d"
+            let min:Int = Int(player.currentTime / 60)
+            let sec:Int = Int(player.currentTime % 60)
+            let s = "\(String(format: dFormat, min)):\(String(format: dFormat, sec))"
+            statusLabel.title = s
+            player.updateMeters()
+            var apc0 = player.averagePowerForChannel(0)
+            var peak0 = player.peakPowerForChannel(0)
         }
     }
     
     
    
     
-    @IBAction func removeAll(sender: AnyObject) {
-        deleteAllRecordings()
-    }
     
-    @IBAction func record(sender: UIButton) {
-        
+    @IBAction func record(sender: UIBarButtonItem) {
+    
+
         if player != nil && player.playing {
             player.stop()
         }
         
         if recorder == nil {
             println("recording. recorder nil")
-            recordButton.setTitle("Pause", forState:.Normal)
+          //  recordButton.setTitle("Pause", forState:.Normal)
+            recordButton.enabled = false
+            pauseButton.enabled = true
             playButton.enabled = false
             stopButton.enabled = true
             recordWithPermission(true)
@@ -643,11 +684,12 @@ extension ExperienceDetailViewController {
         if recorder != nil && recorder.recording {
             println("pausing")
             recorder.pause()
-            recordButton.setTitle("Continue", forState:.Normal)
+           // recordButton.setTitle("Continue", forState:.Normal)
             
         } else {
             println("recording")
-            recordButton.setTitle("Pause", forState:.Normal)
+            recordButton.enabled = false
+            pauseButton.enabled = true
             playButton.enabled = false
             stopButton.enabled = true
             //            recorder.record()
@@ -655,12 +697,44 @@ extension ExperienceDetailViewController {
         }
     }
     
-    @IBAction func stop(sender: UIButton) {
+    
+    
+    @IBAction func pausePressed(sender: UIBarButtonItem) {
+        if recorder != nil && recorder.recording {
+            println("pausing")
+            recorder.pause()
+            
+            // recordButton.setTitle("Continue", forState:.Normal)
+            
+        } else if (recorder != nil && !recorder.recording) {
+            recorder.record()
+        } else if (player != nil && player.playing) {
+            player.pause()
+            stopButton.enabled = false
+            playButton.enabled = true
+            
+        } else if (player != nil && !player.playing) {
+            recordButton.enabled = false
+            pauseButton.enabled = true
+            playButton.enabled = true
+            stopButton.enabled = false
+            player.play()
+            
+            
+        }
+        
+        
+    }
+    
+    @IBAction func stop(sender: UIBarButtonItem) {
+    
+        if (recorder != nil) {
         println("stop")
         recorder.stop()
         meterTimer.invalidate()
         
-        recordButton.setTitle("Record", forState:.Normal)
+       // recordButton.setTitle("Record", forState:.Normal)
+        recordButton.enabled = true
         let session:AVAudioSession = AVAudioSession.sharedInstance()
         var error: NSError?
         if !session.setActive(false, error: &error) {
@@ -674,9 +748,11 @@ extension ExperienceDetailViewController {
         stopButton.enabled = false
         recordButton.enabled = true
         recorder = nil
-    }
+        }}
     
-    @IBAction func play(sender: UIButton) {
+  
+    @IBAction func play(sender: UIBarButtonItem) {
+    
         play()
     }
     
@@ -687,7 +763,7 @@ extension ExperienceDetailViewController {
         // recorder might be nil
         // self.player = AVAudioPlayer(contentsOfURL: recorder.url, error: &error)
         println(" contents of url in Play method is \(soundFileURL)")
-        if (soundFileURL == nil) {
+  /*      if (soundFileURL == nil) {
             var mediaPlayer: MPMoviePlayerController = MPMoviePlayerController()
             mediaPlayer.stop()
             var docsDir = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as String
@@ -710,6 +786,12 @@ extension ExperienceDetailViewController {
             mediaPlayer.play()
             println(" contents of url after setting up recorder in Play method is \(url)")
         } else {
+*/
+        
+        var fileLength = soundFileURL?.absoluteString!
+        if (fileLength?.utf16Count > 0)
+         {
+        println("There is something to play")
         self.player = AVAudioPlayer(contentsOfURL: soundFileURL!, error: &error)
 
         if player == nil {
@@ -720,7 +802,18 @@ extension ExperienceDetailViewController {
         player.delegate = self
         player.prepareToPlay()
         player.volume = 1.0
+        self.meterTimer = NSTimer.scheduledTimerWithTimeInterval(0.1,
+            target:self,
+            selector:"updateAudioMeter:",
+            userInfo:nil,
+            repeats:true)
+        recordButton.enabled = false
+        pauseButton.enabled = true
+        playButton.enabled = false
+        stopButton.enabled = false
         player.play()
+        } else {
+            println("There is nothing to play")
         }
     }
     
@@ -825,30 +918,7 @@ extension ExperienceDetailViewController {
         }
     }
     
-    func deleteAllRecordings() {
-        var docsDir =
-        NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as String
-        var fileManager = NSFileManager.defaultManager()
-        var error: NSError?
-        var files = fileManager.contentsOfDirectoryAtPath(docsDir, error: &error) as [String]
-        if let e = error {
-            println(e.localizedDescription)
-        }
-        var recordings = files.filter( { (name: String) -> Bool in
-            return name.hasSuffix("m4a")
-        })
-        for var i = 0; i < recordings.count; i++ {
-            var path = docsDir + "/" + recordings[i]
-            
-            println("removing \(path)")
-            if !fileManager.removeItemAtPath(path, error: &error) {
-                NSLog("could not remove \(path)")
-            }
-            if let e = error {
-                println(e.localizedDescription)
-            }
-        }
-    }
+
     
     func askForNotifications() {
         
@@ -878,56 +948,7 @@ extension ExperienceDetailViewController {
     
     
     func routeChange(notification:NSNotification) {
-        //      let userInfo:Dictionary<String,String!> = notification.userInfo as Dictionary<String,String!>
-        //      let userInfo = notification.userInfo as Dictionary<String,[AnyObject]!>
-        //  var reason = userInfo[AVAudioSessionRouteChangeReasonKey]
-        
-        // var userInfo: [NSObject : AnyObject]? { get }
-        //let AVAudioSessionRouteChangeReasonKey: NSString!
-        
-        /*
-        if let reason = notification.userInfo[AVAudioSessionRouteChangeReasonKey] as? NSNumber  {
-        }
-        
-        if let info = notification.userInfo as? Dictionary<String,String> {
-        
-        
-        if let rs = info["AVAudioSessionRouteChangeReasonKey"] {
-        var reason =  rs.toInt()!
-        
-        if rs.integerValue == Int(AVAudioSessionRouteChangeReason.NewDeviceAvailable.toRaw()) {
-        }
-        
-        switch reason  {
-        case AVAudioSessionRouteChangeReason
-        println("new device")
-        }
-        
-        }
-        }
-        
-        var description = userInfo[AVAudioSessionRouteChangePreviousRouteKey]
-        */
-        /*
-        //        var reason = info.valueForKey(AVAudioSessionRouteChangeReasonKey) as UInt
-        //var reason = info.valueForKey(AVAudioSessionRouteChangeReasonKey) as AVAudioSessionRouteChangeReason.Raw
-        //var description = info.valueForKey(AVAudioSessionRouteChangePreviousRouteKey) as String
-        println(description)
-        
-        switch reason {
-        case AVAudioSessionRouteChangeReason.NewDeviceAvailable.toRaw():
-        println("new device")
-        case AVAudioSessionRouteChangeReason.OldDeviceUnavailable.toRaw():
-        println("old device unavail")
-        //case AVAudioSessionRouteChangeReasonCategoryChange
-        //case AVAudioSessionRouteChangeReasonOverride
-        //case AVAudioSessionRouteChangeReasonWakeFromSleep
-        //case AVAudioSessionRouteChangeReasonNoSuitableRouteForCategory
-        
-        default:
-        println("something or other")
-        }
-        */
+
     }
 
 }
@@ -937,7 +958,7 @@ extension ExperienceDetailViewController : userselectedCategoryDelegate {
     func userDidSelectCategory(selectedCategory : NSString) {
         
         println(" Category selection received in Add Experience i \(selectedCategory)")
-        d_category.text = selectedCategory
+        d_category.setTitle(selectedCategory, forState: .Normal)
     }
 }
 
@@ -988,8 +1009,6 @@ extension ExperienceDetailViewController :UITextFieldDelegate {
         self.view.endEditing(true)
         return false
     }
+
     
-    override func touchesBegan(touches: NSSet, withEvent event: UIEvent!) {
-        self.view.endEditing(true)
     }
-}

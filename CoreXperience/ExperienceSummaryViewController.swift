@@ -81,22 +81,27 @@ class ExperienceSummaryViewController: UITableViewController {
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cell = tableView.dequeueReusableCellWithIdentifier("SummaryCell") as UITableViewCell
-        //Add this line to get the subtitle text
-        cell = UITableViewCell(style: UITableViewCellStyle.Subtitle,reuseIdentifier:"SummaryCell")
-        //Assign the contents of global type list to the textLabel of each cell
-        cell.textLabel!.text = l_typeList[indexPath.row].valueForKeyPath("md_category") as? String
-        cell.textLabel!.textColor = UIColor.orangeColor()
-        g_typeList.append(cell.textLabel!.text!)
-        
-        //Retrieve total number of experience entries for the category
-        
+       
         var appDel: AppDelegate = (UIApplication.sharedApplication().delegate as AppDelegate)
         var context: NSManagedObjectContext;
         context = appDel.managedObjectContext!
         var request = NSFetchRequest(entityName: "CoreExperience")
-         println(" selected Type is  \(l_typeList[indexPath.row])")
+        println(" selected Type is  \(l_typeList[indexPath.row])")
         var cat = l_typeList[indexPath.row].valueForKeyPath("md_category") as? String
+        var photoLoc = l_typeList[indexPath.row].valueForKeyPath("md_categoryImage") as? String
+
+        
+        var cell = tableView.dequeueReusableCellWithIdentifier("summaryCell") as summaryCell
+        //Add this line to get the subtitle text
+     //   cell = summaryCell(style: UITableViewCellStyle.Subtitle,reuseIdentifier:"summaryCell")
+        //Assign the contents of global type list to the textLabel of each cell
+        cell.d_labelTitle!.text = cat
+    //   cell.textLabel!.textColor = UIColor.orangeColor()
+        g_typeList.append(cell.d_labelTitle!.text!)
+        
+        //Retrieve total number of experience entries for the category
+        
+   
 
         request.predicate = NSPredicate(format: "m_type == %@", cat!)
         var totalCount = context.countForFetchRequest(request, error: nil)
@@ -106,9 +111,36 @@ class ExperienceSummaryViewController: UITableViewController {
         var typeList = context.executeFetchRequest(request, error: nil)!
             println(" TypeList count is \(totalCount)")
         //    println(" selected Type is  \(g_typeList[g_selectedTypeIndex])")
-        cell.detailTextLabel!.text = String(totalCount) + " Items"
-    
+        cell.d_labelItems!.text = String(totalCount) + " Items"
         
+        
+        //Get Photo
+        
+        let nsDocumentDirectory = NSSearchPathDirectory.DocumentDirectory
+        let nsUserDomainMask = NSSearchPathDomainMask.UserDomainMask
+        
+        
+        if let paths = NSSearchPathForDirectoriesInDomains(nsDocumentDirectory, nsUserDomainMask, true) {
+            if paths.count > 0 {
+                if let dirPath = paths[0] as? String {
+                    var photoPath = dirPath.stringByAppendingPathComponent(photoLoc!)
+                    println(" Photo Path is \(photoPath)")
+                    var imagePhoto = UIImage(named: photoPath)
+                    cell.d_image.image = imagePhoto
+                    
+                }
+            }
+        }
+        
+   /*     //Set image
+        if cat == "My experiences with Sadguru" {
+        cell.d_image.image = UIImage(named: "Appaji.jpg")
+        } else if cat == "Sadguru's teachings" {
+        cell.d_image.image = UIImage(named: "Balaswamiji.jpg")
+        } else {
+        cell.d_image.image = UIImage(named: "Default-category.jpg")
+        }
+      */
         
    /*     //Depending on experience type chosen, enter the count of items in subtitle of each cell
         switch (indexPath.row) {

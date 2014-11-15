@@ -12,4 +12,5 @@ import CoreData
 class modelCategory: NSManagedObject {
    
     @NSManaged var md_category : String
+    @NSManaged var md_categoryImage : String
 }

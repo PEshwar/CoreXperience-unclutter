@@ -12,74 +12,27 @@ import Foundation
 
 class categoryViewController: UITableViewController {
 
+    var catImage = UIImageView()
       var l_typeList = [NSManagedObject]()
     
-    @IBAction func addCategoryPressed(sender: AnyObject) {
-       
-        func wordEntered(alert: UIAlertAction!){
-            // store the new word
-            //self.textView2.text = deletedString + " " + self.newWordField.text
-        println(" New Category entered is ")
-        }
+            
+   
+ 
+    @IBAction func donePressed(sender: AnyObject) {
         
-        //Showing alert controller for add category
-        var inputTextField: UITextField?
-        var categoryAlert = UIAlertController(title: "Action", message: "Enter name of category to add", preferredStyle: UIAlertControllerStyle.Alert)
-        categoryAlert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Default, handler: nil))
-        categoryAlert.addAction(UIAlertAction(title: "Save", style: UIAlertActionStyle.Default, handler: { (action) -> Void in
-            // Now do whatever you want with inputTextField (remember to unwrap the optional)
-            var categoryText = inputTextField?.text
-            
-            
-            println(" Category entered is \(inputTextField?.text)")
-            var appDel: AppDelegate = (UIApplication.sharedApplication().delegate as AppDelegate)
-            var context: NSManagedObjectContext;
-            context = appDel.managedObjectContext!
-            let ent = NSEntityDescription.entityForName("CoreCategory", inManagedObjectContext: context)
-            //Createa instance of model Category class
-            var newCategory = modelCategory(entity: ent!, insertIntoManagedObjectContext: context)
-            newCategory.md_category = categoryText!
-      //      var charCount = countElements(categoryText)
-        //    println("Char count is \(charCount)")
-        //    if charCount > 0 {
-            context.save(nil)
-            println("Context Saved")
-            
-      //      g_typeList.append(categoryText!)
-            
-
-           //Reload data
-            
-            let fetchRequest = NSFetchRequest(entityName:"CoreCategory")
-            fetchRequest.returnsObjectsAsFaults = false
-            
-            var error: NSError?
-            let fetchedResults = context.executeFetchRequest(fetchRequest, error: &error) as [NSManagedObject]?
-            
-            if let results = fetchedResults {
-                self.l_typeList = results }
-                else {
-                println("Could not fetch \(error), \(error!.userInfo)")
-            }
-            
-            g_typeList.removeAll(keepCapacity: true)
-         
-            self.tableView.reloadData()
-         //   }
-        }))
-        
-        categoryAlert.addTextFieldWithConfigurationHandler({(textField: UITextField!) in
-            textField.textColor = UIColor.blackColor()
-            inputTextField = textField
-            //textField.secureTextEntry = true
-            })
-            
-     presentViewController(categoryAlert, animated: true, completion: nil)
+        navigationController?.popViewControllerAnimated(true)
     }
+ 
+        
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         g_typeList.removeAll(keepCapacity: true)
+        
+        
+        
         var appDel: AppDelegate = (UIApplication.sharedApplication().delegate as AppDelegate)
         var context: NSManagedObjectContext;
         context = appDel.managedObjectContext!
@@ -148,23 +101,50 @@ class categoryViewController: UITableViewController {
 override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
 //        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath) as UITableViewCell
 
-            var cell = tableView.dequeueReusableCellWithIdentifier("categoryCell") as UITableViewCell
-            //Add this line to get the subtitle text
-            cell = UITableViewCell(style: UITableViewCellStyle.Subtitle,reuseIdentifier:"categoryCell")
+            var categoryCell = tableView.dequeueReusableCellWithIdentifier("categoryCell") as categoryTableViewCell
+    
+    
             //Assign the contents of global type list to the textLabel of each cell
-            cell.textLabel!.text = l_typeList[indexPath.row].valueForKeyPath("md_category") as? String
-            cell.textLabel!.textColor = UIColor.blackColor()
+            categoryCell.categoryLabel!.text = l_typeList[indexPath.row].valueForKeyPath("md_category") as? String
+              var photoLoc =  l_typeList[indexPath.row].valueForKeyPath("md_categoryImage") as? String
+    
+    //Get Photo
+    
+    let nsDocumentDirectory = NSSearchPathDirectory.DocumentDirectory
+    let nsUserDomainMask = NSSearchPathDomainMask.UserDomainMask
+    
+    
+    if let paths = NSSearchPathForDirectoriesInDomains(nsDocumentDirectory, nsUserDomainMask, true) {
+        if paths.count > 0 {
+            if let dirPath = paths[0] as? String {
+                var photoPath = dirPath.stringByAppendingPathComponent(photoLoc!)
+                println(" Photo Path is \(photoPath)")
+                var imagePhoto = UIImage(named: photoPath)
+                categoryCell.categoryImage.image = imagePhoto
+                
+            }
+        }
+    }
+    
+   
+   // get image from device location
+    
+  //  Default-category.jpg
+    //Set image for category
+  //  categoryCell.categoryImage.image = UIImage(named: "Default-category.jpg")
+    
+          //  cell.textLabel!.textColor = UIColor.blackColor()
 
         // Configure the cell...
-    g_typeList.append(cell.textLabel!.text!)
+    g_typeList.append(categoryCell.categoryLabel!.text!)
     
-    var myBackView=UIView(frame:cell.frame)
+//    var myBackView=UIView(frame:cell.frame)
     
-    myBackView.backgroundColor = UIColor.orangeColor();
+//    myBackView.backgroundColor = UIColor.orangeColor();
     
-    cell.selectedBackgroundView = myBackView
+//    cell.selectedBackgroundView = myBackView
        
-    return cell
+    return categoryCell
     }
     
 
@@ -256,4 +236,14 @@ override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath:
     }
     */
 
+}
+
+extension categoryViewController : categoryImagePickedDelegate {
+    
+    func userImagePicked(selectedPhoto : UIImage, categoryName : String) {
+        
+        //   photoExperience.image = UIImage (named: "FavSelected.png")
+        catImage.image = selectedPhoto
+    }
+    
 }
