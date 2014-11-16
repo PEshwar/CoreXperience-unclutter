@@ -188,7 +188,7 @@ class MenuTransitionManager: UIPercentDrivenInteractiveTransition, UIViewControl
         
         menuViewController.textPostIcon.transform = self.offStage(-topRowOffset)
         menuViewController.textPostLabel.transform = self.offStage(-topRowOffset)
-        
+    /*
         menuViewController.quotePostIcon.transform = self.offStage(-middleRowOffset)
         menuViewController.quotePostLabel.transform = self.offStage(-middleRowOffset)
         
@@ -204,7 +204,7 @@ class MenuTransitionManager: UIPercentDrivenInteractiveTransition, UIViewControl
         menuViewController.audioPostIcon.transform = self.offStage(bottomRowOffset)
         menuViewController.audioPostLabel.transform = self.offStage(bottomRowOffset)
         
-    }
+    */}
     
     func offStageMenuControllerInteractive(menuViewController: MenuViewController){
         
@@ -215,7 +215,7 @@ class MenuTransitionManager: UIPercentDrivenInteractiveTransition, UIViewControl
         
         menuViewController.textPostIcon.transform = self.offStage(offstageOffset)
         menuViewController.textPostLabel.transform = self.offStage(offstageOffset)
-        
+      /*
         menuViewController.quotePostIcon.transform = self.offStage(offstageOffset)
         menuViewController.quotePostLabel.transform = self.offStage(offstageOffset)
         
@@ -231,7 +231,7 @@ class MenuTransitionManager: UIPercentDrivenInteractiveTransition, UIViewControl
         menuViewController.audioPostIcon.transform = self.offStage(offstageOffset)
         menuViewController.audioPostLabel.transform = self.offStage(offstageOffset)
         
-    }
+  */  }
     
     func onStageMenuController(menuViewController: MenuViewController){
         
@@ -240,7 +240,7 @@ class MenuTransitionManager: UIPercentDrivenInteractiveTransition, UIViewControl
         
         menuViewController.textPostIcon.transform = CGAffineTransformIdentity
         menuViewController.textPostLabel.transform = CGAffineTransformIdentity
-        
+    /*
         menuViewController.quotePostIcon.transform = CGAffineTransformIdentity
         menuViewController.quotePostLabel.transform = CGAffineTransformIdentity
         
@@ -255,7 +255,7 @@ class MenuTransitionManager: UIPercentDrivenInteractiveTransition, UIViewControl
         
         menuViewController.audioPostIcon.transform = CGAffineTransformIdentity
         menuViewController.audioPostLabel.transform = CGAffineTransformIdentity
-        
+      */
     }
     
     // return how many seconds the transiton animation will take

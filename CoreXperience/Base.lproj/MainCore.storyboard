@@ -142,7 +142,6 @@
                                     <outlet property="d_expTitle" destination="zlX-GU-m8r" id="eVf-VQ-kwP"/>
                                     <outlet property="d_favouriteFlag" destination="9uu-zk-o91" id="tKX-X1-7YR"/>
                                     <outlet property="d_listImage" destination="xHd-j3-1WA" id="Jsw-P9-cHE"/>
-                                    <segue destination="nFv-VB-2g6" kind="push" identifier="presentMenu" id="X41-FD-6ay"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -364,15 +363,11 @@
             <objects>
                 <viewController storyboardIdentifier="showImagePickerViewController" id="HZf-3k-Dk7" customClass="showImagePickerViewController" customModule="CoreXperience" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Myu-Jh-qqc">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="XQy-nk-gXh">
-                                <rect key="frame" x="-8" y="-102" width="320" height="336"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                            </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="XE7-39-3Cs">
-                                <rect key="frame" x="103" y="443" width="98" height="30"/>
+                                <rect key="frame" x="111" y="500" width="98" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Choose Photo">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -382,7 +377,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Fyi-bI-y9O">
-                                <rect key="frame" x="129" y="490" width="37" height="30"/>
+                                <rect key="frame" x="142" y="538" width="37" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Done">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -391,6 +386,10 @@
                                     <action selector="donePressed:" destination="HZf-3k-Dk7" eventType="touchUpInside" id="Bcp-GJ-nNL"/>
                                 </connections>
                             </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="XQy-nk-gXh">
+                                <rect key="frame" x="0.0" y="-62" width="328" height="542"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.26531969150000001" green="0.6241627663" blue="0.66666666669999997" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
@@ -460,6 +459,10 @@
                                     <segue destination="cIi-yM-ufS" kind="push" identifier="showCategory" id="pci-L5-Fbt"/>
                                 </connections>
                             </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="GfT-Ix-B42">
+                                <rect key="frame" x="284" y="109" width="30" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.26531969150000001" green="0.6241627663" blue="0.66666666669999997" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
@@ -495,7 +498,6 @@
                             <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <action selector="photoPressed:" destination="eOE-Cb-bOH" id="ud0-tT-q1g"/>
-                                <segue destination="HZf-3k-Dk7" kind="push" identifier="showImagePicker" id="6sB-Kz-tt1"/>
                             </connections>
                         </barButtonItem>
                     </toolbarItems>
@@ -520,6 +522,8 @@
                         <outlet property="d_title" destination="xXC-iM-V88" id="eVI-1N-WCI"/>
                         <outlet property="favouriteFlag" destination="bKD-Of-L2R" id="RDP-NP-2hJ"/>
                         <outlet property="pauseButton" destination="Mdi-XJ-ufI" id="1zg-j5-BlO"/>
+                        <outlet property="photoButton" destination="RhR-8m-GxD" id="3p6-1u-jvx"/>
+                        <outlet property="photoExperience" destination="GfT-Ix-B42" id="Qdq-5A-tyO"/>
                         <outlet property="playButton" destination="Z4L-uT-6sq" id="EMV-j4-9T6"/>
                         <outlet property="recordButton" destination="4Gu-LV-Sis" id="ER4-ln-U68"/>
                         <outlet property="statusLabel" destination="Us7-eU-255" id="4Dx-uk-P9e"/>

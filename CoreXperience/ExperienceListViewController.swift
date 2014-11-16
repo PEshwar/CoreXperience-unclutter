@@ -39,6 +39,20 @@ var mediaPlayer: MPMoviePlayerController = MPMoviePlayerController()
     //Load the various global list arrays per type from database
    expMgr.listByType()
          self.transitionManager.sourceViewController = self
+        
+        //Set image in navigation bar
+        /* Create an Image View to replace the Title View */
+        let imageView = UIImageView(
+            frame: CGRect(x: 0, y: 0, width: 100, height: 40))
+        
+        imageView.contentMode = .ScaleAspectFit
+        
+        let image = UIImage(named:"Balaswamiji.jpg")
+        
+        imageView.image = image
+        
+        /* Set the Title View */
+        navigationItem.titleView = imageView
     
     }
 
@@ -203,9 +217,16 @@ var mediaPlayer: MPMoviePlayerController = MPMoviePlayerController()
         var selectedRow = self.tableView.indexPathForSelectedRow()?.row
         var selectedItem : NSManagedObject = self.typeList[selectedRow!] as NSManagedObject
         println("Got reference to selected item")
+     /*
+        var textShare = " I want to share my experience"
+        var image = UIImage(named:"Balaswamiji.jpg")
         
-   /*
         
+        let activityVC :UIActivityViewController = UIActivityViewController(activityItems: [textShare,image], applicationActivities: nil)
+        activityVC.popoverPresentationController?.sourceView = self.view
+        self.presentViewController(activityVC, animated: true, completion: nil)
+   
+   */
         //Showing alert controller on selection of row
         
         var refreshAlert = UIAlertController(title: "Action", message: "What do you want to do?", preferredStyle: UIAlertControllerStyle.Alert)
@@ -464,8 +485,8 @@ var mediaPlayer: MPMoviePlayerController = MPMoviePlayerController()
         refreshAlert.addAction(cancelAction)
         
         presentViewController(refreshAlert, animated: true, completion: nil)
-*/
-    }
+
+   }
     
     
         

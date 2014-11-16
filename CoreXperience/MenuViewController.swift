@@ -36,17 +36,17 @@ class MenuViewController: UIViewController {
     @IBOutlet weak var photoPostIcon: UIImageView!
     @IBOutlet weak var photoPostLabel: UILabel!
     
-    @IBOutlet weak var quotePostIcon: UIImageView!
-    @IBOutlet weak var quotePostLabel: UILabel!
+    @IBOutlet weak var audioIcon: UIImageView!
+    @IBOutlet weak var audioLabel: UILabel!
     
-    @IBOutlet weak var linkPostIcon: UIImageView!
-    @IBOutlet weak var linkPostLabel: UILabel!
+    @IBOutlet weak var editIcon: UIImageView!
+    @IBOutlet weak var editLabel: UILabel!
     
-    @IBOutlet weak var chatPostIcon: UIImageView!
-    @IBOutlet weak var chatPostLabel: UILabel!
+    @IBOutlet weak var emailIcon: UIImageView!
+    @IBOutlet weak var emailLabel: UILabel!
     
-    @IBOutlet weak var audioPostIcon: UIImageView!
-    @IBOutlet weak var audioPostLabel: UILabel!
+    @IBOutlet weak var fbPostIcon: UIImageView!
+    @IBOutlet weak var fbPostLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()

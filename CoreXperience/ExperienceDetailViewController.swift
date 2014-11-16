@@ -56,7 +56,9 @@ class ExperienceDetailViewController: UIViewController, userDateTimeDelegate, us
     var l_PhotoLocation : String = " "
     
  
-   var photoExperience: UIImageView! = UIImageView()
+    @IBOutlet weak var photoButton: UIBarButtonItem!
+    
+    @IBOutlet weak var photoExperience: UIImageView!
     
     
     //Recording-related variables
@@ -127,6 +129,40 @@ class ExperienceDetailViewController: UIViewController, userDateTimeDelegate, us
     */
     
     @IBAction func photoPressed(sender: AnyObject) {
+        var imageController:UIImagePickerController = UIImagePickerController()
+        println("Photo pressed")
+        imageController.editing = false
+        imageController.delegate = self;
+        
+        let alert = UIAlertController(title: "Lets get a picture", message: "Simple Message", preferredStyle: UIAlertControllerStyle.ActionSheet)
+        println(" Going to add lib button")
+      alert.popoverPresentationController?.sourceView = self.view
+        let libButton = UIAlertAction(title: "Select photo from library", style: UIAlertActionStyle.Default) { (alert) -> Void in
+            imageController.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
+            
+          println(" Going to show alert view controller for photo")
+            
+            self.presentViewController(imageController, animated: true, completion: nil)
+        }
+        if(UIImagePickerController .isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera)){
+            let cameraButton = UIAlertAction(title: "Take a picture", style: UIAlertActionStyle.Default) { (alert) -> Void in
+                println("Take Photo")
+                imageController.sourceType = UIImagePickerControllerSourceType.Camera
+                self.presentViewController(imageController, animated: true, completion: nil)
+                
+            }
+            alert.addAction(cameraButton)
+        } else {
+            println("Camera not available")
+            
+        }
+        let cancelButton = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel) { (alert) -> Void in
+            println("Cancel Pressed")
+        }
+        
+        alert.addAction(libButton)
+        alert.addAction(cancelButton)
+        self.presentViewController(alert, animated: true, completion: nil)
     }
     
     //Initialize temp variable (to store user amended picker type value) to the type selected in summary view
@@ -189,8 +225,12 @@ class ExperienceDetailViewController: UIViewController, userDateTimeDelegate, us
     
     @IBAction func cancelPressed(sender: UIBarButtonItem) {
         
+        if existingItem == nil {
         navigationController?.presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
-    }
+        } else {
+            navigationController?.popViewControllerAnimated(true)
+        }
+        }
 
     
     @IBAction func savePressed(sender: UIBarButtonItem) {
@@ -301,9 +341,13 @@ class ExperienceDetailViewController: UIViewController, userDateTimeDelegate, us
         
         g_fileNameAudio = ""
         
+        if existingItem == nil {
+            navigationController?.presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
+        } else {
+            navigationController?.popViewControllerAnimated(true)
+        }
  
-        navigationController?.presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
-
+        
   //  navigationController?.popToRootViewControllerAnimated(true)
         
     }
@@ -316,6 +360,8 @@ class ExperienceDetailViewController: UIViewController, userDateTimeDelegate, us
        
         
         super.viewDidLoad()
+        
+        
         
         //To set keyboard parameters
         
@@ -384,6 +430,15 @@ class ExperienceDetailViewController: UIViewController, userDateTimeDelegate, us
         }
         else {
             g_fileNameAudio = s_audio_location
+            println(" s_audio_location in edit mode is \(g_fileNameAudio)")
+            var dirPaths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
+            var docsDir: AnyObject = dirPaths[0]
+            //       var soundFilePath = docsDir.stringByAppendingPathComponent(currentFileName)
+            var soundFilePath = docsDir.stringByAppendingPathComponent(g_fileNameAudio)
+            
+            soundFileURL = NSURL(fileURLWithPath: soundFilePath)
+            println("Sound file URL in edit mode is \(soundFileURL)")
+            
         }
         
         if (existingItem == nil) {
@@ -795,6 +850,7 @@ extension ExperienceDetailViewController {
         self.player = AVAudioPlayer(contentsOfURL: soundFileURL!, error: &error)
 
         if player == nil {
+            println(" Player is nil - after finding there is something to play")
             if let e = error {
                 println(e.localizedDescription)
             }
@@ -1010,5 +1066,18 @@ extension ExperienceDetailViewController :UITextFieldDelegate {
         return false
     }
 
+    
+    }
+extension ExperienceDetailViewController :UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIActionSheetDelegate {
+//func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
+//    photoButton.image = info[UIImagePickerControllerOriginalImage] as? UIImage
+
+func imagePickerController(picker: UIImagePickerController!, didFinishPickingImage image: UIImage!, editingInfo: [NSObject : AnyObject]!) {
+    
+    println(" In image delegate function, going to set image of photo button")
+        photoExperience.image = image;
+     self.dismissViewControllerAnimated(true, nil)
+    
+    }
     
     }
