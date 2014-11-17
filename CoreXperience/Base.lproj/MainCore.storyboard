@@ -72,7 +72,7 @@
                     <toolbarItems>
                         <barButtonItem image="icon_setting.png" id="tym-hY-bfP" userLabel="Categories">
                             <inset key="imageInsets" minX="0.0" minY="-24" maxX="0.0" maxY="-34"/>
-                            <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                            <color key="tintColor" red="0.66666666669999997" green="0.53143040649999995" blue="0.1260413406" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <segue destination="UYT-tE-tyG" kind="push" identifier="showCategory" id="El5-dH-aak"/>
                             </connections>
@@ -87,6 +87,7 @@
                     </toolbarItems>
                     <navigationItem key="navigationItem" title="My Experiences" id="7GE-p3-ja0" colorLabel="IBBuiltInLabel-Yellow">
                         <barButtonItem key="leftBarButtonItem" systemItem="compose" id="fj6-dD-GNn">
+                            <color key="tintColor" red="0.66666666669999997" green="0.53143040649999995" blue="0.1260413406" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <segue destination="et7-Vc-nWn" kind="modal" identifier="showAddView" id="OYw-IQ-nGi"/>
                             </connections>
