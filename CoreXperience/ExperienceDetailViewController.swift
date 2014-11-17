@@ -114,6 +114,10 @@ class ExperienceDetailViewController: UIViewController, userDateTimeDelegate, us
 //    @IBOutlet var d_location: UITextField!      //Location field on screen
 //    @IBOutlet weak var d_picker: UIPickerView!  //Picker type field on screen
     
+    //date related
+    var l_date = NSDate()
+    
+    @IBOutlet weak var d_dateLabel: UIButton!
     
     @IBAction func d_date(sender: AnyObject) {
     }
@@ -273,7 +277,9 @@ class ExperienceDetailViewController: UIViewController, userDateTimeDelegate, us
             
             
         var l_favourites = favouriteFlagOn
-        var l_date : NSDate = NSDate()
+      
+            
+        
  /*
         var inputYear : Int = d_date_year.text.toInt()!
         var inputMonth:Int? = d_date_month?.text?.toInt()
@@ -381,10 +387,7 @@ class ExperienceDetailViewController: UIViewController, userDateTimeDelegate, us
     
     override func viewDidLoad() {
         
-       
-        
         super.viewDidLoad()
-        
         
         
         //To set keyboard parameters
@@ -399,7 +402,7 @@ class ExperienceDetailViewController: UIViewController, userDateTimeDelegate, us
         d_desc.layer.borderWidth = 0.8
         d_desc.scrollEnabled = true
         d_desc.layer.cornerRadius = 0.8
-     //   var myColor : UIColor = UIColor( red: 0.5, green: 0.5, blue:0.5, alpha: 1.0 )
+   
         var myColor : UIColor = UIColor (white:0.9, alpha: 1.0)
        
         d_desc.layer.borderColor = myColor.CGColor
@@ -477,66 +480,36 @@ class ExperienceDetailViewController: UIViewController, userDateTimeDelegate, us
         }
         
         if (existingItem == nil) {
-   //     d_category.setTitle(g_typeList[g_selectedTypeIndex], forState: .Normal)
+        d_category.setTitle(g_typeList[g_selectedTypeIndex], forState: .Normal)
         }
         else {
             d_category.setTitle(s_type, forState: .Normal)
         
             
         }
-        var date = NSDate()
-            if (existingItem != nil) {
-                date = s_date
-            }
-  /*      let calendar = NSCalendar.currentCalendar()
-        let components = calendar.components(.CalendarUnitHour | .CalendarUnitMinute | .CalendarUnitMonth | .CalendarUnitYear | .CalendarUnitDay, fromDate: date)
-        let hour = components.hour
-   //     d_date_HH.text = String(hour) + ":"
-        let minutes = components.minute
-   //     d_date_MM.text = String(minutes)
-     
-        if hour < 10 {
-            d_date_HH.text = "0" + String(hour) + ":"
+        
+            //Set date
+        
+        var dateFormatter = NSDateFormatter()
+        println("Inside date picker changed")
+        
+        dateFormatter.dateStyle = NSDateFormatterStyle.MediumStyle
+        dateFormatter.timeStyle = NSDateFormatterStyle.ShortStyle
+        
+       
+        if (existingItem != nil) {
+            l_date = s_date
+           
+            
         } else {
-            d_date_HH.text = String(hour) + ":"
+            
+            l_date = NSDate()
         }
-        if minutes < 10 {
-            d_date_MM.text = "0" + String(minutes)
-        } else {
-            d_date_MM.text = String(minutes)
-        }
+         var tempDate = dateFormatter.stringFromDate(l_date)
+        d_dateLabel.setTitle(tempDate, forState: .Normal)
+        d_title.text = "Experience on " + tempDate
         
-        let month = components.month
-        d_date_month.text = String(month)
-        let year = components.year
-        d_date_year.text = String(year)
-        let day = components.day
-        d_date_day.text = String(day)
-        
-        */
-    //    d_title.text = "Experience on " + d_date_day.text + "/" + d_date_month.text + "/" + d_date_year.text + ", " + d_date_HH.text + d_date_MM.text + " Hrs"
-     
-            if (existingItem == nil) {
-  //          d_title.text = "Experience on " + d_date_day.text! + "/" + d_date_month.text! + "/" + d_date_year.text! + ", " + d_date_HH.text! + d_date_MM.text! + " Hrs"
-
-        //set auto description
-        
-  //      d_desc.text = "Hi-  "
-            }
-            
-        //temporarily hard-setting quik audio to yes
-//      quickAudio = true
- /*       if quickAudio {
-            println("QuickAudio enabled")
-            
-            performSegueWithIdentifier("audioRecord", sender: self)
-            
-            //var detail:RecorderViewController = self.storyboard?.instantiateViewControllerWithIdentifier("RecorderViewController") as RecorderViewController
-            
-                      //Programmatically push to associated VC (ExperienceDetailViewController)
-            //self.navigationController?.pushViewController(detail, animated: true)
-        }
-   */
+    
         
     }
     
@@ -637,6 +610,7 @@ class ExperienceDetailViewController: UIViewController, userDateTimeDelegate, us
 
     func userDidSelectDateTime(selectedDateTime : NSDate) {
         println("Back to add experience: Date selected is \(selectedDateTime)")
+        l_date = selectedDateTime
         let myCalendar = NSCalendar.currentCalendar()
         let myComponents = myCalendar.components(.CalendarUnitHour | .CalendarUnitMinute | .CalendarUnitMonth | .CalendarUnitYear | .CalendarUnitDay, fromDate: selectedDateTime)
         let hour = myComponents.hour
@@ -649,6 +623,17 @@ class ExperienceDetailViewController: UIViewController, userDateTimeDelegate, us
         println(" year is \(year)")
         let day = myComponents.day
         println(" day is \(day)")
+        
+        var dateFormatter = NSDateFormatter()
+        println("Inside date picker changed")
+        
+        dateFormatter.dateStyle = NSDateFormatterStyle.MediumStyle
+        dateFormatter.timeStyle = NSDateFormatterStyle.ShortStyle
+        var strDate = dateFormatter.stringFromDate(selectedDateTime)
+        
+        d_dateLabel.setTitle(strDate, forState: .Normal)
+        
+        d_title.text = "Experience on " + strDate
         
  /*       d_date_month.text = String(month)
         d_date_day.text = String(day)
@@ -665,7 +650,8 @@ class ExperienceDetailViewController: UIViewController, userDateTimeDelegate, us
         }
    */     if (existingItem == nil) {
         //Set Auto title based on changed time
-        d_title.text = "Experience on " + String(day) + "/" + String(month) + "/" + String(year) + ", " + String(hour) + ":" + String(minutes) + " Hrs"
+       // d_title.text = "Experience on " + String(day) + "/" + String(month) + "/" + String(year) + ", " + String(hour) + ":" + String(minutes) + " Hrs"
+    
         }
 
         
