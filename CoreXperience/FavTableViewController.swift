@@ -15,6 +15,9 @@ import MessageUI
 class FavTableViewController: UITableViewController {
 
     var favList : Array<AnyObject> = []
+    var filteredSearchList : Array<AnyObject> = []
+    var commonList : Array<AnyObject> = []
+    
     var mediaPlayer: MPMoviePlayerController = MPMoviePlayerController()
 
     @IBAction func donePressed(sender: AnyObject) {
@@ -48,7 +51,7 @@ class FavTableViewController: UITableViewController {
         var context: NSManagedObjectContext;
         context = appDel.managedObjectContext!
         var request = NSFetchRequest(entityName: "CoreExperience")
-             request.predicate = NSPredicate(format: "m_favourites == %@", true)
+  //           request.predicate = NSPredicate(format: "m_favourites == %@", true)
         favList = context.executeFetchRequest(request, error: nil)!
         println(" TypeList count is \(favList.count)")
         //    println(" selected Type is  \(g_typeList[g_selectedTypeIndex])")
@@ -74,20 +77,61 @@ class FavTableViewController: UITableViewController {
         // #warning Incomplete method implementation.
         // Return the number of rows in the section.
         println("Fav count is \(favList.count)")
-        return favList.count
+        
+        if tableView == self.searchDisplayController!.searchResultsTableView {
+            println(" filtered search count is \(self.filteredSearchList.count)")
+            return self.filteredSearchList.count
+            
+        } else {
+            println(" fav List count is \(self.favList.count)")
+            
+            return self.favList.count
+        }
+        
     }
 
     
    
       
       override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-      
-        
-        var cell = tableView.dequeueReusableCellWithIdentifier("favCell") as favCellTableViewCell
      
+        var cell = self.tableView.dequeueReusableCellWithIdentifier("favCell") as UITableViewCell
+        
+        if tableView == self.searchDisplayController!.searchResultsTableView {
+            var data: NSManagedObject = filteredSearchList[indexPath.row] as NSManagedObject
+            // Configure the cell
+            
+            cell = UITableViewCell(style: UITableViewCellStyle.Subtitle,reuseIdentifier:"favCell")
+            var tempCategory = data.valueForKeyPath("m_type") as? String
+            var tempTitle = data.valueForKeyPath("m_title") as? String
+            cell.textLabel!.text = tempCategory! + ":   " + tempTitle!
+            cell.detailTextLabel!.text = data.valueForKeyPath("m_desc") as? String
+        } else {
+
+        var data: NSManagedObject = favList[indexPath.row] as NSManagedObject
+       cell = UITableViewCell(style: UITableViewCellStyle.Subtitle,reuseIdentifier:"favCell")
+        // Configure the cell
+            var tempCategory = data.valueForKeyPath("m_type") as? String
+            var tempTitle = data.valueForKeyPath("m_title") as? String
+            cell.textLabel!.text = tempCategory! + ":   " + tempTitle!
+       //     cell.textLabel!.text = data.valueForKeyPath("m_title") as? String
+            cell.detailTextLabel!.text = data.valueForKeyPath("m_desc") as? String
+            cell.detailTextLabel!.textColor = UIColor.purpleColor()
+            
+
+            
+        }
+        
+  /*      var cell = tableView.dequeueReusableCellWithIdentifier("favCell") as favCellTableViewCell
+        
+      //  var data:NSManagedObject = NSManagedObject()
+        var data:NSManagedObject = favList[indexPath.row] as NSManagedObject
+        if tableView == self.searchDisplayController!.searchResultsTableView {
+            data = filteredSearchList[indexPath.row] as NSManagedObject
+        }
      
         //Assign the contents of global type list to the textLabel of each cell
-        var data:NSManagedObject = favList[indexPath.row] as NSManagedObject
+       // var data:NSManagedObject = favList[indexPath.row] as NSManagedObject
         cell.d_expTitle!.text = data.valueForKeyPath("m_title") as? String
         cell.d_expDesc!.text = data.valueForKeyPath("m_desc") as? String
         cell.d_expCategory!.text = data.valueForKeyPath("m_type") as? String
@@ -152,7 +196,8 @@ class FavTableViewController: UITableViewController {
                 }
             }
         }
-
+*/
+        
         return cell
     }
   
@@ -213,6 +258,7 @@ class FavTableViewController: UITableViewController {
        
         // Get reference to selected Row and Item
         var selectedRow = self.tableView.indexPathForSelectedRow()?.row
+        
         var selectedItem : NSManagedObject = self.favList[selectedRow!] as NSManagedObject
         println("Got reference to selected item")
         
@@ -581,3 +627,54 @@ extension FavTableViewController : MFMailComposeViewControllerDelegate {
     }
     
 }
+
+extension FavTableViewController: UISearchBarDelegate, UISearchDisplayDelegate {
+
+func filterContentForSearchText(searchText: String) {
+// Filter the array using the filter method
+    var appDel: AppDelegate = (UIApplication.sharedApplication().delegate as AppDelegate)
+    var context: NSManagedObjectContext;
+    context = appDel.managedObjectContext!
+    var request = NSFetchRequest(entityName: "CoreExperience")
+//  request.predicate = NSPredicate(format: "m_type ==  %@", searchText)
+  //  request.predicate = NSPredicate(format: "m_type CONTAINS[c] %@", searchText)
+  //  request.predicate = NSPredicate(format: "m_type contains[c] \(searchText)", argumentArray: nil)
+//    request.predicate = NSPredicate(format: "m_type Contains %@", searchText)
+//    favList = context.executeFetchRequest(request, error: nil)!
+    var i: Int = 0
+    println(" Fav List has count of \(favList.count)")
+    for element in favList {
+        var tempDesc = element.valueForKey("m_desc") as String
+        var tempTitle = element.valueForKey("m_title") as String
+        if ((tempDesc.rangeOfString(searchText) != nil) || (tempTitle.rangeOfString(searchText) != nil))  {
+        println("value for Desc is \(tempDesc)")
+            println("value for Title is \(tempTitle)")
+            println("i = \(i)")
+            filteredSearchList.append(favList[i])
+            
+        }
+        i++
+    }
+
+    
+ //   filteredSearchList = context.executeFetchRequest(request, error: nil)!
+    println(" Fav TypeList count is \(favList.count)")
+    println(" Filtered TypeList count is \(filteredSearchList.count)")
+    
+   // filteredSearchList = ["Appaji", "Balaswamiji","My notes","Miscellaneous"]
+    }
+func searchDisplayController(controller: UISearchDisplayController!, shouldReloadTableForSearchString searchString: String!) -> Bool {
+println(" Entering search Display controller")
+    filteredSearchList.removeAll(keepCapacity: true)
+    self.filterContentForSearchText(searchString)
+    println(" Exiting search Display controller")
+return true
+}
+
+func searchDisplayController(controller: UISearchDisplayController!, shouldReloadTableForSearchScope searchOption: Int) -> Bool {
+    self.filterContentForSearchText(self.searchDisplayController!.searchBar.text)
+    return true
+}
+
+}
+
