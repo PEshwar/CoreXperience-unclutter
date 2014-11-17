@@ -10,13 +10,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CoreXperience/showTextEntryViewController.swift"
-            timestampString = "437803930.790812"
+            timestampString = "437890299.83914"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "34"
-            endingLineNumber = "34"
-            landmarkName = "viewDidLoad()"
-            landmarkType = "5">
+            startingLineNumber = "35"
+            endingLineNumber = "35"
+            landmarkName = "showTextEntryViewController"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

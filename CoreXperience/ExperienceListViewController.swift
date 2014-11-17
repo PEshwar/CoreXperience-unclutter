@@ -37,7 +37,7 @@ var mediaPlayer: MPMoviePlayerController = MPMoviePlayerController()
     navigationItem.title = g_typeList[g_selectedTypeIndex]
        
     //Load the various global list arrays per type from database
-   expMgr.listByType()
+   // expMgr.listByType()
          self.transitionManager.sourceViewController = self
         
         //Set image in navigation bar
@@ -507,11 +507,33 @@ var mediaPlayer: MPMoviePlayerController = MPMoviePlayerController()
     override func tableView(tableView:UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath:NSIndexPath){
     
     if(editingStyle == UITableViewCellEditingStyle.Delete){
-    expMgr.removeExperience(indexPath.row)
+ //   expMgr.removeExperience(indexPath.row)
+        
+        
         var appDel: AppDelegate = (UIApplication.sharedApplication().delegate as AppDelegate)
         var context: NSManagedObjectContext;
         context = appDel.managedObjectContext!
         var request = NSFetchRequest(entityName: "CoreExperience")
+        request.returnsObjectsAsFaults = false
+       
+        //Obtain reference to selected row  & selected item
+        
+    //    var selectedRow = self.tableView.indexPathForSelectedRow()?.row
+        var selectedItem : NSManagedObject = self.typeList[indexPath.row] as NSManagedObject
+        println("Got reference to selected item")
+        var textTitle = selectedItem.valueForKey("m_title") as String
+       
+        request.predicate = NSPredicate(format: "m_title == %@", textTitle)
+        var results: NSArray = context.executeFetchRequest(request, error: nil)!
+        
+        if(results.count>0){
+            
+            var res = results[0] as NSManagedObject
+            context.deleteObject(res)
+            context.save(nil)
+            
+        }
+        
         request.predicate = NSPredicate(format: "m_type == %@", g_typeList[g_selectedTypeIndex])
         typeList = context.executeFetchRequest(request, error: nil)!
         println(" TypeList count is \(typeList.count)")
@@ -519,6 +541,11 @@ var mediaPlayer: MPMoviePlayerController = MPMoviePlayerController()
         
         tableView.reloadData()
 
+        
+        
+        
+        
+        
         
 //        expMgr.listByType()
 //    tableView.reloadData()
