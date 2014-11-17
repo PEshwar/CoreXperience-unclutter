@@ -70,7 +70,7 @@
                         </connections>
                     </tableView>
                     <toolbarItems>
-                        <barButtonItem systemItem="action" id="tym-hY-bfP" userLabel="Categories">
+                        <barButtonItem image="icon_setting.png" id="tym-hY-bfP" userLabel="Categories">
                             <inset key="imageInsets" minX="0.0" minY="-24" maxX="0.0" maxY="-34"/>
                             <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
@@ -967,6 +967,7 @@
         <image name="edit" width="123" height="123"/>
         <image name="email.jpeg" width="204" height="204"/>
         <image name="facebook" width="225" height="225"/>
+        <image name="icon_setting.png" width="22" height="22"/>
         <image name="text2.jpeg" width="225" height="225"/>
         <image name="user-female.png" width="32" height="32"/>
     </resources>
