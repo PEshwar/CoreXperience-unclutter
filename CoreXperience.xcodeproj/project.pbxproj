@@ -12,6 +12,8 @@
 		990239211A1076C300680CCA /* Stop-small.png in Resources */ = {isa = PBXBuildFile; fileRef = 9902391D1A1076C300680CCA /* Stop-small.png */; };
 		990239221A1076C300680CCA /* Rec-small.png in Resources */ = {isa = PBXBuildFile; fileRef = 9902391E1A1076C300680CCA /* Rec-small.png */; };
 		990239231A1076C300680CCA /* Pause-small.png in Resources */ = {isa = PBXBuildFile; fileRef = 9902391F1A1076C300680CCA /* Pause-small.png */; };
+		99096DFF1A19AFD2009CF377 /* hh-blessings.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 99096DFE1A19AFD2009CF377 /* hh-blessings.jpg */; };
+		99096E011A19B0B6009CF377 /* Bhagawad-Gita.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 99096E001A19B0B6009CF377 /* Bhagawad-Gita.jpg */; };
 		990F0C411A1192F2007989C1 /* Appaji.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 990F0C401A1192F2007989C1 /* Appaji.jpg */; };
 		990F0C431A119304007989C1 /* Balaswamiji.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 990F0C421A119304007989C1 /* Balaswamiji.jpg */; };
 		990F0C451A11A336007989C1 /* summaryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 990F0C441A11A336007989C1 /* summaryCell.swift */; };
@@ -101,6 +103,8 @@
 		9902391D1A1076C300680CCA /* Stop-small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Stop-small.png"; sourceTree = "<group>"; };
 		9902391E1A1076C300680CCA /* Rec-small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Rec-small.png"; sourceTree = "<group>"; };
 		9902391F1A1076C300680CCA /* Pause-small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Pause-small.png"; sourceTree = "<group>"; };
+		99096DFE1A19AFD2009CF377 /* hh-blessings.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "hh-blessings.jpg"; sourceTree = "<group>"; };
+		99096E001A19B0B6009CF377 /* Bhagawad-Gita.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Bhagawad-Gita.jpg"; sourceTree = "<group>"; };
 		990F0C401A1192F2007989C1 /* Appaji.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Appaji.jpg; sourceTree = "<group>"; };
 		990F0C421A119304007989C1 /* Balaswamiji.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Balaswamiji.jpg; sourceTree = "<group>"; };
 		990F0C441A11A336007989C1 /* summaryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = summaryCell.swift; sourceTree = "<group>"; };
@@ -287,10 +291,12 @@
 				9902391E1A1076C300680CCA /* Rec-small.png */,
 				9902391F1A1076C300680CCA /* Pause-small.png */,
 				9902391A1A1075AE00680CCA /* Audio-small.png */,
+				99096E001A19B0B6009CF377 /* Bhagawad-Gita.jpg */,
 				990F0C401A1192F2007989C1 /* Appaji.jpg */,
 				9951FBD01A12D8E700DE82D6 /* House-visit.jpg */,
 				991783DA1A11066D00D1C6CC /* photo-small.png */,
 				999783CF1A0FDA3A00943B7D /* PLAY3.jpeg */,
+				99096DFE1A19AFD2009CF377 /* hh-blessings.jpg */,
 				9951FBD81A176AD900DE82D6 /* bricks.png */,
 				990F0C461A11ACA5007989C1 /* Default-category.jpg */,
 				999783CD1A0FD9FC00943B7D /* PAUSE2.jpeg */,
@@ -416,6 +422,7 @@
 				99EBA7981A0FC98D006A83DB /* email.jpeg in Resources */,
 				990F0C411A1192F2007989C1 /* Appaji.jpg in Resources */,
 				99EBA7A21A0FD2EA006A83DB /* REC in Resources */,
+				99096E011A19B0B6009CF377 /* Bhagawad-Gita.jpg in Resources */,
 				998D7C6F19EAE9BD00A8036F /* Write in Resources */,
 				998D7C1419EAE69500A8036F /* MainCore.storyboard in Resources */,
 				996600B419F27778001B3086 /* share2.jpeg in Resources */,
@@ -441,6 +448,7 @@
 				9951FBD91A176AD900DE82D6 /* bricks.png in Resources */,
 				990239211A1076C300680CCA /* Stop-small.png in Resources */,
 				99EBA7901A0FC6A8006A83DB /* Mic2.jpeg in Resources */,
+				99096DFF1A19AFD2009CF377 /* hh-blessings.jpg in Resources */,
 				99EBA7A01A0FD285006A83DB /* stop in Resources */,
 				99EBA7921A0FC745006A83DB /* text.jpeg in Resources */,
 				990239221A1076C300680CCA /* Rec-small.png in Resources */,

@@ -386,7 +386,7 @@
                                     <action selector="donePressed:" destination="HZf-3k-Dk7" eventType="touchUpInside" id="Bcp-GJ-nNL"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="XQy-nk-gXh">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="hh-blessings.jpg" id="XQy-nk-gXh">
                                 <rect key="frame" x="0.0" y="-62" width="328" height="542"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
@@ -440,7 +440,7 @@
                                     <segue destination="uap-65-ClN" kind="push" identifier="showDateTime" id="eNC-9L-6fO"/>
                                 </connections>
                             </button>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" indicatorStyle="black" keyboardDismissMode="interactive" text="Hi" textAlignment="justified" id="ABu-cb-Zhb">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" indicatorStyle="black" keyboardDismissMode="interactive" textAlignment="justified" id="ABu-cb-Zhb">
                                 <rect key="frame" x="7" y="193" width="307" height="310"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -459,7 +459,7 @@
                                     <segue destination="cIi-yM-ufS" kind="push" identifier="showCategory" id="pci-L5-Fbt"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="GfT-Ix-B42">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Bhagawad-Gita.jpg" id="GfT-Ix-B42">
                                 <rect key="frame" x="284" y="109" width="30" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
@@ -604,7 +604,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="yhF-Yl-HHj">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Default-category.jpg" id="yhF-Yl-HHj">
                                 <rect key="frame" x="0.0" y="333" width="320" height="167"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
@@ -635,6 +635,11 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="New Category" id="nvc-r1-0eR">
+                        <barButtonItem key="leftBarButtonItem" title="Item" systemItem="cancel" id="lmc-7h-H5j">
+                            <connections>
+                                <action selector="cancelPressed:" destination="Y0B-Fr-CTe" id="8ft-0t-3Pu"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Done" id="hBJ-EU-ZP8">
                             <connections>
                                 <action selector="donePressed:" destination="Y0B-Fr-CTe" id="ApR-10-Tlq"/>
@@ -889,6 +894,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Bhagawad-Gita.jpg" width="900" height="500"/>
         <image name="Default-category.jpg" width="900" height="500"/>
         <image name="FavUnselected.jpeg" width="102" height="102"/>
         <image name="Favorite1KB.png" width="29" height="30"/>
@@ -903,6 +909,7 @@
         <image name="email.jpeg" width="204" height="204"/>
         <image name="facebook" width="225" height="225"/>
         <image name="folder.png" width="32" height="32"/>
+        <image name="hh-blessings.jpg" width="250" height="360"/>
         <image name="photo-small.png" width="32" height="32"/>
         <image name="text2.jpeg" width="225" height="225"/>
         <image name="user-female.png" width="32" height="32"/>

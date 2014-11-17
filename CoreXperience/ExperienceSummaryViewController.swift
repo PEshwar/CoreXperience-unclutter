@@ -29,7 +29,17 @@ class ExperienceSummaryViewController: UITableViewController {
         let fetchedResults = context.executeFetchRequest(fetchRequest, error: &error) as [NSManagedObject]?
         
         if let results = fetchedResults {
-            l_typeList = results }
+            l_typeList = results
+            
+            g_typeList.removeAll(keepCapacity: true)
+            for element in results {
+                var tempString = element.valueForKey("md_category") as String
+                println("value for key is \(tempString)")
+                g_typeList.append(tempString)
+              //  i++
+            }
+            println("Glist count is \(g_typeList.count)")
+            }
         else {
             println("Could not fetch \(error), \(error!.userInfo)")
         }
@@ -54,12 +64,21 @@ class ExperienceSummaryViewController: UITableViewController {
         let fetchedResults = context.executeFetchRequest(fetchRequest, error: &error) as [NSManagedObject]?
         
         if let results = fetchedResults {
-            l_typeList = results }
+            l_typeList = results
+            g_typeList.removeAll(keepCapacity: true)
+            for element in results {
+                var tempString = element.valueForKey("md_category") as String
+                println("value for key is \(tempString)")
+                g_typeList.append(tempString)
+                // i++
+            }
+            println("Glist count is \(g_typeList.count)")
+        }
             else {
             println("Could not fetch \(error), \(error!.userInfo)")
         }
 
-  g_typeList.removeAll(keepCapacity: true)
+ // g_typeList.removeAll(keepCapacity: true)
         
   //   expMgr.listByType()
      tableView.reloadData()
@@ -97,7 +116,7 @@ class ExperienceSummaryViewController: UITableViewController {
         //Assign the contents of global type list to the textLabel of each cell
         cell.d_labelTitle!.text = cat
     //   cell.textLabel!.textColor = UIColor.orangeColor()
-        g_typeList.append(cell.d_labelTitle!.text!)
+    //    g_typeList.append(cell.d_labelTitle!.text!)
         
         //Retrieve total number of experience entries for the category
         

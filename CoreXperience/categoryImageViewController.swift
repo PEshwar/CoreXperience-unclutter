@@ -22,12 +22,21 @@ class categoryImageViewController: UIViewController,UIImagePickerControllerDeleg
     
     @IBOutlet weak var d_catImageView: UIImageView!
     
+    @IBAction func cancelPressed(sender: UIBarButtonItem) {
+        navigationController?.presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
+    }
     
     @IBOutlet weak var d_catName: UITextField!
     
     @IBAction func donePressed(sender: AnyObject) {
        
-        
+        if (d_catName!.text.isEmpty)
+        {
+            var categoryAlert = UIAlertController(title: "Warning", message: "  Please enter a category name", preferredStyle: UIAlertControllerStyle.Alert)
+            categoryAlert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Destructive, handler: nil))
+            presentViewController(categoryAlert, animated: true, completion: nil)
+            
+        } else {
         var appDel: AppDelegate = (UIApplication.sharedApplication().delegate as AppDelegate)
         var context: NSManagedObjectContext;
         context = appDel.managedObjectContext!
@@ -73,7 +82,8 @@ class categoryImageViewController: UIViewController,UIImagePickerControllerDeleg
 
         self.delegateImageCat?.userImagePicked(d_catImageView.image!, categoryName: d_catName.text!)
          navigationController?.presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
-    }
+        }
+        }
     
 
     

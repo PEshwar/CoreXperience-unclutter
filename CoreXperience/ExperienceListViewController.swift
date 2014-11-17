@@ -42,7 +42,7 @@ var mediaPlayer: MPMoviePlayerController = MPMoviePlayerController()
         
         //Set image in navigation bar
         /* Create an Image View to replace the Title View */
-        let imageView = UIImageView(
+ /*       let imageView = UIImageView(
             frame: CGRect(x: 0, y: 0, width: 100, height: 40))
         
         imageView.contentMode = .ScaleAspectFit
@@ -53,7 +53,7 @@ var mediaPlayer: MPMoviePlayerController = MPMoviePlayerController()
         
         /* Set the Title View */
         navigationItem.titleView = imageView
-    
+   */
     }
 
     
@@ -76,7 +76,7 @@ var mediaPlayer: MPMoviePlayerController = MPMoviePlayerController()
         var totalCategories = context.countForFetchRequest(request, error: nil)
         
         if totalCategories > 0 {
-
+        println(" In view will appear of List conroller- value of index is \(g_selectedTypeIndex)")
         request.predicate = NSPredicate(format: "m_type == %@", g_typeList[g_selectedTypeIndex])
         typeList = context.executeFetchRequest(request, error: nil)!
         println(" TypeList count is \(typeList.count)")
@@ -88,7 +88,7 @@ var mediaPlayer: MPMoviePlayerController = MPMoviePlayerController()
     
     override func viewDidAppear(animated: Bool) {
         
-/*        var appDel: AppDelegate = (UIApplication.sharedApplication().delegate as AppDelegate)
+   /*     var appDel: AppDelegate = (UIApplication.sharedApplication().delegate as AppDelegate)
         var context: NSManagedObjectContext;
         context = appDel.managedObjectContext!
         var request = NSFetchRequest(entityName: "CoreExperience")
@@ -98,7 +98,7 @@ var mediaPlayer: MPMoviePlayerController = MPMoviePlayerController()
         println(" selected Type is  \(g_typeList[g_selectedTypeIndex])")
         
         tableView.reloadData()
-  */  }
+   */ }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
         
@@ -245,10 +245,10 @@ var mediaPlayer: MPMoviePlayerController = MPMoviePlayerController()
         var url = NSURL(fileURLWithPath: docsDir + "/" + soundURL)
         
         println("URL is \(url)")
-
-        if (soundURL.isEmpty) {
-            println(" No Audio recorded with experience")
-        } else {
+        var count  = soundURL.utf16Count
+        println("UTF 16 count is \(count)")
+        println("Count of audio location is \(count)")
+        if (count > 0) {
         
         refreshAlert.addAction(UIAlertAction(title: "Play audio", style: .Default, handler: { (action: UIAlertAction!) in
             println("Handle audio logic here")
@@ -262,6 +262,8 @@ var mediaPlayer: MPMoviePlayerController = MPMoviePlayerController()
             self.mediaPlayer.play()
         }))
         
+        } else {
+            println(" No Audio file- so no menu option")
         }
         
         refreshAlert.addAction(UIAlertAction(title: "View text", style: .Default, handler: { (action: UIAlertAction!) in
@@ -322,7 +324,8 @@ var mediaPlayer: MPMoviePlayerController = MPMoviePlayerController()
             
             var destinationVC:ExperienceDetailViewController = self.storyboard?.instantiateViewControllerWithIdentifier("ExperienceDetailViewController") as ExperienceDetailViewController
    
-            g_selectedTypeIndex = indexPath.row
+        //    g_selectedTypeIndex = indexPath.row
+            println(" List index selected for edit is \(g_selectedTypeIndex)")
         
             println("Got reference to second view controller")
             
@@ -342,8 +345,15 @@ var mediaPlayer: MPMoviePlayerController = MPMoviePlayerController()
             destinationVC.s_favourites = selectedItem.valueForKey("m_favourites") as Bool
             println("Got reference to desc")
             
-            destinationVC.s_audio_location = selectedItem.valueForKey("m_audio_location") as String
+            var audioExists = selectedItem.valueForKey("m_audio_location") as String
+            destinationVC.s_audio_location = audioExists
             println("Got reference to audio location ")
+            
+            if (audioExists.utf16Count > 0) {
+            destinationVC.l_recordFlag = true
+            } else {
+            destinationVC.l_recordFlag = false
+            }
             
             destinationVC.s_date = selectedItem.valueForKey("m_date") as NSDate
             println("Got reference to Date")
@@ -352,6 +362,8 @@ var mediaPlayer: MPMoviePlayerController = MPMoviePlayerController()
             
             destinationVC.s_location = selectedItem.valueForKey("m_location") as String
             println("Got reference to Photo location \(destinationVC.s_location)")
+            
+        
             
             destinationVC.existingItem = selectedItem
             println("Got reference to existingItem")

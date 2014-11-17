@@ -63,6 +63,8 @@ class ExperienceDetailViewController: UIViewController, userDateTimeDelegate, us
     
     //Recording-related variables
     
+    var l_recordFlag = false
+    
     var recorder: AVAudioRecorder!
     
     var player:AVAudioPlayer!
@@ -244,10 +246,32 @@ class ExperienceDetailViewController: UIViewController, userDateTimeDelegate, us
         var l_title: String = d_title.text
       
         var l_desc: String = d_desc.text!
+        
+        if (!l_recordFlag && l_desc.utf16Count <= 0) {
+            
+            var categoryAlert = UIAlertController(title: "Warning", message: " Please either enter text or record audio", preferredStyle: UIAlertControllerStyle.Alert)
+            categoryAlert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Destructive, handler: nil))
+            presentViewController(categoryAlert, animated: true, completion: nil)
+        } else {
 
         var l_user : String = "Family"
         var l_type : String = d_category.currentTitle!
-        var l_audio_location = g_fileNameAudio
+            var l_audio_location = ""
+            if (existingItem == nil) {
+                if (l_recordFlag) {
+                        l_audio_location = g_fileNameAudio
+                } else {
+                    l_audio_location = ""
+                }
+            } else {
+                if (l_recordFlag) {
+                    l_audio_location = g_fileNameAudio
+                } else {
+                    l_audio_location = s_audio_location
+                }
+            }
+            
+            
         var l_favourites = favouriteFlagOn
         var l_date : NSDate = NSDate()
  /*
@@ -346,8 +370,8 @@ class ExperienceDetailViewController: UIViewController, userDateTimeDelegate, us
         } else {
             navigationController?.popViewControllerAnimated(true)
         }
- 
-        
+    }
+    
   //  navigationController?.popToRootViewControllerAnimated(true)
         
     }
@@ -402,10 +426,13 @@ class ExperienceDetailViewController: UIViewController, userDateTimeDelegate, us
             println(" Inside view did load- existing item is not nil")
         d_title.text = s_title
         d_desc.text = s_desc
+        
            
             
             println(" Setting title & desc to \(s_title) and \(s_desc)")
           
+        } else {
+            d_category.setTitle(g_typeList[g_selectedTypeIndex], forState: .Normal)
         }
         
         if s_favourites == true {
@@ -429,7 +456,15 @@ class ExperienceDetailViewController: UIViewController, userDateTimeDelegate, us
         println("Inside view did load of detail vc, value of file name is \(g_fileNameAudio)")
         }
         else {
+            if (s_audio_location.utf16Count > 0) {
             g_fileNameAudio = s_audio_location
+            } else {
+                var format = NSDateFormatter()
+                format.dateFormat="yyyy-MM-dd-HH-mm-ss"
+                g_fileNameAudio = "recording-\(format.stringFromDate(NSDate.date())).m4a"
+                playButton.enabled = false
+            }
+            
             println(" s_audio_location in edit mode is \(g_fileNameAudio)")
             var dirPaths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
             var docsDir: AnyObject = dirPaths[0]
@@ -486,7 +521,7 @@ class ExperienceDetailViewController: UIViewController, userDateTimeDelegate, us
 
         //set auto description
         
-        d_desc.text = "Hi-  "
+  //      d_desc.text = "Hi-  "
             }
             
         //temporarily hard-setting quik audio to yes
@@ -720,14 +755,40 @@ extension ExperienceDetailViewController {
     
     @IBAction func record(sender: UIBarButtonItem) {
     
+        if (!l_recordFlag)
+        {
+            l_recordFlag = true
+            self.goRecord()
+        }
+        else {
+            var categoryAlert = UIAlertController(title: "Warning", message: " There is already a recording. Do you want to overwrite?", preferredStyle: UIAlertControllerStyle.Alert)
+            
+            
+            categoryAlert.addAction(UIAlertAction(title: "Yes", style: .Destructive, handler: { (action: UIAlertAction!) in
+                println("Handle record logic here")
+                
+                self.goRecord()
+                
+            }))
+            
+            
+            categoryAlert.addAction(UIAlertAction(title: "No", style: UIAlertActionStyle.Destructive, handler: nil))
 
+            presentViewController(categoryAlert, animated: true, completion: nil)
+        }
+        
+        
+           }
+    
+    func goRecord() {
+        
         if player != nil && player.playing {
             player.stop()
         }
         
         if recorder == nil {
             println("recording. recorder nil")
-          //  recordButton.setTitle("Pause", forState:.Normal)
+            //  recordButton.setTitle("Pause", forState:.Normal)
             recordButton.enabled = false
             pauseButton.enabled = true
             playButton.enabled = false
@@ -739,7 +800,7 @@ extension ExperienceDetailViewController {
         if recorder != nil && recorder.recording {
             println("pausing")
             recorder.pause()
-           // recordButton.setTitle("Continue", forState:.Normal)
+            // recordButton.setTitle("Continue", forState:.Normal)
             
         } else {
             println("recording")
@@ -750,9 +811,8 @@ extension ExperienceDetailViewController {
             //            recorder.record()
             recordWithPermission(false)
         }
+
     }
-    
-    
     
     @IBAction func pausePressed(sender: UIBarButtonItem) {
         if recorder != nil && recorder.recording {
