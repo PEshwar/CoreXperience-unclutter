@@ -232,3 +232,25 @@ class ExperienceSummaryViewController: UITableViewController {
     
   
 }
+
+/* extension ExperienceSummaryViewController: UISearchBarDelegate, UISearchDisplayDelegate {
+   
+    func filterContentForSearchText(searchText: String) {
+        // Filter the array using the filter method
+        self.filteredCandies = self.candies.filter({( candy: Candy) -> Bool in
+            let categoryMatch = (scope == "All") || (candy.category == scope)
+            let stringMatch = candy.name.rangeOfString(searchText)
+            return categoryMatch && (stringMatch != nil)
+        })
+    }
+    func searchDisplayController(controller: UISearchDisplayController!, shouldReloadTableForSearchString searchString: String!) -> Bool {
+        self.filterContentForSearchText(searchString)
+        return true
+    }
+    
+    func searchDisplayController(controller: UISearchDisplayController!, shouldReloadTableForSearchScope searchOption: Int) -> Bool {
+        self.filterContentForSearchText(self.searchDisplayController!.searchBar.text)
+        return true
+    }
+}
+*/

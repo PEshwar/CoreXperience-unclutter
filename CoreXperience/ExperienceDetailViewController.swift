@@ -813,9 +813,10 @@ extension ExperienceDetailViewController {
             player.pause()
             stopButton.enabled = false
             playButton.enabled = true
+            recordButton.enabled = true
             
         } else if (player != nil && !player.playing) {
-            recordButton.enabled = false
+            recordButton.enabled = true
             pauseButton.enabled = true
             playButton.enabled = true
             stopButton.enabled = false

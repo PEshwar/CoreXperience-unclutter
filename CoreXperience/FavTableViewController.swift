@@ -107,7 +107,7 @@ class FavTableViewController: UITableViewController {
         var obtainedDateString : String = dateStringFormatter.stringFromDate(tempDate!)
         var tempType = data.valueForKeyPath("m_type") as? String
         var detailCombined =  obtainedDateString + "  " + tempType!
-        cell.d_date!.text = obtainedDateString
+   //     cell.d_date!.text = obtainedDateString
  //       cell.detailTextLabel!.textColor = UIColor.purpleColor()
       
         

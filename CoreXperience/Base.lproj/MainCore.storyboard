@@ -7,6 +7,15 @@
         <!--My Experiences-->
         <scene sceneID="caC-Kj-2mM">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="teY-rx-T31" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <searchDisplayController id="7qm-Lf-73Q">
+                    <connections>
+                        <outlet property="delegate" destination="zXz-55-v7l" id="IzL-VW-rOs"/>
+                        <outlet property="searchContentsController" destination="zXz-55-v7l" id="wOK-bo-vtT"/>
+                        <outlet property="searchResultsDataSource" destination="zXz-55-v7l" id="fJO-tp-kX3"/>
+                        <outlet property="searchResultsDelegate" destination="zXz-55-v7l" id="6BC-CV-B1n"/>
+                    </connections>
+                </searchDisplayController>
                 <tableViewController id="zXz-55-v7l" customClass="ExperienceSummaryViewController" customModule="CoreXperience" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" indicatorStyle="white" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="235" sectionHeaderHeight="22" sectionFooterHeight="22" id="STu-qK-hKn">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="524"/>
@@ -61,14 +70,15 @@
                         </connections>
                     </tableView>
                     <toolbarItems>
-                        <barButtonItem image="folder.png" width="41" id="tym-hY-bfP" userLabel="Categories">
+                        <barButtonItem systemItem="action" id="tym-hY-bfP" userLabel="Categories">
                             <inset key="imageInsets" minX="0.0" minY="-24" maxX="0.0" maxY="-34"/>
                             <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <segue destination="UYT-tE-tyG" kind="push" identifier="showCategory" id="El5-dH-aak"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem image="Favorite1KB.png" id="Q3g-67-kLF" userLabel="Favourite">
+                        <barButtonItem systemItem="search" id="Q3g-67-kLF" userLabel="Favourite">
+                            <inset key="imageInsets" minX="38" minY="-2" maxX="2" maxY="-17"/>
                             <color key="tintColor" red="0.82975242189999998" green="0.84524473850000004" blue="0.1230748244" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <segue destination="mRe-bx-UDq" kind="modal" identifier="showFavourites" id="ixk-hf-EJf"/>
@@ -76,14 +86,16 @@
                         </barButtonItem>
                     </toolbarItems>
                     <navigationItem key="navigationItem" title="My Experiences" id="7GE-p3-ja0" colorLabel="IBBuiltInLabel-Yellow">
-                        <barButtonItem key="leftBarButtonItem" systemItem="add" id="fj6-dD-GNn">
+                        <barButtonItem key="leftBarButtonItem" systemItem="compose" id="fj6-dD-GNn">
                             <connections>
                                 <segue destination="et7-Vc-nWn" kind="modal" identifier="showAddView" id="OYw-IQ-nGi"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="searchDisplayController" destination="7qm-Lf-73Q" id="nl6-nt-Lfg"/>
+                    </connections>
                 </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="teY-rx-T31" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1985" y="-359"/>
         </scene>
@@ -175,22 +187,22 @@
         <scene sceneID="9ec-HX-c6j">
             <objects>
                 <tableViewController id="sPV-9X-25p" customClass="FavTableViewController" customModule="CoreXperience" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="111" sectionHeaderHeight="22" sectionFooterHeight="22" id="VG6-hx-BmM">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="61" sectionHeaderHeight="22" sectionFooterHeight="22" id="VG6-hx-BmM">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="sectionIndexBackgroundColor" red="0.14042402270000001" green="0.69644850130000002" blue="0.65104824579999998" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="sectionIndexTrackingBackgroundColor" red="0.26531969150000001" green="0.6241627663" blue="0.66666666669999997" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="favCell" rowHeight="111" id="yoH-tq-g6W" customClass="favCellTableViewCell" customModule="CoreXperience" customModuleProvider="target">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="favCell" rowHeight="61" id="yoH-tq-g6W" customClass="favCellTableViewCell" customModule="CoreXperience" customModuleProvider="target">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="yoH-tq-g6W" id="E4e-s6-GpU">
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Category" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="GXn-If-fS6">
-                                            <rect key="frame" x="8" y="37" width="220" height="21"/>
+                                            <rect key="frame" x="8" y="23" width="220" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                             <color key="textColor" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
@@ -201,29 +213,20 @@
                                             <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Eu3-sz-h0A">
-                                            <rect key="frame" x="8" y="66" width="152" height="21"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Desc" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="BZA-dq-Z5H">
-                                            <rect key="frame" x="8" y="89" width="304" height="21"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                                            <color key="textColor" red="0.30943648909999999" green="0.01179080995" blue="0.67747528700000004" alpha="1" colorSpace="calibratedRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="Ls9-cV-4gM">
-                                            <rect key="frame" x="236" y="0.0" width="80" height="80"/>
+                                            <rect key="frame" x="253" y="0.0" width="63" height="58"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Desc" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="BZA-dq-Z5H">
+                                            <rect key="frame" x="8" y="37" width="220" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
-                                    <outlet property="d_date" destination="Eu3-sz-h0A" id="jcT-uz-tb4"/>
                                     <outlet property="d_expCategory" destination="GXn-If-fS6" id="iHf-Yn-eEk"/>
                                     <outlet property="d_expDesc" destination="BZA-dq-Z5H" id="vkJ-f6-cM2"/>
                                     <outlet property="d_expTitle" destination="T5y-6J-9Na" id="2gj-DB-nn7"/>
@@ -461,7 +464,7 @@
             <objects>
                 <viewController storyboardIdentifier="ExperienceDetailViewController" id="eOE-Cb-bOH" customClass="ExperienceDetailViewController" customModule="CoreXperience" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="YQA-yi-N1i">
-                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="bKD-Of-L2R" userLabel="Favourite">
@@ -497,6 +500,7 @@
                                 <rect key="frame" x="7" y="193" width="307" height="310"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <inset key="contentInset" minX="0.0" minY="0.0" maxX="-31" maxY="0.0"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences" keyboardType="twitter" enablesReturnKeyAutomatically="YES"/>
@@ -520,37 +524,39 @@
                         <color key="backgroundColor" red="0.26531969150000001" green="0.6241627663" blue="0.66666666669999997" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <toolbarItems>
-                        <barButtonItem image="Stop-small.png" id="mGR-rE-WK8" userLabel="Stop">
+                        <barButtonItem systemItem="camera" id="RhR-8m-GxD" userLabel="Photo">
+                            <inset key="imageInsets" minX="0.0" minY="0.0" maxX="30" maxY="0.0"/>
                             <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
-                                <action selector="stop:" destination="eOE-Cb-bOH" id="dJ8-la-3T7"/>
+                                <action selector="photoPressed:" destination="eOE-Cb-bOH" id="ud0-tT-q1g"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem enabled="NO" title="00:00" id="Us7-eU-255">
                             <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         </barButtonItem>
-                        <barButtonItem image="Rec-small.png" id="4Gu-LV-Sis" userLabel="Record">
-                            <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                            <connections>
-                                <action selector="record:" destination="eOE-Cb-bOH" id="ig3-pK-6e7"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem image="Pause-small.png" id="Mdi-XJ-ufI" userLabel="Pause">
-                            <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                            <connections>
-                                <action selector="pausePressed:" destination="eOE-Cb-bOH" id="OeS-G2-BmG"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem image="Play-small.png" id="Z4L-uT-6sq" userLabel="Play">
+                        <barButtonItem width="41" systemItem="play" id="Z4L-uT-6sq" userLabel="Play">
                             <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <action selector="play:" destination="eOE-Cb-bOH" id="Zcx-Nr-SVk"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem image="photo-small.png" width="45" id="RhR-8m-GxD" userLabel="Photo">
+                        <barButtonItem width="24" systemItem="pause" id="Mdi-XJ-ufI" userLabel="Pause">
                             <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
-                                <action selector="photoPressed:" destination="eOE-Cb-bOH" id="ud0-tT-q1g"/>
+                                <action selector="pausePressed:" destination="eOE-Cb-bOH" id="OeS-G2-BmG"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem systemItem="stop" id="mGR-rE-WK8" userLabel="Stop">
+                            <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="stop:" destination="eOE-Cb-bOH" id="dJ8-la-3T7"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem image="Rec-small.png" width="60" id="4Gu-LV-Sis" userLabel="Record">
+                            <inset key="imageInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="-6"/>
+                            <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="record:" destination="eOE-Cb-bOH" id="ig3-pK-6e7"/>
                             </connections>
                         </barButtonItem>
                     </toolbarItems>
@@ -956,16 +962,11 @@
         <image name="Favorite1KB.png" width="29" height="30"/>
         <image name="House-visit.jpg" width="360" height="240"/>
         <image name="Mic2.jpeg" width="204" height="204"/>
-        <image name="Pause-small.png" width="40" height="40"/>
-        <image name="Play-small.png" width="40" height="40"/>
         <image name="Rec-small.png" width="40" height="40"/>
-        <image name="Stop-small.png" width="40" height="40"/>
         <image name="camera2.jpeg" width="203" height="205"/>
         <image name="edit" width="123" height="123"/>
         <image name="email.jpeg" width="204" height="204"/>
         <image name="facebook" width="225" height="225"/>
-        <image name="folder.png" width="32" height="32"/>
-        <image name="photo-small.png" width="32" height="32"/>
         <image name="text2.jpeg" width="225" height="225"/>
         <image name="user-female.png" width="32" height="32"/>
     </resources>
