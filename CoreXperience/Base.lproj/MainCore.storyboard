@@ -61,11 +61,17 @@
                         </connections>
                     </tableView>
                     <toolbarItems>
-                        <barButtonItem image="folder.png" width="41" id="tym-hY-bfP">
+                        <barButtonItem image="folder.png" width="41" id="tym-hY-bfP" userLabel="Categories">
                             <inset key="imageInsets" minX="0.0" minY="-24" maxX="0.0" maxY="-34"/>
                             <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <segue destination="UYT-tE-tyG" kind="push" identifier="showCategory" id="El5-dH-aak"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem image="Favorite1KB.png" id="Q3g-67-kLF" userLabel="Favourite">
+                            <color key="tintColor" red="0.82975242189999998" green="0.84524473850000004" blue="0.1230748244" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <segue destination="mRe-bx-UDq" kind="modal" identifier="showFavourites" id="ixk-hf-EJf"/>
                             </connections>
                         </barButtonItem>
                     </toolbarItems>
@@ -169,19 +175,60 @@
         <scene sceneID="9ec-HX-c6j">
             <objects>
                 <tableViewController id="sPV-9X-25p" customClass="FavTableViewController" customModule="CoreXperience" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="91" sectionHeaderHeight="22" sectionFooterHeight="22" id="VG6-hx-BmM">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="111" sectionHeaderHeight="22" sectionFooterHeight="22" id="VG6-hx-BmM">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="sectionIndexBackgroundColor" red="0.14042402270000001" green="0.69644850130000002" blue="0.65104824579999998" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="sectionIndexTrackingBackgroundColor" red="0.26531969150000001" green="0.6241627663" blue="0.66666666669999997" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="favCell" rowHeight="91" id="yoH-tq-g6W">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="favCell" rowHeight="111" id="yoH-tq-g6W" customClass="favCellTableViewCell" customModule="CoreXperience" customModuleProvider="target">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="yoH-tq-g6W" id="E4e-s6-GpU">
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Category" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="GXn-If-fS6">
+                                            <rect key="frame" x="8" y="37" width="220" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                            <color key="textColor" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="T5y-6J-9Na">
+                                            <rect key="frame" x="8" y="8" width="220" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Eu3-sz-h0A">
+                                            <rect key="frame" x="8" y="66" width="152" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Desc" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="BZA-dq-Z5H">
+                                            <rect key="frame" x="8" y="89" width="304" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                            <color key="textColor" red="0.30943648909999999" green="0.01179080995" blue="0.67747528700000004" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="Ls9-cV-4gM">
+                                            <rect key="frame" x="236" y="0.0" width="80" height="80"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        </imageView>
+                                    </subviews>
                                 </tableViewCellContentView>
-                                <color key="backgroundColor" red="0.26531969150000001" green="0.6241627663" blue="0.66666666669999997" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="d_date" destination="Eu3-sz-h0A" id="jcT-uz-tb4"/>
+                                    <outlet property="d_expCategory" destination="GXn-If-fS6" id="iHf-Yn-eEk"/>
+                                    <outlet property="d_expDesc" destination="BZA-dq-Z5H" id="vkJ-f6-cM2"/>
+                                    <outlet property="d_expTitle" destination="T5y-6J-9Na" id="2gj-DB-nn7"/>
+                                    <outlet property="d_image" destination="Ls9-cV-4gM" id="IOo-mD-rOr"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -189,7 +236,13 @@
                             <outlet property="delegate" destination="sPV-9X-25p" id="Ba9-uw-70H"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Favourite Experiences" id="ZLf-Xo-uKb"/>
+                    <navigationItem key="navigationItem" title="Favourite Experiences" id="ZLf-Xo-uKb">
+                        <barButtonItem key="rightBarButtonItem" title="Item" systemItem="done" id="0Rm-Zz-tpy">
+                            <connections>
+                                <action selector="donePressed:" destination="sPV-9X-25p" id="LCr-Wg-8oq"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xpg-7O-1Ac" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -674,12 +727,13 @@
         <!--Favourites-->
         <scene sceneID="dhQ-Ae-beq">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="mRe-bx-UDq" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" toolbarHidden="NO" id="mRe-bx-UDq" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Favourites" image="Favorite1KB.png" id="0zs-r8-T0T"/>
                     <toolbarItems/>
+                    <navigationItem key="navigationItem" id="uKR-SK-1o4"/>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <nil key="simulatedTopBarMetrics"/>
-                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <nil key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Eig-Rm-Ooe">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -687,6 +741,7 @@
                     <nil name="viewControllers"/>
                     <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="teh-Ap-ki6">
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" red="0.68706154336734693" green="0.22348143762955744" blue="0.018592091222448807" alpha="1" colorSpace="calibratedRGB"/>
                     </toolbar>
                     <connections>
                         <segue destination="sPV-9X-25p" kind="relationship" relationship="rootViewController" id="t4t-W7-O4q"/>
@@ -920,8 +975,8 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="mkf-q8-ych"/>
-        <segue reference="dn2-4x-ahd"/>
+        <segue reference="OYw-IQ-nGi"/>
+        <segue reference="El5-dH-aak"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.68706154336734693" green="0.22348143762955744" blue="0.018592091222448807" alpha="1" colorSpace="calibratedRGB"/>
 </document>

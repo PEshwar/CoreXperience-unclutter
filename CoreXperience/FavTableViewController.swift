@@ -17,6 +17,9 @@ class FavTableViewController: UITableViewController {
     var favList : Array<AnyObject> = []
     var mediaPlayer: MPMoviePlayerController = MPMoviePlayerController()
 
+    @IBAction func donePressed(sender: AnyObject) {
+        navigationController?.dismissViewControllerAnimated(true, completion: nil)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -78,18 +81,23 @@ class FavTableViewController: UITableViewController {
    
       
       override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+      
         
-        var cell = tableView.dequeueReusableCellWithIdentifier("favCell") as UITableViewCell
-        //Add this line to get the subtitle text
-        cell = UITableViewCell(style: UITableViewCellStyle.Subtitle,reuseIdentifier:"favCell")
+        var cell = tableView.dequeueReusableCellWithIdentifier("favCell") as favCellTableViewCell
+     
+     
         //Assign the contents of global type list to the textLabel of each cell
-         var data:NSManagedObject = favList[indexPath.row] as NSManagedObject
-        cell.textLabel!.text = data.valueForKeyPath("m_title") as? String
-        cell.textLabel!.textColor = UIColor.orangeColor()
+        var data:NSManagedObject = favList[indexPath.row] as NSManagedObject
+        cell.d_expTitle!.text = data.valueForKeyPath("m_title") as? String
+        cell.d_expDesc!.text = data.valueForKeyPath("m_desc") as? String
+        cell.d_expCategory!.text = data.valueForKeyPath("m_type") as? String
+     //   cell.textLabel!.textColor = UIColor.orangeColor()
         
         var tempDate = data.valueForKeyPath("m_date") as? NSDate
         
-        
+        println(" Fav Title is \(cell.d_expTitle!.text)")
+        println(" Fav Desc is \(cell.d_expDesc!.text)")
+        println(" Fav Type is \(cell.d_expCategory!.text)")
         
         let dateStringFormatter = NSDateFormatter()
         
@@ -99,10 +107,52 @@ class FavTableViewController: UITableViewController {
         var obtainedDateString : String = dateStringFormatter.stringFromDate(tempDate!)
         var tempType = data.valueForKeyPath("m_type") as? String
         var detailCombined =  obtainedDateString + "  " + tempType!
-        cell.detailTextLabel!.text = detailCombined
-        cell.detailTextLabel!.textColor = UIColor.purpleColor()
+        cell.d_date!.text = obtainedDateString
+ //       cell.detailTextLabel!.textColor = UIColor.purpleColor()
       
-      
+        
+     /*
+        let obtainedDate = data.valueForKeyPath("m_date") as NSDate
+        
+        let dateStringFormatter = NSDateFormatter()
+        
+        dateStringFormatter.dateFormat = "yyyy-MM-dd"
+        dateStringFormatter.locale = NSLocale(localeIdentifier: "en_US_POSIX")
+        
+        var obtainedDateString : String = dateStringFormatter.stringFromDate(obtainedDate)
+        println(" Obtained date is \(obtainedDateString)")
+        g_cell.d_date.text = obtainedDateString
+        
+        */
+        
+        
+        //Set Photo
+        
+        var photoLoc = data.valueForKeyPath("m_location") as? String
+        println("Got reference to Photo Loc: \(photoLoc)")
+        
+        var count  = photoLoc?.utf16Count
+        println("UTF 16 count is \(count)")
+        
+        //Get Photo
+        
+        let nsDocumentDirectory = NSSearchPathDirectory.DocumentDirectory
+        let nsUserDomainMask = NSSearchPathDomainMask.UserDomainMask
+        
+        
+        if let paths = NSSearchPathForDirectoriesInDomains(nsDocumentDirectory, nsUserDomainMask, true) {
+            if paths.count > 0 {
+                if let dirPath = paths[0] as? String {
+                    var photoPath = dirPath.stringByAppendingPathComponent(photoLoc!)
+                    println(" Photo Path is \(photoPath)")
+                    if count > 1 {
+                        var imagePhoto = UIImage(named: photoPath)
+                        cell.d_image.image = imagePhoto
+                    }
+                }
+            }
+        }
+
         return cell
     }
   
