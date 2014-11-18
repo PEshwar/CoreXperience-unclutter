@@ -24,6 +24,7 @@
 		9930D8E61A0F01030087826B /* modelCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9930D8E51A0F01030087826B /* modelCategory.swift */; };
 		9930D8E81A0F01C60087826B /* categoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9930D8E71A0F01C60087826B /* categoryViewController.swift */; };
 		994634DC1A1AD5EA00C5D0E9 /* Rec-small.png in Resources */ = {isa = PBXBuildFile; fileRef = 994634DB1A1AD5EA00C5D0E9 /* Rec-small.png */; };
+		994634E11A1B66A200C5D0E9 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 994634E01A1B66A200C5D0E9 /* CloudKit.framework */; };
 		9951FBCF1A12C90B00DE82D6 /* categoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9951FBCE1A12C90B00DE82D6 /* categoryTableViewCell.swift */; };
 		9951FBD11A12D8E700DE82D6 /* House-visit.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9951FBD01A12D8E700DE82D6 /* House-visit.jpg */; };
 		9951FBD31A17506C00DE82D6 /* categoryImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9951FBD21A17506C00DE82D6 /* categoryImageViewController.swift */; };
@@ -89,6 +90,8 @@
 		9930D8E51A0F01030087826B /* modelCategory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = modelCategory.swift; sourceTree = "<group>"; };
 		9930D8E71A0F01C60087826B /* categoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = categoryViewController.swift; sourceTree = "<group>"; };
 		994634DB1A1AD5EA00C5D0E9 /* Rec-small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Rec-small.png"; sourceTree = "<group>"; };
+		994634DD1A1B570800C5D0E9 /* CoreXperience.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = CoreXperience.entitlements; sourceTree = "<group>"; };
+		994634E01A1B66A200C5D0E9 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		9951FBCE1A12C90B00DE82D6 /* categoryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = categoryTableViewCell.swift; sourceTree = "<group>"; };
 		9951FBD01A12D8E700DE82D6 /* House-visit.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "House-visit.jpg"; sourceTree = "<group>"; };
 		9951FBD21A17506C00DE82D6 /* categoryImageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = categoryImageViewController.swift; sourceTree = "<group>"; };
@@ -136,6 +139,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				99B0AA3D19F3F89A00D3A5F3 /* Social.framework in Frameworks */,
+				994634E11A1B66A200C5D0E9 /* CloudKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -152,6 +156,7 @@
 		998D7BFD19EAE69500A8036F = {
 			isa = PBXGroup;
 			children = (
+				994634E01A1B66A200C5D0E9 /* CloudKit.framework */,
 				99B0AA3C19F3F89A00D3A5F3 /* Social.framework */,
 				998D7C0819EAE69500A8036F /* CoreXperience */,
 				998D7C2119EAE69500A8036F /* CoreXperienceTests */,
@@ -171,6 +176,7 @@
 		998D7C0819EAE69500A8036F /* CoreXperience */ = {
 			isa = PBXGroup;
 			children = (
+				994634DD1A1B570800C5D0E9 /* CoreXperience.entitlements */,
 				998D7C0B19EAE69500A8036F /* AppDelegate.swift */,
 				998D7C1219EAE69500A8036F /* MainCore.storyboard */,
 				998D7C1519EAE69500A8036F /* Images.xcassets */,
@@ -308,6 +314,12 @@
 				TargetAttributes = {
 					998D7C0519EAE69500A8036F = {
 						CreatedOnToolsVersion = 6.0.1;
+						DevelopmentTeam = T9HY8P658T;
+						SystemCapabilities = {
+							com.apple.iCloud = {
+								enabled = 1;
+							};
+						};
 					};
 					998D7C1D19EAE69500A8036F = {
 						CreatedOnToolsVersion = 6.0.1;
@@ -528,9 +540,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = CoreXperience/CoreXperience.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = CoreXperience/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -538,9 +554,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = CoreXperience/CoreXperience.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = CoreXperience/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};

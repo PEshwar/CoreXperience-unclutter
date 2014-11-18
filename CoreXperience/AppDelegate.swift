@@ -66,7 +66,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let url = self.applicationDocumentsDirectory.URLByAppendingPathComponent("CoreXperience.sqlite")
         var error: NSError? = nil
         var failureReason = "There was an error creating or loading the application's saved data."
-        if coordinator!.addPersistentStoreWithType(NSSQLiteStoreType, configuration: nil, URL: url, options: nil, error: &error) == nil {
+        // Setup icloud sync
+        let optionsCX =
+        [NSPersistentStoreUbiquitousContentNameKey: "CoreExperienceCloud", NSMigratePersistentStoresAutomaticallyOption: true, NSInferMappingModelAutomaticallyOption: true]
+        
+        if coordinator!.addPersistentStoreWithType(NSSQLiteStoreType, configuration: nil, URL: url, options: optionsCX, error: &error) == nil {
             coordinator = nil
             // Report any error we got.
             let dict = NSMutableDictionary()
@@ -108,5 +112,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
     }
 
+    // PE: Adding additional code on 18th Nov to enable instant icloud notification of changes
+    
+    
 }
 
