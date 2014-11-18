@@ -630,17 +630,9 @@ extension FavTableViewController : MFMailComposeViewControllerDelegate {
 
 extension FavTableViewController: UISearchBarDelegate, UISearchDisplayDelegate {
 
-func filterContentForSearchText(searchText: String) {
+func filterContentForSearchText(searchText: String, scope: String = "All") {
 // Filter the array using the filter method
-    var appDel: AppDelegate = (UIApplication.sharedApplication().delegate as AppDelegate)
-    var context: NSManagedObjectContext;
-    context = appDel.managedObjectContext!
-    var request = NSFetchRequest(entityName: "CoreExperience")
-//  request.predicate = NSPredicate(format: "m_type ==  %@", searchText)
-  //  request.predicate = NSPredicate(format: "m_type CONTAINS[c] %@", searchText)
-  //  request.predicate = NSPredicate(format: "m_type contains[c] \(searchText)", argumentArray: nil)
-//    request.predicate = NSPredicate(format: "m_type Contains %@", searchText)
-//    favList = context.executeFetchRequest(request, error: nil)!
+
     var i: Int = 0
     println(" Fav List has count of \(favList.count)")
     for element in favList {
@@ -654,6 +646,7 @@ func filterContentForSearchText(searchText: String) {
             
         }
         i++
+    
     }
 
     
@@ -666,13 +659,33 @@ func filterContentForSearchText(searchText: String) {
 func searchDisplayController(controller: UISearchDisplayController!, shouldReloadTableForSearchString searchString: String!) -> Bool {
 println(" Entering search Display controller")
     filteredSearchList.removeAll(keepCapacity: true)
-    self.filterContentForSearchText(searchString)
+    let scopes = self.searchDisplayController!.searchBar.scopeButtonTitles as [String]
+     let selectedScope = scopes[self.searchDisplayController!.searchBar.selectedScopeButtonIndex] as String
+    self.filterContentForSearchText(searchString, scope: selectedScope)
     println(" Exiting search Display controller")
 return true
 }
 
 func searchDisplayController(controller: UISearchDisplayController!, shouldReloadTableForSearchScope searchOption: Int) -> Bool {
-    self.filterContentForSearchText(self.searchDisplayController!.searchBar.text)
+    let scope = self.searchDisplayController!.searchBar.scopeButtonTitles as [String]
+    
+    // Get items from DB
+    var appDel: AppDelegate = (UIApplication.sharedApplication().delegate as AppDelegate)
+    var context: NSManagedObjectContext;
+    context = appDel.managedObjectContext!
+    var request = NSFetchRequest(entityName: "CoreExperience")
+    
+    if scope[searchOption] == "Favourites" {
+        request.predicate = NSPredicate(format: "m_favourites == %@", true)
+            println(" Getting favourites from DB")
+    }
+    favList = context.executeFetchRequest(request, error: nil)!
+     println(" Fav TypeList count in scope method is \(favList.count)")
+    
+    self.filterContentForSearchText(self.searchDisplayController!.searchBar.text, scope: scope[searchOption])
+    //self.filterContentForSearchText(self.searchDisplayController!.searchBar.text)
+    self.tableView.reloadData()
+ 
     return true
 }
 
