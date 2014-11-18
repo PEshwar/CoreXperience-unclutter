@@ -80,6 +80,7 @@ class FavTableViewController: UITableViewController {
         
         if tableView == self.searchDisplayController!.searchResultsTableView {
             println(" filtered search count is \(self.filteredSearchList.count)")
+      
             return self.filteredSearchList.count
             
         } else {
@@ -113,7 +114,7 @@ class FavTableViewController: UITableViewController {
         // Configure the cell
             var tempCategory = data.valueForKeyPath("m_type") as? String
             var tempTitle = data.valueForKeyPath("m_title") as? String
-            cell.textLabel!.text = tempCategory! + ":   " + tempTitle!
+            cell.textLabel!.text = "[" + tempCategory! + "]:   " + tempTitle!
        //     cell.textLabel!.text = data.valueForKeyPath("m_title") as? String
             cell.detailTextLabel!.text = data.valueForKeyPath("m_desc") as? String
             cell.detailTextLabel!.textColor = UIColor.purpleColor()
@@ -638,7 +639,7 @@ func filterContentForSearchText(searchText: String, scope: String = "All") {
     for element in favList {
         var tempDesc = element.valueForKey("m_desc") as String
         var tempTitle = element.valueForKey("m_title") as String
-        if ((tempDesc.rangeOfString(searchText) != nil) || (tempTitle.rangeOfString(searchText) != nil))  {
+        if ((tempDesc.lowercaseString.rangeOfString(searchText) != nil) || (tempTitle.lowercaseString.rangeOfString(searchText) != nil))  {
         println("value for Desc is \(tempDesc)")
             println("value for Title is \(tempTitle)")
             println("i = \(i)")

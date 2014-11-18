@@ -184,7 +184,7 @@
             </objects>
             <point key="canvasLocation" x="3248" y="357"/>
         </scene>
-        <!--Favourite Experiences-->
+        <!--Search-->
         <scene sceneID="9ec-HX-c6j">
             <objects>
                 <tableViewController id="sPV-9X-25p" customClass="FavTableViewController" customModule="CoreXperience" customModuleProvider="target" sceneMemberID="viewController">
@@ -194,7 +194,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="sectionIndexBackgroundColor" red="0.14042402270000001" green="0.69644850130000002" blue="0.65104824579999998" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="sectionIndexTrackingBackgroundColor" red="0.26531969150000001" green="0.6241627663" blue="0.66666666669999997" alpha="1" colorSpace="calibratedRGB"/>
-                        <searchBar key="tableHeaderView" contentMode="redraw" showsScopeBar="YES" id="w3J-jT-Duf">
+                        <searchBar key="tableHeaderView" contentMode="redraw" placeholder="Search for experiences" showsScopeBar="YES" id="w3J-jT-Duf">
                             <rect key="frame" x="0.0" y="64" width="320" height="88"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             <textInputTraits key="textInputTraits"/>
@@ -220,7 +220,7 @@
                             <outlet property="delegate" destination="sPV-9X-25p" id="Ba9-uw-70H"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Favourite Experiences" id="ZLf-Xo-uKb">
+                    <navigationItem key="navigationItem" title="Search" id="ZLf-Xo-uKb">
                         <barButtonItem key="rightBarButtonItem" title="Item" systemItem="done" id="0Rm-Zz-tpy">
                             <connections>
                                 <action selector="donePressed:" destination="sPV-9X-25p" id="LCr-Wg-8oq"/>
@@ -470,7 +470,7 @@
                                     <action selector="favouritePressed:" destination="eOE-Cb-bOH" eventType="touchUpInside" id="iHM-XC-JDr"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Title" borderStyle="roundedRect" minimumFontSize="17" id="xXC-iM-V88">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Title" borderStyle="roundedRect" minimumFontSize="17" clearButtonMode="always" id="xXC-iM-V88">
                                 <rect key="frame" x="7" y="147" width="307" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -678,7 +678,7 @@
                                     <action selector="pickImagePressed:" destination="Y0B-Fr-CTe" eventType="touchUpInside" id="bq0-hu-MNg"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" id="9rG-MP-uKf">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" clearButtonMode="always" id="9rG-MP-uKf">
                                 <rect key="frame" x="19" y="147" width="283" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
