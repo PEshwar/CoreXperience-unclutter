@@ -13,6 +13,7 @@ import Foundation
 import CoreData
 
 
+
 var expMgr:ExperienceMgr = ExperienceMgr()
 
 var g_typeList:[String] = ["My interactions with Sadguru", "My divine dreams", "My Sadguru's teachings", "Heart-to-Heart messages", "Miscellaneous"]
@@ -38,7 +39,9 @@ struct Experience {
     var m_audio_location : String = ""
    var m_favourites: Bool  = true
    var m_date: NSDate
-
+    var m_photo_blob : UIImage
+    var m_audio_blob : AnyObject
+    
     
 }
 
@@ -66,7 +69,7 @@ class ExperienceMgr: NSObject {
             
      
            
-            experiences.append(Experience(m_user:res.valueForKey("m_user") as String, m_type:res.valueForKey("m_type") as String,m_title:res.valueForKey("m_title") as String,m_desc:res.valueForKey("m_desc") as String,m_location:res.valueForKey("m_location") as String, m_audio_location:"", m_favourites:res.valueForKey("m_favourites") as Bool, m_date:res.valueForKey("m_date") as NSDate ))
+            experiences.append(Experience(m_user:res.valueForKey("m_user") as String, m_type:res.valueForKey("m_type") as String,m_title:res.valueForKey("m_title") as String,m_desc:res.valueForKey("m_desc") as String,m_location:res.valueForKey("m_location") as String, m_audio_location:"", m_favourites:res.valueForKey("m_favourites") as Bool, m_date:res.valueForKey("m_date") as NSDate, m_photo_blob: res.valueForKey("m_photo_blob") as UIImage, m_audio_blob: res.valueForKey("m_audio_blob") ))
         }
         
         println(" After init of experiences array, array count is \(experiences.count)")
@@ -124,7 +127,7 @@ class ExperienceMgr: NSObject {
   
 
   
-            switch (tempType) {
+   /*         switch (tempType) {
             
             case g_typeList[0]: g_experiencesByType1.append(Experience(m_user:res.valueForKey("m_user") as String, m_type:res.valueForKey("m_type") as String,m_title:res.valueForKey("m_title") as String,m_desc:res.valueForKey("m_desc") as String,m_location:res.valueForKey("m_location") as String, m_audio_location:res.valueForKey("m_audio_location") as String, m_favourites:res.valueForKey("m_favourites") as Bool, m_date:res.valueForKey("m_date") as NSDate ))
             
@@ -135,20 +138,20 @@ class ExperienceMgr: NSObject {
             case g_typeList[3]: g_experiencesByType4.append(Experience(m_user:res.valueForKey("m_user") as String, m_type:res.valueForKey("m_type") as String,m_title:res.valueForKey("m_title") as String,m_desc:res.valueForKey("m_desc") as String,m_location:res.valueForKey("m_location") as String, m_audio_location:res.valueForKey("m_audio_location") as String, m_favourites:res.valueForKey("m_favourites") as Bool, m_date:res.valueForKey("m_date") as NSDate ))
             
             case g_typeList[4]: g_experiencesByType5.append(Experience(m_user:res.valueForKey("m_user") as String, m_type:res.valueForKey("m_type") as String,m_title:res.valueForKey("m_title") as String,m_desc:res.valueForKey("m_desc") as String,m_location:res.valueForKey("m_location") as String, m_audio_location:res.valueForKey("m_audio_location") as String, m_favourites:res.valueForKey("m_favourites") as Bool, m_date:res.valueForKey("m_date") as NSDate ))
-            
+
             default:
                 break
-                
+
             }
-        
+        */
   
     loadListArrays()
  
     }
     }
         
-    func addExperience(a_user:String, a_type: String, a_title: String, a_desc:String, a_location:String, a_audio_location: String, a_favourites:Bool, a_date: NSDate){
-        
+func addExperience(a_user:String, a_type: String, a_title: String, a_desc:String, a_location:String, a_audio_location: String, a_favourites:Bool, a_date: NSDate, a_photo:UIImage, a_audio:AnyObject){
+    
         var dicExperience: Dictionary<String,String> = Dictionary<String,String>()
         
         println("Inside add Experience method")
@@ -165,7 +168,8 @@ class ExperienceMgr: NSObject {
         dicExperience["m_title"] = a_title
         dicExperience["m_desc"] = a_desc
         dicExperience["m_location"] = a_location
-        dicExperience["m_audio_location"] = a_audio_location
+    
+    dicExperience["m_audio_location"] = a_audio_location
       //  dicExperience["m_favourites"] = String(a_favourites)
       //  dicExperience["m_location"] = a_date
         
@@ -188,7 +192,8 @@ class ExperienceMgr: NSObject {
         newEntity.setValue(a_audio_location, forKey: "m_audio_location")
         newEntity.setValue(a_favourites, forKey: "m_favourites")
         newEntity.setValue(a_date, forKey: "m_date")
-
+        newEntity.setValue(a_photo, forKey: "m_photo_blob")
+        newEntity.setValue(a_audio, forKey: "m_audio_blob")
         
             
 
@@ -196,7 +201,7 @@ class ExperienceMgr: NSObject {
         
         if(context.save(nil)){
             
-            experiences.append(Experience(m_user: a_user, m_type:a_type, m_title:a_title, m_desc:a_desc, m_location:a_location, m_audio_location: a_audio_location, m_favourites: a_favourites, m_date: a_date))
+            experiences.append(Experience(m_user: a_user, m_type:a_type, m_title:a_title, m_desc:a_desc, m_location:a_location, m_audio_location: a_audio_location, m_favourites: a_favourites, m_date: a_date, m_photo_blob: a_photo,m_audio_blob: a_audio))
             
             println("Appended new item with title \(a_title) and type \(a_type) and user \(a_user) and location is \(a_location) , and description is \(a_desc), and audio location is \(a_audio_location), and favourites is \(a_favourites), and date is \(a_date)" )
         }

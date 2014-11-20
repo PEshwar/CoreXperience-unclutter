@@ -11,7 +11,8 @@ import MediaPlayer
 import Social
 import CoreData
 import MessageUI
-
+import AVFoundation
+import AudioToolbox
 
 
 class ExperienceListViewController: UITableViewController {
@@ -231,12 +232,29 @@ var mediaPlayer: MPMoviePlayerController = MPMoviePlayerController()
         
         var refreshAlert = UIAlertController(title: "Action", message: "What do you want to do?", preferredStyle: UIAlertControllerStyle.Alert)
         
+        // Get audio blob from db and play
+        var blobAudio = selectedItem.valueForKey("m_audio_blob") as NSData
+       
+    
+        
+        func createBlobSound() -> SystemSoundID {
+            var soundID: SystemSoundID = 0
+            let soundURL = CFBundleCopyResourceURL(CFBundleGetMainBundle(), "Cha-Ching", "aiff", nil)
+            AudioServicesCreateSystemSoundID(soundURL, &soundID)
+            
+            return soundID
+        }
+        
+        let blobSound: SystemSoundID = createBlobSound()
+        AudioServicesPlaySystemSound(blobSound)
+     
+   
         //Get audio URL
         
         var docsDir = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as String
         
         var soundURL = selectedItem.valueForKey("m_audio_location") as String
-        //      var soundURL = g_experiencesByType[indexPath.row].m_audio_location
+      
         
         println("Printing current selected index : \(g_selectedListRow)")
         
@@ -257,9 +275,23 @@ var mediaPlayer: MPMoviePlayerController = MPMoviePlayerController()
             self.mediaPlayer.stop()
             
             
-            self.mediaPlayer.contentURL = url
+        //    self.mediaPlayer.contentURL = url
             
+            var blobAudio = selectedItem.valueForKey("m_audio_blob") as NSData
+            var fileMgr = NSFileManager()
+            var stringURL = url.absoluteString
+            var successAudio = fileMgr.createFileAtPath(docsDir, contents: blobAudio, attributes: nil)
+            var filePath = docsDir.stringByAppendingPathComponent("audio.m4a")
+            var successFile = fileMgr.createFileAtPath(filePath, contents: blobAudio, attributes: nil)
+            
+            println("Success in writing audio to disk is \(successAudio), and file name is \(stringURL)")
+            println("Success in writing file to disk is \(successFile), and file name is \(filePath)")
+            var fileURL = NSURL(fileURLWithPath: filePath)
+            self.mediaPlayer.contentURL = fileURL
+            println("Going to play audio from file location that was just saved")
+            //End different way to play sound
             self.mediaPlayer.play()
+ 
         }))
         
         } else {
@@ -307,13 +339,16 @@ var mediaPlayer: MPMoviePlayerController = MPMoviePlayerController()
                         var photoPath = dirPath.stringByAppendingPathComponent(photoLoc!)
                         println(" Photo Path is \(photoPath)")
                         var imagePhoto = UIImage(named: photoPath)
-                        destinationVC.tempPhoto = imagePhoto
+            //            destinationVC.tempPhoto = imagePhoto
                         destinationVC.viewMode = true
                         
                     }
                 }
             }
-            
+            println("Getting blob photo in view photo")
+            var blob_photo = selectedItem.valueForKey("m_photo_blob") as UIImage
+            println("Got blob photo in view photo- setting vc tempPhoto variable")
+            destinationVC.tempPhoto = blob_photo
             self.navigationController?.pushViewController(destinationVC, animated: true)
             
         }))

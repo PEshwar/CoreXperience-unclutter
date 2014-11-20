@@ -153,7 +153,7 @@ class ExperienceSummaryViewController: UITableViewController {
         
    /*     //Set image
         if cat == "My experiences with Sadguru" {
-        cell.d_image.image = UIImage(named: "Appaji.jpg")
+        cell.d_image.image = UIImage(named: "Bonsai.jpg")
         } else if cat == "Sadguru's teachings" {
         cell.d_image.image = UIImage(named: "Balaswamiji.jpg")
         } else {

@@ -340,13 +340,41 @@ class ExperienceDetailViewController: UIViewController, userDateTimeDelegate, us
         var l_location: String = l_PhotoLocation
         println(" Photo Location is \(l_PhotoLocation)")
         println(" L Location is \(l_location)")
-        
-        if (existingItem != nil)
-        {
             
+            //Get audio file
+            var audioPath = NSString()
+            var fileMgr = NSFileManager()
+            let nsDocumentDirectory = NSSearchPathDirectory.DocumentDirectory
+            let nsUserDomainMask = NSSearchPathDomainMask.UserDomainMask
+            if let paths = NSSearchPathForDirectoriesInDomains(nsDocumentDirectory, nsUserDomainMask, true) {
+                if paths.count > 0 {
+                    if let dirPath = paths[0] as? String {
+                        
+                        
+                        audioPath = dirPath.stringByAppendingPathComponent(l_audio_location)
+                        println("write path is \(audioPath)")
+                        
+                        
+                    }
+                }
+            }
+
+            var l_audio_blob = fileMgr.contentsAtPath(audioPath)
+            if l_audio_blob == nil {
+                println(" No audio object found by file manager")
+            } else {
+                println(" audio object blob found by file mgr, writing to sqlite")
+            }
+        
             var appDel: AppDelegate = (UIApplication.sharedApplication().delegate as AppDelegate)
             var context: NSManagedObjectContext;
             context = appDel.managedObjectContext!
+        if (existingItem != nil)
+        {
+            
+       //     var appDel: AppDelegate = (UIApplication.sharedApplication().delegate as AppDelegate)
+       //     var context: NSManagedObjectContext;
+       //     context = appDel.managedObjectContext!
             
             existingItem.setValue(l_title as String, forKey: "m_title")
             existingItem.setValue(l_desc as String, forKey: "m_desc")
@@ -355,13 +383,29 @@ class ExperienceDetailViewController: UIViewController, userDateTimeDelegate, us
             existingItem.setValue(l_favourites as Bool, forKey: "m_favourites")
             existingItem.setValue(l_date as NSDate, forKey: "m_date")
             existingItem.setValue(l_location as String, forKey: "m_location")
-            
+            existingItem.setValue(photoExperience.image, forKey: "m_photo_blob")
+            existingItem.setValue(l_audio_blob, forKey: "m_audio_blob")
             
             
             context.save(nil)
         }
         else {
-        expMgr.addExperience(l_user,a_type:l_type, a_title:l_title,a_desc:l_desc,a_location:l_location, a_audio_location: l_audio_location, a_favourites: l_favourites, a_date: l_date)
+            var newEntity = NSEntityDescription.insertNewObjectForEntityForName("CoreExperience", inManagedObjectContext: context) as NSManagedObject
+            
+            newEntity.setValue(l_title as String, forKey: "m_title")
+            newEntity.setValue(l_desc as String, forKey: "m_desc")
+            newEntity.setValue(l_type as String, forKey: "m_type")
+            newEntity.setValue(l_audio_location as String, forKey: "m_audio_location")
+            newEntity.setValue(l_favourites as Bool, forKey: "m_favourites")
+            newEntity.setValue(l_date as NSDate, forKey: "m_date")
+            newEntity.setValue(l_location as String, forKey: "m_location")
+            newEntity.setValue(photoExperience.image, forKey: "m_photo_blob")
+            newEntity.setValue(l_audio_blob, forKey: "m_audio_blob")
+            
+   
+            context.save(nil)
+            
+  //      expMgr.addExperience(l_user,a_type:l_type, a_title:l_title,a_desc:l_desc,a_location:l_location, a_audio_location: l_audio_location, a_favourites: l_favourites, a_date: l_date)
        println("Back to Detail controller after appending new experience")
         }
         self.view.endEditing(true)
@@ -942,14 +986,23 @@ extension ExperienceDetailViewController {
             println("sound exists")
             println("Sound file path")
         }
-        
+        /*
         var recordSettings = [
             AVFormatIDKey: kAudioFormatAppleLossless,
             AVEncoderAudioQualityKey : AVAudioQuality.Max.toRaw(),
             AVEncoderBitRateKey : 320000,
             AVNumberOfChannelsKey: 2,
             AVSampleRateKey : 44100.0
-        ]
+        ]*/
+        
+        var recordSettings = [
+            AVFormatIDKey: kAudioFormatMPEG4AAC,
+            AVEncoderAudioQualityKey : AVAudioQuality.Min.toRaw(),
+            AVEncoderBitRateKey : 32000,
+            AVNumberOfChannelsKey: 2,
+            AVSampleRateKey : 8000.0
+            
+    ]
         var error: NSError?
         recorder = AVAudioRecorder(URL: soundFileURL!, settings: recordSettings, error: &error)
         if let e = error {

@@ -5,17 +5,19 @@
         <attribute name="md_categoryImage" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <entity name="CoreExperience" syncable="YES">
+        <attribute name="m_audio_blob" optional="YES" attributeType="Transformable" syncable="YES"/>
         <attribute name="m_audio_location" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="m_date" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="m_desc" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="m_favourites" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="m_location" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="m_photo_blob" optional="YES" attributeType="Transformable" syncable="YES"/>
         <attribute name="m_title" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="m_type" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="m_user" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
         <element name="CoreCategory" positionX="-63" positionY="45" width="128" height="75"/>
-        <element name="CoreExperience" positionX="-63" positionY="-18" width="128" height="163"/>
+        <element name="CoreExperience" positionX="-63" positionY="-18" width="128" height="195"/>
     </elements>
 </model>
