@@ -93,8 +93,17 @@ class ExperienceDetailViewController: UIViewController, userDateTimeDelegate, us
     
     var soundFileURL:NSURL?
     
+ 
+    
     //End Recorder related variables
 
+    // File, Docs-dire related variables
+    
+    var fileMgr = NSFileManager()
+    let nsDocumentDirectory = NSSearchPathDirectory.DocumentDirectory
+    let nsUserDomainMask = NSSearchPathDomainMask.UserDomainMask
+    
+    
            //Title field on screen
 
     @IBOutlet weak var d_title: UITextField!
@@ -110,7 +119,19 @@ class ExperienceDetailViewController: UIViewController, userDateTimeDelegate, us
     }
 
 
-    
+    @IBAction func imageTapped(sender: UITapGestureRecognizer) {
+
+        
+        var destinationVC:fullPhotoViewController = self.storyboard?.instantiateViewControllerWithIdentifier("showfullPhotoViewController") as fullPhotoViewController
+        
+        println("Getting blob photo in view photo")
+        
+        println("Got blob photo in view photo- setting vc tempPhoto variable")
+        destinationVC.tempImage = photoExperience.image!
+        
+        self.navigationController?.pushViewController(destinationVC, animated: true)
+    }
+
    
     @IBOutlet weak var d_desc: UITextView! = UITextView()
     
@@ -388,10 +409,29 @@ class ExperienceDetailViewController: UIViewController, userDateTimeDelegate, us
         self.view.endEditing(true)
 
         
+         // Delete the audio recording file in docs directory
+            
+            if let paths = NSSearchPathForDirectoriesInDomains(nsDocumentDirectory, nsUserDomainMask, true) {
+                if paths.count > 0 {
+                    if let docsDir = paths[0] as? String {
+                        var filePath = docsDir.stringByAppendingPathComponent(g_fileNameAudio)
+                        var fileExists = fileMgr.fileExistsAtPath(filePath)
+                        if fileExists {
+                            fileMgr.removeItemAtPath(filePath, error: nil)
+                            println("removed file at path \(g_fileNameAudio)")
+                        }
+                    }} }
+                    
+            
         //Reset the global variable audio filename
-        
+            
+            
         g_fileNameAudio = ""
         
+            
+            
+            
+            
         if existingItem == nil {
             navigationController?.presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
         } else {
@@ -399,6 +439,8 @@ class ExperienceDetailViewController: UIViewController, userDateTimeDelegate, us
         }
     }
     
+        
+        
   //  navigationController?.popToRootViewControllerAnimated(true)
         
     }
@@ -444,9 +486,12 @@ class ExperienceDetailViewController: UIViewController, userDateTimeDelegate, us
             }
             }
         }
-    */
+        */  if existingItem == nil {
+            photoExperience.image = UIImage(named:"Bonsai.jpeg")
+            d_category.setTitle(g_typeList[g_selectedTypeIndex], forState: .Normal)
+
+        } else {
         photoExperience.image = blob_photo
-        if (existingItem != nil) {
         //load other details from the temp variables set in List VC before calling Detailed VC
             println(" Inside view did load- existing item is not nil")
         d_title.text = s_title
@@ -456,8 +501,6 @@ class ExperienceDetailViewController: UIViewController, userDateTimeDelegate, us
             
             println(" Setting title & desc to \(s_title) and \(s_desc)")
           
-        } else {
-            d_category.setTitle(g_typeList[g_selectedTypeIndex], forState: .Normal)
         }
         
         if s_favourites == true {
@@ -505,9 +548,7 @@ class ExperienceDetailViewController: UIViewController, userDateTimeDelegate, us
             if audioBlob.length > 0 {
                 println("inside detail vc, got the audio file from the list VC, length is \(audioBlob.length)")
                 g_fileNameAudio = "audio.m4a"
-                var fileMgr = NSFileManager()
-                let nsDocumentDirectory = NSSearchPathDirectory.DocumentDirectory
-                let nsUserDomainMask = NSSearchPathDomainMask.UserDomainMask
+ 
                 if let paths = NSSearchPathForDirectoriesInDomains(nsDocumentDirectory, nsUserDomainMask, true) {
                     if paths.count > 0 {
                         if let docsDir = paths[0] as? String {
@@ -516,14 +557,21 @@ class ExperienceDetailViewController: UIViewController, userDateTimeDelegate, us
                             if fileExists {
                                 fileMgr.removeItemAtPath(filePath, error: nil)
                             }
-                            var successAudio = fileMgr.createFileAtPath(docsDir, contents: audioBlob, attributes: nil)
+                            var successAudio = fileMgr.createFileAtPath(filePath, contents: audioBlob, attributes: nil)
                             println("Sucess in creating audio.mp4 file \(successAudio)")
+                            println(" Filepath behind success(or lack thereof \(filePath)")
+                            // Setup SoundfileURL for Audio player to use
+                            
+                            soundFileURL = NSURL(fileURLWithPath: filePath)
+                            
+                            println("soundFileURL 1 is \(soundFileURL)")
                         }}}
             } else {
                 var format = NSDateFormatter()
                 format.dateFormat="yyyy-MM-dd-HH-mm-ss"
                 g_fileNameAudio = "recording-\(format.stringFromDate(NSDate.date())).m4a"
                 playButton.enabled = false
+                
             }
         }
         

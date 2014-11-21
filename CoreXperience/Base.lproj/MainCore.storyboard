@@ -675,21 +675,79 @@
                                     <action selector="donePressed:" destination="HZf-3k-Dk7" eventType="touchUpInside" id="Bcp-GJ-nNL"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="XQy-nk-gXh">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="XQy-nk-gXh">
                                 <rect key="frame" x="0.0" y="-62" width="608" height="574"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="353" id="KoU-ym-1ab"/>
+                                    <constraint firstAttribute="width" secondItem="XQy-nk-gXh" secondAttribute="height" multiplier="25:37" id="XdF-h8-uaq"/>
+                                    <constraint firstAttribute="width" secondItem="XQy-nk-gXh" secondAttribute="height" multiplier="8:5" id="wPy-SY-zxZ"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="KoU-ym-1ab"/>
+                                        <exclude reference="XdF-h8-uaq"/>
+                                        <exclude reference="wPy-SY-zxZ"/>
+                                    </mask>
+                                </variation>
+                                <variation key="widthClass=compact">
+                                    <mask key="constraints">
+                                        <include reference="KoU-ym-1ab"/>
+                                        <exclude reference="XdF-h8-uaq"/>
+                                        <exclude reference="wPy-SY-zxZ"/>
+                                    </mask>
+                                </variation>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.26531969150000001" green="0.6241627663" blue="0.66666666669999997" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstItem="XE7-39-3Cs" firstAttribute="bottom" secondItem="iLZ-m3-f1S" secondAttribute="top" id="5dA-D8-qVl"/>
+                            <constraint firstItem="XQy-nk-gXh" firstAttribute="leading" secondItem="Myu-Jh-qqc" secondAttribute="leadingMargin" constant="30" id="8b2-PF-zVH"/>
                             <constraint firstItem="XE7-39-3Cs" firstAttribute="centerX" secondItem="Fyi-bI-y9O" secondAttribute="centerX" id="BLQ-Ut-4j9"/>
                             <constraint firstItem="Fyi-bI-y9O" firstAttribute="centerX" secondItem="Myu-Jh-qqc" secondAttribute="centerX" id="CWV-O0-S7X"/>
                             <constraint firstItem="XQy-nk-gXh" firstAttribute="leading" secondItem="8Bl-Xe-dfY" secondAttribute="leading" id="Ctz-kJ-DBp"/>
+                            <constraint firstItem="XQy-nk-gXh" firstAttribute="leading" secondItem="XE7-39-3Cs" secondAttribute="leading" id="DdW-1c-KUc"/>
+                            <constraint firstItem="XQy-nk-gXh" firstAttribute="top" secondItem="8Bl-Xe-dfY" secondAttribute="bottom" constant="47" id="EDe-ow-tq6"/>
                             <constraint firstItem="Fyi-bI-y9O" firstAttribute="top" secondItem="XE7-39-3Cs" secondAttribute="bottom" constant="8" symbolic="YES" id="Gs2-hb-qgP"/>
+                            <constraint firstItem="XE7-39-3Cs" firstAttribute="baseline" secondItem="Fyi-bI-y9O" secondAttribute="baseline" id="M1X-nr-gBQ"/>
                             <constraint firstItem="Fyi-bI-y9O" firstAttribute="bottom" secondItem="iLZ-m3-f1S" secondAttribute="top" id="Sl3-8e-v5o"/>
-                            <constraint firstItem="XE7-39-3Cs" firstAttribute="top" secondItem="XQy-nk-gXh" secondAttribute="bottom" constant="20" id="cbL-W1-gtX"/>
+                            <constraint firstItem="XE7-39-3Cs" firstAttribute="top" secondItem="XQy-nk-gXh" secondAttribute="bottom" constant="20" id="cbL-W1-gtX">
+                                <variation key="widthClass=compact" constant="6"/>
+                            </constraint>
+                            <constraint firstItem="Fyi-bI-y9O" firstAttribute="leading" secondItem="XE7-39-3Cs" secondAttribute="trailing" constant="38" id="hqW-5F-8CJ"/>
+                            <constraint firstItem="XE7-39-3Cs" firstAttribute="top" secondItem="XQy-nk-gXh" secondAttribute="bottom" constant="6" id="oVP-ul-Hod"/>
                             <constraint firstAttribute="trailingMargin" secondItem="XQy-nk-gXh" secondAttribute="trailing" constant="-24" id="ukH-Ez-C1Q"/>
                             <constraint firstItem="XQy-nk-gXh" firstAttribute="top" secondItem="Myu-Jh-qqc" secondAttribute="topMargin" constant="-62" id="yEj-t3-9k8"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="8b2-PF-zVH"/>
+                                <exclude reference="DdW-1c-KUc"/>
+                                <exclude reference="EDe-ow-tq6"/>
+                                <exclude reference="5dA-D8-qVl"/>
+                                <exclude reference="M1X-nr-gBQ"/>
+                                <exclude reference="oVP-ul-Hod"/>
+                                <exclude reference="hqW-5F-8CJ"/>
+                            </mask>
+                        </variation>
+                        <variation key="widthClass=compact">
+                            <mask key="constraints">
+                                <include reference="8b2-PF-zVH"/>
+                                <exclude reference="Ctz-kJ-DBp"/>
+                                <include reference="DdW-1c-KUc"/>
+                                <include reference="EDe-ow-tq6"/>
+                                <exclude reference="ukH-Ez-C1Q"/>
+                                <exclude reference="yEj-t3-9k8"/>
+                                <include reference="5dA-D8-qVl"/>
+                                <exclude reference="BLQ-Ut-4j9"/>
+                                <include reference="M1X-nr-gBQ"/>
+                                <exclude reference="cbL-W1-gtX"/>
+                                <include reference="oVP-ul-Hod"/>
+                                <exclude reference="CWV-O0-S7X"/>
+                                <exclude reference="Gs2-hb-qgP"/>
+                                <exclude reference="Sl3-8e-v5o"/>
+                                <include reference="hqW-5F-8CJ"/>
+                            </mask>
+                        </variation>
                     </view>
                     <navigationItem key="navigationItem" id="IPG-co-jED"/>
                     <connections>
@@ -699,7 +757,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="n5E-Ma-kmA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1451.25" y="1163.0281690140844"/>
+            <point key="canvasLocation" x="1404" y="1167"/>
         </scene>
         <!--Experience Detail View Controller-->
         <scene sceneID="9m1-8r-T9i">
@@ -760,8 +818,9 @@
                                     <segue destination="cIi-yM-ufS" kind="show" identifier="showCategory" id="pci-L5-Fbt"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Bhagawad-Gita.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="GfT-Ix-B42">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Bonsai.jpeg" translatesAutoresizingMaskIntoConstraints="NO" id="GfT-Ix-B42">
                                 <rect key="frame" x="424" y="109" width="170" height="30"/>
+                                <gestureRecognizers/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="70" id="1fX-zl-Pxx"/>
                                     <constraint firstAttribute="width" secondItem="GfT-Ix-B42" secondAttribute="height" multiplier="8:5" id="ifv-bV-AuT"/>
@@ -779,9 +838,13 @@
                                         <include reference="ifv-bV-AuT"/>
                                     </mask>
                                 </variation>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="HC3-dB-KFO" appends="YES" id="M0E-8L-mnX"/>
+                                </connections>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.26531969150000001" green="0.6241627663" blue="0.66666666669999997" alpha="1" colorSpace="calibratedRGB"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="xXC-iM-V88" firstAttribute="top" secondItem="GfT-Ix-B42" secondAttribute="bottom" constant="8" symbolic="YES" id="1eH-ye-yCb"/>
                             <constraint firstItem="gi7-6Z-TMO" firstAttribute="top" secondItem="GfT-Ix-B42" secondAttribute="top" id="25M-fO-2fl"/>
@@ -884,6 +947,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZVt-2H-Wun" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="HC3-dB-KFO">
+                    <connections>
+                        <action selector="imageTapped:" destination="eOE-Cb-bOH" id="cfg-zi-Jxm"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="4530" y="1137.676056338028"/>
         </scene>
@@ -1103,6 +1171,65 @@
             </objects>
             <point key="canvasLocation" x="361.875" y="274.64788732394362"/>
         </scene>
+        <!--Full Photo View Controller-->
+        <scene sceneID="LFs-RA-rsd">
+            <objects>
+                <viewController storyboardIdentifier="showfullPhotoViewController" id="Csf-HJ-G6O" customClass="fullPhotoViewController" customModule="CoreXperience" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="nGr-Js-yHN"/>
+                        <viewControllerLayoutGuide type="bottom" id="cEU-zJ-VTC"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="AQg-PH-8pp">
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Smk-cy-INZ">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <gestureRecognizers/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="Smk-cy-INZ" secondAttribute="trailing" constant="24" id="Auh-C9-bDl"/>
+                            <constraint firstItem="cEU-zJ-VTC" firstAttribute="top" secondItem="Smk-cy-INZ" secondAttribute="bottom" constant="14" id="Ei3-if-zoK"/>
+                            <constraint firstItem="Smk-cy-INZ" firstAttribute="top" secondItem="nGr-Js-yHN" secondAttribute="bottom" constant="12" id="SCm-QX-e1a"/>
+                            <constraint firstItem="Smk-cy-INZ" firstAttribute="leading" secondItem="AQg-PH-8pp" secondAttribute="leadingMargin" constant="24" id="ym7-9T-TbV"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="Smk-cy-INZ"/>
+                            </mask>
+                            <mask key="constraints">
+                                <exclude reference="Auh-C9-bDl"/>
+                                <exclude reference="SCm-QX-e1a"/>
+                                <exclude reference="ym7-9T-TbV"/>
+                                <exclude reference="Ei3-if-zoK"/>
+                            </mask>
+                        </variation>
+                        <variation key="widthClass=compact">
+                            <mask key="subviews">
+                                <include reference="Smk-cy-INZ"/>
+                            </mask>
+                            <mask key="constraints">
+                                <include reference="Auh-C9-bDl"/>
+                                <include reference="SCm-QX-e1a"/>
+                                <include reference="ym7-9T-TbV"/>
+                                <include reference="Ei3-if-zoK"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <connections>
+                        <outlet property="fullPhotoView" destination="Smk-cy-INZ" id="twr-O4-Jwj"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="CAf-bS-EEz" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="u5w-ni-Hnr">
+                    <connections>
+                        <action selector="photoTapped:" destination="Csf-HJ-G6O" id="G0R-24-4fj"/>
+                    </connections>
+                </tapGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="4362" y="369"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="C9s-lS-WO1">
             <objects>
@@ -1169,7 +1296,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Bhagawad-Gita.jpg" width="900" height="500"/>
         <image name="Bonsai.jpeg" width="259" height="194"/>
         <image name="Default-category.jpg" width="900" height="500"/>
         <image name="FavUnselected.jpeg" width="102" height="102"/>

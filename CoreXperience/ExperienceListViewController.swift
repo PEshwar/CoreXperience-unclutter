@@ -298,10 +298,11 @@ extension ExperienceListViewController {
     func showActionListExperience(selectedItem : NSManagedObject) {
         
         //Get various attributes from context
+        var blobAudioTemp = NSData?()
         var blobAudio = NSData()
-        blobAudio = selectedItem.valueForKey("m_audio_blob") as NSData
-        if blobAudio.length > 0 {
-            
+        blobAudioTemp = selectedItem.valueForKey("m_audio_blob") as? NSData
+        if blobAudioTemp?.length > 0 {
+            blobAudio = blobAudioTemp!
             println(" Manaaged to get BlobAudio fom database. length is \(blobAudio.length)")
         } else {
             println(" NOT Manaaged to get BlobAudio fom database")
@@ -341,10 +342,10 @@ extension ExperienceListViewController {
         var url = NSURL(fileURLWithPath: docsDir + "/" + soundURL)
         
         println("URL is \(url)")
-        var count  = soundURL.utf16Count
-        println("UTF 16 count is \(count)")
-        println("Count of audio location is \(count)")
-        if (count > 0) {
+    //    var count  = soundURL.utf16Count
+    //    println("UTF 16 count is \(count)")
+    //    println("Count of audio location is \(count)")
+        if (blobAudio.length > 0) {
             
             refreshAlert.addAction(UIAlertAction(title: "Play audio", style: .Default, handler: { (action: UIAlertAction!) in
                 println("Handle audio logic here")
@@ -358,12 +359,10 @@ extension ExperienceListViewController {
                     println("No audio has been recorded")
                 } else {
                     println("Audio found, will be playing, byte length is \(blobAudio.length)")
-                
-                 self.audioPlayer = AVAudioPlayer(data: blobAudio, fileTypeHint: AVFileTypeAppleM4A, error: nil) as AVAudioPlayer
-               self.audioPlayer.play()
+               
                 }
                 //    self.mediaPlayer.contentURL = url
-                /*
+                
                 
                 var fileMgr = NSFileManager()
                 var stringURL = url.absoluteString
@@ -384,7 +383,7 @@ extension ExperienceListViewController {
                 println("Going to play audio from file location that was just saved")
                 //End different way to play sound
                 self.mediaPlayer.play()
-                */
+                
             }))
             
         } else {
@@ -415,12 +414,13 @@ extension ExperienceListViewController {
             println("Handle photo logic here")
             
             
-            var destinationVC:showImagePickerViewController = self.storyboard?.instantiateViewControllerWithIdentifier("showImagePickerViewController") as showImagePickerViewController
+   //         var destinationVC:showImagePickerViewController = self.storyboard?.instantiateViewControllerWithIdentifier("showImagePickerViewController") as showImagePickerViewController
+            var destinationVC:fullPhotoViewController = self.storyboard?.instantiateViewControllerWithIdentifier("showfullPhotoViewController") as fullPhotoViewController
             
             println("Getting blob photo in view photo")
            
             println("Got blob photo in view photo- setting vc tempPhoto variable")
-            destinationVC.tempPhoto = blob_photo
+            destinationVC.tempImage = blob_photo
             self.navigationController?.pushViewController(destinationVC, animated: true)
             
         }))

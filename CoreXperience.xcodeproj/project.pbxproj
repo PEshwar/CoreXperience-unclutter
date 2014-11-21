@@ -24,6 +24,7 @@
 		9926B4691A0A365F006E867B /* showImagePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9926B4681A0A365F006E867B /* showImagePickerViewController.swift */; };
 		9930D8E61A0F01030087826B /* modelCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9930D8E51A0F01030087826B /* modelCategory.swift */; };
 		9930D8E81A0F01C60087826B /* categoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9930D8E71A0F01C60087826B /* categoryViewController.swift */; };
+		993141B81A1F2A030049F70F /* fullPhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 993141B71A1F2A030049F70F /* fullPhotoViewController.swift */; };
 		994634DC1A1AD5EA00C5D0E9 /* Rec-small.png in Resources */ = {isa = PBXBuildFile; fileRef = 994634DB1A1AD5EA00C5D0E9 /* Rec-small.png */; };
 		994634E11A1B66A200C5D0E9 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 994634E01A1B66A200C5D0E9 /* CloudKit.framework */; };
 		9951FBCF1A12C90B00DE82D6 /* categoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9951FBCE1A12C90B00DE82D6 /* categoryTableViewCell.swift */; };
@@ -84,6 +85,7 @@
 		9926B4681A0A365F006E867B /* showImagePickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = showImagePickerViewController.swift; sourceTree = "<group>"; };
 		9930D8E51A0F01030087826B /* modelCategory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = modelCategory.swift; sourceTree = "<group>"; };
 		9930D8E71A0F01C60087826B /* categoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = categoryViewController.swift; sourceTree = "<group>"; };
+		993141B71A1F2A030049F70F /* fullPhotoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = fullPhotoViewController.swift; sourceTree = "<group>"; };
 		994634DB1A1AD5EA00C5D0E9 /* Rec-small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Rec-small.png"; sourceTree = "<group>"; };
 		994634DD1A1B570800C5D0E9 /* CoreXperience.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = CoreXperience.entitlements; sourceTree = "<group>"; };
 		994634E01A1B66A200C5D0E9 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
@@ -190,6 +192,7 @@
 				9951FBCE1A12C90B00DE82D6 /* categoryTableViewCell.swift */,
 				9951FBD21A17506C00DE82D6 /* categoryImageViewController.swift */,
 				996BF7D91A19FF8F00304B82 /* favCellTableViewCell.swift */,
+				993141B71A1F2A030049F70F /* fullPhotoViewController.swift */,
 			);
 			path = CoreXperience;
 			sourceTree = "<group>";
@@ -379,6 +382,7 @@
 				9930D8E61A0F01030087826B /* modelCategory.swift in Sources */,
 				9926B4691A0A365F006E867B /* showImagePickerViewController.swift in Sources */,
 				99A5023E1A04FE6E001F6282 /* showTextEntryViewController.swift in Sources */,
+				993141B81A1F2A030049F70F /* fullPhotoViewController.swift in Sources */,
 				995ACCAE19EAEBFC00F0C715 /* ExperienceListViewController.swift in Sources */,
 				999CC1671A04D0F900C2CB5E /* showCategoryViewController.swift in Sources */,
 				991008A81A09A7A10015E4A1 /* FavTableViewController.swift in Sources */,
