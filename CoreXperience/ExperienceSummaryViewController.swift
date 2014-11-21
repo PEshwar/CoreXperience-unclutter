@@ -78,9 +78,7 @@ class ExperienceSummaryViewController: UITableViewController {
             println("Could not fetch \(error), \(error!.userInfo)")
         }
 
- // g_typeList.removeAll(keepCapacity: true)
-        
-  //   expMgr.listByType()
+
      tableView.reloadData()
         
     }

@@ -29,14 +29,9 @@
 		9951FBCF1A12C90B00DE82D6 /* categoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9951FBCE1A12C90B00DE82D6 /* categoryTableViewCell.swift */; };
 		9951FBD11A12D8E700DE82D6 /* House-visit.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9951FBD01A12D8E700DE82D6 /* House-visit.jpg */; };
 		9951FBD31A17506C00DE82D6 /* categoryImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9951FBD21A17506C00DE82D6 /* categoryImageViewController.swift */; };
-		9954875319EBE366006C5EF3 /* ExperienceDetailShowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9954875219EBE366006C5EF3 /* ExperienceDetailShowController.swift */; };
-		9954879519EC53A8006C5EF3 /* RecorderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9954879419EC53A8006C5EF3 /* RecorderViewController.swift */; };
-		9954879719EC53ED006C5EF3 /* RecordingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9954879619EC53ED006C5EF3 /* RecordingCollectionViewCell.swift */; };
-		9954879919EC53F6006C5EF3 /* RecordingsCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9954879819EC53F6006C5EF3 /* RecordingsCollectionViewController.swift */; };
 		995ACCAC19EAEBDB00F0C715 /* ExperienceSummaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 995ACCAB19EAEBDB00F0C715 /* ExperienceSummaryViewController.swift */; };
 		995ACCAE19EAEBFC00F0C715 /* ExperienceListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 995ACCAD19EAEBFC00F0C715 /* ExperienceListViewController.swift */; };
 		995ACCB019EAEC1E00F0C715 /* ExperienceDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 995ACCAF19EAEC1E00F0C715 /* ExperienceDetailViewController.swift */; };
-		995ACCB219EAEC8D00F0C715 /* ExperienceTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 995ACCB119EAEC8D00F0C715 /* ExperienceTabBarController.swift */; };
 		995ACCB419EAF7B500F0C715 /* ExperienceMgr.swift in Sources */ = {isa = PBXBuildFile; fileRef = 995ACCB319EAF7B500F0C715 /* ExperienceMgr.swift */; };
 		995ACCB619EAF7E700F0C715 /* ExperiencePersistenceHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 995ACCB519EAF7E700F0C715 /* ExperiencePersistenceHelper.swift */; };
 		996600B419F27778001B3086 /* share2.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 996600B219F27778001B3086 /* share2.jpeg */; };
@@ -56,8 +51,6 @@
 		99A5023E1A04FE6E001F6282 /* showTextEntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A5023D1A04FE6E001F6282 /* showTextEntryViewController.swift */; };
 		99B0AA3D19F3F89A00D3A5F3 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99B0AA3C19F3F89A00D3A5F3 /* Social.framework */; };
 		99D8C49019FD24E4000DD3EB /* showDateTimeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99D8C48F19FD24E4000DD3EB /* showDateTimeViewController.swift */; };
-		99EBA7881A0FB027006A83DB /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99EBA7871A0FB027006A83DB /* MenuViewController.swift */; };
-		99EBA78A1A0FB546006A83DB /* MenuTransitionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99EBA7891A0FB546006A83DB /* MenuTransitionManager.swift */; };
 		99EBA79E1A0FD285006A83DB /* Pause in Resources */ = {isa = PBXBuildFile; fileRef = 99EBA79B1A0FD285006A83DB /* Pause */; };
 		99EBA79F1A0FD285006A83DB /* Play2.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 99EBA79C1A0FD285006A83DB /* Play2.jpeg */; };
 		99EBA7A21A0FD2EA006A83DB /* REC in Resources */ = {isa = PBXBuildFile; fileRef = 99EBA7A11A0FD2EA006A83DB /* REC */; };
@@ -97,14 +90,9 @@
 		9951FBCE1A12C90B00DE82D6 /* categoryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = categoryTableViewCell.swift; sourceTree = "<group>"; };
 		9951FBD01A12D8E700DE82D6 /* House-visit.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "House-visit.jpg"; sourceTree = "<group>"; };
 		9951FBD21A17506C00DE82D6 /* categoryImageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = categoryImageViewController.swift; sourceTree = "<group>"; };
-		9954875219EBE366006C5EF3 /* ExperienceDetailShowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExperienceDetailShowController.swift; sourceTree = "<group>"; };
-		9954879419EC53A8006C5EF3 /* RecorderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecorderViewController.swift; sourceTree = "<group>"; };
-		9954879619EC53ED006C5EF3 /* RecordingCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordingCollectionViewCell.swift; sourceTree = "<group>"; };
-		9954879819EC53F6006C5EF3 /* RecordingsCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordingsCollectionViewController.swift; sourceTree = "<group>"; };
 		995ACCAB19EAEBDB00F0C715 /* ExperienceSummaryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExperienceSummaryViewController.swift; sourceTree = "<group>"; };
 		995ACCAD19EAEBFC00F0C715 /* ExperienceListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExperienceListViewController.swift; sourceTree = "<group>"; };
 		995ACCAF19EAEC1E00F0C715 /* ExperienceDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExperienceDetailViewController.swift; sourceTree = "<group>"; };
-		995ACCB119EAEC8D00F0C715 /* ExperienceTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExperienceTabBarController.swift; sourceTree = "<group>"; };
 		995ACCB319EAF7B500F0C715 /* ExperienceMgr.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExperienceMgr.swift; sourceTree = "<group>"; };
 		995ACCB519EAF7E700F0C715 /* ExperiencePersistenceHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExperiencePersistenceHelper.swift; sourceTree = "<group>"; };
 		996600B219F27778001B3086 /* share2.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = share2.jpeg; sourceTree = "<group>"; };
@@ -128,8 +116,6 @@
 		99A5023D1A04FE6E001F6282 /* showTextEntryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = showTextEntryViewController.swift; sourceTree = "<group>"; };
 		99B0AA3C19F3F89A00D3A5F3 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		99D8C48F19FD24E4000DD3EB /* showDateTimeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = showDateTimeViewController.swift; sourceTree = "<group>"; };
-		99EBA7871A0FB027006A83DB /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
-		99EBA7891A0FB546006A83DB /* MenuTransitionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuTransitionManager.swift; sourceTree = "<group>"; };
 		99EBA79B1A0FD285006A83DB /* Pause */ = {isa = PBXFileReference; explicitFileType = image.jpeg; path = Pause; sourceTree = "<group>"; };
 		99EBA79C1A0FD285006A83DB /* Play2.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Play2.jpeg; sourceTree = "<group>"; };
 		99EBA7A11A0FD2EA006A83DB /* REC */ = {isa = PBXFileReference; explicitFileType = image.jpeg; path = REC; sourceTree = "<group>"; };
@@ -188,19 +174,12 @@
 				998D7C0919EAE69500A8036F /* Supporting Files */,
 				995ACCAB19EAEBDB00F0C715 /* ExperienceSummaryViewController.swift */,
 				9930D8E51A0F01030087826B /* modelCategory.swift */,
-				99EBA7891A0FB546006A83DB /* MenuTransitionManager.swift */,
-				99EBA7871A0FB027006A83DB /* MenuViewController.swift */,
 				995ACCAD19EAEBFC00F0C715 /* ExperienceListViewController.swift */,
 				99A5023B1A04FC61001F6282 /* Family-Sign-32.png */,
 				9917A47E19F1E5F000F83DFC /* customCell.swift */,
 				995ACCAF19EAEC1E00F0C715 /* ExperienceDetailViewController.swift */,
-				995ACCB119EAEC8D00F0C715 /* ExperienceTabBarController.swift */,
 				995ACCB319EAF7B500F0C715 /* ExperienceMgr.swift */,
 				995ACCB519EAF7E700F0C715 /* ExperiencePersistenceHelper.swift */,
-				9954875219EBE366006C5EF3 /* ExperienceDetailShowController.swift */,
-				9954879419EC53A8006C5EF3 /* RecorderViewController.swift */,
-				9954879819EC53F6006C5EF3 /* RecordingsCollectionViewController.swift */,
-				9954879619EC53ED006C5EF3 /* RecordingCollectionViewCell.swift */,
 				99D8C48F19FD24E4000DD3EB /* showDateTimeViewController.swift */,
 				999CC1661A04D0F900C2CB5E /* showCategoryViewController.swift */,
 				99A5023D1A04FE6E001F6282 /* showTextEntryViewController.swift */,
@@ -406,18 +385,11 @@
 				99D8C49019FD24E4000DD3EB /* showDateTimeViewController.swift in Sources */,
 				995ACCB019EAEC1E00F0C715 /* ExperienceDetailViewController.swift in Sources */,
 				995ACCB419EAF7B500F0C715 /* ExperienceMgr.swift in Sources */,
-				99EBA7881A0FB027006A83DB /* MenuViewController.swift in Sources */,
 				995ACCB619EAF7E700F0C715 /* ExperiencePersistenceHelper.swift in Sources */,
 				995ACCAC19EAEBDB00F0C715 /* ExperienceSummaryViewController.swift in Sources */,
 				9930D8E81A0F01C60087826B /* categoryViewController.swift in Sources */,
-				9954879719EC53ED006C5EF3 /* RecordingCollectionViewCell.swift in Sources */,
-				99EBA78A1A0FB546006A83DB /* MenuTransitionManager.swift in Sources */,
-				9954875319EBE366006C5EF3 /* ExperienceDetailShowController.swift in Sources */,
 				998D7C0F19EAE69500A8036F /* CoreXperience.xcdatamodeld in Sources */,
-				995ACCB219EAEC8D00F0C715 /* ExperienceTabBarController.swift in Sources */,
 				996BF7DA1A19FF8F00304B82 /* favCellTableViewCell.swift in Sources */,
-				9954879519EC53A8006C5EF3 /* RecorderViewController.swift in Sources */,
-				9954879919EC53F6006C5EF3 /* RecordingsCollectionViewController.swift in Sources */,
 				990F0C451A11A336007989C1 /* summaryCell.swift in Sources */,
 				9951FBD31A17506C00DE82D6 /* categoryImageViewController.swift in Sources */,
 				998D7C0C19EAE69500A8036F /* AppDelegate.swift in Sources */,

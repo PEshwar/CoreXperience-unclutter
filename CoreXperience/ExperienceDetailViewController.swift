@@ -54,6 +54,7 @@ class ExperienceDetailViewController: UIViewController, userDateTimeDelegate, us
     //Photo-related
     
     var l_PhotoLocation : String = " "
+    var blob_photo : UIImage = UIImage()
     
  
     @IBOutlet weak var photoButton: UIBarButtonItem!
@@ -68,6 +69,10 @@ class ExperienceDetailViewController: UIViewController, userDateTimeDelegate, us
     var recorder: AVAudioRecorder!
     
     var player:AVAudioPlayer!
+    
+    var g_fileNameAudio : String = ""
+    
+    var audioBlob = NSData()
    
     
     @IBOutlet weak var recordButton: UIBarButtonItem!
@@ -271,7 +276,7 @@ class ExperienceDetailViewController: UIViewController, userDateTimeDelegate, us
                 if (l_recordFlag) {
                     l_audio_location = g_fileNameAudio
                 } else {
-                    l_audio_location = s_audio_location
+                    l_audio_location = g_fileNameAudio
                 }
             }
             
@@ -280,39 +285,13 @@ class ExperienceDetailViewController: UIViewController, userDateTimeDelegate, us
       
             
         
- /*
-        var inputYear : Int = d_date_year.text.toInt()!
-        var inputMonth:Int? = d_date_month?.text?.toInt()
-        var inputDay:Int? = d_date_day?.text?.toInt()!
-        
-        if inputYear != 0 {
-            println("Got the number: \(inputYear)")
-        } else {
-            println("Couldn't convert to a number")
-        }
-        
-        if inputMonth != 0 {
-            println("Got the number: \(inputMonth)")
-        } else {
-            println("Couldn't convert to a number")
-        }
-        
-        if inputDay != 0 {
-            println("Got the number: \(inputDay)")
-        } else {
-            println("Couldn't convert to a number")
-        }
-*/
-   //     var l_date:NSDate = Date.from(year:inputYear, month: inputMonth!, day:inputDay!)
-        println(" Date is \(l_date)")
-        
-        println("Value of picker selected type before appending is \(g_typeList[userAmendedPickerTypeIndex])")
+ 
         
         //Additional code to first check if the experience item exists in the database. If exists then update, or insert new entry
         
        // image = UIImage(data: imageData) ;
         
-        var imageData = UIImageJPEGRepresentation(photoExperience.image, 1.0)
+  /*      var imageData = UIImageJPEGRepresentation(photoExperience.image, 1.0)
         if imageData != nil {
     
             
@@ -336,7 +315,7 @@ class ExperienceDetailViewController: UIViewController, userDateTimeDelegate, us
                 }
             }
         }
-        
+    */
         var l_location: String = l_PhotoLocation
         println(" Photo Location is \(l_PhotoLocation)")
         println(" L Location is \(l_location)")
@@ -363,7 +342,7 @@ class ExperienceDetailViewController: UIViewController, userDateTimeDelegate, us
             if l_audio_blob == nil {
                 println(" No audio object found by file manager")
             } else {
-                println(" audio object blob found by file mgr, writing to sqlite")
+                println(" audio object blob found by file mgr, writing to sqlite. file size is \(l_audio_blob?.length)")
             }
         
             var appDel: AppDelegate = (UIApplication.sharedApplication().delegate as AppDelegate)
@@ -372,9 +351,7 @@ class ExperienceDetailViewController: UIViewController, userDateTimeDelegate, us
         if (existingItem != nil)
         {
             
-       //     var appDel: AppDelegate = (UIApplication.sharedApplication().delegate as AppDelegate)
-       //     var context: NSManagedObjectContext;
-       //     context = appDel.managedObjectContext!
+ 
             
             existingItem.setValue(l_title as String, forKey: "m_title")
             existingItem.setValue(l_desc as String, forKey: "m_desc")
@@ -405,7 +382,7 @@ class ExperienceDetailViewController: UIViewController, userDateTimeDelegate, us
    
             context.save(nil)
             
-  //      expMgr.addExperience(l_user,a_type:l_type, a_title:l_title,a_desc:l_desc,a_location:l_location, a_audio_location: l_audio_location, a_favourites: l_favourites, a_date: l_date)
+  
        println("Back to Detail controller after appending new experience")
         }
         self.view.endEditing(true)
@@ -452,7 +429,7 @@ class ExperienceDetailViewController: UIViewController, userDateTimeDelegate, us
         d_desc.layer.borderColor = myColor.CGColor
         d_desc.scrollsToTop  = true
      
-        //Setup photo
+  /*      //Setup photo
         if (existingItem != nil) {
         let nsDocumentDirectory = NSSearchPathDirectory.DocumentDirectory
         let nsUserDomainMask = NSSearchPathDomainMask.UserDomainMask
@@ -467,7 +444,8 @@ class ExperienceDetailViewController: UIViewController, userDateTimeDelegate, us
             }
             }
         }
-        
+    */
+        photoExperience.image = blob_photo
         if (existingItem != nil) {
         //load other details from the temp variables set in List VC before calling Detailed VC
             println(" Inside view did load- existing item is not nil")
@@ -495,14 +473,14 @@ class ExperienceDetailViewController: UIViewController, userDateTimeDelegate, us
             favouriteFlagOn = false
         }
        //Setup audio recording file name
-        
+   
         if (existingItem == nil) {
         var format = NSDateFormatter()
         format.dateFormat="yyyy-MM-dd-HH-mm-ss"
         g_fileNameAudio = "recording-\(format.stringFromDate(NSDate.date())).m4a"
         println("Inside view did load of detail vc, value of file name is \(g_fileNameAudio)")
         }
-        else {
+   /*     else {
             if (s_audio_location.utf16Count > 0) {
             g_fileNameAudio = s_audio_location
             } else {
@@ -521,6 +499,32 @@ class ExperienceDetailViewController: UIViewController, userDateTimeDelegate, us
             soundFileURL = NSURL(fileURLWithPath: soundFilePath)
             println("Sound file URL in edit mode is \(soundFileURL)")
             
+        }
+        */
+        else {
+            if audioBlob.length > 0 {
+                println("inside detail vc, got the audio file from the list VC, length is \(audioBlob.length)")
+                g_fileNameAudio = "audio.m4a"
+                var fileMgr = NSFileManager()
+                let nsDocumentDirectory = NSSearchPathDirectory.DocumentDirectory
+                let nsUserDomainMask = NSSearchPathDomainMask.UserDomainMask
+                if let paths = NSSearchPathForDirectoriesInDomains(nsDocumentDirectory, nsUserDomainMask, true) {
+                    if paths.count > 0 {
+                        if let docsDir = paths[0] as? String {
+                            var filePath = docsDir.stringByAppendingPathComponent("audio.m4a")
+                            var fileExists = fileMgr.fileExistsAtPath(filePath)
+                            if fileExists {
+                                fileMgr.removeItemAtPath(filePath, error: nil)
+                            }
+                            var successAudio = fileMgr.createFileAtPath(docsDir, contents: audioBlob, attributes: nil)
+                            println("Sucess in creating audio.mp4 file \(successAudio)")
+                        }}}
+            } else {
+                var format = NSDateFormatter()
+                format.dateFormat="yyyy-MM-dd-HH-mm-ss"
+                g_fileNameAudio = "recording-\(format.stringFromDate(NSDate.date())).m4a"
+                playButton.enabled = false
+            }
         }
         
         if (existingItem == nil) {
@@ -679,20 +683,7 @@ class ExperienceDetailViewController: UIViewController, userDateTimeDelegate, us
         
         d_title.text = "Experience on " + strDate
         
- /*       d_date_month.text = String(month)
-        d_date_day.text = String(day)
-        
-        if hour < 10 {
-            d_date_HH.text = "0" + String(hour) + ":"
-        } else {
-            d_date_HH.text = String(hour) + ":"
-        }
-        if minutes < 10 {
-            d_date_MM.text = "0" + String(minutes)
-        } else {
-        d_date_MM.text = String(minutes)
-        }
-   */     if (existingItem == nil) {
+      if (existingItem == nil) {
         //Set Auto title based on changed time
        // d_title.text = "Experience on " + String(day) + "/" + String(month) + "/" + String(year) + ", " + String(hour) + ":" + String(minutes) + " Hrs"
     

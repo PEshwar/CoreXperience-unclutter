@@ -15,22 +15,24 @@ protocol userTextEntryDelegate {
 class showTextEntryViewController: UIViewController {
 
     @IBOutlet weak var d_textEntry: UITextView!
+   
     var tempTextEntry: String = ""
     
     var delegateText: userTextEntryDelegate? = nil
     
-    @IBAction func savePressed(sender: UIButton) {
+ /*   @IBAction func savePressed(sender: UIButton) {
         println(" Save selected")
             self.delegateText?.userDidEnterText(d_textEntry.text)
         navigationController?.popViewControllerAnimated(true)
     }
-    
+   */
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
         d_textEntry.text = tempTextEntry
+  //      d_textEntry.selectable = false
          }
    //     var myColor : UIColor = UIColor( red: 0.5, green: 0.5, blue:0, alpha: 1.0 )
    //     d_textEntry.layer.borderColor = myColor.CGColor

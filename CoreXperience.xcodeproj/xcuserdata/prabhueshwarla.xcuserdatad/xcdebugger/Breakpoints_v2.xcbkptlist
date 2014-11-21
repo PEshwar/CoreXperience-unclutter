@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CoreXperience/showTextEntryViewController.swift"
-            timestampString = "437890299.83914"
+            timestampString = "438192388.81271"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "35"
-            endingLineNumber = "35"
+            startingLineNumber = "37"
+            endingLineNumber = "37"
             landmarkName = "showTextEntryViewController"
             landmarkType = "3">
          </BreakpointContent>
@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CoreXperience/ExperienceDetailViewController.swift"
-            timestampString = "438013960.205808"
+            timestampString = "438200949.042879"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "346"
-            endingLineNumber = "346"
+            startingLineNumber = "325"
+            endingLineNumber = "325"
             landmarkName = "savePressed(_:)"
             landmarkType = "5">
          </BreakpointContent>
