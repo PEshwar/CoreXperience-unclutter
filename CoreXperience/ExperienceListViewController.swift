@@ -154,7 +154,7 @@ var audioPlayer:AVAudioPlayer!
         //Set Photo
         
       
-        var blob_photo = data.valueForKey("m_photo_blob") as UIImage
+        var blob_photo = data.valueForKeyPath("m_photo_blob") as UIImage
         g_cell.d_listImage.image = blob_photo
 /*
         var photoLoc = data.valueForKeyPath("m_location") as? String
