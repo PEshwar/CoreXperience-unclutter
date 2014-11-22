@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9903E1F91A210258001991A7 /* collectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9903E1F81A210258001991A7 /* collectionViewController.swift */; };
+		9903E1FB1A210317001991A7 /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9903E1FA1A210317001991A7 /* CollectionViewCell.swift */; };
 		99096DFF1A19AFD2009CF377 /* hh-blessings.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 99096DFE1A19AFD2009CF377 /* hh-blessings.jpg */; };
 		99096E011A19B0B6009CF377 /* Bhagawad-Gita.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 99096E001A19B0B6009CF377 /* Bhagawad-Gita.jpg */; };
 		990F0C411A1192F2007989C1 /* Appaji.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 990F0C401A1192F2007989C1 /* Appaji.jpg */; };
@@ -68,6 +70,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9903E1F81A210258001991A7 /* collectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = collectionViewController.swift; sourceTree = "<group>"; };
+		9903E1FA1A210317001991A7 /* CollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
 		99096DFE1A19AFD2009CF377 /* hh-blessings.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "hh-blessings.jpg"; sourceTree = "<group>"; };
 		99096E001A19B0B6009CF377 /* Bhagawad-Gita.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Bhagawad-Gita.jpg"; sourceTree = "<group>"; };
 		990F0C401A1192F2007989C1 /* Appaji.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Appaji.jpg; sourceTree = "<group>"; };
@@ -193,6 +197,8 @@
 				9951FBD21A17506C00DE82D6 /* categoryImageViewController.swift */,
 				996BF7D91A19FF8F00304B82 /* favCellTableViewCell.swift */,
 				993141B71A1F2A030049F70F /* fullPhotoViewController.swift */,
+				9903E1F81A210258001991A7 /* collectionViewController.swift */,
+				9903E1FA1A210317001991A7 /* CollectionViewCell.swift */,
 			);
 			path = CoreXperience;
 			sourceTree = "<group>";
@@ -388,6 +394,7 @@
 				991008A81A09A7A10015E4A1 /* FavTableViewController.swift in Sources */,
 				99D8C49019FD24E4000DD3EB /* showDateTimeViewController.swift in Sources */,
 				995ACCB019EAEC1E00F0C715 /* ExperienceDetailViewController.swift in Sources */,
+				9903E1FB1A210317001991A7 /* CollectionViewCell.swift in Sources */,
 				995ACCB419EAF7B500F0C715 /* ExperienceMgr.swift in Sources */,
 				995ACCB619EAF7E700F0C715 /* ExperiencePersistenceHelper.swift in Sources */,
 				995ACCAC19EAEBDB00F0C715 /* ExperienceSummaryViewController.swift in Sources */,
@@ -398,6 +405,7 @@
 				9951FBD31A17506C00DE82D6 /* categoryImageViewController.swift in Sources */,
 				998D7C0C19EAE69500A8036F /* AppDelegate.swift in Sources */,
 				9951FBCF1A12C90B00DE82D6 /* categoryTableViewCell.swift in Sources */,
+				9903E1F91A210258001991A7 /* collectionViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

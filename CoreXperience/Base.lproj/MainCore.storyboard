@@ -100,7 +100,7 @@
                             <inset key="imageInsets" minX="0.0" minY="-24" maxX="0.0" maxY="-34"/>
                             <color key="tintColor" red="0.66666666669999997" green="0.53143040649999995" blue="0.1260413406" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
-                                <segue destination="UYT-tE-tyG" kind="show" identifier="showCategory" id="El5-dH-aak"/>
+                                <segue destination="SSD-4T-Iez" kind="show" identifier="showCollectionView" id="lJn-aN-mI6"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem systemItem="search" id="Q3g-67-kLF" userLabel="Favourite">
@@ -1109,7 +1109,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mQH-eX-8VI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2958.75" y="274.64788732394362"/>
+            <point key="canvasLocation" x="2898" y="262"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="o1t-ia-2E1">
@@ -1152,6 +1152,43 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lCk-KS-e2l" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-307.5" y="-451.05633802816897"/>
+        </scene>
+        <!--Collection View Controller-->
+        <scene sceneID="ar5-Mm-R8X">
+            <objects>
+                <collectionViewController id="SSD-4T-Iez" customClass="collectionViewController" customModule="CoreXperience" customModuleProvider="target" sceneMemberID="viewController">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="Q6t-xq-apq">
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="xFN-OT-8r8">
+                            <size key="itemSize" width="50" height="50"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                        <cells>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CollectionViewCell" id="Xqu-HT-n3m" customClass="CollectionViewCell" customModule="CoreXperience" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                            </collectionViewCell>
+                        </cells>
+                        <connections>
+                            <outlet property="dataSource" destination="SSD-4T-Iez" id="x0q-8O-wag"/>
+                            <outlet property="delegate" destination="SSD-4T-Iez" id="r64-Gg-sEa"/>
+                        </connections>
+                    </collectionView>
+                    <connections>
+                        <outlet property="catCollectionView" destination="Q6t-xq-apq" id="lAQ-wa-P7M"/>
+                        <outlet property="collectionView" destination="Q6t-xq-apq" id="Fxi-Iu-fEZ"/>
+                    </connections>
+                </collectionViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ex7-na-0sa" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3750" y="298"/>
         </scene>
         <!--Categories-->
         <scene sceneID="bzN-rs-eCL">
@@ -1294,7 +1331,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WKF-Je-tkY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3570" y="803.87323943661966"/>
+            <point key="canvasLocation" x="3564" y="1023"/>
         </scene>
     </scenes>
     <resources>
@@ -1307,7 +1344,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="OYw-IQ-nGi"/>
-        <segue reference="El5-dH-aak"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.68706154336734693" green="0.22348143762955744" blue="0.018592091222448807" alpha="1" colorSpace="calibratedRGB"/>
 </document>
