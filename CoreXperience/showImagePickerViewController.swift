@@ -71,28 +71,11 @@ class showImagePickerViewController: UIViewController,UIImagePickerControllerDel
     }
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
+       
         d_imageView.image = info[UIImagePickerControllerOriginalImage] as? UIImage
         
-     //   let mediaType = info[UIImagePickerControllerMediaType]! as String
-        if let mediaType = info[UIImagePickerControllerMediaType]! as? String {
-           println("Media Type is \(mediaType)")
-            // do yo thang
-        }
-     
-        
- //       if let mediaURL = info[UIImagePickerControllerMediaURL]! as? String {
-  //          println("Media URL is \(mediaURL)")
-            // do yo thang
-    //    }
-        if let referenceURL = info[UIImagePickerControllerReferenceURL]! as? String {
-            println("Reference URL is \(referenceURL)")
-            // do yo thang
-        }
-  //      if let metaData = info[UIImagePickerControllerMediaMetadata]! as? String {
-  //          println("Meta Data is \(metaData)")
-            // do yo thang
-  //      }
         self.dismissViewControllerAnimated(true, completion: nil)
+     
     }
   
     /*

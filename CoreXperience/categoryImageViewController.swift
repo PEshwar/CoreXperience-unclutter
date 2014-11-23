@@ -99,19 +99,17 @@ class categoryImageViewController: UIViewController,UIImagePickerControllerDeleg
     }
 
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
+        
         d_catImageView.image = info[UIImagePickerControllerOriginalImage] as? UIImage
         
-        //   let mediaType = info[UIImagePickerControllerMediaType]! as String
-        if let mediaType = info[UIImagePickerControllerMediaType]! as? String {
-            println("Media Type is \(mediaType)")
-            // do yo thang
-        }
+        self.dismissViewControllerAnimated(true, completion: nil)
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        d_catImageView.image = UIImage(named:"Default-category.jpg")
     }
 
      override func didReceiveMemoryWarning() {

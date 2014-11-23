@@ -486,7 +486,9 @@ class ExperienceDetailViewController: UIViewController, userDateTimeDelegate, us
             }
             }
         }
-        */  if existingItem == nil {
+        */
+        
+        if existingItem == nil {
             photoExperience.image = UIImage(named:"Bonsai.jpeg")
             d_category.setTitle(g_typeList[g_selectedTypeIndex], forState: .Normal)
 

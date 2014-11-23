@@ -20,11 +20,11 @@ class CollectionViewCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        imageView = UIImageView(frame: CGRect(x: 0, y: 16, width: frame.size.width, height: frame.size.height*2/3))
+        imageView = UIImageView(frame: CGRect(x: 0, y: 16, width: frame.size.width, height: frame.size.height * 2/3))
         imageView.contentMode = UIViewContentMode.ScaleAspectFit
         contentView.addSubview(imageView)
         
-        let textFrame = CGRect(x: 0, y: 32, width: frame.size.width, height: frame.size.height/3)
+        let textFrame = CGRect(x: 0, y: 60, width: frame.size.width, height: frame.size.height/2)
         textLabel = UILabel(frame: textFrame)
         textLabel.font = UIFont.systemFontOfSize(UIFont.smallSystemFontSize())
         textLabel.textAlignment = .Center

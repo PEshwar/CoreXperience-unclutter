@@ -155,7 +155,13 @@ var audioPlayer:AVAudioPlayer!
         
       
         var blob_photo = data.valueForKeyPath("m_photo_blob") as UIImage
-        g_cell.d_listImage.image = blob_photo
+        if blob_photo.size.width > 0 {
+            println(" setting image from database for experience")
+            g_cell.d_listImage.image = blob_photo
+            
+        } else {
+       println(" No photo present in database")
+        }
 /*
         var photoLoc = data.valueForKeyPath("m_location") as? String
         println("Got reference to Photo Loc: \(photoLoc)")
