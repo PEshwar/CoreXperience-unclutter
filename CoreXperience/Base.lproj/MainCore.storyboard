@@ -100,7 +100,7 @@
                             <inset key="imageInsets" minX="0.0" minY="-24" maxX="0.0" maxY="-34"/>
                             <color key="tintColor" red="0.66666666669999997" green="0.53143040649999995" blue="0.1260413406" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
-                                <segue destination="gjN-aF-PRu" kind="show" identifier="showCollectionView" id="lJn-aN-mI6"/>
+                                <segue destination="oSY-sH-Urh" kind="presentation" identifier="showSettings" id="c5S-sv-W9E"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem systemItem="search" id="Q3g-67-kLF" userLabel="Favourite">
@@ -133,7 +133,7 @@
                     </connections>
                 </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="3721.875" y="-379.22535211267603"/>
+            <point key="canvasLocation" x="4648.5" y="-386"/>
         </scene>
         <!--My Experience List-->
         <scene sceneID="D4t-gT-Yve">
@@ -399,6 +399,7 @@
                             <scopeButtonTitles>
                                 <string>All</string>
                                 <string>Favourites</string>
+                                <string>Date</string>
                             </scopeButtonTitles>
                             <connections>
                                 <outlet property="delegate" destination="sPV-9X-25p" id="R0X-Rh-Ao6"/>
@@ -458,7 +459,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zqF-In-WYZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4445.625" y="-413.02816901408448"/>
+            <point key="canvasLocation" x="5362.5" y="-414"/>
         </scene>
         <!--Show Date Time View Controller-->
         <scene sceneID="V94-9p-DVS">
@@ -1031,7 +1032,7 @@
         <!--New Category-->
         <scene sceneID="El3-eT-sS9">
             <objects>
-                <viewController id="Y0B-Fr-CTe" customClass="categoryImageViewController" customModule="CoreXperience" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="categoryImageViewController" id="Y0B-Fr-CTe" customClass="categoryImageViewController" customModule="CoreXperience" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="u9y-aP-sKV"/>
                         <viewControllerLayoutGuide type="bottom" id="AzA-ah-RQW"/>
@@ -1210,7 +1211,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mQH-eX-8VI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2893.5" y="263"/>
+            <point key="canvasLocation" x="2254.5" y="257"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="o1t-ia-2E1">
@@ -1284,11 +1285,7 @@
                         </connections>
                     </collectionView>
                     <toolbarItems>
-                        <barButtonItem title="Add Category" id="2FJ-sF-dll">
-                            <connections>
-                                <segue destination="sdg-eT-Bd0" kind="presentation" identifier="showImageCategoryView" id="jYx-Ie-p1B"/>
-                            </connections>
-                        </barButtonItem>
+                        <barButtonItem title="Add Category" id="2FJ-sF-dll"/>
                     </toolbarItems>
                     <navigationItem key="navigationItem" title="Category Settings" id="e6D-bu-BZN"/>
                     <connections>
@@ -1379,6 +1376,162 @@
             </objects>
             <point key="canvasLocation" x="5280" y="369"/>
         </scene>
+        <!--Settings-->
+        <scene sceneID="ghV-ei-Ho6">
+            <objects>
+                <viewController id="7td-vo-1gY" customClass="settingsViewController" customModule="CoreXperience" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="2Q6-AK-zze"/>
+                        <viewControllerLayoutGuide type="bottom" id="0rP-Al-D4x"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="TPB-d9-mOU">
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jsz-ms-fy9" userLabel="Category Settings">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LbW-6R-OaZ">
+                                        <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                        <state key="normal" title="Add">
+                                            <color key="titleColor" red="0.97288822429999999" green="0.99625318880000002" blue="0.98241915489999998" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <variation key="widthClass=compact" fixedFrame="YES">
+                                            <rect key="frame" x="26" y="51" width="51" height="30"/>
+                                        </variation>
+                                        <connections>
+                                            <segue destination="sdg-eT-Bd0" kind="presentation" identifier="showImageCategoryView" id="ooS-7X-uhL"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hUh-Nt-bgu">
+                                        <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                        <state key="normal" title="Update/Delete">
+                                            <color key="titleColor" red="0.97288822429999999" green="0.99625318880000002" blue="0.98241915489999998" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <variation key="widthClass=compact" fixedFrame="YES">
+                                            <rect key="frame" x="132" y="51" width="100" height="30"/>
+                                        </variation>
+                                        <connections>
+                                            <segue destination="LLI-uM-bwn" kind="presentation" identifier="showUpdateDeleteCategory" id="YOv-Vh-h8E"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Category Settings" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZWP-fh-h4U">
+                                        <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="0.97288822429999999" green="0.99625318880000002" blue="0.98241915489999998" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                        <variation key="widthClass=compact" fixedFrame="YES">
+                                            <rect key="frame" x="8" y="8" width="138" height="21"/>
+                                        </variation>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fdc-RB-cWS">
+                                        <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                        <state key="normal" title="Set Defaults">
+                                            <color key="titleColor" red="0.97288822429999999" green="0.99625318880000002" blue="0.98241915489999998" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <variation key="widthClass=compact" fixedFrame="YES">
+                                            <rect key="frame" x="279" y="51" width="84" height="30"/>
+                                        </variation>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.29461481124136968" green="0.37037843719937497" blue="0.42125717474489799" alpha="1" colorSpace="calibratedRGB"/>
+                                <variation key="default">
+                                    <mask key="subviews">
+                                        <exclude reference="LbW-6R-OaZ"/>
+                                        <exclude reference="hUh-Nt-bgu"/>
+                                        <exclude reference="ZWP-fh-h4U"/>
+                                        <exclude reference="fdc-RB-cWS"/>
+                                    </mask>
+                                </variation>
+                                <variation key="widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="0.0" y="64" width="400" height="101"/>
+                                    <mask key="subviews">
+                                        <include reference="LbW-6R-OaZ"/>
+                                        <include reference="hUh-Nt-bgu"/>
+                                        <include reference="ZWP-fh-h4U"/>
+                                        <include reference="fdc-RB-cWS"/>
+                                    </mask>
+                                </variation>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jHH-qL-d0g" userLabel="Image Settings">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9pP-cN-6k9">
+                                        <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                        <state key="normal" title="Category">
+                                            <color key="titleColor" red="0.97288822429999999" green="0.99625318880000002" blue="0.98241915489999998" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <variation key="widthClass=compact" fixedFrame="YES">
+                                            <rect key="frame" x="33" y="31" width="63" height="30"/>
+                                        </variation>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Image settings" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q45-Vg-Bt4">
+                                        <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="0.97288822429999999" green="0.99625318880000002" blue="0.98241915489999998" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                        <variation key="widthClass=compact" fixedFrame="YES">
+                                            <rect key="frame" x="8" y="0.0" width="113" height="21"/>
+                                        </variation>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4xA-nw-Cwj">
+                                        <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                        <state key="normal" title="Experience">
+                                            <color key="titleColor" red="0.97288822429999999" green="0.99625318880000002" blue="0.98241915489999998" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <variation key="widthClass=compact" fixedFrame="YES">
+                                            <rect key="frame" x="241" y="31" width="77" height="30"/>
+                                        </variation>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.29461481124136968" green="0.37037843719937497" blue="0.42125717474489799" alpha="0.72999999999999998" colorSpace="calibratedRGB"/>
+                                <variation key="default">
+                                    <mask key="subviews">
+                                        <exclude reference="9pP-cN-6k9"/>
+                                        <exclude reference="Q45-Vg-Bt4"/>
+                                        <exclude reference="4xA-nw-Cwj"/>
+                                    </mask>
+                                </variation>
+                                <variation key="widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="0.0" y="213" width="400" height="69"/>
+                                    <mask key="subviews">
+                                        <include reference="9pP-cN-6k9"/>
+                                        <include reference="Q45-Vg-Bt4"/>
+                                        <include reference="4xA-nw-Cwj"/>
+                                    </mask>
+                                </variation>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="jsz-ms-fy9"/>
+                                <exclude reference="jHH-qL-d0g"/>
+                            </mask>
+                        </variation>
+                        <variation key="widthClass=compact">
+                            <mask key="subviews">
+                                <include reference="jsz-ms-fy9"/>
+                                <include reference="jHH-qL-d0g"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <navigationItem key="navigationItem" title="Settings" id="7WI-UG-Ev5">
+                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="3Ez-e5-0lZ">
+                            <connections>
+                                <action selector="donePressed:" destination="7td-vo-1gY" id="Tfk-Jg-CGE"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Kmr-GN-59f" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2929.5" y="252"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="C9s-lS-WO1">
             <objects>
@@ -1399,7 +1552,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ayE-zq-Avy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2698.125" y="-413.02816901408448"/>
+            <point key="canvasLocation" x="3795" y="-756"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="m1n-QP-oAO">
@@ -1418,7 +1571,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UAB-9Y-L0B" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2236.5" y="262"/>
+            <point key="canvasLocation" x="1404" y="-436"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="e5b-Hh-WiP">
@@ -1465,6 +1618,24 @@
             </objects>
             <point key="canvasLocation" x="3607.5" y="390"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="UPa-TL-fgV">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="oSY-sH-Urh" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="SEE-eS-yYH">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="7td-vo-1gY" kind="relationship" relationship="rootViewController" id="cYz-yc-Jmn"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Bfr-aJ-jId" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2215.5" y="-442"/>
+        </scene>
     </scenes>
     <resources>
         <image name="FavUnselected.jpeg" width="102" height="102"/>
@@ -1475,7 +1646,7 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="OYw-IQ-nGi"/>
-        <segue reference="jYx-Ie-p1B"/>
+        <segue reference="6Xg-99-cHz"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.68706154336734693" green="0.22348143762955744" blue="0.018592091222448807" alpha="1" colorSpace="calibratedRGB"/>
 </document>

@@ -20,7 +20,7 @@ class categoryViewController: UITableViewController {
  
     @IBAction func donePressed(sender: AnyObject) {
         
-        navigationController?.popViewControllerAnimated(true)
+        navigationController?.dismissViewControllerAnimated(true, completion: nil)
     }
  
         
@@ -147,6 +147,23 @@ override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath:
     return categoryCell
     }
     
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
+        //Obtain reference to selected row  & selected item
+        
+        var selectedRow = self.tableView.indexPathForSelectedRow()?.row
+        var selectedItem : NSManagedObject = self.l_typeList[selectedRow!] as NSManagedObject
+        println("Got reference to selected item")
+        
+        var destinationVC:categoryImageViewController = self.storyboard?.instantiateViewControllerWithIdentifier("categoryImageViewController") as categoryImageViewController
+        
+        var catName = selectedItem.valueForKey("md_category") as String?
+        var catImage = selectedItem.valueForKey("md_categoryImage") as UIImage?
+        destinationVC.s_catName = catName!
+        destinationVC.s_catImage = catImage!
+        destinationVC.existingItem = selectedItem
+        self.navigationController?.pushViewController(destinationVC, animated: true)
+    }
 
     /*
     // Override to support conditional editing of the table view.

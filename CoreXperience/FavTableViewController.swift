@@ -11,12 +11,32 @@ import CoreData
 import MediaPlayer
 import Social
 import MessageUI
+import Foundation
+
+func >(l: NSDate, r: NSDate) -> Bool {
+    return l.compare(r) == NSComparisonResult.OrderedDescending
+}
+func >=(l: NSDate, r: NSDate) -> Bool {
+    return l.compare(r) == NSComparisonResult.OrderedDescending || l == r
+}
+func <(l: NSDate, r: NSDate) -> Bool {
+    return l.compare(r) == NSComparisonResult.OrderedAscending
+}
+func <=(l: NSDate, r: NSDate) -> Bool {
+    return l.compare(r) == NSComparisonResult.OrderedAscending || l == r
+}
 
 class FavTableViewController: UITableViewController {
 
     var favList : Array<AnyObject> = []
     var filteredSearchList : Array<AnyObject> = []
     var commonList : Array<AnyObject> = []
+    
+    //Date search fields
+    
+    var fromDateTextField = "2014-04-01"
+    var toDateTextField = NSString()
+    var l_dateSearchEnabled = Bool()
     
     var mediaPlayer: MPMoviePlayerController = MPMoviePlayerController()
 
@@ -26,6 +46,26 @@ class FavTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //Initialize Date To field
+        
+        let dateFormatter = NSDateFormatter()//3
+        
+        var theDateFormat = NSDateFormatterStyle.ShortStyle //5
+      
+        
+        dateFormatter.dateStyle = theDateFormat//8
+
+        var now = NSDate()
+        
+        toDateTextField = dateFormatter.stringFromDate(now)
+        
+        println(" Initialized from date to \(fromDateTextField)")
+        println(" Initialized TO date to \(toDateTextField)")
+        
+        l_dateSearchEnabled = true
+        
+        
 /*
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -505,16 +545,67 @@ func filterContentForSearchText(searchText: String, scope: String = "All") {
     for element in favList {
         var tempDesc = element.valueForKey("m_desc") as String
         var tempTitle = element.valueForKey("m_title") as String
+        var tempDate = element.valueForKey("m_date") as NSDate
+        
         if ((tempDesc.lowercaseString.rangeOfString(searchText) != nil) || (tempTitle.lowercaseString.rangeOfString(searchText) != nil))  {
         println("value for Desc is \(tempDesc)")
             println("value for Title is \(tempTitle)")
             println("i = \(i)")
             filteredSearchList.append(favList[i])
-            
+         
+    /*        if l_dateSearchEnabled == true {
+                println("Scope 1 is Date")
+                let formatter = NSDateFormatter()
+                formatter.timeZone = NSTimeZone.defaultTimeZone()
+                formatter.dateFormat = "yyyy-mm-dd"
+                let fromDate = formatter.dateFromString(fromDateTextField)
+                let toDate = formatter.dateFromString(toDateTextField)
+                println("Datescope: From Date Entered is \(fromDateTextField)")
+                println("Datescope: To Date Entered is \(toDateTextField)")
+                
+                println(" DateScope: From date is \(fromDate)")
+                println(" DateScope: To date is \(toDate)")
+                println(" DateScope: Temp date is \(tempDate)")
+                
+                if ( tempDate < fromDate!) {
+                    println("Adding item in Date Scope 1  to filterlist \(favList[i])")
+                        filteredSearchList.append(favList[i])
+                } else {
+                    println("Scope 1 is NOT Date")
+                }
+            } else {
+                println("date search not enabled, appending item to fav list")
+                filteredSearchList.append(favList[i])
+            }
+            */
         }
         i++
+     }
     
+     println(" Filtered List has count of \(filteredSearchList.count)")
+    
+ /*   if scope == "Date" {
+        
+            
+        //    var   fromDate = self.getNSDate (fromDateTextField)
+        //    var toDate = self.getNSDate(toDateTextField)
+            
+            let formatter = NSDateFormatter()
+            formatter.timeZone = NSTimeZone.defaultTimeZone()
+            formatter.dateFormat = "yyyy-mm-dd"
+            let fromDate = formatter.dateFromString(fromDateTextField)
+            let toDate = formatter.dateFromString(toDateTextField)
+            
+            
+       //     let searchByDates = filteredSearchList.filter({m in (m.valueForKey("m_date") as NSString) < self.toDateTextField && (m.valueForKey("m_date") as NSString) > self.fromDateTextField})
+        let searchByDates = filteredSearchList.filter({m in  (m.valueForKey("m_date") as NSString) > self.fromDateTextField})
+        
+        println(" search by dates has count of \(searchByDates.count)")
+            filteredSearchList = searchByDates
+        
+        
     }
+*/
 
     
  //   filteredSearchList = context.executeFetchRequest(request, error: nil)!
@@ -534,6 +625,11 @@ return true
 }
 
 func searchDisplayController(controller: UISearchDisplayController!, shouldReloadTableForSearchScope searchOption: Int) -> Bool {
+    
+    //Clear favsearch list
+    
+    filteredSearchList.removeAll(keepCapacity: true)
+    
     let scope = self.searchDisplayController!.searchBar.scopeButtonTitles as [String]
     
     // Get items from DB
@@ -546,6 +642,39 @@ func searchDisplayController(controller: UISearchDisplayController!, shouldReloa
         request.predicate = NSPredicate(format: "m_favourites == %@", true)
             println(" Getting favourites from DB")
     }
+    
+ /*   if scope[searchOption] == "Date" {
+        
+       
+        
+        let alertController = UIAlertController(title: "Title", message: "Set Date Filter", preferredStyle: .Alert)
+        let ok = UIAlertAction(title: "OK", style: .Default, handler: { (action) -> Void in
+            // Do whatever you want with inputTextField?.text
+            println("\(self.fromDateTextField)")
+            println("\(self.toDateTextField)")
+          
+       //     self.navigationController?.presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
+
+           
+        })
+        let cancel = UIAlertAction(title: "Cancel", style: .Cancel) { (action) -> Void in
+        }
+        alertController.addAction(ok)
+        alertController.addAction(cancel)
+        alertController.addTextFieldWithConfigurationHandler { (textField) -> Void in
+            self.fromDateTextField = textField.text
+            
+        }
+        alertController.addTextFieldWithConfigurationHandler { (textField) -> Void in
+       self.toDateTextField = textField.text
+        }
+        presentViewController(alertController, animated: true, completion: nil)
+        
+    
+    }
+    
+    */
+    
     favList = context.executeFetchRequest(request, error: nil)!
      println(" Fav TypeList count in scope method is \(favList.count)")
     
@@ -557,4 +686,17 @@ func searchDisplayController(controller: UISearchDisplayController!, shouldReloa
 }
 
 }
+/*
+extension FavTableViewController {
+    
+    
+    func getNSDate(dateString:String, format:String="yyyy-MM-dd")-> NSDate {
+        let formatter = NSDateFormatter()
+        formatter.timeZone = NSTimeZone.defaultTimeZone()
+        formatter.dateFormat = format
+        let d = formatter.dateFromString(dateString)
+        return d!
+    }
+}
+*/
 
