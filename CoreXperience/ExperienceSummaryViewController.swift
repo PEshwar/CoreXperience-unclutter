@@ -105,8 +105,8 @@ class ExperienceSummaryViewController: UITableViewController {
         var request = NSFetchRequest(entityName: "CoreExperience")
         println(" selected Type is  \(l_typeList[indexPath.row])")
         var cat = l_typeList[indexPath.row].valueForKeyPath("md_category") as? String
-        var photoLoc = l_typeList[indexPath.row].valueForKeyPath("md_categoryImage") as? String
-
+      //  var photoLoc = l_typeList[indexPath.row].valueForKeyPath("md_categoryImage") as? String
+        var photo = l_typeList[indexPath.row].valueForKeyPath("md_categoryImage") as? UIImage
         
         var cell = tableView.dequeueReusableCellWithIdentifier("summaryCell") as summaryCell
         //Add this line to get the subtitle text
@@ -129,13 +129,13 @@ class ExperienceSummaryViewController: UITableViewController {
             println(" TypeList count is \(totalCount)")
         //    println(" selected Type is  \(g_typeList[g_selectedTypeIndex])")
         cell.d_labelItems!.text = String(totalCount) + " Items"
-        
+        cell.d_image.image = l_typeList[indexPath.row].valueForKeyPath("md_categoryImage") as? UIImage
         
         //Get Photo
         
-        let nsDocumentDirectory = NSSearchPathDirectory.DocumentDirectory
+ /*       let nsDocumentDirectory = NSSearchPathDirectory.DocumentDirectory
         let nsUserDomainMask = NSSearchPathDomainMask.UserDomainMask
-        
+        cell.d_image.image
         
         if let paths = NSSearchPathForDirectoriesInDomains(nsDocumentDirectory, nsUserDomainMask, true) {
             if paths.count > 0 {
@@ -148,6 +148,7 @@ class ExperienceSummaryViewController: UITableViewController {
                 }
             }
         }
+*/
         
    /*     //Set image
         if cat == "My experiences with Sadguru" {

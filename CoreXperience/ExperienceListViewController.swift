@@ -56,6 +56,7 @@ var audioPlayer:AVAudioPlayer!
         /* Set the Title View */
         navigationItem.titleView = imageView
    */
+    
     }
 
     
@@ -153,11 +154,15 @@ var audioPlayer:AVAudioPlayer!
         
         //Set Photo
         
-      
-        var blob_photo = data.valueForKeyPath("m_photo_blob") as UIImage
-        if blob_photo.size.width > 0 {
-            println(" setting image from database for experience")
-            g_cell.d_listImage.image = blob_photo
+      println("LVC,CFRAIP, BB GetBlobPhoto")
+     //   var blob_photo = data.valueForKeyPath("m_photo_blob") as UIImage
+        var blob_photo = data.valueForKeyPath("m_photo_blob") as NSData
+        println("LVC,CFRAIP, AA GetBlobPhoto")
+    //    if blob_photo.size.width > 0 {
+        if blob_photo.length > 0 {
+        println(" setting image from database for experience")
+         //   g_cell.d_listImage.image = blob_photo
+            g_cell.d_listImage.image = UIImage(data: blob_photo)
             
         } else {
        println(" No photo present in database")
@@ -315,7 +320,9 @@ extension ExperienceListViewController {
         }
         var soundURL = selectedItem.valueForKey("m_audio_location") as String
         var photoLoc = selectedItem.valueForKey("m_location") as String?
-         var blob_photo = selectedItem.valueForKey("m_photo_blob") as UIImage
+        println("LVC, SALE, BB GetBlobPhoto")
+         var blob_photo = selectedItem.valueForKey("m_photo_blob") as NSData
+        println("LVC, SALE, AA GetBlobPhoto")
         var title = selectedItem.valueForKey("m_title") as String
         var text = selectedItem.valueForKey("m_desc") as String
         var type = selectedItem.valueForKey("m_type") as String
@@ -426,7 +433,7 @@ extension ExperienceListViewController {
             println("Getting blob photo in view photo")
            
             println("Got blob photo in view photo- setting vc tempPhoto variable")
-            destinationVC.tempImage = blob_photo
+            destinationVC.tempImage = UIImage(data:blob_photo)
             self.navigationController?.pushViewController(destinationVC, animated: true)
             
         }))
@@ -487,7 +494,7 @@ extension ExperienceListViewController {
             destinationVC.s_location = location
             println("Got reference to Photo location \(destinationVC.s_location)")
             
-            destinationVC.blob_photo = blob_photo
+            destinationVC.blob_photo = UIImage( data:blob_photo)
             
             destinationVC.existingItem = selectedItem
             println("Got reference to existingItem")
@@ -534,7 +541,7 @@ extension ExperienceListViewController {
             
             //Share photo if photo is available
           
-            shareToFacebook.addImage(blob_photo)
+            shareToFacebook.addImage(UIImage(data:blob_photo))
             
             self.presentViewController(shareToFacebook, animated:true,completion:nil)
         }))
@@ -560,7 +567,8 @@ extension ExperienceListViewController {
             //Share photo if photo is available
             var photoLoc = selectedItem.valueForKey("m_location") as String
             println("Got reference to photo location")
-            var imageData = UIImageJPEGRepresentation(blob_photo, 1.0)
+         //   var imageData = UIImageJPEGRepresentation(blob_photo, 1.0)
+           var imageData = blob_photo
             mc.addAttachmentData(imageData, mimeType: "image/jped",fileName : "image")
             mc.addAttachmentData(blobAudio, mimeType: "audio/mp4", fileName:"audio")
        /*

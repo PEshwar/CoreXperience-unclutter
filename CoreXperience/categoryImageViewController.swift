@@ -37,6 +37,9 @@ class categoryImageViewController: UIViewController,UIImagePickerControllerDeleg
     
     @IBOutlet weak var d_catName: UITextField!
     
+    @IBAction func setDefaultCategoryImage(sender: AnyObject) {
+        d_catImageView.image = kCategoryDefaultImage
+    }
     
     @IBAction func donePressed(sender: AnyObject) {
        
@@ -64,15 +67,15 @@ class categoryImageViewController: UIViewController,UIImagePickerControllerDeleg
         var imageData = UIImageJPEGRepresentation(d_catImageView.image, 1.0)
         if imageData != nil {
             
-            saveImageToDisk()
+  //          saveImageToDisk()
            
         }
         
         
         //End save image to disk
-        newCategory.md_categoryImage = l_PhotoLocation
+        newCategory.md_categoryImage = d_catImageView.image!
         context.save(nil)
-        println("Context Saved")
+   //     println("Context Saved")
             
         self.delegateImageCat?.userImagePicked(d_catImageView.image!, categoryName: d_catName.text!)
          navigationController?.presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
@@ -82,8 +85,9 @@ class categoryImageViewController: UIViewController,UIImagePickerControllerDeleg
                 var imageData = UIImageJPEGRepresentation(d_catImageView.image, 1.0)
                 if imageData != nil {
                     
-                    saveImageToDisk()
-                    existingItem.setValue(l_PhotoLocation as String, forKey: "md_categoryImage")
+                //    saveImageToDisk()
+                //    existingItem.setValue(l_PhotoLocation as String, forKey: "md_categoryImage")
+                    existingItem.setValue(d_catImageView.image, forKey: "md_categoryImage")
                     context.save(nil)
                     navigationController?.presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
                   //  performSegueWithIdentifier("showRoot", sender: self)
@@ -118,8 +122,10 @@ class categoryImageViewController: UIViewController,UIImagePickerControllerDeleg
         super.viewDidLoad()
         
         if existingItem == nil {
+   //         println(" In category image VC 1: this is a new item")
         // Do any additional setup after loading the view.
-        d_catImageView.image = UIImage(named:"Default-category.jpg")
+        setCategoryDefaultImage()
+    //    d_catImageView.image = UIImage(named:"Default-category.jpg")
         } else {
             d_catName.text = s_catName
             d_catImageView.image = s_catImage
@@ -156,11 +162,33 @@ class categoryImageViewController: UIViewController,UIImagePickerControllerDeleg
                     
                     //   let writePath = dirPath.stringByAppendingPathComponent("share2.jpeg")
                     let writePath = dirPath.stringByAppendingPathComponent(l_PhotoLocation)
-                    println("write path is \(writePath)")
+           //         println("write path is \(writePath)")
                     
                     UIImageJPEGRepresentation(d_catImageView.image, 1.0).writeToFile(writePath, atomically: true)
                 }
             }
         }
+    }
+}
+
+extension categoryImageViewController {
+    func setCategoryDefaultImage() {
+        
+        var appDel: AppDelegate = (UIApplication.sharedApplication().delegate as AppDelegate)
+        var context: NSManagedObjectContext;
+        context = appDel.managedObjectContext!
+        
+        
+        let fetchRequest = NSFetchRequest(entityName:"DefaultImages")
+        fetchRequest.returnsObjectsAsFaults = false
+        
+        fetchRequest.predicate = NSPredicate(format: "m_defaultCategory == %@", kCategoryDefaultConstant)
+        let l_defaultList = context.executeFetchRequest(fetchRequest, error: nil)! as [NSManagedObject]
+ //       println(" TypeList count is \(l_defaultList.count)")
+        
+        if l_defaultList.count > 0 {
+            d_catImageView.image = l_defaultList[0].valueForKeyPath("m_defaultImage") as? UIImage
+        }
+        //    println(" selected Type is  \(g_typeList[g_selectedTypeIndex])")
     }
 }

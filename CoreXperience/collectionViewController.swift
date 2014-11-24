@@ -62,13 +62,13 @@ class collectionViewController: UICollectionViewController {
             println("Could not fetch \(error), \(error!.userInfo)")
         }
     
-        println(" No of items in collection from table is during view did load \(l_typeList.count)")
+ //       println(" No of items in collection from table is during view did load \(l_typeList.count)")
         
     }
 
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(true)
-        println(" Hello- in view will appear ")
+ //       println(" Hello- in view will appear ")
         var typeList : Array<AnyObject> = []
         g_typeList.removeAll(keepCapacity: true)
         var appDel: AppDelegate = (UIApplication.sharedApplication().delegate as AppDelegate)
@@ -85,8 +85,8 @@ class collectionViewController: UICollectionViewController {
         else {
         println("Could not fetch \(error), \(error!.userInfo)")
         }
-        println(" No of items in collection from table is during view will appear is \(l_typeList.count)")
-        println(" Hello- in view will appear: finished fetching new collection cells ")
+   //     println(" No of items in collection from table is during view will appear is \(l_typeList.count)")
+//        println(" Hello- in view will appear: finished fetching new collection cells ")
         collectionView?.reloadData()
     }
     
@@ -107,7 +107,7 @@ class collectionViewController: UICollectionViewController {
     }
     
     override func collectionView(collectionView: UICollectionView, didDeselectItemAtIndexPath indexPath: NSIndexPath) {
-        println(" Tapped item at indexpath \(indexPath.row)")
+  //      println(" Tapped item at indexpath \(indexPath.row)")
         
         var collectionAlert = UIAlertController(title: "Action", message: "What do you want to do?", preferredStyle: UIAlertControllerStyle.Alert)
         collectionAlert.addAction(UIAlertAction(title: "Change Image", style: .Default, handler: { (action: UIAlertAction!) in

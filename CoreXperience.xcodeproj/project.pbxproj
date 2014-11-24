@@ -59,6 +59,7 @@
 		99EBA7A21A0FD2EA006A83DB /* REC in Resources */ = {isa = PBXBuildFile; fileRef = 99EBA7A11A0FD2EA006A83DB /* REC */; };
 		99F2514B1A21E54E00CBEBAD /* settingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99F2514A1A21E54E00CBEBAD /* settingsViewController.swift */; };
 		99F2514D1A21E76600CBEBAD /* mail_gear_thumb.png in Resources */ = {isa = PBXBuildFile; fileRef = 99F2514C1A21E76600CBEBAD /* mail_gear_thumb.png */; };
+		99F251531A223A0800CBEBAD /* modelImageDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99F251521A223A0800CBEBAD /* modelImageDefaults.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -129,6 +130,7 @@
 		99EBA7A11A0FD2EA006A83DB /* REC */ = {isa = PBXFileReference; explicitFileType = image.jpeg; path = REC; sourceTree = "<group>"; };
 		99F2514A1A21E54E00CBEBAD /* settingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = settingsViewController.swift; sourceTree = "<group>"; };
 		99F2514C1A21E76600CBEBAD /* mail_gear_thumb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mail_gear_thumb.png; sourceTree = "<group>"; };
+		99F251521A223A0800CBEBAD /* modelImageDefaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = modelImageDefaults.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -184,6 +186,7 @@
 				998D7C0919EAE69500A8036F /* Supporting Files */,
 				995ACCAB19EAEBDB00F0C715 /* ExperienceSummaryViewController.swift */,
 				9930D8E51A0F01030087826B /* modelCategory.swift */,
+				99F251521A223A0800CBEBAD /* modelImageDefaults.swift */,
 				995ACCAD19EAEBFC00F0C715 /* ExperienceListViewController.swift */,
 				99A5023B1A04FC61001F6282 /* Family-Sign-32.png */,
 				9917A47E19F1E5F000F83DFC /* customCell.swift */,
@@ -414,6 +417,7 @@
 				998D7C0C19EAE69500A8036F /* AppDelegate.swift in Sources */,
 				9951FBCF1A12C90B00DE82D6 /* categoryTableViewCell.swift in Sources */,
 				9903E1F91A210258001991A7 /* collectionViewController.swift in Sources */,
+				99F251531A223A0800CBEBAD /* modelImageDefaults.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

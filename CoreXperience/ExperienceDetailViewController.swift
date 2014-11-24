@@ -369,6 +369,11 @@ class ExperienceDetailViewController: UIViewController, userDateTimeDelegate, us
             var appDel: AppDelegate = (UIApplication.sharedApplication().delegate as AppDelegate)
             var context: NSManagedObjectContext;
             context = appDel.managedObjectContext!
+            
+            var imageNSData = UIImageJPEGRepresentation(photoExperience.image!, kImageCompressionFactor)
+            var scaledDownExperienceImage = imageDataScaledToHeight(imageNSData, kImageScaleDownHeight)
+            var imageToSave = UIImage(data: scaledDownExperienceImage)
+
         if (existingItem != nil)
         {
             
@@ -381,7 +386,9 @@ class ExperienceDetailViewController: UIViewController, userDateTimeDelegate, us
             existingItem.setValue(l_favourites as Bool, forKey: "m_favourites")
             existingItem.setValue(l_date as NSDate, forKey: "m_date")
             existingItem.setValue(l_location as String, forKey: "m_location")
-            existingItem.setValue(photoExperience.image, forKey: "m_photo_blob")
+          //  existingItem.setValue(photoExperience.image, forKey: "m_photo_blob")
+            existingItem.setValue(scaledDownExperienceImage, forKey: "m_photo_blob")
+
             existingItem.setValue(l_audio_blob, forKey: "m_audio_blob")
             
             
@@ -397,7 +404,8 @@ class ExperienceDetailViewController: UIViewController, userDateTimeDelegate, us
             newEntity.setValue(l_favourites as Bool, forKey: "m_favourites")
             newEntity.setValue(l_date as NSDate, forKey: "m_date")
             newEntity.setValue(l_location as String, forKey: "m_location")
-            newEntity.setValue(photoExperience.image, forKey: "m_photo_blob")
+         //   newEntity.setValue(photoExperience.image, forKey: "m_photo_blob")
+            newEntity.setValue(scaledDownExperienceImage, forKey: "m_photo_blob")
             newEntity.setValue(l_audio_blob, forKey: "m_audio_blob")
             
    
@@ -489,7 +497,9 @@ class ExperienceDetailViewController: UIViewController, userDateTimeDelegate, us
         */
         
         if existingItem == nil {
-            photoExperience.image = UIImage(named:"Bonsai.jpeg")
+            println(" 2: Setting default image")
+            setExperienceDefaultImage()
+          //  photoExperience.image = UIImage(named:"Bonsai.jpeg")
             d_category.setTitle(g_typeList[g_selectedTypeIndex], forState: .Normal)
 
         } else {
@@ -1222,3 +1232,23 @@ func imagePickerController(picker: UIImagePickerController!, didFinishPickingIma
     }
     
     }
+
+extension ExperienceDetailViewController {
+    func setExperienceDefaultImage() {
+    var appDel: AppDelegate = (UIApplication.sharedApplication().delegate as AppDelegate)
+    var context: NSManagedObjectContext;
+    context = appDel.managedObjectContext!
+    
+    let fetchRequest = NSFetchRequest(entityName:"DefaultImages")
+    fetchRequest.returnsObjectsAsFaults = false
+    
+    fetchRequest.predicate = NSPredicate(format: "m_defaultCategory == %@", kExperienceDefaultConstant)
+    let l_defaultList = context.executeFetchRequest(fetchRequest, error: nil)! as [NSManagedObject]
+    println(" TypeList count is \(l_defaultList.count)")
+    if l_defaultList.count > 0 {
+        println(" 1 found default experience image")
+    photoExperience.image = l_defaultList[0].valueForKeyPath("m_defaultImage") as? UIImage
+    }
+    //    println(" selected Type is  \(g_typeList[g_selectedTypeIndex])")
+    }
+}

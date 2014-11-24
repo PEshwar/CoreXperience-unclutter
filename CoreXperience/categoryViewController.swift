@@ -106,11 +106,12 @@ override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath:
     
             //Assign the contents of global type list to the textLabel of each cell
             categoryCell.categoryLabel!.text = l_typeList[indexPath.row].valueForKeyPath("md_category") as? String
-              var photoLoc =  l_typeList[indexPath.row].valueForKeyPath("md_categoryImage") as? String
-    
+            //  var photoLoc =  l_typeList[indexPath.row].valueForKeyPath("md_categoryImage") as? String
+        categoryCell.categoryImage.image =  l_typeList[indexPath.row].valueForKeyPath("md_categoryImage") as? UIImage
+
     //Get Photo
     
-    let nsDocumentDirectory = NSSearchPathDirectory.DocumentDirectory
+ /*   let nsDocumentDirectory = NSSearchPathDirectory.DocumentDirectory
     let nsUserDomainMask = NSSearchPathDomainMask.UserDomainMask
     
     
@@ -125,7 +126,7 @@ override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath:
             }
         }
     }
-    
+    */
    
    // get image from device location
     
@@ -153,7 +154,7 @@ override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath:
         
         var selectedRow = self.tableView.indexPathForSelectedRow()?.row
         var selectedItem : NSManagedObject = self.l_typeList[selectedRow!] as NSManagedObject
-        println("Got reference to selected item")
+  //      println("Got reference to selected item")
         
         var destinationVC:categoryImageViewController = self.storyboard?.instantiateViewControllerWithIdentifier("categoryImageViewController") as categoryImageViewController
         
@@ -197,13 +198,13 @@ override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath:
             
             
             var request = NSFetchRequest(entityName: "CoreExperience")
-            println(" selected Type is  \(l_typeList[indexPath.row])")
+      //      println(" selected Type is  \(l_typeList[indexPath.row])")
             var cat = l_typeList[indexPath.row].valueForKeyPath("md_category") as? String
             
             request.predicate = NSPredicate(format: "m_type == %@", valueToBeDeleted!)
             var totalCount = context.countForFetchRequest(request, error: nil)
             if totalCount > 0 {
-                println(" \(totalCount) experiences found for this category \(valueToBeDeleted)")
+   //             println(" \(totalCount) experiences found for this category \(valueToBeDeleted)")
                 var categoryAlert = UIAlertController(title: "Warning", message: " \(totalCount) experience(s) exist for this category, you cannot delete", preferredStyle: UIAlertControllerStyle.Alert)
                 categoryAlert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Destructive, handler: nil))
                 presentViewController(categoryAlert, animated: true, completion: nil)
