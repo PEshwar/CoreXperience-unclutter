@@ -74,7 +74,7 @@ class settingsViewController: UIViewController, UIImagePickerControllerDelegate,
 
     
     @IBAction func categoryImageSave(sender: AnyObject) {
-        if l_categorySelect == true {
+       if categoryDefaultImage.image?.size.width > 0 {
            
             var appDel: AppDelegate = (UIApplication.sharedApplication().delegate as AppDelegate)
             var context: NSManagedObjectContext;
@@ -117,11 +117,18 @@ class settingsViewController: UIViewController, UIImagePickerControllerDelegate,
             
          
             
+       } else {
+        var catAlert = UIAlertController(title: "No Image to save", message: "  Please select an image first", preferredStyle: UIAlertControllerStyle.Alert)
+        catAlert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Destructive, handler: nil))
+        presentViewController(catAlert, animated: true, completion: nil)
         }
     }
     
     
     @IBAction func experienceImageSave(sender: AnyObject) {
+        
+        if experienceDefaultImage.image?.size.width > 0 {
+            
         
         var appDel: AppDelegate = (UIApplication.sharedApplication().delegate as AppDelegate)
         var context: NSManagedObjectContext;
@@ -138,11 +145,7 @@ class settingsViewController: UIViewController, UIImagePickerControllerDelegate,
         } else {
             println("No experience default available to be removed from DB")
         }
-        
-      
-        
-     
-        
+ 
         
         //Set experience image default in database
         
@@ -155,7 +158,11 @@ class settingsViewController: UIViewController, UIImagePickerControllerDelegate,
         context.save(nil)
         println("Experience Default image Saved")
         
-
+        } else {
+            var expAlert = UIAlertController(title: "No Image to save", message: "  Please select an image first", preferredStyle: UIAlertControllerStyle.Alert)
+            expAlert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Destructive, handler: nil))
+            presentViewController(expAlert, animated: true, completion: nil)
+        }
         
 
     }

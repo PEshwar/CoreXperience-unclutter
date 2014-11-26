@@ -156,17 +156,24 @@ var audioPlayer:AVAudioPlayer!
         
       println("LVC,CFRAIP, BB GetBlobPhoto")
      //   var blob_photo = data.valueForKeyPath("m_photo_blob") as UIImage
-        var blob_photo = data.valueForKeyPath("m_photo_blob") as NSData
-        println("LVC,CFRAIP, AA GetBlobPhoto")
+        
+        var blob_photo = NSData()
+        
+    //    if blob_photo.length > 0 {
+        // blob_photo = data.valueForKeyPath("m_photo_blob") as NSData
+        blob_photo = data.valueForKey("m_photo_blob") as NSData
+            println("LVC,CFRAIP, AA GetBlobPhoto")
     //    if blob_photo.size.width > 0 {
-        if blob_photo.length > 0 {
-        println(" setting image from database for experience")
+        
+        
          //   g_cell.d_listImage.image = blob_photo
             g_cell.d_listImage.image = UIImage(data: blob_photo)
             
-        } else {
-       println(" No photo present in database")
-        }
+      //  } else {
+      // println(" No photo present in database, getting default experience image")
+      //      g_cell.d_listImage.image = getExperienceDefaultImage()
+            
+       // }
 /*
         var photoLoc = data.valueForKeyPath("m_location") as? String
         println("Got reference to Photo Loc: \(photoLoc)")
@@ -494,7 +501,7 @@ extension ExperienceListViewController {
             destinationVC.s_location = location
             println("Got reference to Photo location \(destinationVC.s_location)")
             
-            destinationVC.blob_photo = UIImage( data:blob_photo)
+            destinationVC.s_blob_photo = UIImage( data:blob_photo)
             
             destinationVC.existingItem = selectedItem
             println("Got reference to existingItem")
@@ -618,4 +625,25 @@ extension ExperienceListViewController {
 
     
 
+}
+
+extension ExperienceListViewController {
+    func getExperienceDefaultImage() -> UIImage {
+        var appDel: AppDelegate = (UIApplication.sharedApplication().delegate as AppDelegate)
+        var context: NSManagedObjectContext;
+        context = appDel.managedObjectContext!
+        
+        let fetchRequest = NSFetchRequest(entityName:"DefaultImages")
+        fetchRequest.returnsObjectsAsFaults = false
+        
+        fetchRequest.predicate = NSPredicate(format: "m_defaultCategory == %@", kExperienceDefaultConstant)
+        let l_defaultList = context.executeFetchRequest(fetchRequest, error: nil)! as [NSManagedObject]
+        println(" TypeList count is \(l_defaultList.count)")
+        if l_defaultList.count > 0 {
+            println(" 1 found default experience image")
+            
+        }
+        //    println(" selected Type is  \(g_typeList[g_selectedTypeIndex])")
+    return l_defaultList[0].valueForKeyPath("m_defaultImage") as UIImage
+    }
 }

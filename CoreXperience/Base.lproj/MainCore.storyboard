@@ -1461,7 +1461,6 @@
                                             <rect key="frame" x="116" y="71" width="89" height="30"/>
                                         </variation>
                                         <connections>
-                                            <action selector="experienceImageSave:" destination="7td-vo-1gY" eventType="touchUpInside" id="LGG-7h-Zto"/>
                                             <action selector="restoreCategoryDefaults:" destination="7td-vo-1gY" eventType="touchUpInside" id="MUo-4E-fp9"/>
                                         </connections>
                                     </button>
@@ -1571,7 +1570,6 @@
                                             <rect key="frame" x="131" y="169" width="89" height="30"/>
                                         </variation>
                                         <connections>
-                                            <action selector="experienceImageSave:" destination="7td-vo-1gY" eventType="touchUpInside" id="aDI-pk-1rW"/>
                                             <action selector="restoreImageDefaults:" destination="7td-vo-1gY" eventType="touchUpInside" id="Ohe-ks-djQ"/>
                                         </connections>
                                     </button>

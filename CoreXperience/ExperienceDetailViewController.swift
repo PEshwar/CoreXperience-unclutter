@@ -209,6 +209,7 @@ class ExperienceDetailViewController: UIViewController, userDateTimeDelegate, us
     var s_date : NSDate = NSDate()
     var s_favourites : Bool = false
     var s_audio_location: String = ""
+    var s_blob_photo = UIImage()
    
    
     
@@ -503,7 +504,7 @@ class ExperienceDetailViewController: UIViewController, userDateTimeDelegate, us
             d_category.setTitle(g_typeList[g_selectedTypeIndex], forState: .Normal)
 
         } else {
-        photoExperience.image = blob_photo
+        photoExperience.image = s_blob_photo
         //load other details from the temp variables set in List VC before calling Detailed VC
             println(" Inside view did load- existing item is not nil")
         d_title.text = s_title
