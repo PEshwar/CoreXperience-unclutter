@@ -21,7 +21,7 @@ class Date {
         c.day = day
         
         var gregorian = NSCalendar(identifier:NSGregorianCalendar)
-        var date = gregorian.dateFromComponents(c)
+        var date = gregorian?.dateFromComponents(c)
         return date!
     }
     //2a. How to construct NSDate from String date
@@ -533,7 +533,7 @@ class ExperienceDetailViewController: UIViewController, userDateTimeDelegate, us
         if (existingItem == nil) {
         var format = NSDateFormatter()
         format.dateFormat="yyyy-MM-dd-HH-mm-ss"
-        g_fileNameAudio = "recording-\(format.stringFromDate(NSDate.date())).m4a"
+        g_fileNameAudio = "recording-\(format.stringFromDate(NSDate())).m4a"
         println("Inside view did load of detail vc, value of file name is \(g_fileNameAudio)")
         }
    /*     else {
@@ -582,7 +582,7 @@ class ExperienceDetailViewController: UIViewController, userDateTimeDelegate, us
             } else {
                 var format = NSDateFormatter()
                 format.dateFormat="yyyy-MM-dd-HH-mm-ss"
-                g_fileNameAudio = "recording-\(format.stringFromDate(NSDate.date())).m4a"
+                g_fileNameAudio = "recording-\(format.stringFromDate(NSDate())).m4a"
                 playButton.enabled = false
                 
             }
@@ -1049,7 +1049,7 @@ extension ExperienceDetailViewController {
         
         var recordSettings = [
             AVFormatIDKey: kAudioFormatMPEG4AAC,
-            AVEncoderAudioQualityKey : AVAudioQuality.Min.toRaw(),
+            AVEncoderAudioQualityKey : AVAudioQuality.Min.rawValue,
             AVEncoderBitRateKey : 32000,
             AVNumberOfChannelsKey: 2,
             AVSampleRateKey : 8000.0

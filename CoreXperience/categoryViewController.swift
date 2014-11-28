@@ -161,7 +161,9 @@ override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath:
         var catName = selectedItem.valueForKey("md_category") as String?
         var catImage = selectedItem.valueForKey("md_categoryImage") as UIImage?
         destinationVC.s_catName = catName!
+        if catImage?.size.width > 0 {
         destinationVC.s_catImage = catImage!
+        }
         destinationVC.existingItem = selectedItem
         self.navigationController?.pushViewController(destinationVC, animated: true)
     }

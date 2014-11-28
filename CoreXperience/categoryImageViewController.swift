@@ -36,6 +36,7 @@ class categoryImageViewController: UIViewController,UIImagePickerControllerDeleg
     }
     
     @IBOutlet weak var d_catName: UITextField!
+  
     
     @IBAction func setDefaultCategoryImage(sender: AnyObject) {
         d_catImageView.image = kCategoryDefaultImage
@@ -73,8 +74,14 @@ class categoryImageViewController: UIViewController,UIImagePickerControllerDeleg
         
         
         //End save image to disk
+        
+        if d_catImageView.image?.size.width > 0 {
         newCategory.md_categoryImage = d_catImageView.image!
         context.save(nil)
+                } else
+                { println("No image to save")
+                }
+                
    //     println("Context Saved")
             
         self.delegateImageCat?.userImagePicked(d_catImageView.image!, categoryName: d_catName.text!)
@@ -158,7 +165,7 @@ class categoryImageViewController: UIViewController,UIImagePickerControllerDeleg
                     
                     var format = NSDateFormatter()
                     format.dateFormat="yyyy-MM-dd-HH-mm-ss"
-                    l_PhotoLocation = "Photo-\(format.stringFromDate(NSDate.date())).jpeg"
+                    l_PhotoLocation = "Photo-\(format.stringFromDate(NSDate())).jpeg"
                     
                     //   let writePath = dirPath.stringByAppendingPathComponent("share2.jpeg")
                     let writePath = dirPath.stringByAppendingPathComponent(l_PhotoLocation)

@@ -385,7 +385,7 @@ extension ExperienceListViewController {
                 
                 
                 var fileMgr = NSFileManager()
-                var stringURL = url.absoluteString
+                var stringURL = url?.absoluteString
      //           var successAudio = fileMgr.createFileAtPath(docsDir, contents: blobAudio, attributes: nil)
                 var filePath = docsDir.stringByAppendingPathComponent("audio.m4a")
                var removeSuccess = fileMgr.removeItemAtPath(filePath, error: nil)
@@ -440,7 +440,7 @@ extension ExperienceListViewController {
             println("Getting blob photo in view photo")
            
             println("Got blob photo in view photo- setting vc tempPhoto variable")
-            destinationVC.tempImage = UIImage(data:blob_photo)
+            destinationVC.tempImage = UIImage(data:blob_photo)!
             self.navigationController?.pushViewController(destinationVC, animated: true)
             
         }))
@@ -501,7 +501,7 @@ extension ExperienceListViewController {
             destinationVC.s_location = location
             println("Got reference to Photo location \(destinationVC.s_location)")
             
-            destinationVC.s_blob_photo = UIImage( data:blob_photo)
+            destinationVC.s_blob_photo = UIImage( data:blob_photo)!
             
             destinationVC.existingItem = selectedItem
             println("Got reference to existingItem")

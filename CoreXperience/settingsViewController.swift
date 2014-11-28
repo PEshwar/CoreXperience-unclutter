@@ -14,21 +14,23 @@ let kExperienceDefaultConstant:String = "imageDefaultImage"
 let kImageCompressionFactor  = CGFloat(1.0)
 let kImageScaleDownHeight = CGFloat(500)
 
-let kCategoryDefaultImage : UIImage = UIImage(named: "Bonsai.jpeg")
-let kExperienceDefaultImage: UIImage = UIImage(named: "Bhagawad-Gita.jpg")
+let kCategoryDefaultImage : UIImage = UIImage(named: "Bonsai.jpeg")!
+let kExperienceDefaultImage: UIImage = UIImage(named: "Bhagawad-Gita.jpg")!
 
 func imageDataScaledToHeight(imageData: NSData,
     height: CGFloat) -> NSData {
         
         let image = UIImage(data: imageData)
-        let oldHeight = image.size.height
-        let scaleFactor = height / oldHeight
-        let newWidth = image.size.width * scaleFactor
+        let oldHeight = image?.size.height
+        let oldWidth = image?.size.width
+        let scaleFactor = height / oldHeight!
+     
+        let newWidth = oldWidth! * scaleFactor
         let newSize = CGSizeMake(newWidth, height)
         let newRect = CGRectMake(0, 0, newWidth, height)
         
         UIGraphicsBeginImageContext(newSize)
-        image.drawInRect(newRect)
+        image?.drawInRect(newRect)
         let newImage =
         UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
@@ -100,7 +102,7 @@ class settingsViewController: UIViewController, UIImagePickerControllerDelegate,
             var imageNSData = UIImageJPEGRepresentation(categoryDefaultImage.image!, kImageCompressionFactor)
             var scaledDownCategoryImage = imageDataScaledToHeight(imageNSData, kImageScaleDownHeight)
           //  newDefaultCategory.m_defaultImage = categoryDefaultImage.image!
-            newDefaultCategory.m_defaultImage = UIImage(data:scaledDownCategoryImage)
+            newDefaultCategory.m_defaultImage = UIImage(data:scaledDownCategoryImage)!
             //     context.save(nil)
           
             
@@ -152,7 +154,7 @@ class settingsViewController: UIViewController, UIImagePickerControllerDelegate,
         newDefaultExperience.m_defaultCategory = kExperienceDefaultConstant
         var imageNSData = UIImageJPEGRepresentation(experienceDefaultImage.image!, kImageCompressionFactor)
         var scaledDownExperienceImage = imageDataScaledToHeight(imageNSData, kImageScaleDownHeight)
-        newDefaultExperience.m_defaultImage = UIImage(data: scaledDownExperienceImage)
+        newDefaultExperience.m_defaultImage = UIImage(data: scaledDownExperienceImage)!
       //  newDefaultExperience.m_defaultImage = experienceDefaultImage.image!
         
         context.save(nil)
@@ -167,22 +169,15 @@ class settingsViewController: UIViewController, UIImagePickerControllerDelegate,
 
     }
     
-    
     @IBOutlet weak var categoryDefaultImage: UIImageView!
     
+
     
+        
+
     @IBOutlet weak var experienceDefaultImage: UIImageView!
     
-    
-    @IBAction func restoreCategoryDefaults(sender: AnyObject) {
-        
-        
-        
-        
-    }
-    
-    
-    @IBAction func restoreImageDefaults(sender: AnyObject) {
+    @IBAction func restoreImageDefaults(sender: UIButton) {
         
         
         var appDel: AppDelegate = (UIApplication.sharedApplication().delegate as AppDelegate)
@@ -208,7 +203,7 @@ class settingsViewController: UIViewController, UIImagePickerControllerDelegate,
         //Set Category image default in database
         
         newDefaultCategory.m_defaultCategory = kCategoryDefaultConstant
-        newDefaultCategory.m_defaultImage = UIImage(named: "Bonsai.jpeg")
+        newDefaultCategory.m_defaultImage = UIImage(named: "Bonsai.jpeg")!
         
    //     context.save(nil)
         println("Category Default image Saved")
@@ -217,7 +212,7 @@ class settingsViewController: UIViewController, UIImagePickerControllerDelegate,
       //Set experience image default in database
         
         newDefaultExperience.m_defaultCategory = kExperienceDefaultConstant
-        newDefaultExperience.m_defaultImage = UIImage(named: "Bhagawad-Gita.jpg")
+        newDefaultExperience.m_defaultImage = UIImage(named: "Bhagawad-Gita.jpg")!
 
         
         context.save(nil)
@@ -288,10 +283,13 @@ class settingsViewController: UIViewController, UIImagePickerControllerDelegate,
         
         fetchRequest.predicate = NSPredicate(format: "m_defaultCategory == %@", kCategoryDefaultConstant)
         let l_defaultList = context.executeFetchRequest(fetchRequest, error: nil)! as [NSManagedObject]
-        println(" TypeList count is \(l_defaultList.count)")
+        println(" Category TypeList count is \(l_defaultList.count)")
         
         if l_defaultList.count > 0 {
-        categoryDefaultImage.image = l_defaultList[0].valueForKeyPath("m_defaultImage") as? UIImage
+        
+            categoryDefaultImage.image = l_defaultList[0].valueForKey("m_defaultImage") as? UIImage
+            println("category default image width is \(experienceDefaultImage.image?.size.width)")
+            
         }
                //    println(" selected Type is  \(g_typeList[g_selectedTypeIndex])")
     }
@@ -306,9 +304,11 @@ class settingsViewController: UIViewController, UIImagePickerControllerDelegate,
         
         fetchRequest.predicate = NSPredicate(format: "m_defaultCategory == %@", kExperienceDefaultConstant)
         let l_defaultList = context.executeFetchRequest(fetchRequest, error: nil)! as [NSManagedObject]
-        println(" TypeList count is \(l_defaultList.count)")
+        println(" Experience TypeList count is \(l_defaultList.count)")
          if l_defaultList.count > 0 {
-        experienceDefaultImage.image = l_defaultList[0].valueForKeyPath("m_defaultImage") as? UIImage
+        experienceDefaultImage.image = l_defaultList[0].valueForKey("m_defaultImage") as? UIImage
+            
+            println("Experience default image width is \(experienceDefaultImage?.image?.size.width)")
         }
         //    println(" selected Type is  \(g_typeList[g_selectedTypeIndex])")
     }

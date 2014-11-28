@@ -113,7 +113,7 @@ class FavTableViewController: UITableViewController {
         return 1
     }
 
-    override func tableView(tableView: UITableView!, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete method implementation.
         // Return the number of rows in the section.
         println("Fav count is \(favList.count)")
@@ -145,7 +145,7 @@ class FavTableViewController: UITableViewController {
             cell = UITableViewCell(style: UITableViewCellStyle.Subtitle,reuseIdentifier:"favCell")
             var tempCategory = data.valueForKeyPath("m_type") as? String
             var tempTitle = data.valueForKeyPath("m_title") as? String
-            cell.textLabel!.text = tempCategory! + ":   " + tempTitle!
+            cell.textLabel.text = tempCategory! + ":   " + tempTitle!
             cell.detailTextLabel!.text = data.valueForKeyPath("m_desc") as? String
         } else {
 
@@ -154,7 +154,7 @@ class FavTableViewController: UITableViewController {
         // Configure the cell
             var tempCategory = data.valueForKeyPath("m_type") as? String
             var tempTitle = data.valueForKeyPath("m_title") as? String
-            cell.textLabel!.text = "[" + tempCategory! + "]:   " + tempTitle!
+            cell.textLabel.text = "[" + tempCategory! + "]:   " + tempTitle!
        //     cell.textLabel!.text = data.valueForKeyPath("m_title") as? String
             cell.detailTextLabel!.text = data.valueForKeyPath("m_desc") as? String
             cell.detailTextLabel!.textColor = UIColor.purpleColor()
@@ -298,7 +298,7 @@ class FavTableViewController: UITableViewController {
                         var photoPath = dirPath.stringByAppendingPathComponent(photoLoc)
                         println(" Photo Path is \(photoPath)")
                         var imagePhoto = UIImage (named: photoPath)
-                        destinationVC.tempPhoto = imagePhoto
+                        destinationVC.tempPhoto = imagePhoto!
                         destinationVC.viewMode = true
                     }
                 }
@@ -470,7 +470,7 @@ class FavTableViewController: UITableViewController {
                         
                         var url = NSURL(fileURLWithPath: docsDir + "/" + soundURL)
                         
-                        let audioData = NSData(contentsOfURL: url)
+                        let audioData = NSData(contentsOfURL: url!)
                         
                         mc.addAttachmentData(audioData, mimeType: "audio/mp4", fileName:     "audio")
                         

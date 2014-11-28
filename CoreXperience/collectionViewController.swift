@@ -34,11 +34,11 @@ class collectionViewController: UICollectionViewController {
         layout.sectionInset = UIEdgeInsets(top: 20, left: 10, bottom: 10, right: 10)
         layout.itemSize = CGSize(width: 90, height: 90)
         collectionView = UICollectionView(frame: self.view.frame, collectionViewLayout: layout)
-        collectionView!.dataSource = self
-        collectionView!.delegate = self
-        collectionView!.registerClass(CollectionViewCell.self, forCellWithReuseIdentifier: "CollectionViewCell")
-        collectionView!.backgroundColor = UIColor.whiteColor()
-        self.view.addSubview(collectionView!)
+        collectionView.dataSource = self
+        collectionView.delegate = self
+        collectionView.registerClass(CollectionViewCell.self, forCellWithReuseIdentifier: "CollectionViewCell")
+        collectionView.backgroundColor = UIColor.whiteColor()
+        self.view.addSubview(collectionView)
         
      // Get data from table
         
@@ -87,7 +87,7 @@ class collectionViewController: UICollectionViewController {
         }
    //     println(" No of items in collection from table is during view will appear is \(l_typeList.count)")
 //        println(" Hello- in view will appear: finished fetching new collection cells ")
-        collectionView?.reloadData()
+        collectionView.reloadData()
     }
     
     override func collectionView(collectionView: UICollectionView,
@@ -204,7 +204,7 @@ class collectionViewController: UICollectionViewController {
 
     // MARK: UICollectionViewDataSource
 
-    override func numberOfSectionsInCollectionView(collectionView: UICollectionView!) -> Int {
+    override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
         //#warning Incomplete method implementation -- Return the number of sections
         return 1
     }
