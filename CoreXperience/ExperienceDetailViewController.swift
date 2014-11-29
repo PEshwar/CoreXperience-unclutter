@@ -371,10 +371,13 @@ class ExperienceDetailViewController: UIViewController, userDateTimeDelegate, us
             var context: NSManagedObjectContext;
             context = appDel.managedObjectContext!
             
+            var scaledDownExperienceImage = NSData()
+            if photoExperience.image?.size.width > 0 {
             var imageNSData = UIImageJPEGRepresentation(photoExperience.image!, kImageCompressionFactor)
-            var scaledDownExperienceImage = imageDataScaledToHeight(imageNSData, kImageScaleDownHeight)
+            scaledDownExperienceImage = imageDataScaledToHeight(imageNSData, kImageScaleDownHeight)
             var imageToSave = UIImage(data: scaledDownExperienceImage)
-
+            }
+            
         if (existingItem != nil)
         {
             
@@ -466,6 +469,13 @@ class ExperienceDetailViewController: UIViewController, userDateTimeDelegate, us
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardDidShow:", name: UIKeyboardDidShowNotification, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardDidHide:", name: UIKeyboardDidHideNotification, object: nil)
+        
+        //Dismiss keyboard 
+        
+        //Looks for single or multiple taps.
+        var tap:UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "DismissKeyboard")
+        self.view.addGestureRecognizer(tap)
+        
         
         println("Inside view did load of detail VC")
        
@@ -633,12 +643,14 @@ class ExperienceDetailViewController: UIViewController, userDateTimeDelegate, us
     override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
         
         self.view.endEditing(true)
+    
         
     }
     
     func textFieldShouldReturn(textField: UITextField!) ->Bool {
         
         textField.resignFirstResponder()
+        
         return true
         
     }
@@ -1189,7 +1201,7 @@ extension ExperienceDetailViewController {
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         
-       navigationController?.hidesBarsWhenKeyboardAppears = true
+     //  navigationController?.hidesBarsWhenKeyboardAppears = true
     }
 
 }
@@ -1251,5 +1263,10 @@ extension ExperienceDetailViewController {
     photoExperience.image = l_defaultList[0].valueForKeyPath("m_defaultImage") as? UIImage
     }
     //    println(" selected Type is  \(g_typeList[g_selectedTypeIndex])")
+    }
+
+    func DismissKeyboard(){
+        //Causes the view (or one of its embedded text fields) to resign the first responder status.
+        self.view.endEditing(true)
     }
 }

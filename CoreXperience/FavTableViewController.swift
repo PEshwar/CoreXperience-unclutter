@@ -546,8 +546,10 @@ func filterContentForSearchText(searchText: String, scope: String = "All") {
         var tempDesc = element.valueForKey("m_desc") as String
         var tempTitle = element.valueForKey("m_title") as String
         var tempDate = element.valueForKey("m_date") as NSDate
+        var searchTextLower = searchText.lowercaseString
+      
         
-        if ((tempDesc.lowercaseString.rangeOfString(searchText) != nil) || (tempTitle.lowercaseString.rangeOfString(searchText) != nil))  {
+        if ((tempDesc.lowercaseString.rangeOfString(searchTextLower) != nil) || (tempTitle.lowercaseString.rangeOfString(searchTextLower) != nil))  {
         println("value for Desc is \(tempDesc)")
             println("value for Title is \(tempTitle)")
             println("i = \(i)")
