@@ -84,18 +84,9 @@ class settingsViewController: UIViewController, UIImagePickerControllerDelegate,
             let ent = NSEntityDescription.entityForName("DefaultImages", inManagedObjectContext: context)
      
             var newDefaultCategory = modelImageDefaults(entity: ent!, insertIntoManagedObjectContext: context)
-           
-            
-            
-            var persistenceHelper: ExperiencePersistenceHelper = ExperiencePersistenceHelper()
-            if (persistenceHelper.remove("DefaultImages", key: "m_defaultCategory", value: kCategoryDefaultConstant)) {
-                println("Removing category default image from db successful")
-            } else {
-                println("No  category default available to be removed from DB")
-            }
-           
-            
-            
+  
+            deleteCategoryDefault()
+        
             //Set Category image default in database
             
             newDefaultCategory.m_defaultCategory = kCategoryDefaultConstant
@@ -138,17 +129,11 @@ class settingsViewController: UIViewController, UIImagePickerControllerDelegate,
         let ent = NSEntityDescription.entityForName("DefaultImages", inManagedObjectContext: context)
    
         var newDefaultExperience = modelImageDefaults(entity: ent!, insertIntoManagedObjectContext: context)
-        
-        
-        var persistenceHelper: ExperiencePersistenceHelper = ExperiencePersistenceHelper()
-
-        if (persistenceHelper.remove("DefaultImages", key: "m_defaultCategory", value: kExperienceDefaultConstant)) {
-            println("Removing experience default image from db successful")
-        } else {
-            println("No experience default available to be removed from DB")
-        }
- 
-        
+            
+            deleteExperienceDefault()
+            
+            
+          
         //Set experience image default in database
         
         newDefaultExperience.m_defaultCategory = kExperienceDefaultConstant
@@ -187,7 +172,9 @@ class settingsViewController: UIViewController, UIImagePickerControllerDelegate,
         var newDefaultCategory = modelImageDefaults(entity: ent!, insertIntoManagedObjectContext: context)
         var newDefaultExperience = modelImageDefaults(entity: ent!, insertIntoManagedObjectContext: context)
 
-        
+        deleteCategoryDefault()
+        deleteExperienceDefault()
+     /*
         var persistenceHelper: ExperiencePersistenceHelper = ExperiencePersistenceHelper()
         if (persistenceHelper.remove("DefaultImages", key: "m_defaultCategory", value: kCategoryDefaultConstant)) {
             println("Removing category default image from db successful")
@@ -199,6 +186,7 @@ class settingsViewController: UIViewController, UIImagePickerControllerDelegate,
         } else {
             println("No experience default available to be removed from DB")
         }
+       */
         
         //Set Category image default in database
         
@@ -312,6 +300,59 @@ class settingsViewController: UIViewController, UIImagePickerControllerDelegate,
         }
         //    println(" selected Type is  \(g_typeList[g_selectedTypeIndex])")
     }
+    
+    func deleteCategoryDefault() {
+        var appDel: AppDelegate = (UIApplication.sharedApplication().delegate as AppDelegate)
+        var context: NSManagedObjectContext;
+        context = appDel.managedObjectContext!
+        
+        //SEARCH FOR all table entries with categoryImage key
+        var request = NSFetchRequest(entityName: "DefaultImages")
+        request.returnsObjectsAsFaults = false
+        request.predicate = NSPredicate(format: "m_defaultCategory == %@", kCategoryDefaultConstant)
+        var results: NSArray = context.executeFetchRequest(request, error: nil)!
+        
+        var i : Int = 0
+        if(results.count > 0){
+            
+            
+            for (i,res) in enumerate(results) {
+                
+                var res = results[i] as NSManagedObject
+                context.deleteObject(res)
+                context.save(nil)
+            }
+            println(" Deleted \(i+1) rows from Experience images table")
+        }
+        
     }
     
+    func deleteExperienceDefault() {
+        
+        var appDel: AppDelegate = (UIApplication.sharedApplication().delegate as AppDelegate)
+        var context: NSManagedObjectContext;
+        context = appDel.managedObjectContext!
+        
+        //SEARCH FOR all table entries with categoryImage key
+        var request = NSFetchRequest(entityName: "DefaultImages")
+        request.returnsObjectsAsFaults = false
+        request.predicate = NSPredicate(format: "m_defaultCategory == %@", kExperienceDefaultConstant)
+        var results: NSArray = context.executeFetchRequest(request, error: nil)!
+        
+        var i : Int = 0
+        if(results.count > 0){
+            
+            
+            for (i,res) in enumerate(results) {
+                
+                var res = results[i] as NSManagedObject
+                context.deleteObject(res)
+                context.save(nil)
+            }
+            println(" Deleted \(i+1) rows from Experience images table")
+        }
+        
+    }
+    }
+
 
