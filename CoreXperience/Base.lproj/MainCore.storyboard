@@ -770,7 +770,7 @@
                         <viewControllerLayoutGuide type="bottom" id="Kl6-pr-FGG"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="YQA-yi-N1i">
-                        <rect key="frame" x="0.0" y="64" width="600" height="536"/>
+                        <rect key="frame" x="0.0" y="64" width="600" height="492"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bKD-Of-L2R" userLabel="Favourite">
@@ -833,7 +833,7 @@
                                 </connections>
                             </button>
                             <textView autoresizesSubviews="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" indicatorStyle="black" keyboardDismissMode="interactive" textAlignment="justified" translatesAutoresizingMaskIntoConstraints="NO" id="ABu-cb-Zhb">
-                                <rect key="frame" x="7" y="193" width="587" height="342"/>
+                                <rect key="frame" x="7" y="193" width="587" height="298"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="579" id="Yce-d3-frc">
@@ -926,13 +926,8 @@
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
-                                <exclude reference="DJc-jC-O5K"/>
                                 <exclude reference="Caz-i1-hpe"/>
-                                <exclude reference="0Ov-D5-TT1"/>
-                                <exclude reference="PZt-kv-HLa"/>
-                                <exclude reference="UnH-QW-SA2"/>
-                                <exclude reference="f7p-5G-2QK"/>
-                                <exclude reference="wcG-nS-ADF"/>
+                                <exclude reference="DJc-jC-O5K"/>
                                 <exclude reference="16F-q7-sVW"/>
                                 <exclude reference="Rdk-3F-WYe"/>
                                 <exclude reference="fQ4-wS-hc5"/>
@@ -941,6 +936,11 @@
                                 <exclude reference="Vvx-Ff-PgM"/>
                                 <exclude reference="eAz-tZ-Wfm"/>
                                 <exclude reference="rc6-Sr-uZS"/>
+                                <exclude reference="0Ov-D5-TT1"/>
+                                <exclude reference="PZt-kv-HLa"/>
+                                <exclude reference="UnH-QW-SA2"/>
+                                <exclude reference="f7p-5G-2QK"/>
+                                <exclude reference="wcG-nS-ADF"/>
                                 <exclude reference="1XK-Oo-hY0"/>
                                 <exclude reference="t9E-lM-ITh"/>
                                 <exclude reference="wVS-hG-fiI"/>
@@ -948,18 +948,11 @@
                         </variation>
                         <variation key="widthClass=compact">
                             <mask key="constraints">
-                                <include reference="DJc-jC-O5K"/>
-                                <exclude reference="GsJ-wF-IR6"/>
                                 <exclude reference="8QV-vr-XjM"/>
                                 <include reference="Caz-i1-hpe"/>
                                 <exclude reference="yLj-n1-rap"/>
-                                <include reference="0Ov-D5-TT1"/>
-                                <exclude reference="25M-fO-2fl"/>
-                                <exclude reference="Mq5-8D-Rib"/>
-                                <exclude reference="PZt-kv-HLa"/>
-                                <exclude reference="UnH-QW-SA2"/>
-                                <include reference="f7p-5G-2QK"/>
-                                <include reference="wcG-nS-ADF"/>
+                                <include reference="DJc-jC-O5K"/>
+                                <exclude reference="GsJ-wF-IR6"/>
                                 <exclude reference="16F-q7-sVW"/>
                                 <exclude reference="1eH-ye-yCb"/>
                                 <exclude reference="C35-hZ-wBe"/>
@@ -971,6 +964,13 @@
                                 <include reference="EKB-F1-q0j"/>
                                 <exclude reference="aub-m3-iO2"/>
                                 <include reference="rc6-Sr-uZS"/>
+                                <include reference="0Ov-D5-TT1"/>
+                                <exclude reference="25M-fO-2fl"/>
+                                <exclude reference="Mq5-8D-Rib"/>
+                                <exclude reference="PZt-kv-HLa"/>
+                                <exclude reference="UnH-QW-SA2"/>
+                                <include reference="f7p-5G-2QK"/>
+                                <include reference="wcG-nS-ADF"/>
                                 <exclude reference="1XK-Oo-hY0"/>
                                 <exclude reference="dEV-Zc-S0R"/>
                                 <include reference="t9E-lM-ITh"/>
@@ -1175,7 +1175,6 @@
                                     </label>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="eI6-6z-xSS">
                                         <rect key="frame" x="0.0" y="-30" width="97" height="30"/>
-                                        <color key="textColor" red="0.94542615789999995" green="1" blue="0.25005190350000001" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                         <variation key="widthClass=compact" ambiguous="YES" misplaced="YES">
